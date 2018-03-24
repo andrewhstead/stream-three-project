@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#site_header {
+    display: flex;
+}
+
+.header_logo {
+    flex: 1;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    text-align: center;
+}
+
+.header_team {
+    height: 50px;
+    width: 50px;
+}
