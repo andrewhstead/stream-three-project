@@ -2,14 +2,4 @@
 
 {% block content %}
 
-    <header id="site_header">
-
-        {%  for team in teams %}
-            <div class="header_logo">
-                <img class="header_team" src="media/{{ team.large_logo }}" alt="{{ team.geographic_name }}" />
-            </div>
-        {%  endfor %}
-
-    </header>
-
 {% endblock %}

@@ -7,5 +7,5 @@ from .models import Team
 
 # Create your views here.
 def home_page(request):
-    teams = Team.objects.all
+    teams = Team.objects.all().order_by('geographic_name')
     return render(request, "home.html", {'teams': teams})

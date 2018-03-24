@@ -3,10 +3,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Stream Three Project</title>
     <link rel="stylesheet" href="{% static "css/default.css" %}">
 </head>
 <body>
+
+    <header>
+
+        <div id="teams_header">
+            {% for team in teams %}
+                <div class="header_logos">
+                    <img class="header_team" src="media/{{ team.large_logo }}" alt="{{ team.geographic_name }}" />
+                </div>
+            {%  endfor %}
+        </div>
+
+        <div id="league_header">
+            <div>
+                <img class="home_logo" src="media/images/league/bibl_logo.png" />
+            </div>
+            <div id="league_name">
+                BRITISH AND IRISH BASEBALL LEAGUE
+            </div>
+            <div id="menu_toggle">
+                &#8801;
+            </div>
+        </div>
+
+    </header>
 
     {% block content %}
     {% endblock %}
