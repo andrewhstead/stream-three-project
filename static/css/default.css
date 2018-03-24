@@ -3,6 +3,10 @@ body {
     padding: 0;
 }
 
+main {
+     margin: 10px;
+}
+
 #teams_header {
     display: flex;
     padding: 5px;
