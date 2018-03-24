@@ -7,11 +7,9 @@ from .models import Team
 
 # Create your views here.
 def team_index(request):
-    teams = Team.objects.all().order_by('geographic_name')
-    return render(request, "index.html", {'teams': teams})
+    return render(request, "index.html")
 
 
 def team_page(request, team_id):
-    teams = Team.objects.all().order_by('geographic_name')
     team = get_object_or_404(Team, pk=team_id)
-    return render(request, "profile.html", {'teams': teams, 'team': team})
+    return render(request, "profile.html", {'team': team})
