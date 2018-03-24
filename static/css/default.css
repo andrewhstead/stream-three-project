@@ -121,6 +121,12 @@ main {
 	display: block;
 }
 
+#main-menu {
+    display: none;
+    z-index: 2;
+    position: relative;
+}
+
 .menu-link {
 	background-color: #4f81bd;
     border-bottom: 1px solid #10253f;
