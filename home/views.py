@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-from .models import Team
+from teams.models import Team
 
 
 # Create your views here.
