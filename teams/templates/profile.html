@@ -1,5 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {{ team.geographic_name }} {{ team.nickname }}
+
+    <div class="team_header">
+
+        <div class="{{ team.geographic_name|lower }} team_title">
+            {{ team.geographic_name }}<br />{{ team.nickname }}
+        </div>
+
+        <div class="title_logo">
+            <img class="profile_logo" src="/media/{{ team.small_logo }}" />
+        </div>
+
+    </div>
+
 {% endblock %}
