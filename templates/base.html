@@ -11,27 +11,60 @@
 
     <header>
 
-        <div id="teams_header">
+        <div id="teams-header">
             {% for team in teams %}
-                <div class="header_logos">
+                <div class="header-logos">
                     <a href="/teams/{{ team.id }}">
-                        <img class="header_logo" src="/media/{{ team.large_logo }}" alt="{{ team.geographic_name }}" />
+                        <img class="header-logo" src="/media/{{ team.large_logo }}" alt="{{ team.geographic_name }}" />
                     </a>
                 </div>
             {%  endfor %}
         </div>
 
-        <div id="league_header">
+        <div id="league-header">
             <div>
-                <img class="home_logo" src="/media/images/league/bibl_logo.png" />
+                <img class="home-logo" src="/media/images/league/bibl_logo.png" />
             </div>
-            <div id="league_name">
+            <div id="league-name">
                 BRITISH AND IRISH BASEBALL LEAGUE
             </div>
-            <div id="menu_toggle">
+            <div id="menu-button" onclick="menuToggle()">
                 &#8801;
             </div>
         </div>
+
+	    <nav id="main-menu" class="toggle">
+		    <a class="menu-link" href="/">
+			    Home Page
+		    </a>
+		    <a class="menu-link" href="/">
+			    News
+		    </a>
+		    <a class="menu-link" href="/">
+			    Blogs
+		    </a>
+		    <a class="menu-link" href="/">
+			    Scores
+		    </a>
+		    <a class="menu-link" href="/">
+			    Standings
+		    </a>
+		    <a class="menu-link" href="/">
+			    Teams
+		    </a>
+		    <a class="menu-link" href="/">
+			    Store
+		    </a>
+		    <a class="menu-link" href="/">
+			    Forum
+		    </a>
+		    <a class="menu-link" href="/">
+			    Register
+		    </a>
+		    <a class="menu-link" href="/">
+			    Log In
+		    </a>
+        </nav>
 
     </header>
 
@@ -41,6 +74,8 @@
         {% endblock %}
 
     </main>
+
+	<script src="/static/js/custom.js"></script>
 
 </body>
 </html>

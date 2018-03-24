@@ -7,13 +7,13 @@ main {
      margin: 10px;
 }
 
-#teams_header {
+#teams-header {
     display: flex;
     padding: 5px;
     background-color: #4f81bd;
 }
 
-#league_header {
+#league-header {
     display: flex;
     padding: 5px;
     background-color: #10253f;
@@ -24,7 +24,7 @@ main {
 	box-shadow: 0px 2px 2px 2px #4f81bd;
 }
 
-.header_logos {
+.header-logos {
     flex: 1;
     margin-left: auto;
     margin-right: auto;
@@ -33,22 +33,22 @@ main {
     height: 35px;
 }
 
-.header_logo {
+.header-logo {
     height: 35px;
     width: 35px;
 }
 
-.home_logo {
+.home-logo {
     height: 100px;
     width: 100px;
 }
 
-#league_name {
+#league-name {
     padding: 5px;
     margin: auto;
 }
 
-#menu_toggle {
+#menu-button {
     position: absolute;
     bottom: 5px;
     right: 10px;
@@ -56,60 +56,86 @@ main {
     height: auto;
 }
 
-.team_header {
+.team-header {
     display: flex;
 }
 
-.team_title {
+.team-title {
     font-size: 2.5em;
 }
 
-.title_logo {
+.title-logo {
     height: 100px;
     margin: 5px 0 auto auto;
 }
 
-.profile_logo {
+.profile-logo {
     height: 80px;
     width: 80px;
 }
 
-.dublin {
+.dublin-text {
     color: rgb(0,128,0);
     text-shadow: 1px 1px rgb(243,116,27);
 }
 
-.glasgow {
+.glasgow-text {
     color: rgb(221,208,0);
     text-shadow: 1px 1px rgb(0,0,0);
 }
 
-.liverpool {
+.liverpool-text {
     color: rgb(255,0,0);
     text-shadow: 1px 1px rgb(0,0,157);
 }
 
-.manchester {
+.manchester-text {
     color: rgb(0,0,0);
     text-shadow: 1px 1px rgb(204,204,204);
 }
 
-.birmingham {
+.birmingham-text {
     color: rgb(150,130,104);
     text-shadow: 1px 1px rgb(86,75,60);
 }
 
-.bristol {
+.bristol-text {
     color: rgb(123,72,4);
     text-shadow: 1px 1px rgb(255,255,0);
 }
 
-.cardiff {
+.cardiff-text {
     color: rgb(191,0,0);
     text-shadow: 1px 1px rgb(0,127,63);
 }
 
-.london {
+.london-text {
     color: rgb(229,179,2);
     text-shadow: 1px 1px rgb(128,0,128);
+}
+
+.toggle {
+	display: none;
+}
+.activate {
+	display: block;
+}
+
+.menu-link {
+	background-color: #4f81bd;
+    border-bottom: 1px solid #10253f;
+    color: white;
+    width: 100%;
+    display: block;
+    padding: 5px 5px 5px 10px;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.menu-link:last-of-type {
+	box-shadow: 0 2px 2px 2px #10253f;
+}
+
+.menu-link:hover {
+	background-color: #10253f;
 }
