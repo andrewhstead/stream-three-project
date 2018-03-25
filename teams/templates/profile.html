@@ -2,14 +2,24 @@
 
 {% block content %}
 
-    <div class="team-header">
+    <div id="team-header">
 
         <div class="{{ team.geographic_name|lower }}-text team-title">
-            {{ team.geographic_name }}<br />{{ team.nickname }}
+            <img class="profile-logo" src="/media/{{ team.small_logo }}" />
+            {{ team.geographic_name }} {{ team.nickname }}
         </div>
 
-        <div class="title-logo">
-            <img class="profile-logo" src="/media/{{ team.small_logo }}" />
+        <div id="team-details">
+
+            <ul>
+                <li>
+                    <strong>{{ team.conference }}</strong>
+                </li>
+                <li>
+                    <strong>Home Stadium:</strong> {{ team.ballpark }}
+                </li>
+            </ul>
+
         </div>
 
     </div>

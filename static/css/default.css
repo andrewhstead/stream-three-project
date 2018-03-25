@@ -3,10 +3,6 @@ body {
     padding: 0;
 }
 
-main {
-     margin: 10px;
-}
-
 #teams-header {
     display: flex;
     padding: 5px;
@@ -56,22 +52,26 @@ main {
     height: auto;
 }
 
-.team-header {
-    display: flex;
+#team-header {
+    margin: 10px;
+}
+
+#team-details ul {
+    list-style-type: none;
+    padding: 0;
 }
 
 .team-title {
     font-size: 2.5em;
-}
-
-.title-logo {
-    height: 100px;
-    margin: 5px 0 auto auto;
+    word-spacing: 9999999px;
 }
 
 .profile-logo {
+    float: right;
     height: 80px;
     width: 80px;
+    z-index: 2;
+    margin-top: 5px;
 }
 
 .dublin-text {
@@ -144,4 +144,5 @@ main {
 
 .menu-link:hover {
 	background-color: #10253f;
+    transition: 0.25s;
 }
