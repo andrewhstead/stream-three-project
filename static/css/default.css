@@ -3,6 +3,10 @@ body {
     padding: 0;
 }
 
+a {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
 #teams-header {
     display: flex;
     padding: 5px;

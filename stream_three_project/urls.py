@@ -25,5 +25,5 @@ urlpatterns = [
     url(r'^$', home_views.home_page),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
     url(r'^teams/$', team_views.team_index),
-    url(r'^teams/(?P<team_id>\d+)/$', team_views.team_page, name='team_page'),
+    url(r'^teams/(?P<team_name>.*)/$', team_views.team_page, name='team_page'),
 ]

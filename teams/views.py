@@ -10,6 +10,6 @@ def team_index(request):
     return render(request, "index.html")
 
 
-def team_page(request, team_id):
-    team = get_object_or_404(Team, pk=team_id)
+def team_page(request, team_name):
+    team = get_object_or_404(Team, geographic_name=team_name.capitalize())
     return render(request, "profile.html", {'team': team})
