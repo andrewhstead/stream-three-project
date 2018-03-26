@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div id="page-header">
+        LATEST NEWS
+    </div>
+
+    {% for item in items %}
+
+        <span class="arrow">&#9658;</span> <a class="standard-link" href="{{ item.id }}">{{ item.title }}</a>
+
+    {%  endfor %}
+
+{% endblock %}

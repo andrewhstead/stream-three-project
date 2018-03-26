@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <section id="news-story">
+
+        <div id="news-headline">
+            {{ item.title }}
+        </div>
+
+        <div class="item-details">
+            {{ item.created_date }}<br />Written by: {{ item.author }}
+        </div>
+
+        <div id="item-content">
+            {{ item.content }}
+        </div>
+
+        <div class="item-details">
+            Category: {{ item.category }} | {{ item.views }} views<br />
+            Teams:
+            {% for team in item.teams.all %}
+                <a class="{{ team.geographic_name|lower }}-tag team-tag" href="/teams/{{ team.geographic_name|lower }}">{{ team.geographic_name }} {{ team.nickname }}</a>
+            {% endfor %}
+        </div>
+
+    </section>
+
+{% endblock %}

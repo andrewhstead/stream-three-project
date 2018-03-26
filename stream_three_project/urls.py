@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from home import views as home_views
+from news import views as news_views
 from teams import views as team_views
 from django.views.static import serve
 from .settings import MEDIA_ROOT
@@ -24,6 +25,8 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', home_views.home_page),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
+    url(r'^news/$', news_views.news_index),
+    url(r'^news/(?P<id>\d+)/$', news_views.news_item),
     url(r'^teams/$', team_views.team_index),
     url(r'^teams/(?P<team_name>.*)/$', team_views.team_page, name='team_page'),
 ]
