@@ -20,7 +20,7 @@
             Category: {{ item.category }} | {{ item.views }} views<br />
             Teams:
             {% for team in item.teams.all %}
-                <a class="{{ team.geographic_name|lower }}-tag team-tag" href="/teams/{{ team.geographic_name|lower }}">{{ team.geographic_name }} {{ team.nickname }}</a>
+                <a class="{{ team.geographic_name|lower }}-tag team-tag" href="/news/{{ team.geographic_name|lower }}">{{ team.geographic_name }} {{ team.nickname }}</a>
             {% endfor %}
         </div>
 

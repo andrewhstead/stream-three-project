@@ -280,12 +280,12 @@ footer {
 
 .dublin-tag {
     background-color: rgb(0,128,0);
-    color: 1px 1px rgb(255,128,39);
+    color: rgb(255,128,39);
 }
 
 .glasgow-tag {
     background-color: rgb(221,208,0);
-    color: 1px 1px rgb(0,0,0);
+    color: rgb(0,0,0);
 }
 
 .liverpool-tag {
@@ -295,22 +295,22 @@ footer {
 
 .manchester-tag {
     background-color: rgb(0,0,0);
-    color: 1px 1px rgb(204,204,204);
+    color: rgb(204,204,204);
 }
 
 .birmingham-tag {
     background-color: rgb(150,130,104);
-    color: 1px 1px rgb(255,255,255);
+    color: rgb(255,255,255);
 }
 
 .bristol-tag {
     background-color: rgb(123,72,4);
-    color: 1px 1px rgb(255,255,0);
+    color: rgb(255,255,0);
 }
 
 .cardiff-tag {
     background-color: rgb(191,0,0);
-    color: 1px 1px rgb(255,255,255);
+    color: rgb(255,255,255);
 }
 
 .london-tag {
@@ -336,7 +336,7 @@ footer {
     color: #10253f;
 }
 
-.team-news {
+.team-box {
     border-radius: 10px;
     padding: 2px;
     clear: both;
@@ -344,58 +344,71 @@ footer {
     text-align: center;
 }
 
-.dublin-news {
+.dublin-box {
     background-color: rgb(0,128,0);
     color: rgb(255,128,39);
     border: 2px solid rgb(0,128,0);
     box-shadow: 0 0 2px 2px rgb(243,116,27);
 }
 
-.glasgow-news {
+.glasgow-box {
     background-color: rgb(221,208,0);
     color: rgb(0,0,0);
     border: 2px solid rgb(221,208,0);
     box-shadow: 0 0 2px 2px rgb(0,0,0);
 }
 
-.liverpool-news {
+.liverpool-box {
     background-color: rgb(255,0,0);
     color: rgb(0,0,157);
     border: 2px solid rgb(255,0,0);
     box-shadow: 0 0 2px 2px rgb(0,0,157);
 }
 
-.manchester-news {
+.manchester-box {
     background-color: rgb(0,0,0);
     color: rgb(204,204,204);
     border: 2px solid rgb(0,0,0);
     box-shadow: 0 0 2px 2px rgb(204,204,204);
 }
 
-.birmingham-news {
+.birmingham-box {
     background-color: rgb(150,130,104);
     color: rgb(255,255,255);
     border: 2px solid rgb(150,130,104);
     box-shadow: 0 0 2px 2px rgb(191,191,191);
 }
 
-.bristol-news {
+.bristol-box {
     background-color: rgb(123,72,4);
     color: rgb(255,255,0);
     border: 2px solid rgb(123,72,4);
     box-shadow: 0 0 2px 2px rgb(255,255,0);
 }
 
-.cardiff-news {
+.cardiff-box {
     background-color: rgb(191,0,0);
     color: rgb(255,255,255);
     border: 2px solid rgb(191,0,0);
     box-shadow: 0 0 2px 2px rgb(0,127,63);
 }
 
-.london-news {
+.london-box {
     background-color: rgb(229,179,2);
     color: rgb(128,0,128);
     border: 2px solid rgb(229,179,2);
     box-shadow: 0 0 2px 2px rgb(128,0,128);
+}
+
+.team-news {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#all-news {
+    font-size: 0.75em;
+    display: block;
+    text-align: center;
+    margin-top: 10px;
 }

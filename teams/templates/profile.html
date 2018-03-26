@@ -11,7 +11,7 @@
 
     </div>
 
-    <div class="{{ team.geographic_name|lower }}-news team-news">
+    <div class="{{ team.geographic_name|lower }}-box team-box">
         TEAM NEWS
     </div>
 
@@ -22,5 +22,7 @@
         {% endif %}
 
     {%  endfor %}
+
+    <span id="all-news"><a class="standard-link" href="/news/{{ team.geographic_name|lower }}">[All Articles]</a></span>
 
 {% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div id="page-header">
+        LATEST NEWS
+    </div>
+
+    <div class="{{ team.geographic_name|lower }}-text team-news">
+        {{ team.geographic_name }} {{ team.nickname }}
+    </div>
+
+    {% for item in items %}
+
+        {% if team in item.teams.all %}
+            <span class="arrow">&#9658;</span> <a class="standard-link" href="/news/{{ item.id }}/">{{ item.title }}</a>
+        {% endif %}
+
+    {%  endfor %}
+
+{% endblock %}

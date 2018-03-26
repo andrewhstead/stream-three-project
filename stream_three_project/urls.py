@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
     url(r'^news/$', news_views.news_index),
     url(r'^news/(?P<id>\d+)/$', news_views.news_item),
+    url(r'^news/(?P<team_name>.*)/$', news_views.team_news, name='team_news'),
     url(r'^teams/$', team_views.team_index),
     url(r'^teams/(?P<team_name>.*)/$', team_views.team_page, name='team_page'),
 ]
