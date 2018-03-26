@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
 from teams.models import Team
+from tinymce.models import HTMLField
 
 
 # Create your models here.
@@ -18,7 +19,7 @@ class Item(models.Model):
     author = models.CharField(max_length=50)
     title = models.CharField(max_length=200)
     cover_image = models.ImageField(upload_to="images/news/covers", blank=True, null=True)
-    content = models.TextField()
+    content = HTMLField()
     content_image = models.ImageField(upload_to="images/news/content", blank=True, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category, related_name='item')

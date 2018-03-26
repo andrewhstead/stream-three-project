@@ -19,7 +19,7 @@ def news_item(request, id):
     return render(request, "news_item.html", {"item": item})
 
 
-def team_news(request, team_name):
+def news_team(request, team_name):
     items = Item.objects.all()
     team = get_object_or_404(Team, geographic_name=team_name.capitalize())
     return render(request, "news_team.html", {'team': team, 'items': items})
