@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div id="page-header">
+        TEAM DIRECTORY
+    </div>
+
+    {% for conference in conferences %}
+
+        <div class="conference-name">
+            {{ conference.name|upper }}
+        </div>
+
+        {% for team in conference.teams.all %}
+
+            <div class="team-details">
+                <div class="team-name">
+                    <img class="directory-logo" src="/media/{{ team.small_logo }}" /> {{ team.geographic_name }} {{ team.nickname }}
+                </div>
+                <ul>
+                    <li>
+                        <strong>Home Stadium:</strong> {{ team.ballpark }}
+                    </li>
+                </ul>
+                <div class="profile-links">
+                    <a class="profile-link" href="/teams/{{ team.geographic_name|lower }}">Team Home</a> |
+                    <a class="profile-link" href="/">News</a> |
+                    <a class="profile-link" href="/">Schedule</a> |
+                    <a class="profile-link" href="/">Forum</a>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    {%  endfor %}
+
+{% endblock %}

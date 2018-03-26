@@ -5,11 +5,20 @@ from django.db import models
 
 
 # Create your models here.
+class Conference(models.Model):
+    name = models.CharField(max_length=100)
+    short_name = models.CharField(max_length=10)
+    abbreviation = models.CharField(max_length=3)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Team(models.Model):
     geographic_name = models.CharField(max_length=100)
     nickname = models.CharField(max_length=100)
     abbreviation = models.CharField(max_length=5)
-    conference = models.CharField(max_length=25)
+    conference = models.ForeignKey(Conference, related_name='teams')
     ballpark = models.CharField(max_length=100)
     large_logo = models.ImageField(upload_to="images/teams/logos", blank=True, null=True)
     small_logo = models.ImageField(upload_to="images/teams/logos", blank=True, null=True)

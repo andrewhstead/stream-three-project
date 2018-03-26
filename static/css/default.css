@@ -1,10 +1,15 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: "Merriweather", "Times New Roman", serif;
 }
 
 a {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+main {
+    margin: 10px
 }
 
 #teams-header {
@@ -18,10 +23,10 @@ a {
     padding: 5px;
     background-color: #10253f;
     color: white;
-    font-size: 1.5em;
+    font-size: 1.4em;
     height: 100px;
     position: relative;
-	box-shadow: 0px 2px 2px 2px #4f81bd;
+	box-shadow: 0 2px 2px 2px #4f81bd;
 }
 
 .header-logos {
@@ -56,17 +61,8 @@ a {
     height: auto;
 }
 
-#team-header {
-    margin: 10px;
-}
-
-#team-details ul {
-    list-style-type: none;
-    padding: 0;
-}
-
 .team-title {
-    font-size: 2.5em;
+    font-size: 2em;
     word-spacing: 9999999px;
 }
 
@@ -149,4 +145,48 @@ a {
 .menu-link:hover {
 	background-color: #10253f;
     transition: 0.25s;
+}
+
+#page-header {
+    font-size: 1.25em;
+    text-align: center;
+    margin: 10px auto;
+    font-weight: bold;
+}
+
+.team-name {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.conference-name {
+}
+
+.directory-logo {
+    height: 20px;
+    width: 20px;
+    vertical-align: middle;
+}
+
+.team-details {
+    margin: 10px auto;
+}
+.team-details ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-links {
+    font-size: 0.75em;
+}
+
+.profile-link {
+    text-decoration: none;
+    color: #4f81bd;
+}
+
+.profile-link:hover {
+    text-decoration: underline;
+    color: #10253f;
 }
