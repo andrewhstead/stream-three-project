@@ -9,7 +9,7 @@ a {
 }
 
 main {
-    margin: 10px
+    margin: 20px 10px;
 }
 
 #teams-header {
@@ -189,4 +189,77 @@ main {
 .profile-link:hover {
     text-decoration: underline;
     color: #10253f;
+}
+
+footer {
+	box-shadow: 0 -2px 2px 2px #10253f;
+}
+
+#footer-content {
+    background-color: #10253f;
+    padding: 10px;
+    color: white;
+    font-size: 0.75em;
+}
+
+#copyright {
+    margin-top: 5px;
+}
+
+.footer-link {
+    color: white;
+    text-decoration: none;
+}
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+#social-media {
+    padding: 10px;
+    background-color: #4f81bd;
+    height: 35px;
+    text-align: center;
+}
+
+.social {
+    height: 35px;
+    width: 35px;
+    display: inline-block;
+    margin: auto;
+}
+
+.facebook {
+    background: url("/media/images/social/grey/facebook.png");
+    background-size: contain;
+}
+.facebook:hover {
+    background: url("/media/images/social/colour/facebook.png");
+    background-size: contain;
+}
+
+.twitter {
+    background: url("/media/images/social/grey/twitter.png");
+    background-size: contain;
+}
+.twitter:hover {
+    background: url("/media/images/social/colour/twitter.png");
+    background-size: contain;
+}
+
+.instagram {
+    background: url("/media/images/social/grey/instagram.png");
+    background-size: contain;
+}
+.instagram:hover {
+    background: url("/media/images/social/colour/instagram.png");
+    background-size: contain;
+}
+
+.youtube {
+    background: url("/media/images/social/grey/youtube.png");
+    background-size: contain;
+}
+.youtube:hover {
+    background: url("/media/images/social/colour/youtube.png");
+    background-size: contain;
 }
