@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div id="page-header">
+        SCORES AND SCHEDULE
+    </div>
+
+    <div class="{{ team.geographic_name|lower }}-text team-header">
+        {{ team.geographic_name }} {{ team.nickname }}
+    </div>
+
+    <table class="stat-table alternating-rows">
+        <tr class="header-row">
+            <th class="stat-intro">Date</th>
+            <th class="stat-intro">Opponent</th>
+            <th class="stat-column">Res</th>
+            <th class="stat-column-wide">Sc.</th>
+        </tr>
+
+        {% for game in team_games %}
+
+            <tr>
+                <td class="stat-header">
+                    {{ game.game_date|date:"d/m/y" }}
+                </td>
+                <td class="stat-header">
+                    {% if game.team == game.home_team %}
+                        v
+                    {% elif game.team == game.away_team %}
+                        @
+                    {% endif %}
+                    <a class="table-link" href="/scores/{{ game.opponent.geographic_name|lower }}">
+                        {{ game.opponent.geographic_name }}</a>
+                </td>
+                <td class="stat-detail">
+                    {% if game.game_status == "Completed" %}
+                        {% if game.team_runs > game.opponent_runs %}
+                            W
+                        {% else %}
+                            L
+                        {% endif %}
+                    {% endif %}
+                </td>
+                <td class="stat-detail">
+                    {% if game.game_status == "Completed" %}
+                        {{ game.team_runs }}-{{ game.opponent_runs }}
+                    {% endif %}
+                </td>
+            </tr>
+
+        {% endfor %}
+
+    </table>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Game
 from teams.models import Team, Conference
 
@@ -60,3 +60,25 @@ def league_standings(request):
 
     return render(request, "standings.html", {"conferences": conferences, "teams": teams,
                                               "games": games, "standings": standings})
+
+
+def games_team(request, team_name):
+    games = Game.objects.all().order_by('game_date')
+    team = get_object_or_404(Team, geographic_name=team_name.capitalize())
+    team_schedule = []
+
+    for game in games:
+        if game.home_team == team:
+            game.team = game.home_team
+            game.opponent = game.away_team
+            game.team_runs = game.home_team_runs
+            game.opponent_runs = game.away_team_runs
+            team_schedule.append(game)
+        elif game.away_team == team:
+            game.team = game.away_team
+            game.opponent = game.home_team
+            game.team_runs = game.away_team_runs
+            game.opponent_runs = game.home_team_runs
+            team_schedule.append(game)
+
+    return render(request, "games_team.html", {"team": team, "team_games": team_schedule})

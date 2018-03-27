@@ -60,6 +60,7 @@ main {
     font-size: 1.5em;
     height: auto;
     cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 .team-title {
@@ -401,13 +402,13 @@ footer {
     box-shadow: 0 0 2px 2px rgb(128,0,128);
 }
 
-.team-news {
+.team-header {
     font-size: 1.5em;
     text-align: center;
     margin-bottom: 10px;
 }
 
-#all-news {
+#full-details {
     font-size: 0.75em;
     display: block;
     text-align: center;
@@ -421,7 +422,7 @@ footer {
 
 .stat-intro {
     text-align: left;
-    padding-left: 5px;
+    padding-left: 2px;
 }
 
 .header-row {
@@ -440,8 +441,9 @@ footer {
     width: 25px;
 }
 
-.stat-team {
+.stat-header {
     text-align: left;
+    padding-left: 2px;
 }
 
 .stat-detail {
@@ -466,7 +468,7 @@ footer {
     text-align: center;
 }
 
-.standings-table tr:nth-last-of-type(even) {
+.alternating-rows tr:nth-last-of-type(even) {
     background-color: #ccddee;
 }
 

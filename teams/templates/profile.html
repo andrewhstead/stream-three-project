@@ -66,6 +66,8 @@
 
     </div>
 
+    <span id="full-details"><a class="standard-link" href="/scores/{{ team.geographic_name|lower }}">[Full Schedule]</a></span>
+
     <div class="{{ team.geographic_name|lower }}-box team-box">
         TEAM NEWS
     </div>
@@ -78,6 +80,6 @@
 
     {%  endfor %}
 
-    <span id="all-news"><a class="standard-link" href="/news/{{ team.geographic_name|lower }}">[All Articles]</a></span>
+    <span id="full-details"><a class="standard-link" href="/news/{{ team.geographic_name|lower }}">[All Articles]</a></span>
 
 {% endblock %}

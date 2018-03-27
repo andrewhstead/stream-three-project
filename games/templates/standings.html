@@ -12,7 +12,7 @@
             {{ conference.name }}
         </div>
 
-        <table class="stat-table standings-table">
+        <table class="stat-table alternating-rows">
             <tr class="header-row">
                 <th class="stat-intro">Team</th>
                 <th class="stat-column">W</th>
@@ -25,7 +25,7 @@
                 {% if team.conference == conference %}
 
                     <tr>
-                        <td class="stat-team"><img class="small-logo" src="/media/{{ team.small_logo }}" />
+                        <td class="stat-header"><img class="small-logo" src="/media/{{ team.small_logo }}" />
                             <a class="table-link" href="/teams/{{ team.name|lower }}">{{ team.name }}</a></td>
                         <td class="stat-detail">{{ team.won|floatformat:0 }}</td>
                         <td class="stat-detail">{{ team.lost|floatformat:0 }}</td>
