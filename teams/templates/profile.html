@@ -5,8 +5,59 @@
     <div id="team-header">
 
         <div class="{{ team.geographic_name|lower }}-text team-title">
-            <img class="profile-logo" src="/media/{{ team.small_logo }}" />
+            <img class="profile-logo" src="/media/{{ team.large_logo }}" />
             {{ team.geographic_name }} {{ team.nickname }}
+        </div>
+
+    </div>
+
+    <div class="last-next">
+
+        <div class="game-box double-box">
+            <div class="{{ team.geographic_name|lower }}-box team-box">
+                LAST GAME
+            </div>
+
+            {{ last_game.game_date|date:"d/m/Y" }}<br />
+
+            {% if team == last_game.home_team %}
+                v <img class="small-logo" src="/media/{{ last_game.away_team.small_logo }}" />
+                {{ last_game.away_team.abbreviation }}<br />
+                {% if last_game.home_team_runs > last_game.away_team_runs %}
+                    W
+                {% else %}
+                    L
+                {% endif %}
+                {{ last_game.home_team_runs }}-{{ last_game.away_team_runs }}
+            {% else %}
+                @ <img class="small-logo" src="/media/{{ last_game.home_team.small_logo }}" />
+                {{ last_game.home_team.abbreviation }}<br />
+                {% if last_game.away_team_runs > last_game.home_team_runs %}
+                    W
+                {% else %}
+                    L
+                {% endif %}
+                {{ last_game.away_team_runs }}-{{ last_game.home_team_runs }}
+            {% endif %}
+
+        </div>
+
+        <div class="game-box double-box">
+            <div class="{{ team.geographic_name|lower }}-box team-box">
+                NEXT GAME
+            </div>
+
+            {{ next_game.game_date|date:"d/m/Y" }}<br />
+
+            {% if team == next_game.home_team %}
+                v <img class="small-logo" src="/media/{{ next_game.away_team.small_logo }}" />
+                {{ next_game.away_team.abbreviation }}
+            {% else %}
+                @ <img class="small-logo" src="/media/{{ next_game.home_team.small_logo }}" />
+                {{ next_game.home_team.abbreviation }}
+            {% endif %}<br />
+
+            {{ next_game.game_time }}
         </div>
 
     </div>

@@ -446,3 +446,15 @@ footer {
 .score-detail {
     background-color: #4f81bd;
 }
+
+.last-next {
+    display: flex;
+}
+
+.double-box {
+    flex: 1;
+}
+
+.game-box {
+    text-align: center;
+}
