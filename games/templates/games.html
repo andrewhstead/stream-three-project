@@ -16,26 +16,26 @@
 
     {% for result in results %}
 
-        <table class="game-table">
+        <table class="stat-table">
             <tr class="header-row">
-                <th class="game-status">FINAL {% if result.innings > 9 %}({{ result.innings }}){% endif %}</th>
-                <th class="score-column">R</th>
-                <th class="score-column">H</th>
-                <th class="score-column">E</th>
+                <th class="stat-intro">FINAL {% if result.innings > 9 %}({{ result.innings }}){% endif %}</th>
+                <th class="stat-column">R</th>
+                <th class="stat-column">H</th>
+                <th class="stat-column">E</th>
             </tr>
             <tr>
-                <td class="game-team"><img class="small-logo" src="/media/{{ result.away_team.small_logo }}" />
+                <td class="stat-team"><img class="small-logo" src="/media/{{ result.away_team.small_logo }}" />
                     {{ result.away_team }}</td>
-                <td class="score-detail"><strong>{{ result.away_team_runs }}</strong></td>
-                <td class="score-detail">{{ result.away_team_hits }}</td>
-                <td class="score-detail">{{ result.away_team_errors }}</td>
+                <td class="stat-detail"><strong>{{ result.away_team_runs }}</strong></td>
+                <td class="stat-detail">{{ result.away_team_hits }}</td>
+                <td class="stat-detail">{{ result.away_team_errors }}</td>
             </tr>
             <tr>
-                <td class="game-team"><img class="small-logo" src="/media/{{ result.home_team.small_logo }}" />
+                <td class="stat-team"><img class="small-logo" src="/media/{{ result.home_team.small_logo }}" />
                     {{ result.home_team }}</td>
-                <td class="score-detail"><strong>{{ result.home_team_runs }}</strong></td>
-                <td class="score-detail">{{ result.home_team_hits }}</td>
-                <td class="score-detail">{{ result.home_team_errors }}</td>
+                <td class="stat-detail"><strong>{{ result.home_team_runs }}</strong></td>
+                <td class="stat-detail">{{ result.home_team_hits }}</td>
+                <td class="stat-detail">{{ result.home_team_errors }}</td>
             </tr>
         </table>
 
@@ -51,22 +51,22 @@
 
     {% for fixture in fixtures %}
 
-        <table class="game-table">
+        <table class="stat-table">
             <tr class="header-row">
-                <th class="game-status">{{ fixture.game_time }}</th>
+                <th class="stat-intro">{{ fixture.game_time }}</th>
                 <th></th>
                 <th></th>
                 <th></th>
             </tr>
             <tr>
-                <td class="game-team"><img class="small-logo" src="/media/{{ fixture.away_team.small_logo }}" />
+                <td class="stat-team"><img class="small-logo" src="/media/{{ fixture.away_team.small_logo }}" />
                     {{ fixture.away_team }}</td>
                 <td></td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
-                <td class="game-team"><img class="small-logo" src="/media/{{ fixture.home_team.small_logo }}" />
+                <td class="stat-team"><img class="small-logo" src="/media/{{ fixture.home_team.small_logo }}" />
                     {{ fixture.home_team }}</td>
                 <td></td>
                 <td></td>

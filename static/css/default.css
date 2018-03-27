@@ -418,7 +418,7 @@ footer {
     text-align: center;
 }
 
-.game-status {
+.stat-intro {
     text-align: left;
     padding-left: 5px;
 }
@@ -428,23 +428,27 @@ footer {
     color: white;
 }
 
-.game-table {
+.stat-table {
     border-collapse: collapse;
     width: 100%;
     margin: 5px auto;
     text-align: center;
 }
 
-.score-column {
+.stat-column {
     width: 25px;
 }
 
-.game-team {
+.stat-team {
     text-align: left;
 }
 
-.score-detail {
+.stat-detail {
     background-color: #4f81bd;
+}
+
+.stat-detail-faint {
+    background-color: #6fa1dd;
 }
 
 .last-next {
@@ -457,4 +461,17 @@ footer {
 
 .game-box {
     text-align: center;
+}
+
+.standings-table tr:nth-last-of-type(even) {
+    background-color: #ccddee;
+}
+
+.table-link {
+    text-decoration: none;
+    color: black;
+}
+
+.table-link:hover {
+    text-decoration: underline;
 }
