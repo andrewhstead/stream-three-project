@@ -412,7 +412,6 @@ footer {
     font-size: 0.75em;
     display: block;
     text-align: center;
-    margin-top: 10px;
 }
 
 .sub-header {
@@ -422,7 +421,7 @@ footer {
 
 .stat-intro {
     text-align: left;
-    padding-left: 2px;
+    padding-left: 5px;
 }
 
 .header-row {
@@ -490,5 +489,13 @@ footer {
 }
 
 .table-link:hover {
+    text-decoration: underline;
+}
+
+.plain-link {
+    text-decoration: none;
+}
+
+.plain-link:hover {
     text-decoration: underline;
 }

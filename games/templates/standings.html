@@ -25,10 +25,16 @@
                 {% if team.conference == conference %}
 
                     <tr>
-                        <td class="stat-header"><img class="small-logo" src="/media/{{ team.small_logo }}" />
-                            <a class="table-link" href="/teams/{{ team.name|lower }}">{{ team.name }}</a></td>
-                        <td class="stat-detail">{{ team.won|floatformat:0 }}</td>
-                        <td class="stat-detail">{{ team.lost|floatformat:0 }}</td>
+                        <td class="stat-header">
+                            <img class="small-logo" src="/media/{{ team.small_logo }}" />
+                            <a class="table-link" href="/teams/{{ team.name|lower }}">{{ team.name }}</a>
+                        </td>
+                        <td class="stat-detail">
+                            {{ team.won|floatformat:0 }}
+                        </td>
+                        <td class="stat-detail">
+                            {{ team.lost|floatformat:0 }}
+                        </td>
                         <td class="stat-detail-faint">
                             {% if team.pct < 1 %}
                                 {{ team.pct|floatformat:3|slice:"1:" }}
