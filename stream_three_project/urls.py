@@ -17,6 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from home import views as home_views
 from news import views as news_views
+from games import views as games_views
 from teams import views as team_views
 from django.views.static import serve
 from .settings import MEDIA_ROOT
@@ -28,6 +29,7 @@ urlpatterns = [
     url(r'^news/$', news_views.news_index),
     url(r'^news/(?P<id>\d+)/$', news_views.news_item),
     url(r'^news/(?P<team_name>.*)/$', news_views.news_team, name='team_news'),
+    url(r'^scores/$', games_views.game_index),
     url(r'^teams/$', team_views.team_index),
     url(r'^teams/(?P<team_name>.*)/$', team_views.team_page, name='team_page'),
 ]
