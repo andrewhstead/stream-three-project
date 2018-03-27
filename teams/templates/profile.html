@@ -22,7 +22,8 @@
 
             {% if team == last_game.home_team %}
                 v <img class="small-logo" src="/media/{{ last_game.away_team.small_logo }}" />
-                {{ last_game.away_team.abbreviation }}<br />
+                <a class="standard-link" href="/teams/{{ last_game.away_team.geographic_name|lower }}">
+                    {{ last_game.away_team.abbreviation }}</a><br />
                 {% if last_game.home_team_runs > last_game.away_team_runs %}
                     W
                 {% else %}
@@ -31,7 +32,8 @@
                 {{ last_game.home_team_runs }}-{{ last_game.away_team_runs }}
             {% else %}
                 @ <img class="small-logo" src="/media/{{ last_game.home_team.small_logo }}" />
-                {{ last_game.home_team.abbreviation }}<br />
+                <a class="standard-link" href="/teams/{{ last_game.home_team.geographic_name|lower }}">
+                    {{ last_game.home_team.abbreviation }}</a><br />
                 {% if last_game.away_team_runs > last_game.home_team_runs %}
                     W
                 {% else %}
@@ -50,11 +52,13 @@
             {{ next_game.game_date|date:"d/m/Y" }}<br />
 
             {% if team == next_game.home_team %}
-                v <img class="small-logo" src="/media/{{ next_game.away_team.small_logo }}" />
-                {{ next_game.away_team.abbreviation }}
+                v <img class="small-logo" src="/media/{{ last_game.away_team.small_logo }}" />
+                <a class="standard-link" href="/teams/{{ last_game.away_team.geographic_name|lower }}">
+                    {{ last_game.away_team.abbreviation }}</a>
             {% else %}
-                @ <img class="small-logo" src="/media/{{ next_game.home_team.small_logo }}" />
-                {{ next_game.home_team.abbreviation }}
+                @ <img class="small-logo" src="/media/{{ last_game.home_team.small_logo }}" />
+                <a class="standard-link" href="/teams/{{ last_game.home_team.geographic_name|lower }}">
+                    {{ last_game.home_team.abbreviation }}</a>
             {% endif %}<br />
 
             {{ next_game.game_time }}

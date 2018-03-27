@@ -59,6 +59,7 @@ main {
     right: 10px;
     font-size: 1.5em;
     height: auto;
+    cursor: pointer;
 }
 
 .team-title {
@@ -445,10 +446,12 @@ footer {
 
 .stat-detail {
     background-color: #4f81bd;
+    padding: 0 5px;
 }
 
 .stat-detail-faint {
     background-color: #6fa1dd;
+    padding: 0 5px;
 }
 
 .last-next {
