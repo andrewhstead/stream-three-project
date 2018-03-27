@@ -417,3 +417,32 @@ footer {
     margin: 10px auto;
     text-align: center;
 }
+
+.game-status {
+    text-align: left;
+    padding-left: 5px;
+}
+
+.header-row {
+    background-color: #10253f;
+    color: white;
+}
+
+.game-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 5px auto;
+    text-align: center;
+}
+
+.score-column {
+    width: 25px;
+}
+
+.game-team {
+    text-align: left;
+}
+
+.score-detail {
+    background-color: #4f81bd;
+}

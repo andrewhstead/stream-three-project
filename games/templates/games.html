@@ -10,15 +10,34 @@
         LATEST RESULTS
     </div>
 
-    {{ latest_date }}<br />
+    <div class="sub-header">
+        {{ latest_date|date:"d F Y" }}
+    </div>
 
     {% for result in results %}
 
-        FINAL {% if result.innings > 9 %}({{ result.innings }}){% endif %}<br />
-        <img class="small-logo" src="/media/{{ result.away_team.small_logo }}" />
-        {{ result.away_team }} <strong>{{ result.away_team_runs }}</strong> {{ result.away_team_hits }} {{ result.away_team_errors }}<br />
-        <img class="small-logo" src="/media/{{ result.home_team.small_logo }}" />
-        {{ result.home_team }} <strong>{{ result.home_team_runs }}</strong> {{ result.home_team_hits }} {{ result.home_team_errors }}<br />
+        <table class="game-table">
+            <tr class="header-row">
+                <th class="game-status">FINAL {% if result.innings > 9 %}({{ result.innings }}){% endif %}</th>
+                <th class="score-column">R</th>
+                <th class="score-column">H</th>
+                <th class="score-column">E</th>
+            </tr>
+            <tr>
+                <td class="game-team"><img class="small-logo" src="/media/{{ result.away_team.small_logo }}" />
+                    {{ result.away_team }}</td>
+                <td class="score-detail"><strong>{{ result.away_team_runs }}</strong></td>
+                <td class="score-detail">{{ result.away_team_hits }}</td>
+                <td class="score-detail">{{ result.away_team_errors }}</td>
+            </tr>
+            <tr>
+                <td class="game-team"><img class="small-logo" src="/media/{{ result.home_team.small_logo }}" />
+                    {{ result.home_team }}</td>
+                <td class="score-detail"><strong>{{ result.home_team_runs }}</strong></td>
+                <td class="score-detail">{{ result.home_team_hits }}</td>
+                <td class="score-detail">{{ result.home_team_errors }}</td>
+            </tr>
+        </table>
 
     {% endfor %}
 
@@ -26,13 +45,34 @@
         UPCOMING FIXTURES
     </div>
 
-    {{ next_date }}<br />
+    <div class="sub-header">
+    {{ next_date|date:"d F Y" }}
+    </div>
 
     {% for fixture in fixtures %}
 
-        {{ fixture.game_time }}<br />
-        <img class="small-logo" src="/media/{{ fixture.away_team.small_logo }}" /> {{ fixture.away_team }}<br />
-        <img class="small-logo" src="/media/{{ fixture.home_team.small_logo }}" /> {{ fixture.home_team }}<br />
+        <table class="game-table">
+            <tr class="header-row">
+                <th class="game-status">{{ fixture.game_time }}</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <td class="game-team"><img class="small-logo" src="/media/{{ fixture.away_team.small_logo }}" />
+                    {{ fixture.away_team }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="game-team"><img class="small-logo" src="/media/{{ fixture.home_team.small_logo }}" />
+                    {{ fixture.home_team }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
 
     {% endfor %}
 
