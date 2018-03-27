@@ -451,6 +451,18 @@ footer {
     padding: 0 5px;
 }
 
+.stat-win {
+    background-color: #00cc00;
+    color: white;
+    padding: 0 5px;
+}
+
+.stat-loss {
+    background-color: #cc0000;
+    color: white;
+    padding: 0 5px;
+}
+
 .stat-detail-faint {
     background-color: #6fa1dd;
     padding: 0 5px;

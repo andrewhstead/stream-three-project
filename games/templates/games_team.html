@@ -33,24 +33,28 @@
                     <a class="table-link" href="/scores/{{ game.opponent.geographic_name|lower }}">
                         {{ game.opponent.geographic_name }}</a>
                 </td>
-                <td class="stat-detail">
-                    {% if game.game_status == "Completed" %}
-                        {% if game.team_runs > game.opponent_runs %}
+                {% if game.game_status == "Completed" %}
+                    {% if game.team_runs > game.opponent_runs %}
+                        <td class="stat-win">
                             W
-                        {% else %}
+                        </td>
+                    {% else %}
+                        <td class="stat-loss">
                             L
-                        {% endif %}
+                        </td>
                     {% endif %}
-                </td>
-                <td class="stat-detail">
-                    {% if game.game_status == "Completed" %}
+                    <td class="stat-detail">
                         {{ game.team_runs }}-{{ game.opponent_runs }}
-                    {% endif %}
-                </td>
-            </tr>
+                    </td>
+                {% else %}
+                    <td></td>
+                    <td></td>
+                {% endif %}
 
         {% endfor %}
 
     </table>
+
+    <span id="full-details"><a class="standard-link" href="/scores/">[League Schedule]</a></span>
 
 {% endblock %}
