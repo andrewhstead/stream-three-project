@@ -23,7 +23,10 @@ def league_standings(request):
                     team.record["won"] += 1
                 if game.away_team_runs < game.home_team_runs:
                     team.record["lost"] += 1
-        team.record["pct"] = team.record["won"] / team.record["played"]
+        if team.record["played"] == 0:
+            team.record["pct"] = 0  # To prevent zero-division error when no games played.
+        else:
+            team.record["pct"] = team.record["won"] / team.record["played"]
         standings.append(team.record)
 
     return {"standings": standings}
