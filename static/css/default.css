@@ -481,11 +481,11 @@ footer {
     background-color: #ffdd99;
 }
 
-.last-next {
+.last-next, .pagination-links {
     display: flex;
 }
 
-.double-box {
+.double-box, .pagination-section {
     flex: 1;
 }
 
@@ -512,4 +512,20 @@ footer {
 
 .plain-link:hover {
     text-decoration: underline;
+}
+
+.news-items {
+    margin: 5px auto;
+}
+
+.previous-page {
+    text-align: left;
+}
+
+.page-detail {
+    text-align: center;
+}
+
+.next-page {
+    text-align: right;
 }

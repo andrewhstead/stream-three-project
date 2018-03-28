@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render, get_object_or_404
 from .models import Game
 from teams.models import Team, Conference
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
@@ -62,7 +63,7 @@ def games_team(request, team_name):
     return render(request, "games_team.html", {"team": team, "team_games": team_schedule})
 
 
-def all_results(request):
+def results_list(request):
     results = Game.objects.filter(game_status__in=["Completed", "Suspended", "Postponed"])\
         .order_by('-game_date').order_by('home_team')
     dates = []
@@ -71,10 +72,10 @@ def all_results(request):
         if result.game_date not in dates:
             dates.append(result.game_date)
 
-    return render(request, "game_results.html", {'results': results, 'dates': dates})
+    return render(request, "results_list.html", {'results': results, 'dates': dates})
 
 
-def all_fixtures(request):
+def fixture_list(request):
     fixtures = Game.objects.filter(game_status__in=["Scheduled", "In Progress"])\
         .order_by('game_date').order_by('home_team')
     dates = []
@@ -83,4 +84,52 @@ def all_fixtures(request):
         if fixture.game_date not in dates:
             dates.append(fixture.game_date)
 
-    return render(request, "game_fixtures.html", {'fixtures': fixtures, 'dates': dates})
+    return render(request, "fixture_list.html", {'fixtures': fixtures, 'dates': dates})
+
+
+def full_results(request):
+    results = Game.objects.filter(game_status__in=["Completed", "Suspended", "Postponed"])\
+        .order_by('game_date').order_by('home_team')
+    date_list = []
+
+    for result in results:
+        if result.game_date not in date_list:
+            date_list.append(result.game_date)
+            date_list.sort(reverse=True)
+
+    page_dates = Paginator(date_list, 3)
+
+    page = request.GET.get('page')
+    try:
+        dates = page_dates.page(page)
+    except EmptyPage:
+        dates = page_dates.page(page_dates.num_pages)
+    except PageNotAnInteger:
+        dates = page_dates.page(1)
+
+    return render(request, "results_full.html",
+                  {'results': results, 'dates': dates, 'date_list': date_list})
+
+
+def full_fixtures(request):
+    fixtures = Game.objects.filter(game_status__in=["Scheduled", "In Progress"])\
+        .order_by('game_date').order_by('home_team')
+    date_list = []
+
+    for fixture in fixtures:
+        if fixture.game_date not in date_list:
+            date_list.append(fixture.game_date)
+            date_list.sort()
+
+    page_dates = Paginator(date_list, 3)
+
+    page = request.GET.get('page')
+    try:
+        dates = page_dates.page(page)
+    except EmptyPage:
+        dates = page_dates.page(page_dates.num_pages)
+    except PageNotAnInteger:
+        dates = page_dates.page(1)
+
+    return render(request, "fixtures_full.html",
+                  {'fixtures': fixtures, 'dates': dates, 'date_list': date_list})
