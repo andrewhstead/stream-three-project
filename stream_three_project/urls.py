@@ -26,9 +26,11 @@ from .settings import MEDIA_ROOT
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', home_views.home_page),
+    url(r'^login/$', users_views.login, name="login"),
+    url(r'^logout/$', users_views.logout, name="logout"),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
     url(r'^news/$', news_views.news_index),
-    url(r'^news/(?P<id>\d+)/$', news_views.news_item),
+    url(r'^news/(?P<id>\d+)/$', news_views.news_item, name='news'),
     url(r'^news/(?P<team_name>.*)/$', news_views.news_team, name='team_news'),
     url(r'^register/$', users_views.register, name='register'),
     url(r'^scores/$', games_views.last_and_next),
@@ -37,7 +39,7 @@ urlpatterns = [
     url(r'^scores/results/all/$', games_views.results_list, name='list_results'),
     url(r'^scores/fixtures/all/$', games_views.fixture_list, name='list_fixtures'),
     url(r'^scores/(?P<team_name>.*)/$', games_views.games_team, name='team_games'),
-    url(r'^standings/$', games_views.league_standings),
+    url(r'^standings/$', games_views.league_standings, name='standings'),
     url(r'^teams/$', team_views.team_index),
     url(r'^teams/(?P<team_name>.*)/$', team_views.team_page, name='team_page'),
 ]
