@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Team, Conference
 from news.models import Item
 from games.models import Game
+from datetime import datetime
 
 
 # Create your views here.
@@ -17,7 +18,7 @@ def team_page(request, team_name):
     items = Item.objects.all()
     team = get_object_or_404(Team, geographic_name=team_name.capitalize())
 
-    games = Game.objects.all().order_by('game_date')
+    games = Game.objects.filter(game_date__year=datetime.now().year).order_by('game_date')
     team_results = []
     team_fixtures = []
 

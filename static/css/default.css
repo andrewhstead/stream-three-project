@@ -493,7 +493,7 @@ footer {
     text-align: center;
 }
 
-.alternating-rows tr:nth-last-of-type(even) {
+.alternating-rows tr:nth-child(even) {
     background-color: #ccddee;
 }
 
