@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %}
 
 {% block content %}
 
@@ -18,7 +19,17 @@
 
         <table class="stat-table">
             <tr class="header-row">
-                <th class="stat-intro">FINAL {% if result.innings > 9 %}({{ result.innings }}){% endif %}</th>
+                <th class="stat-intro">
+                    {% if result.game_status != "Completed" %}
+                            {% if result.game_status == "Postponed" %}
+                                POSTPONED
+                            {% else %}
+                                SUSPENDED ({{ result.innings|ordinal }})
+                            {% endif %}
+                    {% else %}
+                        FINAL {% if result.innings > 9 %}({{ result.innings }}){% endif %}
+                    {% endif %}
+                </th>
                 <th class="stat-column">R</th>
                 <th class="stat-column">H</th>
                 <th class="stat-column">E</th>
@@ -26,28 +37,42 @@
             <tr>
                 <td class="stat-header"><img class="small-logo" src="/media/{{ result.away_team.small_logo }}" />
                     <a class="table-link" href="/scores/{{ result.away_team.geographic_name|lower }}">
-                        {% if result.away_team_runs > result.home_team_runs %}
+                        {% if result.game_status == "Completed" and result.away_team_runs > result.home_team_runs %}
                             <strong>{{ result.away_team }}</strong>
                         {% else %}
                             {{ result.away_team }}
                         {% endif %}
-                    </a></td>
-                <td class="stat-detail"><strong>{{ result.away_team_runs }}</strong></td>
-                <td class="stat-detail-faint">{{ result.away_team_hits }}</td>
-                <td class="stat-detail-faint">{{ result.away_team_errors }}</td>
+                    </a>
+                </td>
+                {% if result.game_status == "Postponed" %}
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                {% else %}
+                    <td class="stat-detail"><strong>{{ result.away_team_runs }}</strong></td>
+                    <td class="stat-detail-faint">{{ result.away_team_hits }}</td>
+                    <td class="stat-detail-faint">{{ result.away_team_errors }}</td>
+                {% endif %}
             </tr>
             <tr>
                 <td class="stat-header"><img class="small-logo" src="/media/{{ result.home_team.small_logo }}" />
                     <a class="table-link" href="/scores/{{ result.home_team.geographic_name|lower }}">
-                        {% if result.home_team_runs > result.away_team_runs %}
+                        {% if result.game_status == "Completed" and result.home_team_runs > result.away_team_runs %}
                             <strong>{{ result.home_team }}</strong>
                         {% else %}
                             {{ result.home_team }}
                         {% endif %}
-                    </a></td>
-                <td class="stat-detail"><strong>{{ result.home_team_runs }}</strong></td>
-                <td class="stat-detail-faint">{{ result.home_team_hits }}</td>
-                <td class="stat-detail-faint">{{ result.home_team_errors }}</td>
+                    </a>
+                </td>
+                {% if result.game_status == "Postponed" %}
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                {% else %}
+                    <td class="stat-detail"><strong>{{ result.home_team_runs }}</strong></td>
+                    <td class="stat-detail-faint">{{ result.home_team_hits }}</td>
+                    <td class="stat-detail-faint">{{ result.home_team_errors }}</td>
+                {% endif %}
             </tr>
         </table>
 
@@ -67,26 +92,49 @@
 
         <table class="stat-table">
             <tr class="header-row">
-                <th class="stat-intro">{{ fixture.game_time }}</th>
-                <th></th>
-                <th></th>
-                <th></th>
+                {% if fixture.game_status == "In Progress" %}
+                    <th class="stat-intro">
+                        In progress... ({{ fixture.innings|ordinal }})
+                    </th>
+                    <th class="stat-column">R</th>
+                    <th class="stat-column">H</th>
+                    <th class="stat-column">E</th>
+                {% else %}
+                    <th class="stat-intro">
+                        {{ fixture.game_time }}
+                    </th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                {% endif %}
             </tr>
             <tr>
                 <td class="stat-header"><img class="small-logo" src="/media/{{ fixture.away_team.small_logo }}" />
                     <a class="table-link" href="/scores/{{ fixture.away_team.geographic_name|lower }}">
                         {{ fixture.away_team }}</a></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                {% if fixture.game_status == "In Progress" %}
+                    <td class="stat-detail-highlight"><strong>{{ fixture.home_team_runs }}</strong></td>
+                    <td class="stat-detail-highfaint">{{ fixture.home_team_hits }}</td>
+                    <td class="stat-detail-highfaint">{{ fixture.home_team_errors }}</td>
+                {% else %}
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                {% endif %}
             </tr>
             <tr>
                 <td class="stat-header"><img class="small-logo" src="/media/{{ fixture.home_team.small_logo }}" />
                     <a class="table-link" href="/scores/{{ fixture.home_team.geographic_name|lower }}">
                         {{ fixture.home_team }}</a></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                {% if fixture.game_status == "In Progress" %}
+                    <td class="stat-detail-highlight"><strong>{{ fixture.home_team_runs }}</strong></td>
+                    <td class="stat-detail-highfaint">{{ fixture.home_team_hits }}</td>
+                    <td class="stat-detail-highfaint">{{ fixture.home_team_errors }}</td>
+                {% else %}
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                {% endif %}
             </tr>
         </table>
 

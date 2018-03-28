@@ -23,7 +23,7 @@ TYPE_OPTIONS = (
 class Game(models.Model):
     game_date = models.DateField()
     game_time = models.TimeField()
-    game_status = models.CharField(max_length=10, choices=STATUS_OPTIONS, default="Scheduled")
+    game_status = models.CharField(max_length=15, choices=STATUS_OPTIONS, default="Scheduled")
     game_type = models.CharField(max_length=15, choices=TYPE_OPTIONS, default="Regular Season")
     away_team = models.ForeignKey(Team, related_name='away')
     home_team = models.ForeignKey(Team, related_name='home')

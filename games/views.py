@@ -9,7 +9,7 @@ from teams.models import Team, Conference
 # Create your views here.
 def last_and_next(request):
 
-    game_results = Game.objects.filter(game_status="Completed").order_by('game_date')
+    game_results = Game.objects.filter(game_status__in=["Completed", "Suspended", "Postponed"]).order_by('game_date')
     result_dates = []
 
     for result in game_results:
@@ -19,7 +19,8 @@ def last_and_next(request):
     latest_date = result_dates[-1]
     latest_results = game_results.filter(game_date=latest_date).order_by('home_team')
 
-    game_fixtures = Game.objects.filter(game_status="Scheduled").order_by('game_date')
+    game_fixtures = Game.objects.filter(game_status__in=["Scheduled", "In Progress"])\
+        .order_by('game_date').order_by('home_team')
     fixture_dates = []
 
     for fixture in game_fixtures:
@@ -62,24 +63,24 @@ def games_team(request, team_name):
 
 
 def all_results(request):
-    results = Game.objects.filter(game_status="Completed").order_by('-game_date')
-    status = "results"
+    results = Game.objects.filter(game_status__in=["Completed", "Suspended", "Postponed"])\
+        .order_by('-game_date').order_by('home_team')
     dates = []
 
     for result in results:
         if result.game_date not in dates:
             dates.append(result.game_date)
 
-    return render(request, "game_results.html", {'results': results, 'status': status, 'dates': dates})
+    return render(request, "game_results.html", {'results': results, 'dates': dates})
 
 
 def all_fixtures(request):
-    fixtures = Game.objects.filter(game_status="Scheduled").order_by('game_date')
-    status = "fixtures"
+    fixtures = Game.objects.filter(game_status__in=["Scheduled", "In Progress"])\
+        .order_by('game_date').order_by('home_team')
     dates = []
 
     for fixture in fixtures:
         if fixture.game_date not in dates:
             dates.append(fixture.game_date)
 
-    return render(request, "game_fixtures.html", {'fixtures': fixtures, 'status': status, 'dates': dates})
+    return render(request, "game_fixtures.html", {'fixtures': fixtures, 'dates': dates})

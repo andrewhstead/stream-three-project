@@ -46,6 +46,23 @@
                     <td class="stat-detail">
                         {{ game.team_runs }}-{{ game.opponent_runs }}
                     </td>
+                {% elif game.game_status == "Postponed" %}
+                    <td></td>
+                    <td>P-P</td>
+                {% elif game.game_status == "Suspended" %}
+                    <td class="stat-detail-faint">
+                        S
+                    </td>
+                    <td class="stat-detail-faint">
+                        {{ game.team_runs }}-{{ game.opponent_runs }}
+                    </td>
+                {% elif game.game_status == "In Progress" %}
+                    <td class="stat-detail-highlight">
+                        P
+                    </td>
+                    <td class="stat-detail-faint">
+                        {{ game.team_runs }}-{{ game.opponent_runs }}
+                    </td>
                 {% else %}
                     <td></td>
                     <td></td>
@@ -55,6 +72,6 @@
 
     </table>
 
-    <span id="full-details"><a class="standard-link" href="/scores/">[League Schedule]</a></span>
+    <span id="full-details"><a class="standard-link" href="/scores/">[Scores Home]</a></span>
 
 {% endblock %}

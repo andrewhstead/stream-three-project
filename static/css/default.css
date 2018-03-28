@@ -436,6 +436,10 @@ footer {
     text-align: center;
 }
 
+.stat-table.td {
+    padding: 0 5px;
+}
+
 .stat-column {
     width: 25px;
 }
@@ -445,15 +449,18 @@ footer {
     padding-left: 2px;
 }
 
+.stat-team {
+    text-align: center;
+    width: 40%;
+}
+
 .stat-detail {
     background-color: #4f81bd;
-    padding: 0 5px;
 }
 
 .stat-win {
     background-color: #00cc00;
     color: white;
-    padding: 0 5px;
 }
 
 .stat-loss {
@@ -464,7 +471,14 @@ footer {
 
 .stat-detail-faint {
     background-color: #6fa1dd;
-    padding: 0 5px;
+}
+
+.stat-detail-highlight {
+    background-color: #ffcc00;
+}
+
+.stat-detail-highfaint {
+    background-color: #ffdd99;
 }
 
 .last-next {

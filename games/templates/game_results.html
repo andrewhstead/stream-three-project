@@ -12,48 +12,51 @@
             {{ date|date:"d F Y" }}
         </div>
 
-        {% for result in results %}
+        <table class="stat-table alternating-rows">
 
-            {% if result.game_date == date %}
+            {% for result in results %}
 
-                <table class="stat-table">
-                    <tr class="header-row">
-                        <th class="stat-intro">FINAL {% if result.innings > 9 %}({{ result.innings }}){% endif %}</th>
-                        <th class="stat-column">R</th>
-                        <th class="stat-column">H</th>
-                        <th class="stat-column">E</th>
-                    </tr>
+                {% if result.game_date == date %}
                     <tr>
-                        <td class="stat-header"><img class="small-logo" src="/media/{{ result.away_team.small_logo }}" />
+                        <td class="stat-team">
                             <a class="table-link" href="/scores/{{ result.away_team.geographic_name|lower }}">
-                                {% if result.away_team_runs > result.home_team_runs %}
-                                    <strong>{{ result.away_team }}</strong>
+                                {% if result.game_status == "Completed" and result.away_team_runs > result.home_team_runs %}
+                                    <strong>{{ result.away_team.geographic_name }}</strong>
                                 {% else %}
-                                    {{ result.away_team }}
+                                    {{ result.away_team.geographic_name }}
                                 {% endif %}
                             </a></td>
-                        <td class="stat-detail"><strong>{{ result.away_team_runs }}</strong></td>
-                        <td class="stat-detail-faint">{{ result.away_team_hits }}</td>
-                        <td class="stat-detail-faint">{{ result.away_team_errors }}</td>
-                    </tr>
-                    <tr>
-                        <td class="stat-header"><img class="small-logo" src="/media/{{ result.home_team.small_logo }}" />
+                        {% if result.game_status != "Completed" %}
+                            <td class="stat-detail-faint">
+                                {% if result.game_status == "Postponed" %}
+                                    P - P
+                                {% else %}
+                                    {{ result.away_team_runs }} - {{ result.home_team_runs }}
+                                {% endif %}
+                            </td>
+                        {% else %}
+                            <td class="stat-detail">
+                                <strong>{{ result.away_team_runs }}</strong>
+                                -
+                                <strong>{{ result.home_team_runs }}</strong>
+                            </td>
+                        {% endif %}
+                        <td class="stat-team">
                             <a class="table-link" href="/scores/{{ result.home_team.geographic_name|lower }}">
-                                {% if result.home_team_runs > result.away_team_runs %}
-                                    <strong>{{ result.home_team }}</strong>
+                                {% if result.game_status == "Completed" and result.home_team_runs > result.away_team_runs %}
+                                    <strong>{{ result.home_team.geographic_name }}</strong>
                                 {% else %}
-                                    {{ result.home_team }}
+                                    {{ result.home_team.geographic_name }}
                                 {% endif %}
-                            </a></td>
-                        <td class="stat-detail"><strong>{{ result.home_team_runs }}</strong></td>
-                        <td class="stat-detail-faint">{{ result.home_team_hits }}</td>
-                        <td class="stat-detail-faint">{{ result.home_team_errors }}</td>
+                            </a>
+                        </td>
                     </tr>
-                </table>
 
-            {% endif %}
+                {% endif %}
 
-        {% endfor %}
+            {% endfor %}
+
+        </table>
 
     {% endfor %}
 

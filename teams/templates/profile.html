@@ -92,7 +92,7 @@
                     {% if club.name == team.geographic_name %}
                         <td class="stat-header {{ team.geographic_name|lower }}-tag">
                             <img class="small-logo" src="/media/{{ club.small_logo }}" />
-                            <a class="plain-link {{ team.geographic_name|lower }}-tag" href="/teams/{{ club.name|lower }}">{{ club.name }}</a>
+                            {{ club.name }}
                         </td>
                     {% else %}
                         <td class="stat-header">
