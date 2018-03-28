@@ -30,6 +30,8 @@ urlpatterns = [
     url(r'^news/(?P<id>\d+)/$', news_views.news_item),
     url(r'^news/(?P<team_name>.*)/$', news_views.news_team, name='team_news'),
     url(r'^scores/$', games_views.last_and_next),
+    url(r'^scores/results/$', games_views.all_results, name='all_results'),
+    url(r'^scores/fixtures/$', games_views.all_fixtures, name='all_fixtures'),
     url(r'^scores/(?P<team_name>.*)/$', games_views.games_team, name='team_games'),
     url(r'^standings/$', games_views.league_standings),
     url(r'^teams/$', team_views.team_index),

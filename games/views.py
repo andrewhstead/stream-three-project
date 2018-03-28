@@ -9,28 +9,28 @@ from teams.models import Team, Conference
 # Create your views here.
 def last_and_next(request):
 
-    all_results = Game.objects.filter(game_status="Completed").order_by('game_date')
+    game_results = Game.objects.filter(game_status="Completed").order_by('game_date')
     result_dates = []
 
-    for result in all_results:
+    for result in game_results:
         if result.game_date not in result_dates:
             result_dates.append(result.game_date)
 
     latest_date = result_dates[-1]
-    latest_results = all_results.filter(game_date=latest_date).order_by('home_team')
+    latest_results = game_results.filter(game_date=latest_date).order_by('home_team')
 
-    all_fixtures = Game.objects.filter(game_status="Scheduled").order_by('game_date')
+    game_fixtures = Game.objects.filter(game_status="Scheduled").order_by('game_date')
     fixture_dates = []
 
-    for fixture in all_fixtures:
+    for fixture in game_fixtures:
         if fixture.game_date not in fixture_dates:
             fixture_dates.append(fixture.game_date)
 
     next_date = fixture_dates[0]
-    next_fixtures = all_fixtures.filter(game_date=next_date).order_by('home_team')
+    next_fixtures = game_fixtures.filter(game_date=next_date).order_by('home_team')
 
-    return render(request, "games.html", {"results": latest_results, "fixtures": next_fixtures,
-                                          "latest_date": latest_date, "next_date": next_date})
+    return render(request, "games_latest.html", {"results": latest_results, "fixtures": next_fixtures,
+                                                 "latest_date": latest_date, "next_date": next_date})
 
 
 def league_standings(request):
@@ -59,3 +59,27 @@ def games_team(request, team_name):
             team_schedule.append(game)
 
     return render(request, "games_team.html", {"team": team, "team_games": team_schedule})
+
+
+def all_results(request):
+    results = Game.objects.filter(game_status="Completed").order_by('-game_date')
+    status = "results"
+    dates = []
+
+    for result in results:
+        if result.game_date not in dates:
+            dates.append(result.game_date)
+
+    return render(request, "game_results.html", {'results': results, 'status': status, 'dates': dates})
+
+
+def all_fixtures(request):
+    fixtures = Game.objects.filter(game_status="Scheduled").order_by('game_date')
+    status = "fixtures"
+    dates = []
+
+    for fixture in fixtures:
+        if fixture.game_date not in dates:
+            dates.append(fixture.game_date)
+
+    return render(request, "game_fixtures.html", {'fixtures': fixtures, 'status': status, 'dates': dates})

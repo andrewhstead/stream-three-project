@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7aa13549-3897-41b9-9904-8bd12ebae0f1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change beforePath="$PROJECT_DIR$/games/templates/standings.html" afterPath="$PROJECT_DIR$/games/templates/standings.html" />
+      <change beforePath="$PROJECT_DIR$/games/templates/games.html" afterPath="" />
       <change beforePath="$PROJECT_DIR$/games/views.py" afterPath="$PROJECT_DIR$/games/views.py" />
-      <change beforePath="$PROJECT_DIR$/static/css/default.css" afterPath="$PROJECT_DIR$/static/css/default.css" />
-      <change beforePath="$PROJECT_DIR$/stream_three_project/settings.py" afterPath="$PROJECT_DIR$/stream_three_project/settings.py" />
-      <change beforePath="$PROJECT_DIR$/teams/templates/profile.html" afterPath="$PROJECT_DIR$/teams/templates/profile.html" />
+      <change beforePath="$PROJECT_DIR$/stream_three_project/urls.py" afterPath="$PROJECT_DIR$/stream_three_project/urls.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,11 +19,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/teams/views.py">
+      <file leaf-file-name="games_team.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/games/templates/games_team.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="20" column="21" lean-forward="true" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+            <state relative-caret-position="163">
+              <caret line="24" column="37" lean-forward="true" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/games/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="64" column="70" lean-forward="false" selection-start-line="64" selection-start-column="70" selection-end-line="64" selection-end-column="70" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -34,14 +41,42 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/games/views.py">
+      <file leaf-file-name="game_fixtures.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/games/templates/game_fixtures.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-              <folding>
-                <element signature="e#24#63#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="219">
+              <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="game_results.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/games/templates/game_results.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="57" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-954">
+              <caret line="22" column="25" lean-forward="false" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/stream_three_project/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="549">
+              <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -49,71 +84,19 @@
       <file leaf-file-name="profile.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/teams/templates/profile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2015">
-              <caret line="100" column="29" lean-forward="true" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
+            <state relative-caret-position="289">
+              <caret line="123" column="0" lean-forward="true" selection-start-line="121" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="default.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/css/default.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="413" column="23" lean-forward="false" selection-start-line="413" selection-start-column="23" selection-end-line="413" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="news_item.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/news/templates/news_item.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="15" column="34" lean-forward="false" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/games/__init__.py">
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/home/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="14" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/teams/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="20" column="16" lean-forward="false" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/stream_three_project/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1470">
-              <caret line="70" column="49" lean-forward="false" selection-start-line="70" selection-start-column="49" selection-end-line="70" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="context_processors.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/games/context_processors.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -121,8 +104,18 @@
       <file leaf-file-name="standings.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/games/templates/standings.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state relative-caret-position="471">
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="games_latest.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/games/templates/games_latest.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="90" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -134,8 +127,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -156,7 +149,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/home/templates/home.html" />
         <option value="$PROJECT_DIR$/home/models.py" />
         <option value="$PROJECT_DIR$/home/admin.py" />
         <option value="$PROJECT_DIR$/teams/templates/index.html" />
@@ -176,17 +168,21 @@
         <option value="$PROJECT_DIR$/teams/views.py" />
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/news/templates/news_item.html" />
-        <option value="$PROJECT_DIR$/stream_three_project/urls.py" />
         <option value="$PROJECT_DIR$/teams/templates/teams.html" />
-        <option value="$PROJECT_DIR$/games/templates/games.html" />
         <option value="$PROJECT_DIR$/games/templates/games_team.html" />
         <option value="$PROJECT_DIR$/news/templates/news_team.html" />
-        <option value="$PROJECT_DIR$/stream_three_project/settings.py" />
-        <option value="$PROJECT_DIR$/games/context_processors.py" />
-        <option value="$PROJECT_DIR$/games/views.py" />
         <option value="$PROJECT_DIR$/games/templates/standings.html" />
         <option value="$PROJECT_DIR$/teams/templates/profile.html" />
         <option value="$PROJECT_DIR$/static/css/default.css" />
+        <option value="$PROJECT_DIR$/games/context_processors.py" />
+        <option value="$PROJECT_DIR$/stream_three_project/settings.py" />
+        <option value="$PROJECT_DIR$/stream_three_project/urls.py" />
+        <option value="$PROJECT_DIR$/home/templates/home.html" />
+        <option value="$PROJECT_DIR$/games/templates/games_latest.html" />
+        <option value="$PROJECT_DIR$/games/templates/games.html" />
+        <option value="$PROJECT_DIR$/games/views.py" />
+        <option value="$PROJECT_DIR$/games/templates/game_results.html" />
+        <option value="$PROJECT_DIR$/games/templates/game_fixtures.html" />
       </list>
     </option>
   </component>
@@ -197,9 +193,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="-10" />
     <option name="width" value="1431" />
-    <option name="height" value="1096" />
+    <option name="height" value="1088" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -236,6 +232,17 @@
               <item name="stream_three_project" type="b2602c69:ProjectViewProjectNode" />
               <item name="stream_three_project" type="462c0819:PsiDirectoryNode" />
               <item name="games" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stream_three_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stream_three_project" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stream_three_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stream_three_project" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -354,7 +361,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1431" height="1096" extended-state="0" />
+    <frame x="-10" y="0" width="1431" height="1088" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -362,7 +369,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32910052" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32633787" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32910052" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24982308" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -392,30 +399,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/teams/templates/teams.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="18" column="20" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/news/templates/news.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stream_three_project/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="31" column="38" lean-forward="false" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/games/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -605,29 +588,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/home/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="18" column="20" lean-forward="false" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stream_three_project/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="28" column="43" lean-forward="true" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -663,42 +623,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/games/templates/games.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="71" column="38" lean-forward="false" selection-start-line="71" selection-start-column="38" selection-end-line="71" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/games/templates/games_team.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1218">
-          <caret line="58" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/news/templates/news_team.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="20" column="79" lean-forward="false" selection-start-line="20" selection-start-column="79" selection-end-line="20" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/teams/context_processors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stream_three_project/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1470">
-          <caret line="70" column="49" lean-forward="false" selection-start-line="70" selection-start-column="49" selection-end-line="70" selection-end-column="49" />
           <folding />
         </state>
       </provider>
@@ -711,28 +639,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/games/context_processors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/games/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/games/templates/standings.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -753,31 +663,129 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/teams/templates/profile.html">
+    <entry file="file://$PROJECT_DIR$/teams/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2015">
-          <caret line="100" column="29" lean-forward="true" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
+        <state relative-caret-position="168">
+          <caret line="20" column="21" lean-forward="false" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+          <folding>
+            <element signature="e#24#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/context_processors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="28" column="35" lean-forward="true" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#24#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/teams/context_processors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/teams/views.py">
+    <entry file="file://$PROJECT_DIR$/stream_three_project/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="20" column="21" lean-forward="true" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="234">
+          <caret line="60" column="19" lean-forward="false" selection-start-line="60" selection-start-column="19" selection-end-line="60" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stream_three_project/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="549">
+          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/templates/standings.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/teams/templates/profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="123" column="0" lean-forward="true" selection-start-line="121" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-954">
+          <caret line="22" column="25" lean-forward="false" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/templates/games.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="47" column="53" lean-forward="false" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/games/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state relative-caret-position="72">
+          <caret line="64" column="70" lean-forward="false" selection-start-line="64" selection-start-column="70" selection-end-line="64" selection-end-column="70" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/templates/game_results.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="57" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/templates/games_latest.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="90" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/templates/games_team.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="24" column="37" lean-forward="true" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/games/templates/game_fixtures.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
