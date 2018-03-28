@@ -73,6 +73,7 @@ def results_list(request):
     for result in results:
         if result.game_date not in dates:
             dates.append(result.game_date)
+            dates.sort(reverse=True)
 
     return render(request, "results_list.html", {'results': results, 'dates': dates})
 

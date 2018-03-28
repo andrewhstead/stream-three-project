@@ -493,7 +493,7 @@ footer {
     text-align: center;
 }
 
-.alternating-rows tr:nth-child(even) {
+.alternating-rows tr:nth-child(2n+2) {
     background-color: #ccddee;
 }
 
