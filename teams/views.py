@@ -32,5 +32,5 @@ def team_page(request, team_name):
     last_game = team_results[-1]
     next_game = team_fixtures[0]
 
-    return render(request, "profile.html", {'team': team, 'items': items,
+    return render(request, "team_profile.html", {'team': team, 'items': items,
                                             'next_game': next_game, 'last_game': last_game})

@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^news/$', news_views.news_index),
     url(r'^news/(?P<id>\d+)/$', news_views.news_item, name='news'),
     url(r'^news/(?P<team_name>.*)/$', news_views.news_team, name='team_news'),
+    url(r'^profile/$', users_views.profile, name='profile'),
     url(r'^register/$', users_views.register, name='register'),
     url(r'^scores/$', games_views.last_and_next),
     url(r'^scores/results/$', games_views.full_results, name='full_results'),

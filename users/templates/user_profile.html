@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div id="page-header">
+        USER PROFILE
+    </div>
+
+    <div>
+        <img class="profile-logo" src="/media/{{ user.profile_picture }}" />
+        {{ team.geographic_name }} {{ team.nickname }}
+        <p>
+            Welcome, {{ user.username }}
+        </p>
+        <p>
+            Member since:<br />
+            {{ user.date_joined|date:'d F Y, H:i' }}
+        </p>
+        <p>
+            Last successful login:<br />
+            {{ user.last_login|date:'d F Y, H:i' }}
+        </p>
+        <p>
+            Favourite Team:
+            {% if not user.favourite_team %}
+                Not Set
+            {% else %}
+                <img class="small-logo" src="/media/{{ user.favourite_team.small_logo }}" />
+                {{ user.favourite_team }}
+            {% endif %}
+        </p>
+
+    </div>
+
+
+
+{% endblock %}

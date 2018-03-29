@@ -37,3 +37,7 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect(reverse('login'))
+
+
+def profile(request):
+    return render(request, 'user_profile.html')
