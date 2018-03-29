@@ -529,3 +529,22 @@ footer {
 .next-page {
     text-align: right;
 }
+
+.default-button {
+    display: block;
+    margin: 10px auto;
+}
+
+#login-form {
+    width: 50%;
+    margin: auto;
+}
+
+#login-form label {
+    display: block;
+}
+
+#login-form input {
+    margin-bottom: 10px;
+    width: 100%;
+}
