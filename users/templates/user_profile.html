@@ -7,8 +7,11 @@
     </div>
 
     <div>
-        <img class="profile-logo" src="/media/{{ user.profile_picture }}" />
-        {{ team.geographic_name }} {{ team.nickname }}
+        {% if not user.profile_picture %}
+            <img class="profile-logo" src="/media/images/users/default.png" />
+        {% else %}
+            <img class="profile-logo" src="/media/{{ user.profile_picture }}" />
+        {% endif %}
         <p>
             Welcome, {{ user.username }}
         </p>

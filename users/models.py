@@ -8,7 +8,7 @@ from teams.models import Team
 # Create your models here.
 class User(AbstractUser):
     objects = UserManager
-    profile_picture = models.ImageField(upload_to="images/teams/users", blank=True, null=True)
+    profile_picture = models.ImageField(upload_to="images/users", blank=True, null=True)
     favourite_team = models.ForeignKey(Team, related_name="user", blank=True, null=True)
 
     def __unicode__(self):
