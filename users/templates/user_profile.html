@@ -20,15 +20,15 @@
             Welcome, {{ user.username }}
         </p>
         <p>
-            Member since:<br />
+            <strong>Member since:</strong><br />
             {{ user.date_joined|date:'d F Y, H:i' }}
         </p>
         <p>
-            Last successful login:<br />
+            <strong>Last successful login:</strong><br />
             {{ user.last_login|date:'d F Y, H:i' }}
         </p>
         <p>
-            Favourite Team:
+            <strong>Favourite Team:</strong>
             {% if not user.favourite_team %}
                 Not Set
             {% else %}
@@ -37,6 +37,14 @@
                     {{ user.favourite_team }}
                 </a>
             {% endif %}
+        </p>
+
+        <p>
+            <strong>Recent Activity:</strong><br />
+            {% for comment in comments %}
+                <span class="arrow">&#9658;</span> {{ comment.created_date|date:'d/m/Y' }}: Commented on<br />
+                <a class="standard-link" href="/news/{{ comment.item.id }}/">{{ comment.item }}</a>
+            {% endfor %}
         </p>
 
     </div>

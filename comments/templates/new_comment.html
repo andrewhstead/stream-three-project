@@ -14,7 +14,7 @@
         POST A COMMENT
     </div>
 
-    <form method="post" action="{{ form_action }}">
+    <form id="default-form" method="post" action="{{ form_action }}">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="default-button" type="submit">Post a Comment</button>

@@ -7,6 +7,7 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from .forms import LoginForm, RegistrationForm
+from comments.models import Comment
 
 
 # Create your views here.
@@ -38,7 +39,9 @@ def logout(request):
 
 @login_required(login_url='/login/')
 def profile(request):
-    return render(request, 'user_profile.html')
+    user = request.user
+    comments = Comment.objects.filter(user_id=user.id)
+    return render(request, 'user_profile.html', {'comments': comments})
 
 
 def register(request):

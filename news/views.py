@@ -12,8 +12,8 @@ def news_index(request):
     return render(request, "news.html", {"items": items})
 
 
-def news_item(request, id):
-    item = get_object_or_404(Item, pk=id)
+def news_item(request, news_id):
+    item = get_object_or_404(Item, pk=news_id)
     item.views += 1
     item.save()
     return render(request, "news_item.html", {"item": item})

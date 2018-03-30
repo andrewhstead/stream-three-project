@@ -6,8 +6,10 @@ from news.models import Item
 from django.contrib.auth.decorators import login_required
 from django.template.context_processors import csrf
 from .forms import CommentForm
+from .models import Comment
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -34,3 +36,11 @@ def new_comment(request, item_id):
     }
     args.update(csrf(request))
     return render(request, 'new_comment.html', args)
+
+
+def vote_up(request, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
+    comment.rating += 1
+    comment.save()
+
+    return HttpResponse('')

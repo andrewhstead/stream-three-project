@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^logout/$', users_views.logout, name="logout"),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
     url(r'^news/$', news_views.news_index),
-    url(r'^news/(?P<id>\d+)/$', news_views.news_item, name='news'),
+    url(r'^news/(?P<news_id>\d+)/$', news_views.news_item, name='news'),
     url(r'^news/(?P<team_name>.*)/$', news_views.news_team, name='team_news'),
     url(r'^profile/$', users_views.profile, name='profile'),
     url(r'^register/$', users_views.register, name='register'),
