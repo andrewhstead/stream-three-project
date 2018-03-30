@@ -621,3 +621,9 @@ ul.errorlist{
 .comment-detail {
     font-size: 0.75em;
 }
+
+#show-hide {
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-size: 0.75em;
+}
