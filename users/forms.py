@@ -22,6 +22,9 @@ class RegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2', 'profile_picture', 'favourite_team']
+        labels = {
+            'favourite_team': 'Favourite Team (optional)',
+        }
 
     def clean_password2(self):
         password1 = self.cleaned_data.get('password1')

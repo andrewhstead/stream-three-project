@@ -8,6 +8,8 @@
 
     <div>
         {% if not user.profile_picture %}
+            <img class="profile-logo" src="/media/{{ user.favourite_team.large_logo }}" />
+        {% elif not user.favourite_team %}
             <img class="profile-logo" src="/media/images/users/default.png" />
         {% else %}
             <img class="profile-logo" src="/media/{{ user.profile_picture }}" />
