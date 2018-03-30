@@ -22,7 +22,7 @@ def login(request):
 
             if user is not None:
                 auth.login(request, user)
-                return redirect(reverse('standings'))
+                return redirect(reverse('profile'))
             else:
                 form.add_error(None, "Your username or password was not recognised. Please try again.")
 
