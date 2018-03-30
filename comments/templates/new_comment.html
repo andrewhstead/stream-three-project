@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head_js %}
+    <script src="{% static 'js/tinymce/tinymce.min.js' %}"></script>
+    <script type="text/javascript">
+        tinyMCE.init({mode: "textareas", theme: "modern", plugins: "paste"});
+    </script>
+{% endblock %}
+
+{% block content %}
+
+    <div id="page-header">
+        POST A COMMENT
+    </div>
+
+    <form method="post" action="{{ form_action }}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="default-button" type="submit">Post a Comment</button>
+    </form>
+
+{% endblock %}

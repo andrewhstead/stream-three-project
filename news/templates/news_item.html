@@ -26,4 +26,25 @@
 
     </section>
 
+    {% if user.is_authenticated %}
+        <div id="comment-link">
+            <a href="{% url 'new_comment' item.id %}">Add a Comment</a>
+        </div>
+    {% endif %}
+
+    <section id="comments">
+        <div class="left-header">
+            Comments...
+        </div>
+
+        {% for comment in item.comments.all %}
+            {{ comment.user }}
+            {{ comment.created_date|date:'d F Y, H:i' }}
+            <img class="profile-logo" src="/media/{{ comment.user.profile_picture }}" />
+            {{ comment.comment|safe }}
+            Rating: {{ comment.rating }}
+        {% endfor %}
+
+    </section>
+
 {% endblock %}

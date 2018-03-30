@@ -20,12 +20,14 @@ from news import views as news_views
 from games import views as games_views
 from teams import views as team_views
 from users import views as users_views
+from comments import views as comments_views
 from django.views.static import serve
 from .settings import MEDIA_ROOT
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', home_views.home_page),
+    url(r'^comment/new/(?P<item_id>\d+)/$', comments_views.new_comment, name='new_comment'),
     url(r'^login/$', users_views.login, name="login"),
     url(r'^logout/$', users_views.logout, name="logout"),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
