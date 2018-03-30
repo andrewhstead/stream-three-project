@@ -32,17 +32,36 @@
         </div>
     {% endif %}
 
+    <div class="left-header">
+        Comments...
+    </div>
+
     <section id="comments">
-        <div class="left-header">
-            Comments...
-        </div>
 
         {% for comment in item.comments.all %}
-            {{ comment.user }}
-            {{ comment.created_date|date:'d F Y, H:i' }}
-            <img class="profile-logo" src="/media/{{ comment.user.profile_picture }}" />
-            {{ comment.comment|safe }}
-            Rating: {{ comment.rating }}
+
+            <div class="comment-body">
+
+                <img class="comment-logo" src="/media/{{ comment.user.profile_picture }}" />
+
+                <div class="comment-user">
+                    {{ comment.user }}
+                </div>
+
+                <div class="comment-detail">
+                    {{ comment.created_date|date:'d F Y, H:i' }}
+                </div>
+
+                <div class="comment-text">
+                    {{ comment.comment|safe }}
+                </div>
+
+                <div class="comment-detail">
+                    Rating: {{ comment.rating }}
+                </div>
+
+            </div>
+
         {% endfor %}
 
     </section>
