@@ -6,4 +6,11 @@
         REGISTER AN ACCOUNT
     </div>
 
+    <form id="default-form" enctype="multipart/form-data" role="form"
+          method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="default-button" type="submit">Register</button>
+    </form>
+
 {% endblock %}

@@ -536,15 +536,19 @@ footer {
     margin: 10px auto;
 }
 
-#login-form {
+#default-form {
     margin: auto;
 }
 
-#login-form p {
+#default-form p {
     text-align: center;
 }
 
-#login-form input {
+#default-form input {
+    width: 75%;
+}
+
+#default-form select {
     width: 75%;
 }
 
@@ -555,4 +559,11 @@ ul.errorlist{
     border: 1px solid #993333;
     color: #993333;
     border-radius: 10px;
+}
+
+.helptext {
+    font-size: 0.75em;
+    display: block;
+    margin: 5px;
+    text-align: left;
 }

@@ -3,16 +3,14 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect
 from django.template.context_processors import csrf
-from django.contrib import auth
+from django.contrib import auth, messages
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from .forms import LoginForm
+from .forms import LoginForm, RegistrationForm
+from .models import User
 
 
 # Create your views here.
-def register(request):
-    return render(request, 'register.html')
-
-
 def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -39,5 +37,29 @@ def logout(request):
     return redirect(reverse('login'))
 
 
+@login_required(login_url='/login/')
 def profile(request):
     return render(request, 'user_profile.html')
+
+
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            user = auth.authenticate(username=request.POST.get('username'),
+                                     password=request.POST.get('password1'))
+
+            if user:
+                messages.success(request, 'Registration successful!')
+                auth.login(request, user)
+                return redirect(reverse('profile'))
+            else:
+                messages.error(request, 'Sorry, we were unable to register your account. Please try again.')
+
+    else:
+        form = RegistrationForm()
+
+    args = {'form': form}
+    args.update(csrf(request))
+    return render(request, 'register.html', args)
