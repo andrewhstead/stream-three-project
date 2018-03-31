@@ -3,40 +3,40 @@
 {% block content %}
 
     <div id="page-header">
-        YOUR PROFILE
+        USER PROFILE
     </div>
 
     <div>
-        {% if not user.profile_picture %}
-            {% if not user.favourite_team %}
+        {% if not profile_user.profile_picture %}
+            {% if not profile_user.favourite_team %}
                 <img class="profile-logo" src="/media/images/users/default.png" />
             {% else %}
-                <img class="profile-logo" src="/media/{{ user.favourite_team.large_logo }}" />
+                <img class="profile-logo" src="/media/{{ profile_user.favourite_team.large_logo }}" />
             {% endif %}
         {% else %}
-            <img class="profile-logo" src="/media/{{ user.profile_picture }}" />
+            <img class="profile-logo" src="/media/{{ profile_user.profile_picture }}" />
         {% endif %}
 
         <div class="left-header">
-            Welcome, {{ user.username }}!
+            <strong>Username:</strong><br /> {{ profile_user.username }}
         </div>
 
         <p>
             <strong>Member since:</strong><br />
-            {{ user.date_joined|date:'d F Y, H:i' }}
+            {{ profile_user.date_joined|date:'d F Y, H:i' }}
         </p>
         <p>
             <strong>Last successful login:</strong><br />
-            {{ user.last_login|date:'d F Y, H:i' }}
+            {{ profile_user.last_login|date:'d F Y, H:i' }}
         </p>
         <p>
             <strong>Favourite Team:</strong>
-            {% if not user.favourite_team %}
+            {% if not profile_user.favourite_team %}
                 Not Set
             {% else %}
-                <img class="small-logo" src="/media/{{ user.favourite_team.small_logo }}" />
-                <a class="standard-link" href="/teams/{{ user.favourite_team.geographic_name|lower }}">
-                    {{ user.favourite_team }}
+                <img class="small-logo" src="/media/{{ profile_user.favourite_team.small_logo }}" />
+                <a class="standard-link" href="/teams/{{ profile_user.favourite_team.geographic_name|lower }}">
+                    {{ profile_user.favourite_team }}
                 </a>
             {% endif %}
         </p>

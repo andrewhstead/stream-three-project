@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template.context_processors import csrf
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from .forms import LoginForm, RegistrationForm
 from comments.models import Comment
+from users.models import User
 
 
 # Create your views here.
@@ -38,10 +39,17 @@ def logout(request):
 
 
 @login_required(login_url='/login/')
-def profile(request):
+def user_profile(request):
     user = request.user
     comments = Comment.objects.filter(user_id=user.id)
     return render(request, 'user_profile.html', {'comments': comments})
+
+
+@login_required(login_url='/login/')
+def other_profile(request, user_id):
+    profile_user = get_object_or_404(User, pk=user_id)
+    comments = Comment.objects.filter(user_id=profile_user.id)
+    return render(request, 'other_profile.html', {'comments': comments, 'profile_user': profile_user})
 
 
 def register(request):
