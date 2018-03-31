@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404
-from .models import Game
+from .models import Game, Season
 from teams.models import Team, Conference
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import datetime
@@ -11,7 +11,8 @@ from datetime import datetime
 # Create your views here.
 def last_and_next(request):
 
-    game_results = Game.objects.filter(game_date__year=datetime.now().year).filter(game_status__in=["Completed", "Suspended", "Postponed"]).order_by('game_date')
+    game_results = Game.objects.filter(game_date__year=datetime.now().year)\
+        .filter(game_status__in=["Completed", "Suspended", "Postponed"]).order_by('game_date')
     result_dates = []
 
     for result in game_results:
@@ -139,3 +140,9 @@ def full_fixtures(request):
 
     return render(request, "fixtures_full.html",
                   {'fixtures': fixtures, 'dates': dates, 'date_list': date_list})
+
+
+def season_archive(request):
+    seasons = Season.objects.all().order_by('year')
+
+    return render(request, "season_archive.html", {'seasons': seasons})

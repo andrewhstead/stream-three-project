@@ -30,7 +30,10 @@ def register(request):
     else:
         form = RegistrationForm()
 
-    args = {'form': form}
+    args = {
+        'form': form,
+        'button_text': 'Register',
+    }
     args.update(csrf(request))
     return render(request, 'register.html', args)
 

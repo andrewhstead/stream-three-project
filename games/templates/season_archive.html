@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div id="page-header">
+        SEASON ARCHIVE
+    </div>
+
+    <table class="stat-table alternating-rows">
+
+        <tr class="header-row">
+            <th>Year</th>
+            <th>Champion</th>
+            <th>Runner-Up</th>
+        </tr>
+        {% for season in seasons %}
+            <tr>
+                <td>
+                    {{ season.year }}
+                </td>
+                <td>
+                    {% if season.champion %}
+                        <a class="table-link" href="/teams/{{ season.champion.geographic_name|lower }}">
+                            {{ season.champion.geographic_name }}
+                        </a>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if season.finalist %}
+                        <a class="table-link" href="/teams/{{ season.finalist.geographic_name|lower }}">
+                            {{ season.finalist.geographic_name }}
+                        </a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+{% endblock %}

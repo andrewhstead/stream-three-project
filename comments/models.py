@@ -13,3 +13,6 @@ class Comment(models.Model):
     item = models.ForeignKey(Item, related_name='comments')
     comment = HTMLField(blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return self.item.title + " | " + self.user.username

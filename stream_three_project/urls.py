@@ -27,6 +27,7 @@ from .settings import MEDIA_ROOT
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', home_views.home_page),
+    url(r'^archive/$', games_views.season_archive, name='archive'),
     url(r'^comment/new/(?P<item_id>\d+)/$', comments_views.new_comment, name='new_comment'),
     url(r'^comment/edit/(?P<item_id>\d+)/(?P<comment_id>\d+)/$',
         comments_views.edit_comment, name='edit_comment'),

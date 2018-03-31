@@ -38,3 +38,14 @@ class Game(models.Model):
 
     def __unicode__(self):
         return unicode(self.game_date) + ': ' + unicode(self.away_team) + ' @ ' + unicode(self.home_team)
+
+
+class Season(models.Model):
+    year = models.IntegerField()
+    champion = models.ForeignKey(Team, related_name='champion', blank=True, null=True)
+    finalist = models.ForeignKey(Team, related_name='finalist', blank=True, null=True)
+    games = models.IntegerField(default=0)
+    runs_per_game = models.FloatField(default=0)
+
+    def __unicode__(self):
+        return unicode(self.year)
