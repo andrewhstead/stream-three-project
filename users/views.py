@@ -12,6 +12,29 @@ from users.models import User
 
 
 # Create your views here.
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            user = auth.authenticate(username=request.POST.get('username'),
+                                     password=request.POST.get('password1'))
+
+            if user:
+                messages.success(request, 'Registration successful!')
+                auth.login(request, user)
+                return redirect(reverse('user_profile'))
+            else:
+                messages.error(request, 'Sorry, we were unable to register your account. Please try again.')
+
+    else:
+        form = RegistrationForm()
+
+    args = {'form': form}
+    args.update(csrf(request))
+    return render(request, 'register.html', args)
+
+
 def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -21,7 +44,7 @@ def login(request):
 
             if user is not None:
                 auth.login(request, user)
-                return redirect(reverse('profile'))
+                return redirect(reverse('user_profile'))
             else:
                 form.add_error(None, "Your username or password was not recognised. Please try again.")
 
@@ -47,29 +70,12 @@ def user_profile(request):
 
 @login_required(login_url='/login/')
 def other_profile(request, user_id):
+    user = request.user
     profile_user = get_object_or_404(User, pk=user_id)
     comments = Comment.objects.filter(user_id=profile_user.id)
-    return render(request, 'other_profile.html', {'comments': comments, 'profile_user': profile_user})
 
-
-def register(request):
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            user = auth.authenticate(username=request.POST.get('username'),
-                                     password=request.POST.get('password1'))
-
-            if user:
-                messages.success(request, 'Registration successful!')
-                auth.login(request, user)
-                return redirect(reverse('profile'))
-            else:
-                messages.error(request, 'Sorry, we were unable to register your account. Please try again.')
+    if user == profile_user:
+        return redirect(reverse('user_profile'))
 
     else:
-        form = RegistrationForm()
-
-    args = {'form': form}
-    args.update(csrf(request))
-    return render(request, 'register.html', args)
+        return render(request, 'other_profile.html', {'comments': comments, 'profile_user': profile_user})
