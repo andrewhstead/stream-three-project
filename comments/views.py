@@ -6,6 +6,7 @@ from news.models import Item
 from django.contrib.auth.decorators import login_required
 from django.template.context_processors import csrf
 from .forms import CommentForm
+from .models import Comment
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 
@@ -31,6 +32,42 @@ def new_comment(request, item_id):
     args = {
         'form': form,
         'form_action': reverse('new_comment', args={item.id}),
+        'button_text': 'Post Comment'
     }
     args.update(csrf(request))
     return render(request, 'comment_form.html', args)
+
+
+@login_required
+def edit_comment(request, item_id, comment_id):
+    item = get_object_or_404(Item, pk=item_id)
+    comment = get_object_or_404(Comment, pk=comment_id)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+
+        return redirect(reverse('news', args={item.pk}))
+
+    else:
+        form = CommentForm(instance=comment)
+
+    args = {
+        'form': form,
+        'form_action': reverse('edit_comment', kwargs={'item_id': item.id, 'comment_id': comment.id}),
+        'button_text': 'Edit Comment',
+        'comment': comment
+    }
+    args.update(csrf(request))
+    return render(request, 'comment_form.html', args)
+
+
+@login_required
+def delete_comment(request, item_id, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
+    item = get_object_or_404(Item, pk=item_id)
+
+    comment.delete()
+
+    return redirect(reverse('news', args={item.pk}))

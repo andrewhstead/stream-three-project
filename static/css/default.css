@@ -622,6 +622,11 @@ ul.errorlist{
     font-size: 0.75em;
 }
 
+.comment-controls {
+    text-align: right;
+    margin-top: 5px;
+}
+
 #show-hide {
     cursor: pointer;
     -webkit-tap-highlight-color: rgba(0,0,0,0);

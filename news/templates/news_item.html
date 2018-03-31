@@ -40,41 +40,7 @@
 
         {% for comment in item.comments.all %}
 
-            <div class="comment-body">
-
-                {% if not comment.user.profile_picture %}
-                    {% if not comment.user.favourite_team %}
-                        <img class="comment-logo" src="/media/images/users/default.png" />
-                    {% else %}
-                        <img class="comment-logo" src="/media/{{ comment.user.favourite_team.large_logo }}" />
-                    {% endif %}
-                {% else %}
-                    <img class="comment-logo" src="/media/{{ comment.user.profile_picture }}" />
-                {% endif %}
-
-                <div class="comment-user">
-                    {% if user.is_authenticated %}
-                        {% if user == comment.user %}
-                            <a class="table-link" href="/profile/">
-                        {% else %}
-                            <a class="table-link" href="/profile/{{ comment.user_id }}">
-                        {% endif %}
-                            {{ comment.user }}
-                        </a>
-                    {% else %}
-                        {{ comment.user }}
-                    {% endif %}
-                </div>
-
-                <div class="comment-detail">
-                    {{ comment.created_date|date:'d F Y, H:i' }}
-                </div>
-
-                <div class="comment-text">
-                    {{ comment.comment|safe }}
-                </div>
-
-            </div>
+            {% include "comment_body.html" %}
 
         {% endfor %}
 

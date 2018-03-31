@@ -10,14 +10,19 @@
 
 {% block content %}
 
+
     <div id="page-header">
-        POST A COMMENT
+        {% if comment %}
+            EDIT COMMENT
+        {% else %}
+            POST A COMMENT
+        {% endif %}
     </div>
 
     <form id="default-form" method="post" action="{{ form_action }}">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="default-button" type="submit">Post a Comment</button>
+        <button class="default-button" type="submit">{{ button_text }}</button>
     </form>
 
 {% endblock %}
