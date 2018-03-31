@@ -18,7 +18,7 @@
         {% endif %}
 
         <div class="left-header">
-            Welcome, {{ user.username }}!
+            Welcome, {{ user.first_name}}!
         </div>
 
         <p>
@@ -28,6 +28,10 @@
         <p>
             <strong>Last successful login:</strong><br />
             {{ user.last_login|date:'d F Y, H:i' }}
+        </p>
+        <p>
+            <strong>Registered email address:</strong><br />
+            {{ user.email }}
         </p>
         <p>
             <strong>Favourite Team:</strong>
@@ -43,10 +47,14 @@
 
         <p>
             <strong>Recent Activity:</strong><br />
-            {% for comment in comments %}
-                <span class="arrow">&#9658;</span> {{ comment.created_date|date:'d/m/Y' }}: Commented on<br />
-                <a class="standard-link" href="/news/{{ comment.item.id }}/">{{ comment.item }}</a>
-            {% endfor %}
+            {% if comments %}
+                {% for comment in comments %}
+                    <span class="arrow">&#9658;</span> {{ comment.created_date|date:'d/m/Y' }}: Commented on<br />
+                    <a class="standard-link" href="/news/{{ comment.item.id }}/">{{ comment.item }}</a>
+                {% endfor %}
+            {% else %}
+                No activity yet.
+            {% endif %}
         </p>
 
     </div>

@@ -22,6 +22,10 @@
         </div>
 
         <p>
+            <strong>Full name:</strong><br />
+            {{ profile_user.first_name }} {{ profile_user.last_name }}
+        </p>
+        <p>
             <strong>Member since:</strong><br />
             {{ profile_user.date_joined|date:'d F Y, H:i' }}
         </p>
@@ -43,10 +47,14 @@
 
         <p>
             <strong>Recent Activity:</strong><br />
-            {% for comment in comments %}
-                <span class="arrow">&#9658;</span> {{ comment.created_date|date:'d/m/Y' }}: Commented on<br />
-                <a class="standard-link" href="/news/{{ comment.item.id }}/">{{ comment.item }}</a>
-            {% endfor %}
+            {% if comments %}
+                {% for comment in comments %}
+                    <span class="arrow">&#9658;</span> {{ comment.created_date|date:'d/m/Y' }}: Commented on<br />
+                    <a class="standard-link" href="/news/{{ comment.item.id }}/">{{ comment.item }}</a>
+                {% endfor %}
+            {% else %}
+                No activity yet.
+            {% endif %}
         </p>
 
     </div>

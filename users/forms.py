@@ -11,19 +11,21 @@ class LoginForm(forms.Form):
 
 class RegistrationForm(UserCreationForm):
     password1 = forms.CharField(
-        label='Password',
+        label='Choose a Password',
         widget=forms.PasswordInput
     )
     password2 = forms.CharField(
-        label='Password Confirmation',
+        label='Confirm Password',
         widget=forms.PasswordInput
     )
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2', 'profile_picture', 'favourite_team']
+        fields = ['username', 'first_name', 'last_name', 'email',
+                  'profile_picture', 'favourite_team', 'password1', 'password2']
         labels = {
             'favourite_team': 'Favourite Team (optional)',
+            'profile_picture': 'Profile Picture (optional)',
         }
 
     def clean_password2(self):
