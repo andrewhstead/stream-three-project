@@ -3,7 +3,11 @@
 {% block content %}
 
     <div id="page-header">
-        USER PROFILE
+        {% if user == profile_user %}
+            YOUR PROFILE
+        {% else %}
+            USER PROFILE
+        {% endif %}
     </div>
 
     <div>
@@ -21,18 +25,30 @@
             <strong>Username:</strong><br /> {{ profile_user.username }}
         </div>
 
-        <p>
-            <strong>Full name:</strong><br />
-            {{ profile_user.first_name }} {{ profile_user.last_name }}
-        </p>
+        {% if user != profile_user %}
+            <p>
+                <strong>Full name:</strong><br />
+                {{ profile_user.first_name }} {{ profile_user.last_name }}
+            </p>
+        {% endif %}
+
         <p>
             <strong>Member since:</strong><br />
             {{ profile_user.date_joined|date:'d F Y, H:i' }}
         </p>
+
         <p>
             <strong>Last successful login:</strong><br />
             {{ profile_user.last_login|date:'d F Y, H:i' }}
         </p>
+
+        {% if user == profile_user %}
+            <p>
+                <strong>Registered email address:</strong><br />
+                {{ profile_user.email }}
+            </p>
+        {% endif %}
+
         <p>
             <strong>Favourite Team:</strong>
             {% if not profile_user.favourite_team %}
@@ -58,7 +74,5 @@
         </p>
 
     </div>
-
-
 
 {% endblock %}

@@ -65,7 +65,7 @@ def logout(request):
 def user_profile(request):
     user = request.user
     comments = Comment.objects.filter(user_id=user.id)
-    return render(request, 'user_profile.html', {'comments': comments})
+    return render(request, 'profile.html', {'comments': comments, 'profile_user': user})
 
 
 @login_required(login_url='/login/')
@@ -78,4 +78,4 @@ def other_profile(request, user_id):
         return redirect(reverse('user_profile'))
 
     else:
-        return render(request, 'other_profile.html', {'comments': comments, 'profile_user': profile_user})
+        return render(request, 'profile.html', {'comments': comments, 'profile_user': profile_user})
