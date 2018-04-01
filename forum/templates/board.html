@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load forum_tags %}
+
+{% block content %}
+
+    <div id="page-header">
+        FORUM
+    </div>
+
+    {% if team %}
+        {{ team.geographic_name }} {{ team.nickname }}
+    {% else %}
+        {{ board.title }}
+    {% endif %}
+
+{% endblock %}

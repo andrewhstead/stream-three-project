@@ -666,7 +666,7 @@ ul.errorlist{
 }
 
 .forum-section {
-    margin: 5px auto;
+    margin: 10px auto;
 }
 
 .forum-breaker {
@@ -681,7 +681,6 @@ ul.errorlist{
 }
 
 .board-description {
-    background-color: #ddddff;
     padding: 10px;
 }
 
@@ -690,10 +689,11 @@ ul.errorlist{
 }
 
 .board-counter {
-    background-color: #ccccff;
+    background-color: #ddddff;
     width: 100%;
+    padding: 0 5px;border-bottom: 1px solid #10253f;
 }
 
 .counter-amount {
-    padding-left: 10px;
+    padding: 0 0 0 10px;
 }

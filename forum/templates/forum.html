@@ -7,6 +7,12 @@
         FORUM
     </div>
 
+    {% if user.is_authenticated %}
+        Logged in as: <a class="standard-link" href="/profile/">{{ user.username }}</a>
+    {% else %}
+        NB: You must be <a class="standard-link" href="/login/">logged in</a> to post.
+    {% endif %}
+
     {% for section in sections %}
 
         <div class="forum-section">
@@ -20,7 +26,15 @@
                 <div class="forum-board">
 
                     <div class="board-header">
-                        {{ board.title }}
+                        {% if board.team %}
+                            <a class="table-link" href="/forum/{{ board.team.geographic_name|lower }}">
+                                {{ board.title }}
+                            </a>
+                        {% else %}
+                            <a class="table-link" href="/forum/league/{{ board.id }}">
+                                {{ board.title }}
+                            </a>
+                        {% endif %}
                     </div>
 
                     <div class="board-description">

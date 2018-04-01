@@ -35,6 +35,8 @@ urlpatterns = [
     url(r'^comment/delete/(?P<item_id>\d+)/(?P<comment_id>\d+)/$',
         comments_views.delete_comment, name='delete_comment'),
     url(r'^forum/$', forum_views.forum_home, name='forum'),
+    url(r'^forum/league/(?P<board_id>\d+)/$', forum_views.forum_league, name='forum_league'),
+    url(r'^forum/(?P<team_name>.*)/$', forum_views.forum_team, name='forum_team'),
     url(r'^login/$', users_views.login, name="login"),
     url(r'^logout/$', users_views.logout, name="logout"),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),

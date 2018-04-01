@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from tinymce.models import HTMLField
 from users.models import User
+from teams.models import Team
 
 
 # Create your models here.
@@ -17,6 +18,7 @@ class Section(models.Model):
 class Board(models.Model):
     title = models.CharField(max_length=50)
     section = models.ForeignKey(Section, related_name='boards')
+    team = models.ForeignKey(Team, related_name='board', blank=True, null=True)
     description = HTMLField(blank=True)
 
     def __unicode__(self):
