@@ -35,7 +35,7 @@
             <td>Thread</td>
             <td class="forum-count">Posts</td>
         </tr>
-        {% for thread in board.threads.all %}
+        {% for thread in threads %}
             <tr>
                 <td>
                     <a class="table-link" href="{% url 'view_thread' thread.id %}">{{ thread.title }}</a>
@@ -48,6 +48,9 @@
     </table>
 
     <span id="full-details">
+        {% if team %}
+            <a class="standard-link" href="/teams/{{ team.geographic_name|lower }}">[Team Home]</a>
+        {% endif %}
         <a class="standard-link" href="/forum/">[Forum Home]</a>
     </span>
 

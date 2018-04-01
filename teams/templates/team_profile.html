@@ -143,7 +143,7 @@
         TEAM NEWS
     </div>
 
-    <div class="news-items">
+    <div class="link-list">
         {% for item in items %}
 
             {% if team in item.teams.all %}
@@ -164,6 +164,17 @@
 
     <div class="{{ team.geographic_name|lower }}-box team-box">
         FORUM
+    </div>
+
+    <div class="link-list">
+        {% for thread in board.threads.all %}
+
+                <span class="arrow">&#9658;</span>
+                    <a class="standard-link" href="/thread/{{ thread.id }}/">
+                        {{ thread.title }}
+                    </a>
+
+        {%  endfor %}
     </div>
 
     <span id="full-details">

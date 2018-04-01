@@ -21,12 +21,14 @@ def forum_home(request):
 def forum_team(request, team_name):
     team = get_object_or_404(Team, geographic_name=team_name.capitalize())
     board = get_object_or_404(Board, team=team)
-    return render(request, 'board.html', {'board': board, 'team': team})
+    threads = board.threads.all().order_by('-created_date')
+    return render(request, 'board.html', {'board': board, 'team': team, 'threads': threads})
 
 
 def forum_league(request, board_id):
     board = get_object_or_404(Board, pk=board_id)
-    return render(request, 'board.html', {'board': board})
+    threads = board.threads.all().order_by('-created_date')
+    return render(request, 'board.html', {'board': board, 'threads': threads})
 
 
 @login_required

@@ -6,6 +6,7 @@ from .models import Team, Conference
 from news.models import Item
 from games.models import Game
 from games.views import current_season
+from forum.views import Board
 
 
 # Create your views here.
@@ -22,6 +23,8 @@ def team_page(request, team_name):
     team_results = []
     team_fixtures = []
 
+    board = get_object_or_404(Board, team=team)
+
     for game in games:
         if game.home_team == team or game.away_team == team:
             if game.game_status == "Completed":
@@ -33,8 +36,8 @@ def team_page(request, team_name):
         last_game = team_results[-1]
         next_game = team_fixtures[0]
 
-        return render(request, "team_profile.html", {'team': team, 'items': items,
+        return render(request, "team_profile.html", {'team': team, 'items': items, 'board': board,
                                                      'next_game': next_game, 'last_game': last_game})
 
     else:
-        return render(request, "team_profile.html", {'team': team, 'items': items})
+        return render(request, "team_profile.html", {'team': team, 'items': items, 'board': board})
