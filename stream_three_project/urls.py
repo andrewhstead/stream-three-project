@@ -58,4 +58,5 @@ urlpatterns = [
     url(r'^teams/$', team_views.team_index),
     url(r'^teams/(?P<team_name>.*)/$', team_views.team_page, name='team_page'),
     url(r'^thread/new/(?P<board_id>\d+)/$', forum_views.new_thread, name='new_thread'),
+    url(r'^thread/(?P<thread_id>\d+)/$', forum_views.view_thread, name='view_thread'),
 ]

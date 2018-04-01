@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load forum_tags %}
 
 {% block content %}
 
@@ -39,7 +38,7 @@
         {% for thread in board.threads.all %}
             <tr>
                 <td>
-                    {{ thread.title }}
+                    <a class="table-link" href="{% url 'view_thread' thread.id %}">{{ thread.title }}</a>
                 </td>
                 <td class="forum-count">
                     {{ thread.posts.count }}

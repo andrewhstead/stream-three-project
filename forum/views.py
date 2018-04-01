@@ -67,3 +67,15 @@ def new_thread(request, board_id):
     args.update(csrf(request))
 
     return render(request, 'new_thread.html', args)
+
+
+def view_thread(request, thread_id):
+    thread = get_object_or_404(Thread, pk=thread_id)
+    board = get_object_or_404(Board, pk=thread.board_id)
+
+    if board.team_id:
+        team = get_object_or_404(Team, pk=board.team_id)
+        return render(request, 'thread.html', {'thread': thread, 'board': board, 'team': team})
+
+    else:
+        return render(request, 'thread.html', {'thread': thread, 'board': board})

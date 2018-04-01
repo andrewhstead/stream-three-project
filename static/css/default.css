@@ -609,7 +609,7 @@ ul.errorlist{
     text-decoration: underline;
 }
 
-.content-logo {
+.comment-logo {
     float: left;
     height: 30px;
     width: 30px;
@@ -710,4 +710,8 @@ ul.errorlist{
 
 .forum-count {
     text-align: center;
+}
+
+#posts {
+    margin: 10px auto;
 }

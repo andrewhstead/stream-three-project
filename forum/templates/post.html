@@ -1,0 +1,42 @@
+<div class="comment-body">
+
+    {% if not post.user.profile_picture %}
+        {% if not post.user.favourite_team %}
+            <img class="comment-logo" src="/media/images/users/default.png" />
+        {% else %}
+            <img class="comment-logo" src="/media/{{ post.user.favourite_team.large_logo }}" />
+        {% endif %}
+    {% else %}
+        <img class="comment-logo" src="/media/{{ post.user.profile_picture }}" />
+    {% endif %}
+
+    <div class="comment-user">
+        {% if user.is_authenticated %}
+            {% if user == post.user %}
+                <a class="table-link" href="/profile/">
+            {% else %}
+                <a class="table-link" href="/profile/{{ post.user_id }}">
+            {% endif %}
+                {{ post.user }}
+            </a>
+        {% else %}
+            {{ post.user }}
+        {% endif %}
+    </div>
+
+    <div class="comment-detail">
+        {{ post.created_date|date:'d F Y, H:i' }}
+    </div>
+
+    <div class="comment-text">
+        {{ post.content|safe }}
+    </div>
+
+    {% if user == post.user or user.is_staff %}
+        <div class="comment-detail comment-controls">
+            <a class="table-link" href="/">[Edit]</a>
+            <a class="table-link" href="/">[Delete]</a>
+        </div>
+    {% endif %}
+
+</div>

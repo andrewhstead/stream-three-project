@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div id="page-header">
+        FORUM
+    </div>
+
+    <div id="left-header">
+
+    {% if board.team_id %}
+        <a class="table-link" href="/forum/{{ board.team.geographic_name|lower }}">
+            {{ board.title }}
+        </a>
+    {% else %}
+        <a class="table-link" href="/forum/league/{{ board.id }}">
+            {{ board.title }}
+        </a>
+    {% endif %}
+
+        > {{ thread.title }}
+
+    </div>
+
+    <section id="posts">
+
+        {% for post in thread.posts.all %}
+
+            {% include 'post.html' %}
+
+        {% endfor %}
+
+    </section>
+
+    <span id="full-details">
+        {% if board.team_id %}
+            <a class="standard-link" href="/forum/{{ board.team.geographic_name|lower }}">
+                [Thread List]
+            </a>
+        {% else %}
+            <a class="standard-link" href="/forum/league/{{ board.id }}">
+                [Thread List]
+            </a>
+        {% endif %}
+        <a class="standard-link" href="/forum/">[Forum Home]</a>
+    </span>
+
+{% endblock %}
