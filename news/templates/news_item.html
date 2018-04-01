@@ -30,6 +30,10 @@
         <div id="comment-link">
             <a href="{% url 'new_comment' item.id %}">Add a Comment</a>
         </div>
+    {% else %}
+        <div id="not-logged-in">
+            You must be <a class="standard-link" href="/login/">logged in</a> to comment.
+        </div>
     {% endif %}
 
     <div class="left-header">

@@ -19,6 +19,7 @@ from home import views as home_views
 from news import views as news_views
 from games import views as games_views
 from teams import views as team_views
+from forum import views as forum_views
 from users import views as users_views
 from comments import views as comments_views
 from django.views.static import serve
@@ -33,6 +34,7 @@ urlpatterns = [
         comments_views.edit_comment, name='edit_comment'),
     url(r'^comment/delete/(?P<item_id>\d+)/(?P<comment_id>\d+)/$',
         comments_views.delete_comment, name='delete_comment'),
+    url(r'^forum/$', forum_views.forum_home, name='forum'),
     url(r'^login/$', users_views.login, name="login"),
     url(r'^logout/$', users_views.logout, name="logout"),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),

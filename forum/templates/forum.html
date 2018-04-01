@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load forum_tags %}
+
+{% block content %}
+
+    <div id="page-header">
+        FORUM
+    </div>
+
+    {% for section in sections %}
+
+        <div class="forum-section">
+
+            <div class="forum-header">
+                {{ section.title }}
+            </div>
+
+            {% for board in section.boards.all %}
+
+                <div class="forum-board">
+
+                    <div class="board-header">
+                        {{ board.title }}
+                    </div>
+
+                    <div class="board-description">
+                        {{ board.description|safe }}
+                    </div>
+
+                    <table class="board-counter">
+                        <tr>
+                            <td class="counter-amount">Threads: {{ board.threads.count }}</td>
+                            <td class="counter-amount">Posts: {{ board|board_posts }}</td>
+                        </tr>
+                    </table>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endfor %}
+
+{% endblock %}

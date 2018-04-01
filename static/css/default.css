@@ -653,3 +653,47 @@ ul.errorlist{
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     font-size: 0.75em;
 }
+
+#not-logged-in {
+    margin: 10px 0 0 0;
+    font-size: 0.75em;
+}
+
+.forum-header {
+    background-color: #10253f;
+    color: white;
+    padding: 5px;
+}
+
+.forum-section {
+    margin: 5px auto;
+}
+
+.forum-breaker {
+    height: 1px;
+    background-color: #10253f;
+}
+
+.board-header {
+    background-color: #4f81bd;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.board-description {
+    background-color: #ddddff;
+    padding: 10px;
+}
+
+.board-description p {
+    margin: 0;
+}
+
+.board-counter {
+    background-color: #ccccff;
+    width: 100%;
+}
+
+.counter-amount {
+    padding-left: 10px;
+}
