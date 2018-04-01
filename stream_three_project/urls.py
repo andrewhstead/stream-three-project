@@ -40,6 +40,7 @@ urlpatterns = [
     url(r'^news/(?P<news_id>\d+)/$', news_views.news_item, name='news'),
     url(r'^news/(?P<team_name>.*)/$', news_views.news_team, name='team_news'),
     url(r'^profile/$', users_views.user_profile, name='user_profile'),
+    url(r'^profile/delete/$', users_views.delete_profile, name='delete_profile'),
     url(r'^profile/edit/$', users_views.edit_profile, name='edit_profile'),
     url(r'^profile/(?P<user_id>.*)/$', users_views.other_profile, name='other_profile'),
     url(r'^register/$', users_views.register, name='register'),

@@ -6,7 +6,7 @@ from django.template.context_processors import csrf
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from .forms import LoginForm, RegistrationForm, EditProfileForm
+from .forms import LoginForm, RegistrationForm, EditProfileForm, DeletionForm
 from comments.models import Comment
 from users.models import User
 
@@ -104,3 +104,28 @@ def edit_profile(request):
     }
     args.update(csrf(request))
     return render(request, 'user_details.html', args)
+
+
+def delete_profile(request):
+    user = request.user
+
+    if request.method == 'POST':
+        form = DeletionForm(request.POST)
+        if form.is_valid():
+            user_to_delete = auth.authenticate(username=user.username,
+                                               password=request.POST.get('password'))
+            if user_to_delete is not None:
+                user_to_delete.delete()
+                return redirect(reverse('login'))
+            else:
+                form.add_error(None, "Your password was not recognised. Please try again.")
+
+    else:
+        form = DeletionForm()
+
+    args = {
+        'form': form,
+        'button_text': 'Delete Account',
+    }
+    args.update(csrf(request))
+    return render(request, 'delete_profile.html', args)

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div id="page-header">
+        DELETE ACCOUNT
+    </div>
+
+    Please confirm your password to complete the deletion of your account.
+
+    <form id="default-form" role="form" method="post" action="{% url 'delete_profile' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="default-button" type="submit">{{ button_text }}</button>
+    </form>
+
+{% endblock %}

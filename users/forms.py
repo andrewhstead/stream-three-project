@@ -55,3 +55,19 @@ class EditProfileForm(forms.ModelForm):
             'favourite_team': 'Favourite Team (optional)',
             'profile_picture': 'Profile Picture (optional)',
         }
+
+
+class DeletionForm(forms.ModelForm):
+
+    password = forms.CharField(
+        widget=forms.PasswordInput
+    )
+
+    class Meta:
+        model = User
+        fields = ['password']
+
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+
+        return password
