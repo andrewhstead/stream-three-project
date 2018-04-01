@@ -6,7 +6,7 @@ from django.template.context_processors import csrf
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from .forms import LoginForm, RegistrationForm
+from .forms import LoginForm, RegistrationForm, EditProfileForm
 from comments.models import Comment
 from users.models import User
 
@@ -82,3 +82,25 @@ def other_profile(request, user_id):
 
     else:
         return render(request, 'profile.html', {'comments': comments, 'profile_user': profile_user})
+
+
+def edit_profile(request):
+    user = request.user
+
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('user_profile'))
+        else:
+            messages.error(request, 'Sorry, we were unable to update your details. Please try again.')
+
+    else:
+        form = EditProfileForm(instance=user)
+
+    args = {
+        'form': form,
+        'button_text': 'Update Profile',
+    }
+    args.update(csrf(request))
+    return render(request, 'edit_profile.html', args)

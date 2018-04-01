@@ -549,6 +549,27 @@ footer {
     width: 75%;
 }
 
+#default-form input[type=checkbox] {
+    width: auto;
+}
+
+#default-form label {
+    display: block;
+}
+
+#default-form a {
+    display: block;
+}
+
+#default-form label[for=profile_picture-clear_id] {
+    display: inline;
+}
+
+#id_profile_picture {
+    display: block;
+    margin: auto;
+}
+
 #default-form select {
     width: 75%;
 }

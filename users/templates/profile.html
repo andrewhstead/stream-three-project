@@ -75,4 +75,10 @@
 
     </div>
 
+    {% if user == profile_user %}
+        <span id="full-details">
+            <a class="standard-link" href="/profile/edit/">[Edit Profile]</a>
+        </span>
+    {% endif %}
+
 {% endblock %}

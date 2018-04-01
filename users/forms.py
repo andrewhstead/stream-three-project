@@ -42,3 +42,16 @@ class RegistrationForm(UserCreationForm):
         instance = super(RegistrationForm, self).save()
 
         return instance
+
+
+class EditProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email',
+                  'profile_picture', 'favourite_team']
+        exclude = ['password']
+        labels = {
+            'favourite_team': 'Favourite Team (optional)',
+            'profile_picture': 'Profile Picture (optional)',
+        }
