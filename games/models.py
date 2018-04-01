@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from teams.models import Team
+from datetime import datetime
 
 STATUS_OPTIONS = (
     ('Scheduled', "Scheduled"),
@@ -20,7 +21,21 @@ TYPE_OPTIONS = (
 
 
 # Create your models here.
+class Season(models.Model):
+    SEASON_OPTIONS = (
+        (year, year) for year in range(2000, datetime.now().year+1)
+    )
+
+    year = models.IntegerField(choices=SEASON_OPTIONS)
+    champion = models.ForeignKey(Team, related_name='champion', blank=True, null=True)
+    finalist = models.ForeignKey(Team, related_name='finalist', blank=True, null=True)
+
+    def __unicode__(self):
+        return unicode(self.year)
+
+
 class Game(models.Model):
+    season = models.ForeignKey(Season, related_name='games', default=datetime.now().year)
     game_date = models.DateField()
     game_time = models.TimeField()
     game_status = models.CharField(max_length=15, choices=STATUS_OPTIONS, default="Scheduled")
@@ -38,14 +53,3 @@ class Game(models.Model):
 
     def __unicode__(self):
         return unicode(self.game_date) + ': ' + unicode(self.away_team) + ' @ ' + unicode(self.home_team)
-
-
-class Season(models.Model):
-    year = models.IntegerField()
-    champion = models.ForeignKey(Team, related_name='champion', blank=True, null=True)
-    finalist = models.ForeignKey(Team, related_name='finalist', blank=True, null=True)
-    games = models.IntegerField(default=0)
-    runs_per_game = models.FloatField(default=0)
-
-    def __unicode__(self):
-        return unicode(self.year)

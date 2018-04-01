@@ -1,11 +1,11 @@
 from .models import Game
 from teams.models import Team
-from datetime import datetime
+from games.views import current_season
 
 
 def league_standings(request):
     teams = Team.objects.all().order_by('geographic_name')
-    games = Game.objects.filter(game_date__year=datetime.now().year).filter(game_status="Completed")
+    games = Game.objects.filter(game_date__year=current_season).filter(game_status="Completed")
     standings = []
 
     for team in teams:

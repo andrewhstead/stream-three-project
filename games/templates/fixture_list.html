@@ -6,51 +6,59 @@
         LEAGUE SCHEDULE
     </div>
 
-    {% for date in dates %}
+    {% if fixtures %}
 
-        <div class="sub-header">
-            {{ date|date:"d F Y" }}
-        </div>
+        {% for date in dates %}
 
-        <table class="stat-table alternating-rows">
+            <div class="sub-header">
+                {{ date|date:"d F Y" }}
+            </div>
 
-            <tr class="header-row">
-                <th>Away</th>
-                <th>@</th>
-                <th>Home</th>
-            </tr>
+            <table class="stat-table alternating-rows">
 
-            {% for fixture in fixtures %}
+                <tr class="header-row">
+                    <th>Away</th>
+                    <th>@</th>
+                    <th>Home</th>
+                </tr>
 
-                {% if fixture.game_date == date %}
-                    <tr>
-                        <td class="stat-team">
-                            <a class="table-link" href="/scores/{{ fixture.away_team.geographic_name|lower }}">
-                                {{ fixture.away_team.geographic_name }}
-                            </a>
-                        </td>
-                        {% if fixture.game_status == "In Progress" %}
-                            <td class="stat-detail-highlight">
-                                {{ fixture.away_team_runs }} - {{ fixture.home_team_runs }}
+                {% for fixture in fixtures %}
+
+                    {% if fixture.game_date == date %}
+                        <tr>
+                            <td class="stat-team">
+                                <a class="table-link" href="/scores/{{ fixture.away_team.geographic_name|lower }}">
+                                    {{ fixture.away_team.geographic_name }}
+                                </a>
                             </td>
-                        {% else %}
-                            <td class="stat-detail">
-                                {{ fixture.game_time }}
+                            {% if fixture.game_status == "In Progress" %}
+                                <td class="stat-detail-highlight">
+                                    {{ fixture.away_team_runs }} - {{ fixture.home_team_runs }}
+                                </td>
+                            {% else %}
+                                <td class="stat-detail">
+                                    {{ fixture.game_time }}
+                                </td>
+                            {% endif %}
+                            <td class="stat-team">
+                                <a class="table-link" href="/scores/{{ fixture.home_team.geographic_name|lower }}">
+                                    {{ fixture.home_team.geographic_name }}
+                                </a>
                             </td>
-                        {% endif %}
-                        <td class="stat-team">
-                            <a class="table-link" href="/scores/{{ fixture.home_team.geographic_name|lower }}">
-                                {{ fixture.home_team.geographic_name }}
-                            </a>
-                        </td>
-                    </tr>
+                        </tr>
 
-                {% endif %}
+                    {% endif %}
 
-            {% endfor %}
+                {% endfor %}
 
-        </table>
+            </table>
 
-    {% endfor %}
+        {% endfor %}
+
+    {% else %}
+
+        No fixtures available for this season.
+
+    {% endif %}
 
 {% endblock %}

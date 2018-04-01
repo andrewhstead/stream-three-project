@@ -6,64 +6,72 @@
         LEAGUE RESULTS
     </div>
 
-    {% for date in dates %}
+    {% if results %}
 
-        <div class="sub-header">
-            {{ date|date:"d F Y" }}
-        </div>
+        {% for date in dates %}
 
-        <table class="stat-table alternating-rows">
+            <div class="sub-header">
+                {{ date|date:"d F Y" }}
+            </div>
 
-            <tr class="header-row">
-                <th>Away</th>
-                <th>@</th>
-                <th>Home</th>
-            </tr>
+            <table class="stat-table alternating-rows">
 
-            {% for result in results %}
+                <tr class="header-row">
+                    <th>Away</th>
+                    <th>@</th>
+                    <th>Home</th>
+                </tr>
 
-                {% if result.game_date == date %}
-                    <tr>
-                        <td class="stat-team">
-                            <a class="table-link" href="/scores/{{ result.away_team.geographic_name|lower }}">
-                                {% if result.game_status == "Completed" and result.away_team_runs > result.home_team_runs %}
-                                    <strong>{{ result.away_team.geographic_name }}</strong>
-                                {% else %}
-                                    {{ result.away_team.geographic_name }}
-                                {% endif %}
-                            </a></td>
-                        {% if result.game_status != "Completed" %}
-                            <td class="stat-detail-faint">
-                                {% if result.game_status == "Postponed" %}
-                                    P - P
-                                {% else %}
-                                    {{ result.away_team_runs }} - {{ result.home_team_runs }}
-                                {% endif %}
+                {% for result in results %}
+
+                    {% if result.game_date == date %}
+                        <tr>
+                            <td class="stat-team">
+                                <a class="table-link" href="/scores/{{ result.away_team.geographic_name|lower }}">
+                                    {% if result.game_status == "Completed" and result.away_team_runs > result.home_team_runs %}
+                                        <strong>{{ result.away_team.geographic_name }}</strong>
+                                    {% else %}
+                                        {{ result.away_team.geographic_name }}
+                                    {% endif %}
+                                </a></td>
+                            {% if result.game_status != "Completed" %}
+                                <td class="stat-detail-faint">
+                                    {% if result.game_status == "Postponed" %}
+                                        P - P
+                                    {% else %}
+                                        {{ result.away_team_runs }} - {{ result.home_team_runs }}
+                                    {% endif %}
+                                </td>
+                            {% else %}
+                                <td class="stat-detail">
+                                    <strong>{{ result.away_team_runs }}</strong>
+                                    -
+                                    <strong>{{ result.home_team_runs }}</strong>
+                                </td>
+                            {% endif %}
+                            <td class="stat-team">
+                                <a class="table-link" href="/scores/{{ result.home_team.geographic_name|lower }}">
+                                    {% if result.game_status == "Completed" and result.home_team_runs > result.away_team_runs %}
+                                        <strong>{{ result.home_team.geographic_name }}</strong>
+                                    {% else %}
+                                        {{ result.home_team.geographic_name }}
+                                    {% endif %}
+                                </a>
                             </td>
-                        {% else %}
-                            <td class="stat-detail">
-                                <strong>{{ result.away_team_runs }}</strong>
-                                -
-                                <strong>{{ result.home_team_runs }}</strong>
-                            </td>
-                        {% endif %}
-                        <td class="stat-team">
-                            <a class="table-link" href="/scores/{{ result.home_team.geographic_name|lower }}">
-                                {% if result.game_status == "Completed" and result.home_team_runs > result.away_team_runs %}
-                                    <strong>{{ result.home_team.geographic_name }}</strong>
-                                {% else %}
-                                    {{ result.home_team.geographic_name }}
-                                {% endif %}
-                            </a>
-                        </td>
-                    </tr>
+                        </tr>
 
-                {% endif %}
+                    {% endif %}
 
-            {% endfor %}
+                {% endfor %}
 
-        </table>
+            </table>
 
-    {% endfor %}
+        {% endfor %}
+
+    {% else %}
+
+        No results available for this season.
+
+    {% endif %}
 
 {% endblock %}
