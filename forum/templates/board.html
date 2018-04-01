@@ -8,9 +8,48 @@
     </div>
 
     {% if team %}
-        {{ team.geographic_name }} {{ team.nickname }}
+        <div class="{{ team.geographic_name|lower }}-text team-header">
+            {{ team.geographic_name }} {{ team.nickname }}
+        </div>
     {% else %}
-        {{ board.title }}
+        <div class="forum-sub-header">
+            {{ board.title }}
+        </div>
     {% endif %}
+
+    {% if user.is_authenticated %}
+        <div id="content-link">
+            <a href="/thread/new/{{ board.id }}">New Thread</a>
+        </div>
+    {% else %}
+        <div id="not-logged-in">
+            You must be <a class="standard-link" href="/login/">logged in</a> to post.
+        </div>
+    {% endif %}
+
+    {% if board.threads.count == 0 %}
+        No threads in this forum yet.
+    {% endif %}
+
+    <table class="forum-table alternating-rows">
+        <tr class="header-row">
+            <td>Thread</td>
+            <td class="forum-count">Posts</td>
+        </tr>
+        {% for thread in board.threads.all %}
+            <tr>
+                <td>
+                    {{ thread.title }}
+                </td>
+                <td class="forum-count">
+                    {{ thread.posts.count }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <span id="full-details">
+        <a class="standard-link" href="/forum/">[Forum Home]</a>
+    </span>
 
 {% endblock %}

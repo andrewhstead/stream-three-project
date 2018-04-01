@@ -147,12 +147,29 @@
         {% for item in items %}
 
             {% if team in item.teams.all %}
-                <span class="arrow">&#9658;</span> <a class="standard-link" href="/news/{{ item.id }}/">{{ item.title }}</a>
+                <span class="arrow">&#9658;</span>
+                    <a class="standard-link" href="/news/{{ item.id }}/">
+                        {{ item.title }}
+                    </a>
             {% endif %}
 
         {%  endfor %}
     </div>
 
-    <span id="full-details"><a class="standard-link" href="/news/{{ team.geographic_name|lower }}">[All Articles]</a></span>
+    <span id="full-details">
+        <a class="standard-link" href="/news/{{ team.geographic_name|lower }}">
+            [All Articles]
+        </a>
+    </span>
+
+    <div class="{{ team.geographic_name|lower }}-box team-box">
+        FORUM
+    </div>
+
+    <span id="full-details">
+        <a class="standard-link" href="/forum/{{ team.geographic_name|lower }}">
+            [All Threads]
+        </a>
+    </span>
 
 {% endblock %}

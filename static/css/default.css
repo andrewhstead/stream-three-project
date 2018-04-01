@@ -590,7 +590,7 @@ ul.errorlist{
     text-align: left;
 }
 
-#comment-link {
+#content-link {
     margin: 10px auto 10px 0;
     color: white;
     background-color: #4f81bd;
@@ -600,16 +600,16 @@ ul.errorlist{
     width: fit-content;
 }
 
-#comment-link a {
+#content-link a {
     color: white;
     text-decoration: none;
 }
 
-#comment-link a:hover {
+#content-link a:hover {
     text-decoration: underline;
 }
 
-.comment-logo {
+.content-logo {
     float: left;
     height: 30px;
     width: 30px;
@@ -669,11 +669,6 @@ ul.errorlist{
     margin: 10px auto;
 }
 
-.forum-breaker {
-    height: 1px;
-    background-color: #10253f;
-}
-
 .board-header {
     background-color: #4f81bd;
     padding: 5px;
@@ -696,4 +691,23 @@ ul.errorlist{
 
 .counter-amount {
     padding: 0 0 0 10px;
+}
+
+.forum-sub-header {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.forum-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 5px auto;
+}
+
+.forum-table td {
+    padding: 2px 5px;
+}
+
+.forum-count {
+    text-align: center;
 }

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head_js %}
+    <script src="{% static 'js/tinymce/tinymce.min.js' %}"></script>
+    <script type="text/javascript">
+        tinyMCE.init({mode: "textareas", theme: "modern", plugins: "paste"});
+    </script>
+{% endblock %}
+
+{% block content %}
+
+    <div id="page-header">
+        START NEW THREAD
+    </div>
+
+    <div class="sub-header">
+        New thread in: {{ board.title }}
+    </div>
+
+    <form id="default-form" method="post" action="{{ form_action }}">
+        {% csrf_token %}
+        {{ thread_form.as_p }}
+        {{ post_form.as_p }}
+        <button class="default-button" type="submit">{{ button_text }}</button>
+    </form>
+
+{% endblock %}
