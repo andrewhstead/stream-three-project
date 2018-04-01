@@ -35,7 +35,7 @@ def register(request):
         'button_text': 'Register',
     }
     args.update(csrf(request))
-    return render(request, 'register.html', args)
+    return render(request, 'user_details.html', args)
 
 
 def login(request):
@@ -103,4 +103,4 @@ def edit_profile(request):
         'button_text': 'Update Profile',
     }
     args.update(csrf(request))
-    return render(request, 'edit_profile.html', args)
+    return render(request, 'user_details.html', args)

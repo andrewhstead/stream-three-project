@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div id="page-header">
+        {% if user.is_authenticated %}
+            EDIT YOUR PROFILE
+        {% else %}
+            REGISTER AN ACCOUNT
+        {% endif %}
+    </div>
+
+    {% if user.is_authenticated %}
+        <form id="default-form" enctype="multipart/form-data" role="form"
+              method="post" action="{% url 'edit_profile' %}">
+    {% else %}
+        <form id="default-form" enctype="multipart/form-data" role="form"
+              method="post" action="{% url 'register' %}">
+    {% endif %}
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="default-button" type="submit">{{ button_text }}</button>
+    </form>
+
+{% endblock %}
