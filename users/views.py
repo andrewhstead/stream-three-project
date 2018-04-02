@@ -8,7 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from .forms import LoginForm, RegistrationForm, EditProfileForm, DeletionForm
 from comments.models import Comment
-from users.models import User
+from forum.models import Thread, Post
+from .models import User
 
 
 # Create your views here.
@@ -68,7 +69,22 @@ def logout(request):
 def user_profile(request):
     user = request.user
     comments = Comment.objects.filter(user_id=user.id)
-    return render(request, 'profile.html', {'comments': comments, 'profile_user': user})
+    posts = Post.objects.filter(user_id=user.id)
+    threads = Thread.objects.filter(user_id=user.id)
+    contributions = []
+
+    for comment in comments:
+        contributions.append(comment)
+
+    for post in posts:
+        contributions.append(post)
+
+    for thread in threads:
+        contributions.append(thread)
+
+    return render(request, 'profile.html', {'comments': comments, 'threads': threads,
+                                            'posts': posts, 'contributions': contributions,
+                                            'profile_user': user})
 
 
 @login_required(login_url='/login/')

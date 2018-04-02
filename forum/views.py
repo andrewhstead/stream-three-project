@@ -68,7 +68,7 @@ def new_thread(request, board_id):
     }
     args.update(csrf(request))
 
-    return render(request, 'new_thread.html', args)
+    return render(request, 'thread_form.html', args)
 
 
 def view_thread(request, thread_id):
@@ -81,3 +81,67 @@ def view_thread(request, thread_id):
 
     else:
         return render(request, 'thread.html', {'thread': thread, 'board': board})
+
+
+@login_required
+def new_post(request, thread_id):
+    thread = get_object_or_404(Thread, pk=thread_id)
+
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+
+            post = form.save(False)
+            post.user = request.user
+            post.thread = thread
+            post.save()
+
+        return redirect(reverse('view_thread', args={thread.pk}))
+
+    else:
+        form = PostForm()
+
+    args = {
+        'form': form,
+        'thread': thread,
+        'button_text': 'Submit Post'
+    }
+    args.update(csrf(request))
+
+    return render(request, 'post_form.html', args)
+
+
+@login_required
+def edit_post(request, thread_id, post_id):
+    thread = get_object_or_404(Thread, pk=thread_id)
+    post = get_object_or_404(Post, pk=post_id)
+
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+
+        return redirect(reverse('view_thread', args={thread.pk}))
+
+    else:
+        form = PostForm(instance=post)
+
+    args = {
+        'form': form,
+        'thread': thread,
+        'form_action': reverse('edit_post', kwargs={'thread_id': thread.id, 'post_id': post.id}),
+        'button_text': 'Edit Post',
+        'post': post
+    }
+    args.update(csrf(request))
+    return render(request, 'post_form.html', args)
+
+
+@login_required
+def delete_post(request, thread_id, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    thread = get_object_or_404(Thread, pk=thread_id)
+
+    post.delete()
+
+    return redirect(reverse('view_thread', args={thread.pk}))

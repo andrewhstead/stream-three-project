@@ -62,7 +62,19 @@
         </p>
 
         <p>
+            <strong>Activity:</strong><br />
+            Threads started: {{ profile_user.threads.count }}<br />
+            Forum posts: {{ profile_user.posts.count }}<br />
+            Comments: {{ profile_user.comments.count }}
+        </p>
+
+        <p>
             <strong>Recent Activity:</strong><br />
+
+            {% for contribution in contributions %}
+                {{ contribution.created_date|date:'d/m/Y' }}<br />
+            {% endfor %}
+
             {% if comments %}
                 {% for comment in comments %}
                     <span class="arrow">&#9658;</span> {{ comment.created_date|date:'d/m/Y' }}: Commented on<br />

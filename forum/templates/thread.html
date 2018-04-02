@@ -22,6 +22,16 @@
 
     </div>
 
+    {% if user.is_authenticated %}
+        <div id="content-link">
+            <a href="/post/new/{{ thread.id }}">New Post</a>
+        </div>
+    {% else %}
+        <div id="not-logged-in">
+            You must be <a class="standard-link" href="/login/">logged in</a> to post.
+        </div>
+    {% endif %}
+
     <section id="posts">
 
         {% for post in thread.posts.all %}

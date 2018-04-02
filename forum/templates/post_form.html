@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head_js %}
+    <script src="{% static 'js/tinymce/tinymce.min.js' %}"></script>
+    <script type="text/javascript">
+        tinyMCE.init({mode: "textareas", theme: "modern", plugins: "paste"});
+    </script>
+{% endblock %}
+
+{% block content %}
+
+
+    <div id="page-header">
+        {% if comment %}
+            EDIT POST
+        {% else %}
+            ADD A POST
+        {% endif %}
+    </div>
+
+    <div class="sub-header">
+        Post in: {{ thread.title }}
+    </div>
+
+    <form id="default-form" method="post" action="{{ form_action }}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="default-button" type="submit">{{ button_text }}</button>
+    </form>
+
+{% endblock %}
