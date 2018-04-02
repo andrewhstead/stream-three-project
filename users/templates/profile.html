@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load user_tags %}
 
 {% block content %}
 
@@ -71,15 +72,26 @@
         <p>
             <strong>Recent Activity:</strong><br />
 
-            {% for contribution in contributions %}
-                {{ contribution.created_date|date:'d/m/Y' }}<br />
-            {% endfor %}
+            {% if contributions %}
 
-            {% if comments %}
-                {% for comment in comments %}
-                    <span class="arrow">&#9658;</span> {{ comment.created_date|date:'d/m/Y' }}: Commented on<br />
-                    <a class="standard-link" href="/news/{{ comment.item.id }}/">{{ comment.item }}</a>
+                {% for contribution in contributions|dictsortreversed:'created_date'|slice:':-4' %}
+                    {% with contribution|activity_type as activity %}
+                        {% if activity == 'Comment' %}
+                            <span class="arrow">&#9658;</span>
+                            {{ contribution.created_date|date:'d/m/Y' }}: Commented on<br />
+                            <a class="standard-link" href="/news/{{ contribution.item.id }}/">
+                                {{ contribution.item }}
+                            </a><br />
+                        {% elif activity == 'Post' %}
+                            <span class="arrow">&#9658;</span>
+                            {{ contribution.created_date|date:'d/m/Y' }}: Posted in<br />
+                            <a class="standard-link" href="/thread/{{ contribution.thread.id }}/">
+                                {{ contribution.thread }}
+                            </a><br />
+                        {% endif %}
+                    {% endwith %}
                 {% endfor %}
+
             {% else %}
                 No activity yet.
             {% endif %}

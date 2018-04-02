@@ -92,12 +92,26 @@ def other_profile(request, user_id):
     user = request.user
     profile_user = get_object_or_404(User, pk=user_id)
     comments = Comment.objects.filter(user_id=profile_user.id)
+    posts = Post.objects.filter(user_id=profile_user.id)
+    threads = Thread.objects.filter(user_id=profile_user.id)
+    contributions = []
+
+    for comment in comments:
+        contributions.append(comment)
+
+    for post in posts:
+        contributions.append(post)
+
+    for thread in threads:
+        contributions.append(thread)
 
     if user == profile_user:
         return redirect(reverse('user_profile'))
 
     else:
-        return render(request, 'profile.html', {'comments': comments, 'profile_user': profile_user})
+        return render(request, 'profile.html', {'comments': comments, 'threads': threads,
+                                                'posts': posts, 'contributions': contributions,
+                                                'profile_user': profile_user})
 
 
 def edit_profile(request):
