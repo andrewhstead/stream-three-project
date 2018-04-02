@@ -78,13 +78,13 @@
                     {% with contribution|activity_type as activity %}
                         {% if activity == 'Comment' %}
                             <span class="arrow">&#9658;</span>
-                            {{ contribution.created_date|date:'d/m/Y' }}: Commented on<br />
+                            {{ contribution.created_date|date:'d/m/Y' }} - Commented on:<br />
                             <a class="standard-link" href="/news/{{ contribution.item.id }}/">
                                 {{ contribution.item }}
                             </a><br />
                         {% elif activity == 'Post' %}
                             <span class="arrow">&#9658;</span>
-                            {{ contribution.created_date|date:'d/m/Y' }}: Posted in<br />
+                            {{ contribution.created_date|date:'d/m/Y' }} - Posted in:<br />
                             <a class="standard-link" href="/thread/{{ contribution.thread.id }}/">
                                 {{ contribution.thread }}
                             </a><br />

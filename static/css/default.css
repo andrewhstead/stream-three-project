@@ -416,6 +416,11 @@ footer {
     text-align: center;
 }
 
+.table-details {
+    font-size: 0.75em;
+    display: block;
+}
+
 .sub-header {
     margin: 10px auto;
     text-align: center;

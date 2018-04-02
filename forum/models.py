@@ -5,6 +5,7 @@ from django.db import models
 from tinymce.models import HTMLField
 from users.models import User
 from teams.models import Team
+from datetime import datetime
 
 
 # Create your models here.
@@ -26,10 +27,11 @@ class Board(models.Model):
 
 
 class Thread(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=50)
     user = models.ForeignKey(User, related_name='threads')
     board = models.ForeignKey(Board, related_name='threads')
     created_date = models.DateTimeField(auto_now_add=True)
+    last_post = models.DateTimeField(default=datetime.now())
 
     def __unicode__(self):
         return self.title
