@@ -36,8 +36,21 @@
         <div class="comment-detail comment-controls">
             Post {{ forloop.counter }} of {{ thread.posts.count }}
             <a class="table-link" href="{% url 'edit_post' thread.id post.id %}">[Edit]</a>
-            <a class="table-link" href="{% url 'delete_post' thread.id post.id %}">[Delete]</a>
+            <span class="delete-link">[Delete]</span>
         </div>
     {% endif %}
+
+    <div class="lights-down">
+        <div class="delete-confirm">
+            <p>Confirmation:</p>
+            <p>Are you sure you want to delete?</p>
+            <div id="content-link-light">
+                <a href="{% url 'delete_post' thread.id post.id %}">OK</a>
+            </div>
+            <div id="content-link-light" class="delete-link">
+                Cancel
+            </div>
+        </div>
+    </div>
 
 </div>

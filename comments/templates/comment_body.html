@@ -35,8 +35,21 @@
     {% if user == comment.user or user.is_staff %}
         <div class="comment-detail comment-controls">
             <a class="table-link" href="{% url 'edit_comment' item.id comment.id %}">[Edit]</a>
-            <a class="table-link" href="{% url 'delete_comment' item.id comment.id %}">[Delete]</a>
+            <span class="delete-link">[Delete]</span>
         </div>
     {% endif %}
+
+    <div class="lights-down">
+        <div class="delete-confirm">
+            <p>Confirmation:</p>
+            <p>Are you sure you want to delete?</p>
+            <div id="content-link-light">
+                <a href="{% url 'delete_comment' item.id comment.id %}">OK</a>
+            </div>
+            <div id="content-link-light" class="delete-link">
+                Cancel
+            </div>
+        </div>
+    </div>
 
 </div>
