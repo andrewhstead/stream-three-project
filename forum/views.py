@@ -10,6 +10,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
@@ -22,13 +23,37 @@ def forum_home(request):
 def forum_team(request, team_name):
     team = get_object_or_404(Team, geographic_name=team_name.capitalize())
     board = get_object_or_404(Board, team=team)
-    threads = board.threads.all().order_by('-last_post')
+    all_threads = board.threads.all().order_by('-last_post')
+
+    page_threads = Paginator(all_threads, 20)
+
+    page = request.GET.get('page')
+
+    try:
+        threads = page_threads.page(page)
+    except EmptyPage:
+        threads = page_threads.page(page_threads.num_pages)
+    except PageNotAnInteger:
+        threads = page_threads.page(1)
+
     return render(request, 'board.html', {'board': board, 'team': team, 'threads': threads})
 
 
 def forum_league(request, board_id):
     board = get_object_or_404(Board, pk=board_id)
-    threads = board.threads.all().order_by('-last_post')
+    all_threads = board.threads.all().order_by('-last_post')
+
+    page_threads = Paginator(all_threads, 20)
+
+    page = request.GET.get('page')
+
+    try:
+        threads = page_threads.page(page)
+    except EmptyPage:
+        threads = page_threads.page(page_threads.num_pages)
+    except PageNotAnInteger:
+        threads = page_threads.page(1)
+
     return render(request, 'board.html', {'board': board, 'threads': threads})
 
 
@@ -76,12 +101,27 @@ def view_thread(request, thread_id):
     thread = get_object_or_404(Thread, pk=thread_id)
     board = get_object_or_404(Board, pk=thread.board_id)
 
+    all_posts = thread.posts.all()
+
+    page_posts = Paginator(all_posts, 20)
+
+    page = request.GET.get('page')
+
+    try:
+        posts = page_posts.page(page)
+    except EmptyPage:
+        posts = page_posts.page(page_posts.num_pages)
+    except PageNotAnInteger:
+        posts = page_posts.page(1)
+
     if board.team_id:
         team = get_object_or_404(Team, pk=board.team_id)
-        return render(request, 'thread.html', {'thread': thread, 'board': board, 'team': team})
+        return render(request, 'thread.html', {'thread': thread, 'board': board,
+                                               'team': team, 'posts': posts})
 
     else:
-        return render(request, 'thread.html', {'thread': thread, 'board': board})
+        return render(request, 'thread.html', {'thread': thread, 'board': board,
+                                               'posts': posts, 'page': page})
 
 
 @login_required

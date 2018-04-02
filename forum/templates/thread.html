@@ -34,7 +34,7 @@
 
     <section id="posts">
 
-        {% for post in thread.posts.all %}
+        {% for post in posts %}
 
             {% include 'post.html' %}
 
@@ -43,6 +43,23 @@
     </section>
 
     <span id="full-details">
+
+        <div class="pagination-links">
+
+            <div class="pagination-section previous-page">
+                {% if posts.has_previous %}
+                    <a class="standard-link" href="?page={{ posts.previous_page_number }}"><< Previous Page</a>
+                {% endif %}
+            </div>
+
+            <div class="pagination-section next-page">
+                {% if posts.has_next %}
+                    <a class="standard-link" href="?page={{ posts.next_page_number }}">Next Page >></a>
+                {% endif %}
+            </div>
+
+        </div>
+
         {% if board.team_id %}
             <a class="standard-link" href="/forum/{{ board.team.geographic_name|lower }}">
                 [Thread List]

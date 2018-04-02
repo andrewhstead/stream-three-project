@@ -41,7 +41,7 @@
                 <td>
                     <a class="table-link" href="{% url 'view_thread' thread.id %}">{{ thread.title }}</a><br />
                     <span class="table-details">
-                        Last Post: {{ thread.posts.last.created_date|date:'d/m/Y, H:i' }}
+                        Last Post: {{ thread.last_post|date:'d/m/Y, H:i' }}
                     </span>
                 </td>
                 <td class="forum-count">
@@ -51,11 +51,29 @@
         {% endfor %}
     </table>
 
-    <span id="full-details">
+    <div id="full-details">
+
+        <div class="pagination-links">
+
+            <div class="pagination-section previous-page">
+                {% if threads.has_previous %}
+                    <a class="standard-link" href="?page={{ threads.previous_page_number }}"><< Previous Page</a>
+                {% endif %}
+            </div>
+
+            <div class="pagination-section next-page">
+                {% if threads.has_next %}
+                    <a class="standard-link" href="?page={{ threads.next_page_number }}">Next Page >></a>
+                {% endif %}
+            </div>
+
+        </div>
+
         {% if team %}
             <a class="standard-link" href="/teams/{{ team.geographic_name|lower }}">[Team Home]</a>
         {% endif %}
         <a class="standard-link" href="/forum/">[Forum Home]</a>
-    </span>
+
+    </div>
 
 {% endblock %}

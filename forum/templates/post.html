@@ -1,3 +1,5 @@
+{% load forum_tags %}
+
 <div class="comment-body">
 
     {% if not post.user.profile_picture %}
@@ -32,13 +34,14 @@
         {{ post.content|safe }}
     </div>
 
-    {% if user == post.user or user.is_staff %}
-        <div class="comment-detail comment-controls">
-            Post {{ forloop.counter }} of {{ thread.posts.count }}
+    <div class="comment-detail comment-controls">
+        Post {{ forloop.counter }} of {{ thread.posts.count }}
+
+        {% if user == post.user or user.is_staff %}
             <a class="table-link" href="{% url 'edit_post' thread.id post.id %}">[Edit]</a>
             <span class="delete-link">[Delete]</span>
-        </div>
-    {% endif %}
+        {% endif %}
+    </div>
 
     <div class="popup-wrapper">
         <div class="delete-confirm">
