@@ -22,13 +22,13 @@ def forum_home(request):
 def forum_team(request, team_name):
     team = get_object_or_404(Team, geographic_name=team_name.capitalize())
     board = get_object_or_404(Board, team=team)
-    threads = board.threads.all()
+    threads = board.threads.all().order_by('-last_post')
     return render(request, 'board.html', {'board': board, 'team': team, 'threads': threads})
 
 
 def forum_league(request, board_id):
     board = get_object_or_404(Board, pk=board_id)
-    threads = board.threads.all()
+    threads = board.threads.all().order_by('-last_post')
     return render(request, 'board.html', {'board': board, 'threads': threads})
 
 
@@ -96,6 +96,8 @@ def new_post(request, thread_id):
             post.user = request.user
             post.thread = thread
             post.save()
+            thread.last_post = datetime.now()
+            thread.save()
 
         return redirect(reverse('view_thread', args={thread.pk}))
 
@@ -104,6 +106,7 @@ def new_post(request, thread_id):
 
     args = {
         'form': form,
+        'thread': thread,
         'button_text': 'Submit Post'
     }
     args.update(csrf(request))
@@ -143,5 +146,7 @@ def delete_post(request, thread_id, post_id):
     thread = get_object_or_404(Thread, pk=thread_id)
 
     post.delete()
+    thread.last_post = thread.posts.last().created_date
+    thread.save()
 
     return redirect(reverse('view_thread', args={thread.pk}))

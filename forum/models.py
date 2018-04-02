@@ -31,6 +31,7 @@ class Thread(models.Model):
     user = models.ForeignKey(User, related_name='threads')
     board = models.ForeignKey(Board, related_name='threads')
     created_date = models.DateTimeField(auto_now_add=True)
+    last_post = models.DateTimeField(default=datetime.now())
 
     def __unicode__(self):
         return self.title
