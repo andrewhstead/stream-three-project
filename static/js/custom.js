@@ -10,6 +10,6 @@ $('#show-hide').click(function(){
 
 // Function to allow the user to confirm that they wish to delete a post or a comment.
 $('.delete-link').click(function(){
-    $('.lights-down').fadeToggle(100);
+    $('.popup-wrapper').fadeToggle(100);
     $('.delete-confirm').fadeToggle(100);
 });

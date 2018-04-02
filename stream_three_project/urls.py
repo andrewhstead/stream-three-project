@@ -51,6 +51,7 @@ urlpatterns = [
     url(r'^profile/$', users_views.user_profile, name='user_profile'),
     url(r'^profile/delete/$', users_views.delete_profile, name='delete_profile'),
     url(r'^profile/edit/$', users_views.edit_profile, name='edit_profile'),
+    url(r'^profile/password/$', users_views.change_password, name='change_password'),
     url(r'^profile/(?P<user_id>.*)/$', users_views.other_profile, name='other_profile'),
     url(r'^register/$', users_views.register, name='register'),
     url(r'^scores/$', games_views.last_and_next),

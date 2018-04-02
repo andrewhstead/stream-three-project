@@ -6,7 +6,7 @@ from django.template.context_processors import csrf
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from .forms import LoginForm, RegistrationForm, EditProfileForm, DeletionForm
+from .forms import LoginForm, RegistrationForm, EditProfileForm, DeletionForm, ChangePasswordForm
 from comments.models import Comment
 from forum.models import Thread, Post
 from .models import User
@@ -108,6 +108,7 @@ def other_profile(request, user_id):
                                                 'profile_user': profile_user})
 
 
+@login_required(login_url='/login/')
 def edit_profile(request):
     user = request.user
 
@@ -130,6 +131,7 @@ def edit_profile(request):
     return render(request, 'user_details.html', args)
 
 
+@login_required(login_url='/login/')
 def delete_profile(request):
     user = request.user
 
@@ -153,3 +155,34 @@ def delete_profile(request):
     }
     args.update(csrf(request))
     return render(request, 'delete_profile.html', args)
+
+
+@login_required(login_url='/login/')
+def change_password(request):
+    user = request.user
+
+    if request.method == 'POST':
+        form = ChangePasswordForm(request.POST)
+
+        if form.is_valid():
+            user_to_change = auth.authenticate(username=user.username,
+                                               password=request.POST.get('password'))
+
+            if user_to_change is not None:
+                user.set_password(request.POST.get('newpassword1'))
+                user.save()
+                auth.login(request, user)
+                return redirect(reverse('user_profile'))
+
+            else:
+                form.add_error(None, "Sorry, we were unable to change your password. Please try again.")
+
+    else:
+        form = ChangePasswordForm()
+
+    args = {
+        'form': form,
+        'button_text': 'Change Password',
+    }
+    args.update(csrf(request))
+    return render(request, 'change_password.html', args)
