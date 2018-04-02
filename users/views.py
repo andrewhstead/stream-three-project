@@ -79,9 +79,6 @@ def user_profile(request):
     for post in posts:
         contributions.append(post)
 
-    for thread in threads:
-        contributions.append(thread)
-
     return render(request, 'profile.html', {'comments': comments, 'threads': threads,
                                             'posts': posts, 'contributions': contributions,
                                             'profile_user': user})
@@ -101,9 +98,6 @@ def other_profile(request, user_id):
 
     for post in posts:
         contributions.append(post)
-
-    for thread in threads:
-        contributions.append(thread)
 
     if user == profile_user:
         return redirect(reverse('user_profile'))

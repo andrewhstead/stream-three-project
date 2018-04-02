@@ -74,7 +74,7 @@
 
             {% if contributions %}
 
-                {% for contribution in contributions|dictsortreversed:'created_date'|slice:':-4' %}
+                {% for contribution in contributions|dictsortreversed:'created_date'|slice:':5' %}
                     {% with contribution|activity_type as activity %}
                         {% if activity == 'Comment' %}
                             <span class="arrow">&#9658;</span>
