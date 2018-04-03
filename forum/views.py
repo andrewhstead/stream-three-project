@@ -103,9 +103,13 @@ def view_thread(request, thread_id):
 
     all_posts = thread.posts.all()
 
-    page_posts = Paginator(all_posts, 20)
+    posts_per_page = 1
+    page_posts = Paginator(all_posts, posts_per_page)
 
     page = request.GET.get('page')
+
+    page_number = int(page)
+    previous = posts_per_page * (page_number - 1)
 
     try:
         posts = page_posts.page(page)
@@ -116,12 +120,12 @@ def view_thread(request, thread_id):
 
     if board.team_id:
         team = get_object_or_404(Team, pk=board.team_id)
-        return render(request, 'thread.html', {'thread': thread, 'board': board,
-                                               'team': team, 'posts': posts})
+        return render(request, 'thread.html', {'thread': thread, 'board': board, 'team': team,
+                                               'posts': posts, 'page': page, 'previous': previous})
 
     else:
-        return render(request, 'thread.html', {'thread': thread, 'board': board,
-                                               'posts': posts, 'page': page})
+        return render(request, 'thread.html', {'thread': thread, 'board': board, 'posts': posts,
+                                               'page': page, 'previous': previous})
 
 
 @login_required

@@ -35,7 +35,7 @@
     </div>
 
     <div class="comment-detail comment-controls">
-        Post {{ forloop.counter }} of {{ thread.posts.count }}
+        Post {{ forloop.counter|add:previous }} of {{ thread.posts.count }}
 
         {% if user == post.user or user.is_staff %}
             <a class="table-link" href="{% url 'edit_post' thread.id post.id %}">[Edit]</a>
