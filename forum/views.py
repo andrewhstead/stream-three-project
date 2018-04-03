@@ -103,12 +103,16 @@ def view_thread(request, thread_id):
 
     all_posts = thread.posts.all()
 
-    posts_per_page = 1
+    posts_per_page = 20
     page_posts = Paginator(all_posts, posts_per_page)
 
     page = request.GET.get('page')
 
-    page_number = int(page)
+    if page:
+        page_number = int(page)
+    else:
+        page_number = 1
+
     previous = posts_per_page * (page_number - 1)
 
     try:
