@@ -11,6 +11,7 @@
         <tr class="header-row">
             <th>Year</th>
             <th>Champion</th>
+            <th>Sc.</th>
             <th>Runner-Up</th>
         </tr>
         {% for season in seasons %}
@@ -19,18 +20,21 @@
                     {{ season.year }}
                 </td>
                 <td>
-                    {% if season.champion %}
+                    <strong>
                         <a class="table-link" href="/teams/{{ season.champion.geographic_name|lower }}">
                             {{ season.champion.geographic_name }}
                         </a>
+                    </strong>
+                </td>
+                <td>
+                    {% if season.series_score %}
+                        {{ season.series_score }}
                     {% endif %}
                 </td>
                 <td>
-                    {% if season.finalist %}
-                        <a class="table-link" href="/teams/{{ season.finalist.geographic_name|lower }}">
-                            {{ season.finalist.geographic_name }}
-                        </a>
-                    {% endif %}
+                    <a class="table-link" href="/teams/{{ season.finalist.geographic_name|lower }}">
+                        {{ season.finalist.geographic_name }}
+                    </a>
                 </td>
             </tr>
         {% endfor %}

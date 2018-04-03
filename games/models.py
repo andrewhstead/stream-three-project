@@ -27,7 +27,9 @@ class Season(models.Model):
     )
 
     year = models.IntegerField(choices=SEASON_OPTIONS)
+    schedule_length = models.IntegerField(default=60)
     champion = models.ForeignKey(Team, related_name='champion', blank=True, null=True)
+    series_score = models.CharField(max_length=3, blank=True, null=True)
     finalist = models.ForeignKey(Team, related_name='finalist', blank=True, null=True)
 
     def __unicode__(self):
