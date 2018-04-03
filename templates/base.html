@@ -88,6 +88,14 @@
 
     <main>
 
+    {% if messages %}
+        {% for message in messages %}
+            <div id="messages" class="{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
         {% block content %}
         {% endblock %}
 

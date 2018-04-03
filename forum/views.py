@@ -11,6 +11,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib import messages
 
 
 # Create your views here.
@@ -77,9 +78,11 @@ def new_thread(request, board_id):
 
             if board.team_id:
                 team = get_object_or_404(Team, pk=board.team_id)
+                messages.success(request, "Your thread was created!")
                 return redirect(reverse('forum_team', args={team.geographic_name}))
 
             else:
+                messages.success(request, "Your thread was created!")
                 return redirect(reverse('forum_league', args={board.pk}))
 
     else:
@@ -147,6 +150,8 @@ def new_post(request, thread_id):
             thread.last_post = datetime.now()
             thread.save()
 
+            messages.success(request, "Your post was successful!")
+
         return redirect(reverse('view_thread', args={thread.pk}))
 
     else:
@@ -172,6 +177,8 @@ def edit_post(request, thread_id, post_id):
         if form.is_valid():
             form.save()
 
+        messages.success(request, "Your post has been successfully edited.")
+
         return redirect(reverse('view_thread', args={thread.pk}))
 
     else:
@@ -196,5 +203,7 @@ def delete_post(request, thread_id, post_id):
     post.delete()
     thread.last_post = thread.posts.last().created_date
     thread.save()
+
+    messages.success(request, "Your post has been deleted.")
 
     return redirect(reverse('view_thread', args={thread.pk}))

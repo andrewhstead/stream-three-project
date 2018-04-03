@@ -13,3 +13,12 @@ $('.delete-link').click(function(){
     $('.popup-wrapper').fadeToggle(100);
     $('.delete-confirm').fadeToggle(100);
 });
+
+function messageRemove() {
+    setTimeout(
+        function() {
+            document.getElementById('messages').classList.add('hidden');
+        }, 5000);
+}
+
+messageRemove();

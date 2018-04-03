@@ -22,7 +22,7 @@ def register(request):
                                      password=request.POST.get('password1'))
 
             if user:
-                messages.success(request, 'Registration successful!')
+                messages.success(request, 'Your registration was successful!')
                 auth.login(request, user)
                 return redirect(reverse('user_profile'))
             else:
@@ -48,9 +48,10 @@ def login(request):
 
             if user is not None:
                 auth.login(request, user)
+                messages.success(request, "You have successfully logged in!")
                 return redirect(reverse('user_profile'))
             else:
-                form.add_error(None, "Your username or password was not recognised. Please try again.")
+                messages.success(request, "Your username or password was not recognised. Please try again.")
 
     else:
         form = LoginForm()
@@ -62,6 +63,8 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
+    messages.success(request, 'You have successfully logged out.')
+
     return redirect(reverse('login'))
 
 
@@ -116,6 +119,7 @@ def edit_profile(request):
         form = EditProfileForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Your profile has been updated.')
             return redirect(reverse('user_profile'))
         else:
             messages.error(request, 'Sorry, we were unable to update your details. Please try again.')
@@ -142,9 +146,10 @@ def delete_profile(request):
                                                password=request.POST.get('password'))
             if user_to_delete is not None:
                 user_to_delete.delete()
+                messages.success(request, 'Your profile has been deleted.')
                 return redirect(reverse('login'))
             else:
-                form.add_error(None, "Your password was not recognised. Please try again.")
+                messages.error(request, 'Your password was not recognised. Please try again.')
 
     else:
         form = DeletionForm()
@@ -172,10 +177,11 @@ def change_password(request):
                 user.set_password(request.POST.get('newpassword1'))
                 user.save()
                 auth.login(request, user)
+                messages.success(request, 'Your password has been changed.')
                 return redirect(reverse('user_profile'))
 
             else:
-                form.add_error(None, "Sorry, we were unable to change your password. Please try again.")
+                messages.error(request, 'Sorry, we were unable to change your password. Please try again.')
 
     else:
         form = ChangePasswordForm()
