@@ -9,10 +9,12 @@
     {% for product in products %}
 
         <p>
-            {% if product.team %}
-                {{ product.team }}<br />
-            {% endif %}
             {{ product.description }}<br />
+            <select>
+                {% for item in product.items.all %}
+                    <option value="{{ item.size }}">{{ item.size }}</option>
+                {% endfor %}
+            </select><br />
             £{{ product.price }}
         </p>
 
