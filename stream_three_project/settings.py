@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'comments',
     'games',
     'teams',
+    'store',
     'forum',
     'users',
 ]

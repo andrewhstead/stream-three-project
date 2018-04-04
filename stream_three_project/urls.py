@@ -19,6 +19,7 @@ from home import views as home_views
 from news import views as news_views
 from games import views as games_views
 from teams import views as team_views
+from store import views as store_views
 from forum import views as forum_views
 from users import views as users_views
 from comments import views as comments_views
@@ -61,6 +62,7 @@ urlpatterns = [
     url(r'^scores/fixtures/all/$', games_views.fixture_list, name='list_fixtures'),
     url(r'^scores/(?P<team_name>.*)/$', games_views.games_team, name='team_games'),
     url(r'^standings/$', games_views.league_standings, name='standings'),
+    url(r'^store/$', store_views.store_front, name='store_front'),
     url(r'^teams/$', team_views.team_index),
     url(r'^teams/(?P<team_name>.*)/$', team_views.team_page, name='team_page'),
     url(r'^thread/new/(?P<board_id>\d+)/$', forum_views.new_thread, name='new_thread'),

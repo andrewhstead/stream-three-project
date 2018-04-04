@@ -44,8 +44,9 @@ def last_and_next(request):
 
 def league_standings(request):
     conferences = Conference.objects.all()
+    teams = Team.objects.all()
 
-    return render(request, "standings.html", {"conferences": conferences})
+    return render(request, "standings.html", {"conferences": conferences, 'teams': teams})
 
 
 def games_team(request, team_name):

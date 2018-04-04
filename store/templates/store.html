@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div id="page-header">
+        STORE
+    </div>
+
+    {% for product in products %}
+
+        <p>
+            {% if product.team %}
+                {{ product.team }}<br />
+            {% endif %}
+            {{ product.description }}<br />
+            £{{ product.price }}
+        </p>
+
+    {% endfor %}
+
+{% endblock %}

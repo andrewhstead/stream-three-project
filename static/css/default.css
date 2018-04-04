@@ -646,7 +646,7 @@ footer {
 }
 
 .comment-body:nth-of-type(odd) {
-    background-color: #ddddff;
+    background-color: #ccddee;
 }
 
 .comment-user {
@@ -702,7 +702,7 @@ footer {
 }
 
 .board-counter {
-    background-color: #ddddff;
+    background-color: #ccddee;
     width: 100%;
     padding: 0 5px;border-bottom: 1px solid #10253f;
 }
