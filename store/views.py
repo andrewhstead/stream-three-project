@@ -2,10 +2,8 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404
-from .models import Product, Item, Cart
+from .models import Product, Cart, CartItem
 from .forms import AddToCartForm
-from users.forms import LoginForm
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
@@ -22,7 +20,6 @@ def product_detail(request, product_id):
     user = request.user
     product = get_object_or_404(Product, pk=product_id)
     items = product.items.all()
-    cart = Cart.objects.get(user=user)
 
     if request.method == 'POST':
         form = AddToCartForm(request.POST)
@@ -34,22 +31,31 @@ def product_detail(request, product_id):
 
             for item in items:
                 if item.size == size:
-                    to_add = item
 
-                    if cart:
+                    try:
+                        cart = Cart.objects.get(user=user)
                         cart.cost += cost
-                        cart.items.add(to_add)
                         cart.save()
+                        try:
+                            new_item = CartItem.objects.get(cart=cart, item=item)
+                            new_item.quantity += quantity
+                            new_item.save()
+                        except CartItem.DoesNotExist:
+                            new_item = CartItem(cart=cart, item=item, quantity=quantity)
+                            new_item.save()
+                    except Cart.DoesNotExist:
+                        cart = Cart(user=user, cost=cost)
+                        cart.save()
+                        try:
+                            new_item = CartItem.objects.get(cart=cart, item=item)
+                            new_item.quantity += quantity
+                            new_item.save()
+                        except CartItem.DoesNotExist:
+                            new_item = CartItem(cart=cart, item=item, quantity=quantity)
+                            new_item.save()
 
-                    else:
-                        cart = Cart(user=user)
-                        cart.save()
-                        cart.cost += cost
-                        cart.items.add(to_add)
-                        cart.save()
-
-                    to_add.stock -= quantity
-                    to_add.save()
+                    item.stock -= quantity
+                    item.save()
                     return redirect(reverse('shopping_cart'))
 
     else:
@@ -60,5 +66,8 @@ def product_detail(request, product_id):
     return render(request, 'product.html', args)
 
 
+@login_required()
 def shopping_cart(request):
-    return render(request, 'cart.html')
+    user = request.user
+    cart = Cart.objects.get(user=user)
+    return render(request, 'cart.html', {'cart': cart})

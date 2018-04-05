@@ -50,7 +50,15 @@ class Item(models.Model):
 class Cart(models.Model):
     user = models.ForeignKey(User, related_name='cart')
     cost = models.IntegerField(default=0)
-    items = models.ManyToManyField(Item, related_name='cart')
 
     def __unicode__(self):
         return unicode(self.user) + ' (' + unicode(self.id) + ')'
+
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, related_name='items')
+    item = models.ForeignKey(Item, related_name='items')
+    quantity = models.IntegerField(default=0)
+
+    def __unicode__(self):
+        return unicode(self.cart) + ' (' + unicode(self.id) + ')'

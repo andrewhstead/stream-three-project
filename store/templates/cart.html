@@ -1,9 +1,46 @@
 {% extends 'base.html' %}
+{% load store_tags %}
 
 {% block content %}
 
     <div id="page-header">
         SHOPPING CART
     </div>
+
+    <table class="store-table alternating-rows">
+        <tr class='header-row'>
+            <td>Item</td>
+            <td>Price</td>
+            <td>Qty</td>
+        </tr>
+        {% for object in cart.items.all %}
+            <tr>
+                <td>
+                    {{ object.item }}
+                </td>
+                <td>
+                    {% with object.item.product.price as price %}
+                        {{ price|price_display }}
+                    {% endwith %}
+                </td>
+                <td>
+                    x {{ object.quantity }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p class="right-align">
+        <strong>Total:</strong>
+        {% with cart.cost as price %}
+            {{ price|price_display }}
+        {% endwith %}
+    </p>
+
+
+    <span id="full-details">
+        <a class="button-link" href="/store/">Continue Shopping</a>
+        <a class="button-link" href="/checkout/">Checkout</a>
+    </span>
 
 {% endblock %}

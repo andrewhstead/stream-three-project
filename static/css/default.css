@@ -716,13 +716,13 @@ footer {
     text-align: center;
 }
 
-.forum-table {
+.forum-table, .store-table {
     border-collapse: collapse;
     width: 100%;
     margin: 5px auto;
 }
 
-.forum-table td {
+.forum-table td, .store-table td {
     padding: 2px 5px;
 }
 
@@ -800,4 +800,27 @@ footer {
 
 .product-sizes {
     min-width: 150px;
+}
+
+.button-link {
+    margin: 10px auto 10px 0;
+    color: white;
+    background-color: #4f81bd;
+    border: 1px solid #10253f;
+    border-radius: 10px;
+    padding: 5px;
+    width: fit-content;
+}
+
+a.button-link {
+    color: white;
+    text-decoration: none;
+}
+
+a.button-link:hover {
+    text-decoration: underline;
+}
+
+.right-align {
+    text-align: right;
 }
