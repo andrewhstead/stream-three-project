@@ -16,7 +16,7 @@ def store_front(request):
     return render(request, 'store.html', {'products': products})
 
 
-def product_detail(request, product_id):
+def add_product(request, product_id):
     user = request.user
     product = get_object_or_404(Product, pk=product_id)
     items = product.items.all()
@@ -66,8 +66,33 @@ def product_detail(request, product_id):
     return render(request, 'product.html', args)
 
 
-@login_required()
+@login_required
 def shopping_cart(request):
     user = request.user
     cart = Cart.objects.get(user=user)
     return render(request, 'cart.html', {'cart': cart})
+
+
+@login_required
+def change_product(request, item_id):
+    return render(request, 'store.html')
+
+
+@login_required
+def remove_product(request, item_id):
+    item = get_object_or_404(CartItem, pk=item_id)
+
+    if item:
+        quantity = item.quantity
+        price = item.item.product.price
+        total = quantity * price
+
+        cart = item.cart
+
+        cart.cost -= total
+        cart.save()
+        item.delete()
+
+        return redirect(reverse('shopping_cart'))
+
+    return render(request, 'cart.html')

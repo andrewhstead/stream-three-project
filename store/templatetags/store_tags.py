@@ -7,6 +7,5 @@ register = template.Library()
 
 @register.filter
 def price_display(price):
-    view_price = price / 100
-    price_in_pounds = '£' + str(view_price)
+    price_in_pounds = '£' + str(price)
     return price_in_pounds

@@ -7,6 +7,12 @@
         STORE
     </div>
 
+    {% if user.is_authenticated %}
+        <span id="full-details">
+            <a class="standard-link" href="/store/cart/">[View Cart]</a>
+        </span>
+    {% endif %}
+
     {% for product in products %}
 
         <p>

@@ -12,6 +12,7 @@
             <td>Item</td>
             <td>Price</td>
             <td>Qty</td>
+            <td></td>
         </tr>
         {% for object in cart.items.all %}
             <tr>
@@ -24,7 +25,27 @@
                     {% endwith %}
                 </td>
                 <td>
-                    x {{ object.quantity }}
+                    {{ object.quantity }}
+                </td>
+                <td>
+                    <a class="cart-controls table-link" href="/store/cart/edit/{{ object.id }}">
+                        [Change]
+                    </a>
+                    <span class="cart-controls delete-link">[Remove]</span>
+
+                    <div class="popup-wrapper">
+                        <div class="delete-confirm">
+                            <p>Confirmation:</p>
+                            <p>Are you sure you want to delete?</p>
+                            <div id="content-link-light">
+                                <a href="/store/cart/remove/{{ object.id }}">OK</a>
+                            </div>
+                            <div id="content-link-light" class="delete-link">
+                                Cancel
+                            </div>
+                        </div>
+                    </div>
+
                 </td>
             </tr>
         {% endfor %}

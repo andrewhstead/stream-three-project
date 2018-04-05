@@ -657,7 +657,7 @@ footer {
     margin: 5px 0 0 0;
 }
 
-.comment-detail {
+.comment-detail, .cart-controls {
     font-size: 0.75em;
 }
 
