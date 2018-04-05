@@ -4,13 +4,8 @@
     <list default="true" id="7aa13549-3897-41b9-9904-8bd12ebae0f1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
-      <change beforePath="$PROJECT_DIR$/store/forms.py" afterPath="$PROJECT_DIR$/store/forms.py" />
-      <change beforePath="$PROJECT_DIR$/store/models.py" afterPath="$PROJECT_DIR$/store/models.py" />
-      <change beforePath="$PROJECT_DIR$/store/templates/cart.html" afterPath="$PROJECT_DIR$/store/templates/cart.html" />
+      <change beforePath="$PROJECT_DIR$/store/templates/store.html" afterPath="$PROJECT_DIR$/store/templates/store.html" />
       <change beforePath="$PROJECT_DIR$/store/views.py" afterPath="$PROJECT_DIR$/store/views.py" />
-      <change beforePath="$PROJECT_DIR$/stream_three_project/settings.py" afterPath="$PROJECT_DIR$/stream_three_project/settings.py" />
-      <change beforePath="$PROJECT_DIR$/stream_three_project/urls.py" afterPath="$PROJECT_DIR$/stream_three_project/urls.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,7 +26,7 @@
         <entry file="file://$PROJECT_DIR$/store/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="387">
-              <caret line="57" column="9" lean-forward="true" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
+              <caret line="57" column="9" lean-forward="false" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -41,7 +36,7 @@
         <entry file="file://$PROJECT_DIR$/store/templates/cart.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="409">
-              <caret line="64" column="11" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="64" selection-end-column="11" />
+              <caret line="64" column="11" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="64" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -50,8 +45,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/store/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="159" column="17" lean-forward="true" selection-start-line="159" selection-start-column="17" selection-end-line="159" selection-end-column="17" />
+            <state relative-caret-position="357">
+              <caret line="146" column="19" lean-forward="true" selection-start-line="146" selection-start-column="19" selection-end-line="146" selection-end-column="19" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -93,10 +88,20 @@
         <entry file="file://$PROJECT_DIR$/store/templates/checkout.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="261">
-              <caret line="19" column="81" lean-forward="true" selection-start-line="19" selection-start-column="81" selection-end-line="19" selection-end-column="81" />
+              <caret line="19" column="81" lean-forward="false" selection-start-line="19" selection-start-column="81" selection-end-line="19" selection-end-column="81" />
               <folding>
                 <element signature="e#576#596#0#HTML" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="store.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/store/templates/store.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -105,7 +110,7 @@
         <entry file="file://$PROJECT_DIR$/store/templates/product.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="399">
-              <caret line="19" column="8" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="79" />
+              <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -116,16 +121,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="492">
               <caret line="69" column="29" lean-forward="false" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="comment_form.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/comments/templates/comment_form.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -216,7 +211,6 @@
         <option value="$PROJECT_DIR$/store/templates/product.html" />
         <option value="$PROJECT_DIR$/users/templatetags/user_tags.py" />
         <option value="$PROJECT_DIR$/store/templatetags/store_tags.py" />
-        <option value="$PROJECT_DIR$/store/templates/store.html" />
         <option value="$PROJECT_DIR$/static/css/default.css" />
         <option value="$PROJECT_DIR$/store/templates/change_quantity.html" />
         <option value="$PROJECT_DIR$/requirements.txt" />
@@ -228,6 +222,7 @@
         <option value="$PROJECT_DIR$/static/js/stripe.js" />
         <option value="$PROJECT_DIR$/stream_three_project/urls.py" />
         <option value="$PROJECT_DIR$/store/templates/confirmation.html" />
+        <option value="$PROJECT_DIR$/store/templates/store.html" />
         <option value="$PROJECT_DIR$/store/views.py" />
       </list>
     </option>
@@ -737,14 +732,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/store/templates/store.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="67" lean-forward="false" selection-start-line="11" selection-start-column="67" selection-end-line="11" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/users/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-999">
@@ -822,7 +809,7 @@
     <entry file="file://$PROJECT_DIR$/store/templates/product.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
-          <caret line="19" column="8" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="79" />
+          <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="79" />
           <folding />
         </state>
       </provider>
@@ -830,25 +817,17 @@
     <entry file="file://$PROJECT_DIR$/store/templates/checkout.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
-          <caret line="19" column="81" lean-forward="true" selection-start-line="19" selection-start-column="81" selection-end-line="19" selection-end-column="81" />
+          <caret line="19" column="81" lean-forward="false" selection-start-line="19" selection-start-column="81" selection-end-line="19" selection-end-column="81" />
           <folding>
             <element signature="e#576#596#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/stream_three_project/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="69" column="29" lean-forward="false" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/store/templates/cart.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="409">
-          <caret line="64" column="11" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="64" selection-end-column="11" />
+          <caret line="64" column="11" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="64" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -857,14 +836,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="16" column="27" lean-forward="false" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="57" column="9" lean-forward="true" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -885,10 +856,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/store/templates/store.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stream_three_project/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="69" column="29" lean-forward="false" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="57" column="9" lean-forward="false" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/store/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="159" column="17" lean-forward="true" selection-start-line="159" selection-start-column="17" selection-end-line="159" selection-end-column="17" />
+        <state relative-caret-position="357">
+          <caret line="146" column="19" lean-forward="true" selection-start-line="146" selection-start-column="19" selection-end-line="146" selection-end-column="19" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>

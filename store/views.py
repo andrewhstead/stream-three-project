@@ -18,7 +18,16 @@ stripe.api_key = settings.STRIPE_SECRET
 
 # Create your views here.
 def store_front(request):
+    user = request.user
     products = Product.objects.all()
+
+    try:
+        cart = Cart.objects.get(user=user, status='Pending')
+        return render(request, 'store.html', {'products': products, 'cart': cart})
+
+    except Cart.DoesNotExist:
+        pass
+
     return render(request, 'store.html', {'products': products})
 
 
@@ -138,7 +147,12 @@ def remove_product(request, item_id):
         cart.save()
         item.delete()
 
-        return redirect(reverse('shopping_cart'))
+        if cart.items.count() == 0:
+            cart.delete()
+            return redirect(reverse('store_front'))
+
+        else:
+            return redirect(reverse('shopping_cart'))
 
     return render(request, 'cart.html')
 
