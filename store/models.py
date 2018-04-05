@@ -32,7 +32,7 @@ class Product(models.Model):
     team = models.ForeignKey(Team, related_name='products')
     description = models.CharField(max_length=200)
     picture = models.ImageField(upload_to="images/store/", blank=True, null=True)
-    price = models.IntegerField(default=0)
+    price = models.DecimalField(default=0.00, max_digits=10, decimal_places=2)
 
     def __unicode__(self):
         return unicode(self.team) + ' ' + unicode(self.description)
@@ -49,7 +49,7 @@ class Item(models.Model):
 
 class Cart(models.Model):
     user = models.ForeignKey(User, related_name='cart')
-    cost = models.IntegerField(default=0)
+    cost = models.DecimalField(default=0.00, max_digits=10, decimal_places=2)
 
     def __unicode__(self):
         return unicode(self.user) + ' (' + unicode(self.id) + ')'
