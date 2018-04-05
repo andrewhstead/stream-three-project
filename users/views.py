@@ -51,7 +51,7 @@ def login(request):
                 messages.success(request, "You have successfully logged in!")
                 return redirect(reverse('user_profile'))
             else:
-                messages.success(request, "Your username or password was not recognised. Please try again.")
+                messages.error(request, "Your username or password was not recognised. Please try again.")
 
     else:
         form = LoginForm()

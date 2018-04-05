@@ -63,6 +63,8 @@ urlpatterns = [
     url(r'^scores/(?P<team_name>.*)/$', games_views.games_team, name='team_games'),
     url(r'^standings/$', games_views.league_standings, name='standings'),
     url(r'^store/$', store_views.store_front, name='store_front'),
+    url(r'^store/cart/$', store_views.shopping_cart, name='shopping_cart'),
+    url(r'^store/product/(?P<product_id>\d+)/$', store_views.product_detail, name='product_detail'),
     url(r'^teams/$', team_views.team_index),
     url(r'^teams/(?P<team_name>.*)/$', team_views.team_page, name='team_page'),
     url(r'^thread/new/(?P<board_id>\d+)/$', forum_views.new_thread, name='new_thread'),

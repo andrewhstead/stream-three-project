@@ -32,10 +32,10 @@ class Product(models.Model):
     team = models.ForeignKey(Team, related_name='products')
     description = models.CharField(max_length=200)
     picture = models.ImageField(upload_to="images/store/", blank=True, null=True)
-    price = models.DecimalField(default=0.00, decimal_places=2, max_digits=10)
+    price = models.IntegerField(default=0)
 
     def __unicode__(self):
-        return self.description
+        return unicode(self.team) + ' ' + unicode(self.description)
 
 
 class Item(models.Model):
@@ -47,11 +47,10 @@ class Item(models.Model):
         return unicode(self.product) + ' (' + unicode(self.size) + ')'
 
 
-class Order(models.Model):
-    status = models.CharField(max_length=25, choices=STATUS_OPTIONS, default='Pending')
-    user = models.ForeignKey(User, related_name='orders')
-    price = models.DecimalField(default=0.00, decimal_places=2, max_digits=10)
-    basket = models.ManyToManyField(Product, related_name="products")
+class Cart(models.Model):
+    user = models.ForeignKey(User, related_name='cart')
+    cost = models.IntegerField(default=0)
+    items = models.ManyToManyField(Item, related_name='cart')
 
     def __unicode__(self):
-        return unicode(self.id) + unicode(self.user)
+        return unicode(self.user) + ' (' + unicode(self.id) + ')'

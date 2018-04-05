@@ -9,13 +9,10 @@
     {% for product in products %}
 
         <p>
+            {{ product.team }}<br />
             {{ product.description }}<br />
-            <select>
-                {% for item in product.items.all %}
-                    <option value="{{ item.size }}">{{ item.size }}</option>
-                {% endfor %}
-            </select><br />
-            £{{ product.price }}
+            £{{ product.price }}<br />
+            <a class="standard-link" href="/store/product/{{ product.id }}">[View Details]</a>
         </p>
 
     {% endfor %}

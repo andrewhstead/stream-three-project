@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div id="page-header">
+        PRODUCT DETAILS
+    </div>
+
+    <p>
+        {{ product.team }}<br />
+        {{ product.description }}<br />
+        £{{ product.price }}<br />
+
+    </p>
+
+    <form id="default-form" method="post" action="{{ form_action }}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="default-button" type="submit">{{ button_text }}</button>
+    </form>
+
+{% endblock %}
