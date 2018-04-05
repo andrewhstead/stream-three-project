@@ -94,6 +94,9 @@ def change_product(request, item_id):
             item_change = new_quantity - old_quantity
             price_change = price * item_change
 
+            item.item.stock -= item_change
+            item.item.save()
+
             cart.cost += price_change
             cart.save()
 
@@ -120,6 +123,10 @@ def remove_product(request, item_id):
         price = item.item.product.price
         total = quantity * price
 
+        item.item.stock += quantity
+        item.item.save(
+
+        )
         cart = item.cart
 
         cart.cost -= total
