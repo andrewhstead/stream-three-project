@@ -22,7 +22,8 @@ SIZE_OPTIONS = (
 
 STATUS_OPTIONS = (
     ('Pending', 'Pending'),
-    ('Complete', 'Complete'),
+    ('Received', 'Received'),
+    ('Dispatched', 'Dispatched'),
 )
 
 
@@ -49,7 +50,9 @@ class Item(models.Model):
 
 class Cart(models.Model):
     user = models.ForeignKey(User, related_name='cart')
+    status = models.CharField(max_length=20, default='Pending', choices=STATUS_OPTIONS)
     cost = models.DecimalField(default=0.00, max_digits=10, decimal_places=2)
+    stripe_id = models.CharField(max_length=40, default='')
 
     def __unicode__(self):
         return unicode(self.user) + ' (' + unicode(self.id) + ')'

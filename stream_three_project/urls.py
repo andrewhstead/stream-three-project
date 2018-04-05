@@ -66,6 +66,8 @@ urlpatterns = [
     url(r'^store/cart/$', store_views.shopping_cart, name='shopping_cart'),
     url(r'^store/cart/edit/(?P<item_id>\d+)/$', store_views.change_product, name='change_product'),
     url(r'^store/cart/remove/(?P<item_id>\d+)/$', store_views.remove_product, name='remove_product'),
+    url(r'^store/checkout/(?P<order_id>\d+)/$', store_views.submit_order, name='checkout'),
+    url(r'^store/confirmation/$', store_views.order_confirmation, name='order_confirmation'),
     url(r'^store/product/(?P<product_id>\d+)/$', store_views.add_product, name='add_product'),
     url(r'^teams/$', team_views.team_index),
     url(r'^teams/(?P<team_name>.*)/$', team_views.team_page, name='team_page'),

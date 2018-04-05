@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+ 
+{% block head_js %}
+  <script src="https://js.stripe.com/v2/" type="text/javascript"></script>
+  <script type="text/javascript">
+      //<![CDATA[
+      Stripe.publishableKey = '{{ publishable }}';
+      //]]>
+  </script>
+  <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock %}
+ 
+{% block content %}
+
+    <div id="page-header">
+        CHECKOUT
+    </div>
+
+    <form role="form" method="post" id="checkout-form" action="{% url 'checkout' order_id %}">
+        <div id="credit-card-errors" style="display:none">
+            <div class="alert-message block-message error" id="stripe-error-message"></div>
+        </div>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input id="submit_order" name="commit" type="submit" value="Complete Order">
+    </form>
+
+{% endblock %}

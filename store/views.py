@@ -3,12 +3,17 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Cart, CartItem
-from .forms import AddToCartForm, ChangeQuantityForm
+from .forms import AddToCartForm, ChangeQuantityForm, SubmitOrderForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.template.context_processors import csrf
+from django.conf import settings
 from django.contrib import messages
+import stripe
+import datetime
+
+stripe.api_key = settings.STRIPE_SECRET
 
 
 # Create your views here.
@@ -28,13 +33,13 @@ def add_product(request, product_id):
         if form.is_valid():
             size = request.POST.get('size')
             quantity = int(request.POST.get('quantity'))
-            cost = int(product.price * quantity)
+            cost = product.price * quantity
 
             for item in items:
                 if item.size == size:
 
                     try:
-                        cart = Cart.objects.get(user=user)
+                        cart = Cart.objects.get(user=user, status='Pending')
                         cart.cost += cost
                         cart.save()
                         try:
@@ -45,7 +50,7 @@ def add_product(request, product_id):
                             new_item = CartItem(cart=cart, item=item, quantity=quantity)
                             new_item.save()
                     except Cart.DoesNotExist:
-                        cart = Cart(user=user, cost=cost)
+                        cart = Cart(user=user, status='Pending', cost=cost)
                         cart.save()
                         try:
                             new_item = CartItem.objects.get(cart=cart, item=item)
@@ -72,7 +77,7 @@ def add_product(request, product_id):
 @login_required
 def shopping_cart(request):
     user = request.user
-    cart = Cart.objects.get(user=user)
+    cart = Cart.objects.get(user=user, status='Pending')
     return render(request, 'cart.html', {'cart': cart})
 
 
@@ -136,3 +141,45 @@ def remove_product(request, item_id):
         return redirect(reverse('shopping_cart'))
 
     return render(request, 'cart.html')
+
+
+@login_required
+def submit_order(request, order_id):
+    order = get_object_or_404(Cart, pk=order_id)
+
+    if request.method == 'POST':
+        form = SubmitOrderForm(request.POST)
+
+        if form.is_valid():
+            try:
+                invoice = stripe.Charge.create(
+                    amount=int(order.cost * 100),
+                    currency='GBP',
+                    description=order.user.username,
+                    card=form.cleaned_data['stripe_id'],
+                )
+
+                if invoice.paid:
+                    order.stripe_id = request.POST.get('stripe_id')
+                    order.status = 'Received'
+                    order.save()
+                    return redirect(reverse('order_confirmation'))
+
+                else:
+                    messages.error(request, "Sorry, we were unable to take your payment. Please try again.")
+
+            except stripe.error.CardError, e:
+                messages.error(request, 'Sorry, your card was declined. Please try again with a different card.')
+
+    else:
+        form = SubmitOrderForm()
+
+    args = {'form': form, 'order_id': order_id, 'publishable': settings.STRIPE_PUBLISHABLE}
+    args.update(csrf(request))
+
+    return render(request, 'checkout.html', args)
+
+
+@login_required
+def order_confirmation(request):
+    return render(request, 'confirmation.html')

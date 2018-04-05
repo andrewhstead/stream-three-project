@@ -4,3 +4,4 @@ Pillow==5.0.0
 pytz==2018.3
 gunicorn==19.4
 whitenoise==3.2
+stripe

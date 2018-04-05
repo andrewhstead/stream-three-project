@@ -30,3 +30,16 @@ class AddToCartForm(forms.Form):
 
 class ChangeQuantityForm(forms.Form):
     quantity = forms.ChoiceField(choices=QUANTITY_OPTIONS, label="New Quantity")
+
+
+class SubmitOrderForm(forms.Form):
+    MONTH_OPTIONS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+    MONTH_CHOICES = list(enumerate(MONTH_OPTIONS, 1))
+    YEAR_CHOICES = [(i, i) for i in range(2018, 2030)]
+
+    card_number = forms.CharField(label='Card Number')
+    cvv = forms.CharField(label='CVV')
+    expiry_month = forms.ChoiceField(choices=MONTH_CHOICES, label='Month')
+    expiry_year = forms.ChoiceField(choices=YEAR_CHOICES, label='Year')
+    stripe_id = forms.CharField(widget=forms.HiddenInput)

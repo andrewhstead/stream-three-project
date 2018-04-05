@@ -138,3 +138,7 @@ MEDIA_URL = '/media/'
 
 TINYMCE_JS_ROOT = os.path.join(BASE_DIR, "static", 'js', 'tinymce', 'tinymce.min.js')
 TINYMCE_DEFAULT_CONFIG = {'theme': "advanced"}
+
+# Stripe environment variables
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE', 'pk_test_MqkEKmeAamO8IWBasqpxuJNO')
+STRIPE_SECRET = os.getenv('STRIPE_SECRET', 'sk_test_kLGpsYB2d5Ho77Rdi8x6Ol50')
