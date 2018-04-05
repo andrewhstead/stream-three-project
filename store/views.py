@@ -3,11 +3,12 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Cart, CartItem
-from .forms import AddToCartForm
+from .forms import AddToCartForm, ChangeQuantityForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.template.context_processors import csrf
+from django.contrib import messages
 
 
 # Create your views here.
@@ -57,6 +58,8 @@ def add_product(request, product_id):
                     item.stock -= quantity
                     item.save()
                     return redirect(reverse('shopping_cart'))
+        else:
+            messages.error(request, 'Sorry, we were unable to add that item. Please try again.')
 
     else:
         form = AddToCartForm()
@@ -75,7 +78,37 @@ def shopping_cart(request):
 
 @login_required
 def change_product(request, item_id):
-    return render(request, 'store.html')
+    item = get_object_or_404(CartItem, pk=item_id)
+
+    if request.method == 'POST':
+        form = ChangeQuantityForm(request.POST)
+
+        if form.is_valid():
+            old_quantity = item.quantity
+            new_quantity = int(request.POST.get('quantity'))
+            item.quantity = new_quantity
+            item.save()
+
+            cart = item.cart
+            price = item.item.product.price
+            item_change = new_quantity - old_quantity
+            price_change = price * item_change
+
+            cart.cost += price_change
+            cart.save()
+
+            return redirect(reverse('shopping_cart'))
+
+        else:
+            messages.error(request, 'Sorry, we were unable to change your order. Please try again.')
+
+    else:
+        form = ChangeQuantityForm()
+
+    args = {'form': form, 'item': item, 'button_text': 'Change'}
+    args.update(csrf(request))
+
+    return render(request, 'change_quantity.html', args)
 
 
 @login_required

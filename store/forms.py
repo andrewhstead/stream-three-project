@@ -26,3 +26,7 @@ QUANTITY_OPTIONS = (
 class AddToCartForm(forms.Form):
     size = forms.ChoiceField(choices=SIZE_OPTIONS)
     quantity = forms.ChoiceField(choices=QUANTITY_OPTIONS)
+
+
+class ChangeQuantityForm(forms.Form):
+    quantity = forms.ChoiceField(choices=QUANTITY_OPTIONS, label="New Quantity")
