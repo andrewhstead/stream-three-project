@@ -734,7 +734,7 @@ footer {
     margin: 10px auto;
 }
 
-.delete-link {
+.alert-link {
     cursor: pointer;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -749,7 +749,7 @@ footer {
     display: none;
 }
 
-.delete-confirm {
+.alert-message {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -757,7 +757,7 @@ footer {
 	right: 0;
 	margin: auto;
     width: 200px;
-    height: 100px;
+    height: fit-content;
     display: none;
     background-color: #4f81bd;
     border: 1px solid #10253f;
@@ -768,7 +768,7 @@ footer {
     box-shadow: 0 0 10px 1px #10253f;
 }
 
-.delete-confirm p{
+.alert-message p{
     margin: 0;
 }
 

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div id="page-header">
+        BIBL PREMIUM
+    </div>
+
+    {% if user.is_subscribed %}
+        <p>
+            Premium Content
+        </p>
+    {% elif user.is_authenticated %}
+        <p>
+            <a class="standard-link" href="/premium/upgrade/">Upgrade</a> to view premium content.
+        </p>
+    {% else %}
+        <p>
+            <a class="standard-link" href="/register/subscribe">Register and subscribe</a> to view premium content.
+        </p>
+    {% endif %}
+
+{% endblock %}

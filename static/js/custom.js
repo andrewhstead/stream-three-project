@@ -8,10 +8,10 @@ $('#show-hide').click(function(){
     $('#comments').fadeToggle(500);
 });
 
-// Function to allow the user to confirm that they wish to delete a post or a comment.
-$('.delete-link').click(function(){
+// Pop-up function to ask for confirmation or give information.
+$('.alert-link').click(function(){
     $('.popup-wrapper').fadeToggle(100);
-    $('.delete-confirm').fadeToggle(100);
+    $('.alert-message').fadeToggle(100);
 });
 
 function messageRemove() {

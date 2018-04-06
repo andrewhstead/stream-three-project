@@ -58,7 +58,7 @@ def forum_league(request, board_id):
     return render(request, 'board.html', {'board': board, 'threads': threads})
 
 
-@login_required
+@login_required(login_url='/login/')
 def new_thread(request, board_id):
     board = get_object_or_404(Board, pk=board_id)
 
@@ -135,7 +135,7 @@ def view_thread(request, thread_id):
                                                'page': page, 'previous': previous})
 
 
-@login_required
+@login_required(login_url='/login/')
 def new_post(request, thread_id):
     thread = get_object_or_404(Thread, pk=thread_id)
 
@@ -167,7 +167,7 @@ def new_post(request, thread_id):
     return render(request, 'post_form.html', args)
 
 
-@login_required
+@login_required(login_url='/login/')
 def edit_post(request, thread_id, post_id):
     thread = get_object_or_404(Thread, pk=thread_id)
     post = get_object_or_404(Post, pk=post_id)
@@ -195,7 +195,7 @@ def edit_post(request, thread_id, post_id):
     return render(request, 'post_form.html', args)
 
 
-@login_required
+@login_required(login_url='/login/')
 def delete_post(request, thread_id, post_id):
     post = get_object_or_404(Post, pk=post_id)
     thread = get_object_or_404(Thread, pk=thread_id)

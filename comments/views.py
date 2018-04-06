@@ -13,7 +13,7 @@ from django.contrib import messages
 
 
 # Create your views here.
-@login_required
+@login_required(login_url='/login/')
 def new_comment(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
 
@@ -40,7 +40,7 @@ def new_comment(request, item_id):
     return render(request, 'comment_form.html', args)
 
 
-@login_required
+@login_required(login_url='/login/')
 def edit_comment(request, item_id, comment_id):
     item = get_object_or_404(Item, pk=item_id)
     comment = get_object_or_404(Comment, pk=comment_id)
@@ -66,7 +66,7 @@ def edit_comment(request, item_id, comment_id):
     return render(request, 'comment_form.html', args)
 
 
-@login_required
+@login_required(login_url='/login/')
 def delete_comment(request, item_id, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     item = get_object_or_404(Item, pk=item_id)

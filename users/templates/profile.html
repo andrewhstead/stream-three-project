@@ -64,10 +64,37 @@
                         Premium<br />
                         Subscription ends: {{ profile_user.subscription_ends|date:'d/m/Y' }}
                     {% else %}
-                        Standard <span class="arrow">&#9658;</span> <a class="standard-link" href="/">Upgrade</a>
+                        Standard <span class="arrow">&#9658;</span> <a class="standard-link" href="/premium/upgrade/">Upgrade</a>
+                    {% endif %}
+                </p>
+                <p>
+                    <strong>Purchases:</strong> {{ orders.count }}
+                    {% if orders.count > 0 %}
+                        <span class="arrow">&#9658;</span>
+                        <a class="standard-link" href="/store/orders/">
+                            Details
+                        </a>
+                    {% endif %}
+                </p>
+                <p>
+                    <strong>Profile Visibility:</strong><br />
+                    {% if profile_user.is_private %}
+                        Private (only you can see)
+                    {% else %}
+                        <a class="standard-link alert-link">Public</a> (logged in users can view)
                     {% endif %}
                 </p>
             {% endif %}
+
+            <div class="popup-wrapper">
+                <div class="alert-message">
+                    <p>Public Profile:</p>
+                    <p>E-mail address, account type and purchase history are still private.</p>
+                    <div id="content-link-light" class="alert-link">
+                        OK
+                    </div>
+                </div>
+            </div>
 
             <p>
                 <strong>Favourite Team:</strong><br />
@@ -115,18 +142,6 @@
                     No activity yet.
                 {% endif %}
             </p>
-
-            {% if user == profile_user %}
-                <p>
-                    <strong>Purchases:</strong> {{ orders.count }}
-                    {% if orders.count > 0 %}
-                        <span class="arrow">&#9658;</span>
-                        <a class="standard-link" href="/store/orders/">
-                            Details
-                        </a>
-                    {% endif %}
-                </p>
-            {% endif %}
 
         </div>
 

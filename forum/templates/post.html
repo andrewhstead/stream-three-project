@@ -39,18 +39,18 @@
 
         {% if user == post.user or user.is_staff %}
             <a class="table-link" href="{% url 'edit_post' thread.id post.id %}">[Edit]</a>
-            <span class="delete-link">[Delete]</span>
+            <span class="alert-link">[Delete]</span>
         {% endif %}
     </div>
 
     <div class="popup-wrapper">
-        <div class="delete-confirm">
+        <div class="alert-message">
             <p>Confirmation:</p>
             <p>Are you sure you want to delete?</p>
             <div id="content-link-light">
                 <a href="{% url 'delete_post' thread.id post.id %}">OK</a>
             </div>
-            <div id="content-link-light" class="delete-link">
+            <div id="content-link-light" class="alert-link">
                 Cancel
             </div>
         </div>

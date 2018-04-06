@@ -49,6 +49,8 @@ urlpatterns = [
         forum_views.edit_post, name='edit_post'),
     url(r'^post/delete/(?P<thread_id>\d+)/(?P<post_id>\d+)/$',
         forum_views.delete_post, name='delete_post'),
+    url(r'^premium/$', store_views.premium_home, name='premium_home'),
+    url(r'^premium/upgrade/$', store_views.upgrade_account, name='upgrade'),
     url(r'^profile/$', users_views.user_profile, name='user_profile'),
     url(r'^profile/delete/$', users_views.delete_profile, name='delete_profile'),
     url(r'^profile/edit/$', users_views.edit_profile, name='edit_profile'),

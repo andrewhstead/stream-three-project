@@ -5,3 +5,4 @@ pytz==2018.3
 gunicorn==19.4
 whitenoise==3.2
 stripe
+arrow==0.7.0

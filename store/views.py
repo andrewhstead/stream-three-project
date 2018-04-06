@@ -10,8 +10,9 @@ from django.shortcuts import redirect
 from django.template.context_processors import csrf
 from django.conf import settings
 from django.contrib import messages
-import stripe
 from datetime import datetime
+import stripe
+import arrow
 
 stripe.api_key = settings.STRIPE_SECRET
 
@@ -21,12 +22,13 @@ def store_front(request):
     user = request.user
     products = Product.objects.all()
 
-    try:
-        cart = Cart.objects.get(user=user, status='Pending')
-        return render(request, 'store.html', {'products': products, 'cart': cart})
+    if user.is_authenticated:
+        try:
+            cart = Cart.objects.get(user=user, status='Pending')
+            return render(request, 'store.html', {'products': products, 'cart': cart})
 
-    except Cart.DoesNotExist:
-        pass
+        except Cart.DoesNotExist:
+            pass
 
     return render(request, 'store.html', {'products': products})
 
@@ -83,14 +85,14 @@ def add_product(request, product_id):
     return render(request, 'product.html', args)
 
 
-@login_required
+@login_required(login_url='/login/')
 def shopping_cart(request):
     user = request.user
     cart = Cart.objects.get(user=user, status='Pending')
     return render(request, 'cart.html', {'cart': cart})
 
 
-@login_required
+@login_required(login_url='/login/')
 def change_product(request, item_id):
     item = get_object_or_404(CartItem, pk=item_id)
 
@@ -128,7 +130,7 @@ def change_product(request, item_id):
     return render(request, 'change_quantity.html', args)
 
 
-@login_required
+@login_required(login_url='/login/')
 def remove_product(request, item_id):
     item = get_object_or_404(CartItem, pk=item_id)
 
@@ -157,7 +159,7 @@ def remove_product(request, item_id):
     return render(request, 'cart.html')
 
 
-@login_required
+@login_required(login_url='/login/')
 def submit_order(request, order_id):
     order = get_object_or_404(Cart, pk=order_id)
 
@@ -195,12 +197,12 @@ def submit_order(request, order_id):
     return render(request, 'checkout.html', args)
 
 
-@login_required
+@login_required(login_url='/login/')
 def order_confirmation(request):
     return render(request, 'confirmation.html')
 
 
-@login_required
+@login_required(login_url='/login/')
 def order_list(request):
     user = request.user
     orders = Cart.objects.filter(user=user, status='Received').order_by('-date')
@@ -212,3 +214,49 @@ def order_details(request, order_id):
     order = get_object_or_404(Cart, pk=order_id)
     items = CartItem.objects.filter(cart_id=order_id)
     return render(request, 'order_detail.html', {'order': order, 'items': items})
+
+
+def premium_home(request):
+    return render(request, 'premium.html')
+
+
+def upgrade_account(request):
+    user = request.user
+
+    if user.is_subscribed:
+        return redirect(reverse('premium_home'))
+
+    else:
+
+        if request.method == 'POST':
+            form = SubmitOrderForm(request.POST)
+
+            if form.is_valid():
+                try:
+                    customer = stripe.Customer.create(
+                        plan='BIBL_MONTHLY',
+                        description=user.username,
+                        card=form.cleaned_data['stripe_id'],
+                    )
+
+                    if customer:
+                        user.stripe_id = customer.id
+                        user.is_subscribed = True
+                        user.subscription_ends = arrow.now().replace(months=+1).datetime
+                        user.save()
+                        messages.success(request, 'Upgrade successful. You are now a Premium user.')
+                        return redirect(reverse('premium_home'))
+
+                    else:
+                        messages.error(request, "Sorry, we were unable to take your payment. Please try again.")
+
+                except stripe.error.CardError, e:
+                    messages.error(request, 'Sorry, your card was declined. Please try again with a different card.')
+
+        else:
+            form = SubmitOrderForm()
+
+        args = {'form': form, 'publishable': settings.STRIPE_PUBLISHABLE}
+        args.update(csrf(request))
+
+        return render(request, 'upgrade.html', args)

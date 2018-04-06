@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+ 
+{% block head_js %}
+  <script src="https://js.stripe.com/v2/" type="text/javascript"></script>
+  <script type="text/javascript">
+      //<![CDATA[
+      Stripe.publishableKey = '{{ publishable }}';
+      //]]>
+  </script>
+  <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock %}
+ 
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <div id="page-header">
+            UPGRADE YOUR ACCOUNT
+        </div>
+    {% else %}
+        <div id="page-header">
+            REGISTER AND SUBSCRIBE
+        </div>
+    {% endif %}
+
+        <form role="form" method="post" id="checkout-form" action="{% url 'upgrade' %}">
+            <div id="credit-card-errors" style="display:none">
+                <div class="alert-message block-message error" id="stripe-error-message"></div>
+            </div>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input id="submit_order" name="commit" type="submit" value="Upgrade">
+        </form>
+
+{% endblock %}
