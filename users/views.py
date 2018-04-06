@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse
 from .forms import LoginForm, RegistrationForm, EditProfileForm, DeletionForm, ChangePasswordForm
 from comments.models import Comment
 from forum.models import Thread, Post
+from store.models import Cart
 from .models import User
 
 
@@ -74,6 +75,7 @@ def user_profile(request):
     comments = Comment.objects.filter(user_id=user.id)
     posts = Post.objects.filter(user_id=user.id)
     threads = Thread.objects.filter(user_id=user.id)
+    orders = Cart.objects.filter(user_id=user.id, status='Received')
     contributions = []
 
     for comment in comments:
@@ -84,7 +86,7 @@ def user_profile(request):
 
     return render(request, 'profile.html', {'comments': comments, 'threads': threads,
                                             'posts': posts, 'contributions': contributions,
-                                            'profile_user': user})
+                                            'profile_user': user, 'orders': orders})
 
 
 @login_required(login_url='/login/')

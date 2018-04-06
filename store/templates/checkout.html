@@ -13,17 +13,31 @@
  
 {% block content %}
 
-    <div id="page-header">
-        CHECKOUT
-    </div>
+    {% if user == order.user %}
 
-    <form role="form" method="post" id="checkout-form" action="{% url 'checkout' order_id %}">
-        <div id="credit-card-errors" style="display:none">
-            <div class="alert-message block-message error" id="stripe-error-message"></div>
+        <div id="page-header">
+            CHECKOUT
         </div>
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input id="submit_order" name="commit" type="submit" value="Complete Order">
-    </form>
+
+        <form role="form" method="post" id="checkout-form" action="{% url 'checkout' order_id %}">
+            <div id="credit-card-errors" style="display:none">
+                <div class="alert-message block-message error" id="stripe-error-message"></div>
+            </div>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input id="submit_order" name="commit" type="submit" value="Complete Order">
+        </form>
+
+    {% else %}
+
+        <div id="page-header">
+            ERROR
+        </div>
+
+        <p>
+            Sorry, you are not authorised to view this page.
+        </p>
+
+    {% endif %}
 
 {% endblock %}

@@ -50,11 +50,13 @@
             </p>
             <p>
                 <strong>Account Type:</strong><br />
-                {% if user.is_subscribed %}
+                {% if user.is_staff %}
+                    Administrator
+                {% elif user.is_subscribed %}
                     Premium<br />
                     Subscription ends: {{ profile_user.subscription_ends|date:'d/m/Y' }}
                 {% else %}
-                    Standard <a class="standard-link" href="/">[Upgrade]</a>
+                    Standard <span class="arrow">&#9658;</span> <a class="standard-link" href="/">Upgrade</a>
                 {% endif %}
             </p>
         {% endif %}
@@ -105,6 +107,18 @@
                 No activity yet.
             {% endif %}
         </p>
+
+        {% if user == profile_user %}
+            <p>
+                <strong>Purchases:</strong> {{ orders.count }}
+                {% if orders.count > 0 %}
+                    <span class="arrow">&#9658;</span>
+                    <a class="standard-link" href="/store/orders/">
+                        Details
+                    </a>
+                {% endif %}
+            </p>
+        {% endif %}
 
     </div>
 

@@ -11,7 +11,7 @@ from django.template.context_processors import csrf
 from django.conf import settings
 from django.contrib import messages
 import stripe
-import datetime
+from datetime import datetime
 
 stripe.api_key = settings.STRIPE_SECRET
 
@@ -176,6 +176,7 @@ def submit_order(request, order_id):
                 if invoice.paid:
                     order.stripe_id = request.POST.get('stripe_id')
                     order.status = 'Received'
+                    order.date = datetime.now()
                     order.save()
                     return redirect(reverse('order_confirmation'))
 
@@ -188,7 +189,7 @@ def submit_order(request, order_id):
     else:
         form = SubmitOrderForm()
 
-    args = {'form': form, 'order_id': order_id, 'publishable': settings.STRIPE_PUBLISHABLE}
+    args = {'form': form, 'order': order, 'order_id': order_id, 'publishable': settings.STRIPE_PUBLISHABLE}
     args.update(csrf(request))
 
     return render(request, 'checkout.html', args)
@@ -197,3 +198,17 @@ def submit_order(request, order_id):
 @login_required
 def order_confirmation(request):
     return render(request, 'confirmation.html')
+
+
+@login_required
+def order_list(request):
+    user = request.user
+    orders = Cart.objects.filter(user=user, status='Received').order_by('-date')
+    return render(request, 'orders.html', {'orders': orders})
+
+
+@login_required
+def order_details(request, order_id):
+    order = get_object_or_404(Cart, pk=order_id)
+    items = CartItem.objects.filter(cart_id=order_id)
+    return render(request, 'order_detail.html', {'order': order, 'items': items})

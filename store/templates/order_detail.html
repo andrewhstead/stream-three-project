@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load store_tags %}
+
+{% block content %}
+
+    {% if user == order.user %}
+
+        <div id="page-header">
+            ORDER DETAIL
+        </div>
+
+        <p>
+            <strong>Order Number:</strong> {{ order.id }}
+        </p>
+
+        <p>
+            <strong>Date Submitted:</strong> {{ order.date|date:'d/m/Y, H:i' }}
+        </p>
+
+        <p>
+            <strong>Status:</strong> {{ order.status }}
+        </p>
+
+        <table class="store-table alternating-rows">
+            <tr class='header-row'>
+                <td>Item</td>
+                <td>Price</td>
+                <td>Qty</td>
+            </tr>
+            {% for item in items %}
+                <tr>
+                    <td>
+                        {{ item.item }}
+                    </td>
+                    <td>
+                        {% with item.item.product.price as price %}
+                            {{ price|price_display }}
+                        {% endwith %}
+                    </td>
+                    <td>
+                        {{ item.quantity }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <p class="right-align">
+            <strong>Total:</strong>
+            {% with order.cost as price %}
+                {{ price|price_display }}
+            {% endwith %}
+        </p>
+
+        <span id="full-details">
+            <a class="standard-link" href="/store/orders/">[Back to Orders]</a>
+        </span>
+
+    {% else %}
+
+        <div id="page-header">
+            ERROR
+        </div>
+
+        <p>
+            Sorry, you are not authorised to view this page.
+        </p>
+
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load store_tags %}
+
+{% block content %}
+
+    <div id="page-header">
+        PAST ORDERS
+    </div>
+
+    <table class="store-table alternating-rows">
+        <tr class='header-row'>
+            <td>#</td>
+            <td>Date</td>
+            <td>Price</td>
+        </tr>
+        {% for order in orders %}
+            <tr>
+                <td>
+                    {{ order.id }}
+                </td>
+                <td>
+                    {{ order.date|date:'d/m/Y, H:i' }}
+                </td>
+                <td>
+                    <a class="standard-link" href="/store/order/{{ order.id }}">{{ order.cost|price_display }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
