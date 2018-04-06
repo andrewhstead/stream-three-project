@@ -9,6 +9,7 @@ from .forms import CommentForm
 from .models import Comment
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
+from django.contrib import messages
 
 
 # Create your views here.

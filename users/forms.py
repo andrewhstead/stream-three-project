@@ -49,11 +49,12 @@ class EditProfileForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email',
-                  'profile_picture', 'favourite_team']
+                  'profile_picture', 'favourite_team', 'is_private']
         exclude = ['password']
         labels = {
             'favourite_team': 'Favourite Team (optional)',
             'profile_picture': 'Profile Picture (optional)',
+            'is_private': 'Make Profile Private',
         }
 
 
