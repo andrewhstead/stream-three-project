@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Cart, CartItem
-from .forms import AddToCartForm, ChangeQuantityForm, SubmitOrderForm
+from .forms import AddToCartForm, ChangeQuantityForm, SubmitOrderForm, SubscriptionForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
@@ -237,12 +237,25 @@ def upgrade_account(request):
     else:
 
         if request.method == 'POST':
-            form = SubmitOrderForm(request.POST)
+            form = SubscriptionForm(request.POST)
+            form.order_fields(['billing_cycle', 'card_number', 'cvv',
+                              'expiry_month', 'expiry_year', 'stripe_id'])
+
+            billing_cycle = request.POST.get('billing_cycle')
+
+            if billing_cycle == 'BIBL_MONTHLY':
+                months = 1
+            elif billing_cycle == 'BIBL_THREE':
+                months = 3
+            elif billing_cycle == 'BIBL_SIX':
+                months = 6
+            elif billing_cycle == 'BIBL_YEARLY':
+                months = 12
 
             if form.is_valid():
                 try:
                     customer = stripe.Customer.create(
-                        plan='BIBL_MONTHLY',
+                        plan=billing_cycle,
                         description=user.username,
                         card=form.cleaned_data['stripe_id'],
                     )
@@ -250,7 +263,7 @@ def upgrade_account(request):
                     if customer:
                         user.stripe_id = customer.id
                         user.is_subscribed = True
-                        user.subscription_ends = arrow.now().replace(months=+1).datetime
+                        user.subscription_ends = arrow.now().replace(months=+months).datetime
                         user.save()
                         messages.success(request, 'Upgrade successful. You are now a Premium user.')
                         return redirect(reverse('premium_home'))
@@ -262,7 +275,9 @@ def upgrade_account(request):
                     messages.error(request, 'Sorry, your card was declined. Please try again with a different card.')
 
         else:
-            form = SubmitOrderForm()
+            form = SubscriptionForm()
+            form.order_fields(['billing_cycle', 'card_number', 'cvv',
+                              'expiry_month', 'expiry_year', 'stripe_id'])
 
         args = {'form': form, 'publishable': settings.STRIPE_PUBLISHABLE}
         args.update(csrf(request))

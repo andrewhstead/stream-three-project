@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from django import forms
 
 SIZE_OPTIONS = (
@@ -43,3 +44,17 @@ class SubmitOrderForm(forms.Form):
     expiry_month = forms.ChoiceField(choices=MONTH_CHOICES, label='Month')
     expiry_year = forms.ChoiceField(choices=YEAR_CHOICES, label='Year')
     stripe_id = forms.CharField(widget=forms.HiddenInput)
+
+
+class SubscriptionForm(SubmitOrderForm):
+    CYCLE_OPTIONS = (
+        ('BIBL_MONTHLY', '£9.99 Every Month'),
+        ('BIBL_THREE', '£27.49 Every 3 Months'),
+        ('BIBL_SIX', '£49.99 Every 6 Months'),
+        ('BIBL_YEARLY', '£89.99 Every 12 Months'),
+    )
+
+    billing_cycle = forms.ChoiceField(choices=CYCLE_OPTIONS)
+
+    class Meta:
+        fields = ['billing_cycle', 'card_number', 'cvv', 'expiry_month', 'expiry_year', 'stripe_id']
