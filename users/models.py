@@ -8,6 +8,8 @@ from teams.models import Team
 # Create your models here.
 class User(AbstractUser):
     objects = UserManager
+    is_subscribed = models.BooleanField(default=False)
+    subscription_ends = models.DateTimeField(blank=True, null=True)
     profile_picture = models.ImageField(upload_to="images/users", blank=True, null=True)
     favourite_team = models.ForeignKey(Team, related_name="user", blank=True, null=True)
 

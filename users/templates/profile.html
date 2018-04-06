@@ -48,6 +48,15 @@
                 <strong>Registered email address:</strong><br />
                 {{ profile_user.email }}
             </p>
+            <p>
+                <strong>Account Type:</strong><br />
+                {% if user.is_subscribed %}
+                    Premium<br />
+                    Subscription ends: {{ profile_user.subscription_ends|date:'d/m/Y' }}
+                {% else %}
+                    Standard <a class="standard-link" href="/">[Upgrade]</a>
+                {% endif %}
+            </p>
         {% endif %}
 
         <p>
