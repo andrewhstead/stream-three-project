@@ -589,7 +589,7 @@ footer {
     text-align: left;
 }
 
-#content-link {
+.content-link {
     margin: 10px auto 10px 0;
     color: white;
     background-color: #4f81bd;
@@ -599,7 +599,7 @@ footer {
     width: fit-content;
 }
 
-#content-link-light {
+.content-link-light {
     margin: 10px auto 10px 0;
     color: #4f81bd;
     background-color: white;
@@ -619,12 +619,12 @@ footer {
     text-decoration: underline;
 }
 
-#content-link-light a {
+.content-link-light a {
     color: #4f81bd;
     text-decoration: none;
 }
 
-#content-link-light a:hover {
+.content-link-light a:hover {
 }
 
 .comment-logo {

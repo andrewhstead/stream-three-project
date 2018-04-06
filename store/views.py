@@ -209,7 +209,7 @@ def order_list(request):
     return render(request, 'orders.html', {'orders': orders})
 
 
-@login_required
+@login_required(login_url='/login/')
 def order_details(request, order_id):
     order = get_object_or_404(Cart, pk=order_id)
     items = CartItem.objects.filter(cart_id=order_id)
@@ -217,9 +217,17 @@ def order_details(request, order_id):
 
 
 def premium_home(request):
+    user = request.user
+
+    if user.subscription_ends < arrow.now():
+        user.subscription_ends = None
+        user.is_subscribed = False
+        user.save()
+
     return render(request, 'premium.html')
 
 
+@login_required(login_url='/login/')
 def upgrade_account(request):
     user = request.user
 
@@ -260,3 +268,21 @@ def upgrade_account(request):
         args.update(csrf(request))
 
         return render(request, 'upgrade.html', args)
+
+
+@login_required(login_url='/login/')
+def cancel_subscription(request):
+
+    user = request.user
+
+    try:
+        customer = stripe.Customer.retrieve(user.stripe_id)
+        customer.cancel_subscription(at_period_end=True)
+        messages.success(request, 'Your subscription has been cancelled.'
+                                  'You will still have access until the end of your current payment period.')
+        return redirect(reverse('user_profile'))
+
+    except Exception:
+        messages.error(request, 'Sorry, we were unable to process cancellation. Please try again.')
+
+    return redirect(reverse('user_profile'))

@@ -61,7 +61,7 @@
                     {% if user.is_staff %}
                         Administrator
                     {% elif user.is_subscribed %}
-                        Premium<br />
+                        Premium <span class="arrow">&#9658;</span> <a class="standard-link" href="/premium/cancel/">Cancel</a><br />
                         Subscription ends: {{ profile_user.subscription_ends|date:'d/m/Y' }}
                     {% else %}
                         Standard <span class="arrow">&#9658;</span> <a class="standard-link" href="/premium/upgrade/">Upgrade</a>
@@ -90,7 +90,7 @@
                 <div class="alert-message">
                     <p>Public Profile:</p>
                     <p>E-mail address, account type and purchase history are still private.</p>
-                    <div id="content-link-light" class="alert-link">
+                    <div class="content-link-light alert-link">
                         OK
                     </div>
                 </div>
