@@ -76,6 +76,7 @@ def user_profile(request):
     posts = Post.objects.filter(user_id=user.id)
     threads = Thread.objects.filter(user_id=user.id)
     orders = Cart.objects.filter(user_id=user.id, status='Received')
+
     contributions = []
 
     for comment in comments:

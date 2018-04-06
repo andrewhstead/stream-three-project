@@ -9,7 +9,6 @@ from teams.models import Team
 class User(AbstractUser):
     objects = UserManager
     stripe_id = models.CharField(max_length=40, default='')
-    is_subscribed = models.BooleanField(default=False)
     subscription_ends = models.DateTimeField(blank=True, null=True)
     is_private = models.BooleanField(default=False)
     profile_picture = models.ImageField(upload_to="images/users", blank=True, null=True)

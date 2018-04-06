@@ -217,13 +217,6 @@ def order_details(request, order_id):
 
 
 def premium_home(request):
-    user = request.user
-
-    if user.subscription_ends < arrow.now():
-        user.subscription_ends = None
-        user.is_subscribed = False
-        user.save()
-
     return render(request, 'premium.html')
 
 

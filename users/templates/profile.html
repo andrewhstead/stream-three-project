@@ -60,7 +60,7 @@
                     <strong>Account Type:</strong><br />
                     {% if user.is_staff %}
                         Administrator
-                    {% elif user.is_subscribed %}
+                    {% elif user_is_subscribed %}
                         Premium <span class="arrow">&#9658;</span> <a class="standard-link" href="/premium/cancel/">Cancel</a><br />
                         Subscription ends: {{ profile_user.subscription_ends|date:'d/m/Y' }}
                     {% else %}
