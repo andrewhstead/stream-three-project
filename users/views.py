@@ -15,6 +15,7 @@ from .models import User
 
 # Create your views here.
 def register(request):
+
     if request.method == 'POST':
         form = RegistrationForm(request.POST, request.FILES)
         if form.is_valid():
