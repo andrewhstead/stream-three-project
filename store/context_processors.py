@@ -7,7 +7,7 @@ def user_is_subscribed(request):
     if user.is_authenticated:
         subscription_end = user.subscription_ends
 
-        if subscription_end >= now:
+        if subscription_end and subscription_end >= now:
             return {'user_is_subscribed': True}
         else:
             return {'user_is_subscribed': False}
