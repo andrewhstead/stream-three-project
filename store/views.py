@@ -309,21 +309,21 @@ def subscription_renewal(request):
         # event = stripe.Event.retrieve(renewal_json['object']['id'])
         subscriber = renewal_json['object']['customer']
         paid = renewal_json['object']['paid']
-        # plan = renewal_json['object']['lines']['data']['plan']['id']
-        #
-        # if plan == 'BIBL_MONTHLY':
-        #     months = 1
-        # elif plan == 'BIBL_THREE':
-        #     months = 3
-        # elif plan == 'BIBL_SIX':
-        #     months = 6
-        # elif plan == 'BIBL_YEARLY':
-        #     months = 12
+        plan = renewal_json['object']['lines']['data'][0]['plan']['id']
+
+        if plan == 'BIBL_MONTHLY':
+            months = 1
+        elif plan == 'BIBL_THREE':
+            months = 3
+        elif plan == 'BIBL_SIX':
+            months = 6
+        elif plan == 'BIBL_YEARLY':
+            months = 12
 
         user = User.objects.get(stripe_id=subscriber)
 
         if user and paid:
-            user.subscription_ends = arrow.now().replace(months=+1).datetime
+            user.subscription_ends = arrow.now().replace(months=+months).datetime
             user.save()
 
     except stripe.InvalidRequestError, e:

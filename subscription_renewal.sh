@@ -34,7 +34,7 @@ curl -H "Content-Type: application/json" -X POST -d '
                         "end": 1456604313
                     },
                     "plan": {
-                        "id": "BIBL_MONTHLY",
+                        "id": "BIBL_YEARLY",
                         "object": "plan",
                         "amount": 999,
                         "created": 1456571797,

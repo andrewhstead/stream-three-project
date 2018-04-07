@@ -61,7 +61,7 @@
                     {% if user.is_staff %}
                         Administrator
                     {% elif user_is_subscribed %}
-                        Premium <span class="arrow">&#9658;</span> <a class="standard-link" href="/premium/cancel/">Cancel</a><br />
+                        Premium <span class="arrow">&#9658;</span> <a class="standard-link alert-link">Cancel</a><br />
                         Subscription ends: {{ profile_user.subscription_ends|date:'d/m/Y' }}
                     {% else %}
                         Standard <span class="arrow">&#9658;</span> <a class="standard-link" href="/premium/upgrade/">Upgrade</a>
@@ -81,18 +81,23 @@
                     {% if profile_user.is_private %}
                         Private (only you can see)
                     {% else %}
-                        <a class="standard-link alert-link">Public</a> (logged in users can view)
+                        Public
+                        (logged in users can view, but e-mail address,
+                        account status and purchase history are still private)
                     {% endif %}
                 </p>
             {% endif %}
 
             <div class="popup-wrapper">
                 <div class="alert-message">
-                    <p>Public Profile:</p>
-                    <p>E-mail address, account type and purchase history are still private.</p>
-                    <div class="content-link-light alert-link">
-                        OK
-                    </div>
+                    <p>Confirmation:</p>
+                    <p>Are you sure you want to cancel?</p>
+                        <div class="content-link-light">
+                            <a href="{% url 'cancel_subscription' %}">OK</a>
+                        </div>
+                        <div class="content-link-light alert-link">
+                            Cancel
+                        </div>
                 </div>
             </div>
 
