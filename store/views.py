@@ -320,7 +320,6 @@ def subscription_renewal(request):
         # elif plan == 'BIBL_YEARLY':
         #     months = 12
 
-        item = Product.objects.get(id=1)
         user = User.objects.get(stripe_id=subscriber)
 
         if user and paid:

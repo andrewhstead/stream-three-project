@@ -11,7 +11,7 @@ curl -H "Content-Type: application/json" -X POST -d '
         "charge": "ch_17j6BCK4oMdhkST3meBXlX06",
         "closed": true,
         "currency": "gbp",
-        "customer": "cus_CdHAarypSfYXrt",
+        "customer": "cus_CdHAMvHLubmu7x",
         "date": 1456572250,
         "description": null,
         "discount": null,
