@@ -61,10 +61,20 @@
                     {% if user.is_staff %}
                         Administrator
                     {% elif user_is_subscribed %}
-                        Premium <span class="arrow">&#9658;</span> <a class="standard-link alert-link">Cancel</a><br />
-                        Subscription ends: {{ profile_user.subscription_ends|date:'d/m/Y' }}
+                        Premium
+                        {% if user.subscription_renews %}
+                            <span class="arrow">&#9658;</span>
+                            <a class="standard-link alert-link">Cancel</a><br />
+                            Renews every: {% renewal_period %} <br />
+                            Next renewal: {{ profile_user.subscription_ends|date:'d/m/Y' }}
+                        {% else %}
+                            <br />
+                            Subscription Cancelled<br />
+                            Access Until: {{ profile_user.subscription_ends|date:'d/m/Y' }}
+                        {% endif %}
                     {% else %}
-                        Standard <span class="arrow">&#9658;</span> <a class="standard-link" href="/premium/upgrade/">Upgrade</a>
+                        Standard <span class="arrow">&#9658;</span>
+                        <a class="standard-link" href="/premium/upgrade/">Upgrade</a>
                     {% endif %}
                 </p>
                 <p>

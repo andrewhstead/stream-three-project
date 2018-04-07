@@ -77,6 +77,7 @@ def user_profile(request):
     posts = Post.objects.filter(user_id=user.id)
     threads = Thread.objects.filter(user_id=user.id)
     orders = Cart.objects.filter(user_id=user.id, status='Received')
+    subscription_plan = user.subscription_plan
 
     contributions = []
 
@@ -88,7 +89,8 @@ def user_profile(request):
 
     return render(request, 'profile.html', {'comments': comments, 'threads': threads,
                                             'posts': posts, 'contributions': contributions,
-                                            'profile_user': user, 'orders': orders})
+                                            'profile_user': user, 'orders': orders,
+                                            'subscription_plan': subscription_plan})
 
 
 @login_required(login_url='/login/')

@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from django import forms
+from store.models import Item
 
 SIZE_OPTIONS = (
     ('XS', "XS"),

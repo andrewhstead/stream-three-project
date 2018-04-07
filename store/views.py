@@ -13,6 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.http import HttpResponse
 from django.contrib import messages
+from django.utils import timezone
 from datetime import datetime
 import stripe
 import arrow
@@ -51,7 +52,7 @@ def add_product(request, product_id):
             cost = product.price * quantity
 
             for item in items:
-                if item.size == size:
+                if item.size == size and item.stock >= quantity:
 
                     try:
                         cart = Cart.objects.get(user=user, status='Pending')
@@ -78,6 +79,9 @@ def add_product(request, product_id):
                     item.stock -= quantity
                     item.save()
                     return redirect(reverse('shopping_cart'))
+
+                elif item.stock < quantity:
+                    messages.error(request, 'Sorry, not enough items in stock to complete that order.')
         else:
             messages.error(request, 'Sorry, we were unable to add that item. Please try again.')
 
@@ -228,7 +232,7 @@ def premium_home(request):
 def upgrade_account(request):
     user = request.user
 
-    if user.is_subscribed:
+    if user.subscription_ends and user.subscription_ends >= timezone.now():
         return redirect(reverse('premium_home'))
 
     else:
@@ -259,8 +263,9 @@ def upgrade_account(request):
 
                     if customer:
                         user.stripe_id = customer.id
-                        user.is_subscribed = True
                         user.subscription_ends = arrow.now().replace(months=+months).datetime
+                        user.subscription_plan = billing_cycle
+                        user.subscription_renews = True
                         user.save()
                         messages.success(request, 'Upgrade successful. You are now a Premium user.')
                         return redirect(reverse('premium_home'))
@@ -290,6 +295,8 @@ def cancel_subscription(request):
     try:
         customer = stripe.Customer.retrieve(user.stripe_id)
         customer.cancel_subscription(at_period_end=True)
+        user.subscription_renews = False
+        user.save()
         messages.success(request, 'Your subscription has been cancelled.'
                                   'You will still have access until the end of your current payment period.')
         return redirect(reverse('user_profile'))
