@@ -27,7 +27,7 @@
     </section>
 
     {% if user.is_authenticated %}
-        <div id="content-link">
+        <div class="content-link">
             <a href="{% url 'new_comment' item.id %}">Add a Comment</a>
         </div>
     {% else %}

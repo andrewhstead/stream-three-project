@@ -104,9 +104,15 @@ def view_thread(request, thread_id):
     thread = get_object_or_404(Thread, pk=thread_id)
     board = get_object_or_404(Board, pk=thread.board_id)
 
+    url = request.get_full_path()
+
+    if url == "/thread/" + unicode(thread.id) + '/':
+        thread.views += 1
+        thread.save()
+
     all_posts = thread.posts.all()
 
-    posts_per_page = 20
+    posts_per_page = 1
     page_posts = Paginator(all_posts, posts_per_page)
 
     page = request.GET.get('page')

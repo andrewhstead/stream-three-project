@@ -610,12 +610,12 @@ footer {
     display: inline-block;
 }
 
-#content-link a {
+.content-link a {
     color: white;
     text-decoration: none;
 }
 
-#content-link a:hover {
+.content-link a:hover {
     text-decoration: underline;
 }
 
