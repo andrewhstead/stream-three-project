@@ -3,16 +3,20 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Cart, CartItem
+from users.models import User
 from .forms import AddToCartForm, ChangeQuantityForm, SubmitOrderForm, SubscriptionForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.template.context_processors import csrf
+from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
+from django.http import HttpResponse
 from django.contrib import messages
 from datetime import datetime
 import stripe
 import arrow
+import json
 
 stripe.api_key = settings.STRIPE_SECRET
 
@@ -294,3 +298,34 @@ def cancel_subscription(request):
         messages.error(request, 'Sorry, we were unable to process cancellation. Please try again.')
 
     return redirect(reverse('user_profile'))
+
+
+@csrf_exempt
+def subscription_renewal(request):
+    renewal_json = json.loads(request.body)
+
+    try:
+        # Commented out while testing.
+        # event = stripe.Event.retrieve(renewal_json['object']['id'])
+        subscriber = renewal_json['object']['customer']
+        paid = renewal_json['object']['paid']
+        # plan = renewal_json['object']['lines']['data']['plan']['id']
+        #
+        # if plan == 'BIBL_MONTHLY':
+        #     months = 1
+        # elif plan == 'BIBL_THREE':
+        #     months = 3
+        # elif plan == 'BIBL_SIX':
+        #     months = 6
+        # elif plan == 'BIBL_YEARLY':
+        #     months = 12
+
+        user = User.objects.get(stripe_id=subscriber)
+
+        if user and paid:
+            user.subscription_ends = arrow.now().replace(months=+1).datetime
+            user.save()
+
+    except stripe.InvalidRequestError, e:
+        return HttpResponse(status=404)
+    return HttpResponse(status=200)

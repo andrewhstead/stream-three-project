@@ -52,6 +52,7 @@ urlpatterns = [
     url(r'^premium/$', store_views.premium_home, name='premium_home'),
     url(r'^premium/cancel/$', store_views.cancel_subscription, name='cancel_subscription'),
     url(r'^premium/upgrade/$', store_views.upgrade_account, name='upgrade'),
+    url(r'^premium/renewal/$', store_views.subscription_renewal, name='subscription_renewal'),
     url(r'^profile/$', users_views.user_profile, name='user_profile'),
     url(r'^profile/delete/$', users_views.delete_profile, name='delete_profile'),
     url(r'^profile/edit/$', users_views.edit_profile, name='edit_profile'),
