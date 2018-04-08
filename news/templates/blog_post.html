@@ -15,7 +15,9 @@
     {% endif %}
 
     <div class="blog-author-title">
-        {{ item.author.username|truncatechars:15 }}
+        <a class="standard-link" href="/profile/{{ item.author.id }}">
+            {{ item.author.username|truncatechars:15 }}
+        </a>
     </div>
 
     <a class="standard-link" href="/teams/{{ item.author.favourite_team.geographic_name|lower }}/">
@@ -23,8 +25,8 @@
     </a>
     <br />
 
-    {{ posts.count }}
-    {% if posts.count == 1 %}
+    {{ all_posts.count }}
+    {% if all_posts.count == 1 %}
         post
     {% else %}
         posts

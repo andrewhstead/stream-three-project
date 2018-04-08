@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.template.context_processors import csrf
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
@@ -31,15 +32,26 @@ def news_team(request, team_name):
     return render(request, "news_team.html", {'team': team, 'items': items})
 
 
-def blog_index(request):
+def blog_home(request):
     posts = Item.objects.filter(category_id=6).order_by('-created_date')
     return render(request, "blogs.html", {'posts': posts})
 
 
-def blog_home(request, author_name):
+def blog_index(request, author_name):
     author = User.objects.get(username__iexact=author_name)
-    posts = Item.objects.filter(author=author).order_by('-created_date')
-    return render(request, "blog_index.html", {'posts': posts, 'author': author})
+    all_posts = Item.objects.filter(author=author).order_by('created_date')
+
+    posts_for = Paginator(all_posts, 10)
+
+    page = request.GET.get('page')
+    try:
+        posts = posts_for.page(page)
+    except EmptyPage:
+        posts = posts_for.page(1)
+    except PageNotAnInteger:
+        posts = posts_for.page(posts_for.num_pages)
+
+    return render(request, "blog_index.html", {'all_posts': all_posts, 'posts': posts, 'author': author})
 
 
 def blog_post(request, post_id):

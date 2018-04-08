@@ -15,7 +15,9 @@
     {% endif %}
 
     <div class="blog-author-title">
-        {{ author.username|truncatechars:15 }}
+        <a class="standard-link" href="/profile/{{ author.id }}">
+            {{ author.username|truncatechars:15 }}
+        </a>
     </div>
 
     <a class="standard-link" href="/teams/{{ author.favourite_team.geographic_name|lower }}/">
@@ -23,13 +25,12 @@
     </a>
     <br />
 
-    {{ posts.count }}
-    {% if posts.count == 1 %}
+    {{ all_posts.count }}
+    {% if all_posts.count == 1 %}
         post
     {% else %}
         posts
     {% endif %}
-    <a class="standard-link" href="/profile/{{ author.id }}">[User Profile]</a>
 
     {% if user == author %}
         <div class="content-link">
@@ -60,7 +61,25 @@
     {% endfor %}
 
     <span id="full-details">
+
+        <div class="pagination-links">
+
+            <div class="pagination-section previous-page">
+                {% if posts.has_previous %}
+                    <a class="standard-link" href="?page={{ posts.previous_page_number }}"><< Earlier Posts</a>
+                {% endif %}
+            </div>
+
+            <div class="pagination-section next-page">
+                {% if posts.has_next %}
+                    <a class="standard-link" href="?page={{ posts.next_page_number }}">Later Posts >></a>
+                {% endif %}
+            </div>
+
+        </div>
+
         <a class="standard-link" href="/blogs/">[Blogs Index]</a>
+
     </span>
 
 {% endblock %}
