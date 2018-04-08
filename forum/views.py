@@ -104,15 +104,15 @@ def view_thread(request, thread_id):
     thread = get_object_or_404(Thread, pk=thread_id)
     board = get_object_or_404(Board, pk=thread.board_id)
 
+    # URL used to ensure thread.views is only incremented once if a user browses a paginated thread.
     url = request.get_full_path()
-
     if url == "/thread/" + unicode(thread.id) + '/':
         thread.views += 1
         thread.save()
 
     all_posts = thread.posts.all()
 
-    posts_per_page = 1
+    posts_per_page = 20
     page_posts = Paginator(all_posts, posts_per_page)
 
     page = request.GET.get('page')

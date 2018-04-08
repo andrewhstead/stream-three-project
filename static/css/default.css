@@ -636,6 +636,15 @@ footer {
     border-radius: 50%;
 }
 
+.blog-author {
+    float: left;
+    height: 75px;
+    width: 75px;
+    z-index: 2;
+    margin-right: 5px;
+    border-radius: 50%;
+}
+
 .comment-body {
     border-bottom: 1px solid #10253f;
     padding: 5px;
@@ -823,4 +832,17 @@ a.button-link:hover {
 
 .right-align {
     text-align: right;
+}
+
+.blog-post {
+    display: flex;
+}
+
+.blog-title {
+    font-size: 1.5em;
+    border-bottom: 1px solid #10253f;
+}
+
+.blog-details {
+    font-size: 0.75em;
 }

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div id="page-header">
+        FAN BLOGS
+    </div>
+
+    {% for post in posts|slice:':5' %}
+
+        <div class="blog-post">
+
+            <div class="blog-section">
+                {% if post.author.profile_picture %}
+                    <img class="blog-author" src="/media/{{ post.author.profile_picture }}" />
+                {% elif post.author.favourite_team %}
+                    <img class="blog-author" src="/media/{{ post.author.favourite_team.large_logo }}" />
+                {% else %}
+                    <img class="blog-author" src="/media/images/users/default.png" />
+                {% endif %}
+            </div>
+
+            <div class="blog-section">
+
+                <div class="blog-title">
+                    <a class="standard-link" href="/blogs/{{ post.author.username|lower }}/{{ post.id }}">
+                        {{ post.title }}
+                    </a>
+                </div>
+
+                <div class="blog-details">
+                    written by {{ post.author.username }}<br />
+                    {{ post.created_date|date:'j F Y, H:i' }}
+                </div>
+
+                <div class="blog-content">
+                    {{ post.content|safe|truncatewords:15 }}
+                </div>
+
+                <div class="right-align blog-details">
+                    <a class="standard-link" href="/blogs/{{ post.author.username|lower }}">
+                        [Blog Home]
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+{% endblock %}

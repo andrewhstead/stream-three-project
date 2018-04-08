@@ -23,3 +23,8 @@ def news_team(request, team_name):
     items = Item.objects.all()
     team = get_object_or_404(Team, geographic_name=team_name.capitalize())
     return render(request, "news_team.html", {'team': team, 'items': items})
+
+
+def blog_index(request):
+    posts = Item.objects.filter(category_id=6).order_by('-created_date')
+    return render(request, "blogs.html", {'posts': posts})
