@@ -855,3 +855,40 @@ a.button-link:hover {
 .blog-author-title {
     font-size: 1.5em;
 }
+
+.company-logo {
+    height: 75px;
+    width: 75px;
+    display: block;
+    padding: 5px;
+    background-color: white;
+    margin: auto;
+}
+
+.partner-logos {
+    width: 100px;
+    margin: 10px;
+    background-color: white;
+	box-shadow: 0 0 2px 2px #4f81bd;
+    display: inline-block;
+}
+
+#partners {
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: #10253f;
+	box-shadow: 0 0 2px 2px #4f81bd;
+    width: 100%;
+    margin: 20px auto;
+}
+
+.white-title {
+    text-align: center;
+    padding: 5px;
+    color: white;
+    margin: auto;
+}
+
+#logo-wrapper {
+    position: relative;
+}

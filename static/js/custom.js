@@ -14,6 +14,30 @@ $('.alert-link').click(function(){
     $('.alert-message').fadeToggle(100);
 });
 
+// Functions to allow scrolling of hidden overflow on sponsor logos.
+var leftOffset = parseInt($('#logo-wrapper').css('left'));
+
+$('#right-scroll').click(function(){
+    if (leftOffset >= -500) {
+        $("#logo-wrapper").animate({
+            left: '-=50px'
+        });
+        leftOffset -= 50;
+        console.log(leftOffset);
+    }
+});
+
+$('#left-scroll').click(function(){
+    if (leftOffset < 0) {
+        $("#logo-wrapper").animate({
+            left: '+=50px'
+        });
+        leftOffset += 50;
+        console.log(leftOffset);
+    }
+});
+
+// Function to remove message alerts after five seconds.
 function messageRemove() {
     setTimeout(
         function() {
