@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load staticfiles %}
 
 {% block head_js %}
@@ -11,11 +11,7 @@
 {% block content %}
 
     <div id="page-header">
-        {% if comment %}
-            EDIT COMMENT
-        {% else %}
-            POST A COMMENT
-        {% endif %}
+        NEW BLOG POST
     </div>
 
     <form id="default-form" method="post" action="{{ form_action }}">

@@ -29,18 +29,15 @@
                 </div>
 
                 <div class="blog-details">
-                    written by {{ post.author.username }}<br />
+                    written by
+                    <a class="standard-link" href="/blogs/user/{{ post.author.username|lower }}">
+                        {{ post.author.username }}
+                    </a><br />
                     {{ post.created_date|date:'j F Y, H:i' }}
                 </div>
 
                 <div class="blog-content">
                     {{ post.content|safe|truncatewords:15 }}
-                </div>
-
-                <div class="right-align blog-details">
-                    <a class="standard-link" href="/blogs/user/{{ post.author.username|lower }}">
-                        [Blog Home]
-                    </a>
                 </div>
 
             </div>

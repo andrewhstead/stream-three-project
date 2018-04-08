@@ -124,6 +124,22 @@
             </p>
 
             <p>
+                {% if profile_user|in_group:'Blogger' %}
+                    {% if user == profile_user %}
+                        <strong>Permissions Granted:</strong> Blogger
+                    {% else %}
+                        This user is a blogger.
+                    {% endif %}
+                    <br />
+                <span class="arrow">&#9658;</span>
+                <a class="standard-link" href="/blogs/user/{{ profile_user.username|lower }}">
+                    View Blog
+                </a>
+                (Posts: {{ profile_user.news.count }})
+                {% endif %}
+            </p>
+
+            <p>
                 <strong>Activity:</strong><br />
                 Threads started: {{ profile_user.threads.count }}<br />
                 Forum posts: {{ profile_user.posts.count }}<br />

@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Item
+from .forms import NewBlogPostForm
 from teams.models import Team
 from users.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.core.urlresolvers import reverse
+from django.template.context_processors import csrf
 
 
 # Create your views here.
@@ -44,3 +49,30 @@ def blog_post(request, post_id):
     item.save()
 
     return render(request, "blog_post.html", {'item': item, 'posts': posts})
+
+
+@login_required(login_url='/login/')
+def new_blog_post(request):
+    user = request.user
+
+    if request.method == 'POST':
+        form = NewBlogPostForm(request.POST)
+        if form.is_valid():
+            new_post = form.save(False)
+            new_post.author = request.user
+            new_post.category_id = 6
+            new_post.save()
+            messages.success(request, "Your blog post has been added!")
+
+            return redirect(reverse('blog_post', args={new_post.pk}))
+
+    else:
+        form = NewBlogPostForm()
+
+    args = {
+        'form': form,
+        'form_action': reverse('new_blog_post'),
+        'button_text': 'Submit Post'
+    }
+    args.update(csrf(request))
+    return render(request, 'blog_post_form.html', args)

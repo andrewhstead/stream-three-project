@@ -30,19 +30,24 @@
         posts
     {% endif %}
 
+    {% if user == item.author %}
+        <div class="content-link">
+            <a href="/blogs/post/new/{{ thread.id }}">New Post</a>
+        </div>
+    {% endif %}
+
     <section class="blog-post">
 
-        <div class="blog-title">
+        <div class="news-headline blog-title">
             {{ item.title }}
         </div>
 
         <div class="blog-details">
-            written by {{ post.author.username }}<br />
             {{ item.created_date|date:'j F Y, H:i' }}, {{ item.views }} views
         </div>
 
         <div class="blog-content">
-            {{ item.content|safe|truncatewords:15 }}
+            {{ item.content|safe }}
         </div>
 
     </section>

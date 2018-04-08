@@ -29,6 +29,13 @@
     {% else %}
         posts
     {% endif %}
+    <a class="standard-link" href="/profile/{{ author.id }}">[User Profile]</a>
+
+    {% if user == author %}
+        <div class="content-link">
+            <a href="/blogs/post/new/{{ thread.id }}">New Post</a>
+        </div>
+    {% endif %}
 
     {% for post in posts|slice:':5' %}
 
@@ -41,7 +48,6 @@
             </div>
 
             <div class="blog-details">
-                written by {{ post.author.username }}<br />
                 {{ post.created_date|date:'j F Y, H:i' }}, {{ post.views }} views
             </div>
 
@@ -52,5 +58,9 @@
         </div>
 
     {% endfor %}
+
+    <span id="full-details">
+        <a class="standard-link" href="/blogs/">[Blogs Index]</a>
+    </span>
 
 {% endblock %}

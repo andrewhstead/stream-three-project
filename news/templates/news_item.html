@@ -9,7 +9,7 @@
         </div>
 
         <div class="item-details">
-            {{ item.created_date }}<br />Written by: {{ item.author }}
+            {{ item.created_date|date:'j F Y, g:i a' }}<br />Written by: {{ item.author }}
         </div>
 
         <div id="item-content">

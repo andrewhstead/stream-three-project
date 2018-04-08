@@ -1,4 +1,5 @@
 from django import template
+from django.contrib.auth.models import Group
 
 register = template.Library()
 
@@ -24,3 +25,13 @@ def renewal_period(context):
         return '12 months'
     else:
         return None
+
+
+@register.filter('in_group')
+def in_group(user, group_name):
+    group = Group.objects.get(name=group_name)
+
+    if group in user.groups.all():
+        return True
+    else:
+        return False
