@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div id="page-header">
+        FAN BLOG
+    </div>
+
+    {% if post.author.profile_picture %}
+        <img class="blog-author" src="/media/{{ post.author.profile_picture }}" />
+    {% elif post.author.favourite_team %}
+        <img class="blog-author" src="/media/{{ post.author.favourite_team.large_logo }}" />
+    {% else %}
+        <img class="blog-author" src="/media/images/users/default.png" />
+    {% endif %}
+
+    <div class="blog-author-title">
+        {{ post.author.username|truncatechars:15 }}
+    </div>
+
+    <a class="standard-link" href="/teams/{{ post.author.favourite_team.geographic_name|lower }}/">
+        {{ post.author.favourite_team }}
+    </a>
+    <br />
+
+    {{ posts.count }}
+    {% if posts.count == 1 %}
+        post
+    {% else %}
+        posts
+    {% endif %}
+
+    <div class="blog-post">
+
+        <div class="blog-title">
+            {{ post.title }}
+        </div>
+
+        <div class="blog-details">
+            written by {{ post.author.username }}<br />
+            {{ post.created_date|date:'j F Y, H:i' }}, {{ post.views }} views
+        </div>
+
+        <div class="blog-content">
+            {{ post.content|safe|truncatewords:15 }}
+        </div>
+
+    </div>
+
+    <span id="full-details">
+        <a class="standard-link" href="/blogs/user/{{ post.author.username|lower }}/">[Blog Home]</a>
+        <a class="standard-link" href="/blogs/">[Blogs Index]</a>
+    </span>
+
+{% endblock %}

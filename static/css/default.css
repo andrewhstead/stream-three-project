@@ -834,8 +834,13 @@ a.button-link:hover {
     text-align: right;
 }
 
-.blog-post {
+.blog-index {
     display: flex;
+}
+
+.blog-post {
+    clear: both;
+    padding-top: 20px;
 }
 
 .blog-title {
@@ -845,4 +850,8 @@ a.button-link:hover {
 
 .blog-details {
     font-size: 0.75em;
+}
+
+.blog-author-title {
+    font-size: 1.5em;
 }

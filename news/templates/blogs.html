@@ -8,7 +8,7 @@
 
     {% for post in posts|slice:':5' %}
 
-        <div class="blog-post">
+        <div class="blog-index">
 
             <div class="blog-section">
                 {% if post.author.profile_picture %}
@@ -23,7 +23,7 @@
             <div class="blog-section">
 
                 <div class="blog-title">
-                    <a class="standard-link" href="/blogs/{{ post.author.username|lower }}/{{ post.id }}">
+                    <a class="standard-link" href="/blogs/post/{{ post.id }}">
                         {{ post.title }}
                     </a>
                 </div>
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="right-align blog-details">
-                    <a class="standard-link" href="/blogs/{{ post.author.username|lower }}">
+                    <a class="standard-link" href="/blogs/user/{{ post.author.username|lower }}">
                         [Blog Home]
                     </a>
                 </div>

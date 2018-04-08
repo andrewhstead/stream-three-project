@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render, get_object_or_404
 from .models import Item
 from teams.models import Team
+from users.models import User
 
 
 # Create your views here.
@@ -28,3 +29,18 @@ def news_team(request, team_name):
 def blog_index(request):
     posts = Item.objects.filter(category_id=6).order_by('-created_date')
     return render(request, "blogs.html", {'posts': posts})
+
+
+def blog_home(request, author_name):
+    author = User.objects.get(username__iexact=author_name)
+    posts = Item.objects.filter(author=author).order_by('-created_date')
+    return render(request, "blog_index.html", {'posts': posts, 'author': author})
+
+
+def blog_post(request, post_id):
+    post = Item.objects.get(pk=post_id)
+    posts = Item.objects.filter(author=post.author).order_by('-created_date')
+    post.views += 1
+    post.save()
+
+    return render(request, "blog_post.html", {'post': post, 'posts': posts})
