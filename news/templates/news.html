@@ -8,8 +8,12 @@
 
     {% for item in items %}
 
-        <span class="arrow">&#9658;</span>
-        <a class="standard-link" href="/news/{{ item.id }}/">{{ item.title }}</a><br />
+        {% if item.category.name != 'Blog Posts' %}
+
+            <span class="arrow">&#9658;</span>
+            <a class="standard-link" href="/news/{{ item.id }}/">{{ item.title }}</a><br />
+
+        {% endif %}
 
     {%  endfor %}
 

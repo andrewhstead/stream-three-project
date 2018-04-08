@@ -38,9 +38,9 @@ def blog_home(request, author_name):
 
 
 def blog_post(request, post_id):
-    post = Item.objects.get(pk=post_id)
-    posts = Item.objects.filter(author=post.author).order_by('-created_date')
-    post.views += 1
-    post.save()
+    item = Item.objects.get(pk=post_id)
+    posts = Item.objects.filter(author=item.author).order_by('-created_date')
+    item.views += 1
+    item.save()
 
-    return render(request, "blog_post.html", {'post': post, 'posts': posts})
+    return render(request, "blog_post.html", {'item': item, 'posts': posts})

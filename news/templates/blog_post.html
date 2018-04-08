@@ -6,20 +6,20 @@
         FAN BLOG
     </div>
 
-    {% if post.author.profile_picture %}
-        <img class="blog-author" src="/media/{{ post.author.profile_picture }}" />
-    {% elif post.author.favourite_team %}
-        <img class="blog-author" src="/media/{{ post.author.favourite_team.large_logo }}" />
+    {% if item.author.profile_picture %}
+        <img class="blog-author" src="/media/{{ item.author.profile_picture }}" />
+    {% elif item.author.favourite_team %}
+        <img class="blog-author" src="/media/{{ item.author.favourite_team.large_logo }}" />
     {% else %}
         <img class="blog-author" src="/media/images/users/default.png" />
     {% endif %}
 
     <div class="blog-author-title">
-        {{ post.author.username|truncatechars:15 }}
+        {{ item.author.username|truncatechars:15 }}
     </div>
 
-    <a class="standard-link" href="/teams/{{ post.author.favourite_team.geographic_name|lower }}/">
-        {{ post.author.favourite_team }}
+    <a class="standard-link" href="/teams/{{ item.author.favourite_team.geographic_name|lower }}/">
+        {{ item.author.favourite_team }}
     </a>
     <br />
 
@@ -30,25 +30,49 @@
         posts
     {% endif %}
 
-    <div class="blog-post">
+    <section class="blog-post">
 
         <div class="blog-title">
-            {{ post.title }}
+            {{ item.title }}
         </div>
 
         <div class="blog-details">
             written by {{ post.author.username }}<br />
-            {{ post.created_date|date:'j F Y, H:i' }}, {{ post.views }} views
+            {{ item.created_date|date:'j F Y, H:i' }}, {{ item.views }} views
         </div>
 
         <div class="blog-content">
-            {{ post.content|safe|truncatewords:15 }}
+            {{ item.content|safe|truncatewords:15 }}
         </div>
 
+    </section>
+
+    {% if user.is_authenticated %}
+        <div class="content-link">
+            <a href="{% url 'new_comment' item.id %}">Add a Comment</a>
+        </div>
+    {% else %}
+        <div id="not-logged-in">
+            You must be <a class="standard-link" href="/login/">logged in</a> to comment.
+        </div>
+    {% endif %}
+
+    <div class="left-header">
+        Comments <span id="show-hide">(Hide/Show)</span>
     </div>
 
+    <section id="comments">
+
+        {% for comment in item.comments.all %}
+
+            {% include "comment_body.html" %}
+
+        {% endfor %}
+
+    </section>
+
     <span id="full-details">
-        <a class="standard-link" href="/blogs/user/{{ post.author.username|lower }}/">[Blog Home]</a>
+        <a class="standard-link" href="/blogs/user/{{ item.author.username|lower }}/">[Blog Home]</a>
         <a class="standard-link" href="/blogs/">[Blogs Index]</a>
     </span>
 

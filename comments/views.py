@@ -26,7 +26,10 @@ def new_comment(request, item_id):
             comment.save()
             messages.success(request, "Your comment has been added!")
 
-        return redirect(reverse('news', args={item.pk}))
+            if item.category.name == 'Blog Posts':
+                return redirect(reverse('blog_post', args={item.pk}))
+            else:
+                return redirect(reverse('news', args={item.pk}))
 
     else:
         form = CommentForm()
@@ -51,7 +54,10 @@ def edit_comment(request, item_id, comment_id):
             form.save()
             messages.success(request, "Your comment has been successfully edited.")
 
-        return redirect(reverse('news', args={item.pk}))
+            if item.category.name == 'Blog Posts':
+                return redirect(reverse('blog_post', args={item.pk}))
+            else:
+                return redirect(reverse('news', args={item.pk}))
 
     else:
         form = CommentForm(instance=comment)
