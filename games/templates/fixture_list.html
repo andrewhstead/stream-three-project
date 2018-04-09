@@ -37,7 +37,7 @@
                                 </td>
                             {% else %}
                                 <td class="stat-detail">
-                                    {{ fixture.game_time }}
+                                    {{ fixture.game_time|time:'G:i' }}
                                 </td>
                             {% endif %}
                             <td class="stat-team">

@@ -50,7 +50,8 @@ def league_standings(request):
 
 
 def games_team(request, team_name):
-    games = Game.objects.filter(game_date__year=current_season).order_by('game_date')
+    games = Game.objects.filter(game_date__year=current_season) \
+        .filter(game_type='Regular Season').order_by('game_date')
     team = get_object_or_404(Team, geographic_name=team_name.capitalize())
     team_schedule = []
 
@@ -73,8 +74,9 @@ def games_team(request, team_name):
 
 def results_list(request):
     results = Game.objects.filter(game_date__year=current_season)\
-        .filter(game_status__in=["Completed", "Suspended", "Postponed"])\
-        .order_by('-game_date').order_by('home_team')
+        .filter(game_type='Regular Season')\
+        .filter(game_status__in=["Completed", "Suspended", "Postponed"]) \
+        .order_by('home_team').order_by('-game_date')
     dates = []
 
     for result in results:
@@ -87,8 +89,9 @@ def results_list(request):
 
 def fixture_list(request):
     fixtures = Game.objects.filter(game_date__year=current_season)\
-        .filter(game_status__in=["Scheduled", "In Progress"])\
-        .order_by('game_date').order_by('home_team')
+        .filter(game_type='Regular Season')\
+        .filter(game_status__in=["Scheduled", "In Progress"]) \
+        .order_by('home_team').order_by('game_time').order_by('game_date')
     dates = []
 
     for fixture in fixtures:
@@ -100,6 +103,7 @@ def fixture_list(request):
 
 def full_results(request):
     results = Game.objects.filter(game_date__year=current_season)\
+        .filter(game_type='Regular Season')\
         .filter(game_status__in=["Completed", "Suspended", "Postponed"])\
         .order_by('game_date').order_by('home_team')
     date_list = []
@@ -125,8 +129,9 @@ def full_results(request):
 
 def full_fixtures(request):
     fixtures = Game.objects.filter(game_date__year=current_season)\
-        .filter(game_status__in=["Scheduled", "In Progress"])\
-        .order_by('game_date').order_by('home_team')
+        .filter(game_type='Regular Season')\
+        .filter(game_status__in=["Scheduled", "In Progress"]) \
+        .order_by('home_team').order_by('game_time').order_by('game_date')
     date_list = []
 
     for fixture in fixtures:
