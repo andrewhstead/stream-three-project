@@ -893,3 +893,7 @@ a.button-link:hover {
     position: relative;
     left: 3px;
 }
+
+#submit-form p {
+    text-align: center;
+}

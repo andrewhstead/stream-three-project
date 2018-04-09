@@ -6,6 +6,12 @@
         LEAGUE STANDINGS
     </div>
 
+    <form id="submit-form" role="form" onchange="submit();"
+              method="post" action="{% url 'standings' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+    </form>
+
     {% for conference in conferences %}
 
         <div class="sub-header">

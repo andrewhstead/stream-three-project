@@ -1,9 +1,19 @@
 from .models import Game
 from teams.models import Team
-from games.views import current_season
+from .forms import SeasonSelectForm
+from datetime import datetime
+from django.template.context_processors import csrf
 
 
 def league_standings(request):
+
+    if request.method == 'POST':
+        form = SeasonSelectForm(request.POST)
+        current_season = request.POST.get('season')
+    else:
+        form = SeasonSelectForm()
+        current_season = datetime.now().year
+
     teams = Team.objects.all().order_by('geographic_name')
     games = Game.objects.filter(game_date__year=current_season)\
         .filter(game_type="Regular Season").filter(game_status="Completed")
@@ -31,4 +41,12 @@ def league_standings(request):
             team.record["pct"] = team.record["won"] / team.record["played"]
         standings.append(team.record)
 
-    return {"standings": standings}
+    args = {
+        "standings": standings,
+        "form": form,
+        "season": current_season
+    }
+
+    args.update(csrf(request))
+
+    return args
