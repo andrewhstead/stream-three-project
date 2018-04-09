@@ -15,12 +15,15 @@
 
     {% for product in products %}
 
-        <p>
+        <div class="product-details">
+
+            <img class="product-border" src="/media/{{ product.picture }}"/><br />
             {{ product.team }}<br />
             {{ product.description }}<br />
             £{{ product.price }}<br />
             <a class="standard-link" href="/store/product/{{ product.id }}">[View Details]</a>
-        </p>
+
+        </div>
 
     {% endfor %}
 

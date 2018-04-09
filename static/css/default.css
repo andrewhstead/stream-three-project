@@ -894,6 +894,24 @@ a.button-link:hover {
     left: 3px;
 }
 
-#submit-form p {
+#inline-form p {
     text-align: center;
+}
+
+#product-details {
+    text-align: center;
+    margin: auto;
+}
+
+.product-details {
+    text-align: center;
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid #10253f;
+    box-shadow: 0 0 2px 2px #4f81bd;
+}
+
+.product-border {
+    border: 2px solid #4f81bd;
+    box-shadow: 0 0 2px 2px #10253f;
 }

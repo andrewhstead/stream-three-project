@@ -6,7 +6,7 @@
         BIBL PREMIUM
     </div>
 
-    {% if user_is_subscribed %}
+    {% if user_is_subscribed or user.is_superuser %}
         <p>
             Premium Content
         </p>

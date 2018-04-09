@@ -7,14 +7,16 @@
         PRODUCT DETAILS
     </div>
 
-    <p>
+    <div id="product-details">
+
+        <img class="product-border" src="/media/{{ product.picture }}"/><br />
         {{ product.team }}<br />
         {{ product.description }}<br />
         £{{ product.price }}<br />
 
-    </p>
+    </div>
 
-    <form id="default-form" method="post" action="{{ form_action }}">
+    <form id="inline-form" method="post" action="{{ form_action }}">
         {% csrf_token %}
         {{ form.as_p }}
         {% if user.is_authenticated %}
