@@ -80,6 +80,7 @@ urlpatterns = [
     url(r'^store/orders/$', store_views.order_list, name='order_list'),
     url(r'^store/order/(?P<order_id>\d+)/$', store_views.order_details, name='order_details'),
     url(r'^store/product/(?P<product_id>\d+)/$', store_views.add_product, name='add_product'),
+    url(r'^store/(?P<team_name>.*)/$', store_views.store_team, name='store_team'),
     url(r'^teams/$', team_views.team_index, name='team_index'),
     url(r'^teams/(?P<team_name>.*)/$', team_views.team_page, name='team_page'),
     url(r'^thread/new/(?P<board_id>\d+)/$', forum_views.new_thread, name='new_thread'),

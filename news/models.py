@@ -24,7 +24,7 @@ class Item(models.Model):
     content_image = models.ImageField(upload_to="images/news/content", blank=True, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category, related_name='item')
-    teams = models.ManyToManyField(Team, related_name="item", blank=True, null=True)
+    teams = models.ManyToManyField(Team, related_name="item", blank=True)
     views = models.IntegerField(default=0)
     published_date = models.DateTimeField(blank=True, null=True)
 

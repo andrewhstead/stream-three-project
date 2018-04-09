@@ -88,17 +88,16 @@
 
     <main>
 
-    {% if messages %}
-        {% for message in messages %}
-            <div id="messages" class="{{ message.tags }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
+        <div id="messages">
+            {% for message in messages %}
+                <div class="{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
 
         {% block content %}
         {% endblock %}
-
 
     </main>
 

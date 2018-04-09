@@ -8,23 +8,22 @@
     </div>
 
     {% if user == cart.user %}
-        <span id="full-details">
-            <a class="standard-link" href="/store/cart/">[View Cart]</a>
-        </span>
+        <div id="full-details">
+            <a class="standard-link" href="/store/cart/">[View Cart]</a><br />
+            <strong>{{ cart.items.count }}</strong> Items
+        </div>
     {% endif %}
 
-    {% for product in products %}
+    <div id="team-list">
+        {% for team in teams %}
 
-        <div class="product-details">
+            <div class="store-team">
+                <a href="/store/{{ team.geographic_name|lower }}/">
+                    <img src="/media/{{ team.large_logo }}/" alt="{{ team.geographic_name }} {{ team.nickname }}" />
+                </a>
+            </div>
 
-            <img class="product-border" src="/media/{{ product.picture }}"/><br />
-            {{ product.team }}<br />
-            {{ product.description }}<br />
-            £{{ product.price }}<br />
-            <a class="standard-link" href="/store/product/{{ product.id }}">[View Details]</a>
-
-        </div>
-
-    {% endfor %}
+        {% endfor %}
+    </div>
 
 {% endblock %}

@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Cart, CartItem
 from users.models import User
+from teams.models import Team
 from .forms import AddToCartForm, ChangeQuantityForm, SubmitOrderForm, SubscriptionForm
 from users.forms import RegistrationForm
 from django.contrib.auth.decorators import login_required
@@ -27,6 +28,7 @@ stripe.api_key = settings.STRIPE_SECRET
 def store_front(request):
     user = request.user
     products = Product.objects.all()
+    teams = Team.objects.all().order_by('geographic_name')
 
     if user.is_authenticated:
         try:
@@ -36,7 +38,13 @@ def store_front(request):
         except Cart.DoesNotExist:
             pass
 
-    return render(request, 'store.html', {'products': products})
+    return render(request, 'store.html', {'products': products, 'teams': teams})
+
+
+def store_team(request, team_name):
+    team = get_object_or_404(Team, geographic_name=team_name.capitalize())
+
+    return render(request, 'store_team.html', {'team': team})
 
 
 def add_product(request, product_id):

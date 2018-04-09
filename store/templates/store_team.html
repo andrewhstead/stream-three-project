@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div id="page-header">
+        TEAM STORE
+    </div>
+
+    <div class="{{ team.geographic_name|lower }}-text team-header">
+        {{ team.geographic_name }} {{ team.nickname }}
+    </div>
+
+    {% for product in team.products.all %}
+
+        <div class="product-details">
+
+            <img class="product-border" src="/media/{{ product.picture }}"/><br />
+            {{ product.team }}<br />
+            {{ product.description }}<br />
+            £{{ product.price }}<br />
+            <a class="standard-link" href="/store/product/{{ product.id }}">[View Details]</a>
+
+        </div>
+
+    {% endfor %}
+
+    <span id="full-details">
+        <a class="standard-link" href="/store/">[Store Home]</a>
+    </span>
+
+{% endblock %}

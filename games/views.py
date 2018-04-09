@@ -44,7 +44,7 @@ def last_and_next(request):
 
 def league_standings(request):
     conferences = Conference.objects.all()
-    teams = Team.objects.all()
+    teams = Team.objects.all().order_by('geographic_name')
 
     return render(request, "standings.html", {"conferences": conferences, 'teams': teams})
 
