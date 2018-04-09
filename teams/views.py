@@ -5,8 +5,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import Team, Conference
 from news.models import Item
 from games.models import Game
-from games.views import current_season
 from forum.views import Board
+from datetime import datetime
 
 
 # Create your views here.
@@ -16,6 +16,9 @@ def team_index(request):
 
 
 def team_page(request, team_name):
+
+    current_season = datetime.now().year
+
     items = Item.objects.all()
     team = get_object_or_404(Team, geographic_name=team_name.capitalize())
 

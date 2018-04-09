@@ -909,11 +909,13 @@ a.button-link:hover {
     padding: 10px;
     border: 2px solid #10253f;
     box-shadow: 0 0 2px 2px #4f81bd;
+    background-color: #eeeeff;
 }
 
 .product-border {
     border: 2px solid #4f81bd;
     box-shadow: 0 0 2px 2px #10253f;
+    background-color: white;
 }
 
 #team-list {

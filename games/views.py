@@ -7,39 +7,36 @@ from teams.models import Team, Conference
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import datetime
 
-current_season = datetime.now().year
-
 
 # Create your views here.
 def last_and_next(request):
 
-    game_results = Game.objects.filter(game_date__year=current_season)\
-        .filter(game_status__in=["Completed", "Suspended", "Postponed"]).order_by('game_date')
-    result_dates = []
+    current_season = datetime.now().year
 
-    for result in game_results:
-        if result.game_date not in result_dates:
-            result_dates.append(result.game_date)
+    results = Game.objects.filter(game_date__year=current_season)\
+        .filter(game_status__in=["Completed", "Suspended", "Postponed"])
+    fixtures = Game.objects.filter(game_date__year=current_season)\
+        .filter(game_status__in=["Scheduled", "In Progress"])
 
-    game_fixtures = Game.objects.filter(game_status__in=["Scheduled", "In Progress"]) \
-        .order_by('home_team').order_by('game_time').order_by('game_date')
-    fixture_dates = []
-
-    for fixture in game_fixtures:
-        if fixture.game_date not in fixture_dates:
-            fixture_dates.append(fixture.game_date)
-
-    if game_results:
-        latest_date = result_dates[-1]
-        latest_results = game_results.filter(game_date=latest_date).order_by('home_team')
-
-        next_date = fixture_dates[0]
-        next_fixtures = game_fixtures.filter(game_date=next_date).order_by('home_team')
+    if results and fixtures:
+        latest_date = results.order_by('-game_date')[0].game_date
+        latest_results = Game.objects.filter(game_date=latest_date).order_by('home_team')
+        next_date = fixtures.order_by('game_date')[0].game_date
+        next_fixtures = Game.objects.filter(game_date=next_date).order_by('home_team')
 
         return render(request, "games_latest.html", {"results": latest_results, "fixtures": next_fixtures,
                                                      "latest_date": latest_date, "next_date": next_date})
-    else:
-        return render(request, "games_latest.html")
+    elif results:
+        latest_date = results.order_by('-game_date')[0].game_date
+        latest_results = Game.objects.filter(game_date=latest_date).order_by('home_team')
+
+        return render(request, "games_latest.html", {"results": latest_results, "latest_date": latest_date})
+
+    elif fixtures:
+        next_date = fixtures.order_by('game_date')[0].game_date
+        next_fixtures = Game.objects.filter(game_date=next_date).order_by('home_team')
+
+        return render(request, "games_latest.html", {"fixtures": next_fixtures, "next_date": next_date})
 
 
 def league_standings(request):
@@ -50,6 +47,9 @@ def league_standings(request):
 
 
 def games_team(request, team_name):
+
+    current_season = datetime.now().year
+
     games = Game.objects.filter(game_date__year=current_season) \
         .filter(game_type='Regular Season').order_by('game_date')
     team = get_object_or_404(Team, geographic_name=team_name.capitalize())
@@ -73,6 +73,9 @@ def games_team(request, team_name):
 
 
 def results_list(request):
+
+    current_season = datetime.now().year
+
     results = Game.objects.filter(game_date__year=current_season)\
         .filter(game_type='Regular Season')\
         .filter(game_status__in=["Completed", "Suspended", "Postponed"]) \
@@ -88,6 +91,9 @@ def results_list(request):
 
 
 def fixture_list(request):
+
+    current_season = datetime.now().year
+
     fixtures = Game.objects.filter(game_date__year=current_season)\
         .filter(game_type='Regular Season')\
         .filter(game_status__in=["Scheduled", "In Progress"]) \
@@ -102,6 +108,9 @@ def fixture_list(request):
 
 
 def full_results(request):
+
+    current_season = datetime.now().year
+
     results = Game.objects.filter(game_date__year=current_season)\
         .filter(game_type='Regular Season')\
         .filter(game_status__in=["Completed", "Suspended", "Postponed"])\
@@ -128,6 +137,9 @@ def full_results(request):
 
 
 def full_fixtures(request):
+
+    current_season = datetime.now().year
+
     fixtures = Game.objects.filter(game_date__year=current_season)\
         .filter(game_type='Regular Season')\
         .filter(game_status__in=["Scheduled", "In Progress"]) \
