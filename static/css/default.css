@@ -16,6 +16,10 @@ main {
     display: none;
 }
 
+.active {
+    display: block;
+}
+
 #teams-header {
     display: flex;
     padding: 5px;
@@ -933,4 +937,55 @@ a.button-link:hover {
     height: 100px;
     margin: auto;
     display: block;
+}
+
+.banner-story {
+    margin: 20px 20px 5px 20px;
+    border: 2px solid #10253f;
+}
+
+.banner-headline {
+    background-color: #4f81bd;
+    color: #10253f;
+    text-align: center;
+    padding: 5px;
+    border-top: 2px solid #10253f;
+}
+
+.cover-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+#news-navigation {
+    text-align: center;
+    margin: auto;
+    height: 20px;
+    width: fit-content;
+}
+
+.news-blob {
+    float: left;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+.default-blob {
+    background-color: #ccddee;
+}
+
+.active-blob {
+    background-color: #10253f;
+}
+
+.banner-link {
+    color: #10253f;
+    text-decoration: none;
+}
+
+.banner-link:hover {
+    text-decoration: underline;
 }

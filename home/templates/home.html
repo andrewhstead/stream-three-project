@@ -2,6 +2,31 @@
 
 {% block below %}
 
+    <section id="banner-news">
+
+        {% for article in news %}
+            <div class="banner-story">
+                <a class="banner-link" href="/news/{{ article.id }}">
+                    {% if article.cover_image %}
+                        <img class="cover-image" src="/media/{{ article.cover_image }}" />
+                    {% else %}
+                        <img class="cover-image" src="/media/images/news/covers/default.jpg" />
+                    {% endif %}
+                </a>
+                <div class="banner-headline">
+                    <a class="banner-link" href="/news/{{ article.id }}">{{ article.title }}</a>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div id="news-navigation">
+            {% for article in news %}
+                <div class="news-blob"></div>
+            {% endfor %}
+        </div>
+
+    </section>
+
     <section id="partners">
 
         <div class="white-title">
@@ -39,5 +64,7 @@
         </div>
 
     </section>
+
+    <script src="/static/js/news_fader.js"></script>
 
 {% endblock %}
