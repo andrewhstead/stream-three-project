@@ -867,7 +867,7 @@ a.button-link:hover {
 
 .partner-logos {
     width: 100px;
-    margin: 10px;
+    margin: 5px 10px 10px 10px;
     background-color: white;
 	box-shadow: 0 0 2px 2px #4f81bd;
     display: inline-block;
@@ -891,4 +891,5 @@ a.button-link:hover {
 
 #logo-wrapper {
     position: relative;
+    left: 3px;
 }

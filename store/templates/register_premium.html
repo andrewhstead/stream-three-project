@@ -14,16 +14,17 @@
 {% block content %}
 
     <div id="page-header">
-        UPGRADE YOUR ACCOUNT
+        REGISTER PREMIUM ACCOUNT
     </div>
 
-        <form role="form" method="post" id="checkout-form" action="{% url 'upgrade' %}">
+        <form role="form" method="post" id="checkout-form" action="{% url 'register_premium' %}">
             <div id="credit-card-errors" style="display:none">
                 <div class="alert-message block-message error" id="stripe-error-message"></div>
             </div>
             {% csrf_token %}
-            {{ form.as_p }}
-            <input id="submit_order" name="commit" type="submit" value="Upgrade">
+            {{ registration_form.as_p }}
+            {{ subscription_form.as_p }}
+            <input id="submit_order" name="commit" type="submit" value="Register">
         </form>
 
 {% endblock %}

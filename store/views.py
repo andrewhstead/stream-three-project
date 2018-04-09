@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Product, Cart, CartItem
 from users.models import User
 from .forms import AddToCartForm, ChangeQuantityForm, SubmitOrderForm, SubscriptionForm
+from users.forms import RegistrationForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
@@ -12,7 +13,7 @@ from django.template.context_processors import csrf
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.http import HttpResponse
-from django.contrib import messages
+from django.contrib import messages, auth
 from django.utils import timezone
 from datetime import datetime
 import stripe
@@ -336,3 +337,70 @@ def subscription_renewal(request):
     except stripe.InvalidRequestError, e:
         return HttpResponse(status=404)
     return HttpResponse(status=200)
+
+
+def register_premium(request):
+
+    if request.method == 'POST':
+        registration_form = RegistrationForm(request.POST)
+        subscription_form = SubscriptionForm(request.POST)
+        subscription_form.order_fields(['billing_cycle', 'card_number', 'cvv',
+                                        'expiry_month', 'expiry_year', 'stripe_id'])
+
+        billing_cycle = request.POST.get('billing_cycle')
+
+        if billing_cycle == 'BIBL_MONTHLY':
+            months = 1
+        elif billing_cycle == 'BIBL_THREE':
+            months = 3
+        elif billing_cycle == 'BIBL_SIX':
+            months = 6
+        elif billing_cycle == 'BIBL_YEARLY':
+            months = 12
+
+        if registration_form.is_valid() and subscription_form.is_valid():
+            registration_form.save()
+            user = auth.authenticate(username=request.POST.get('username'),
+                                     password=request.POST.get('password1'))
+
+            if user:
+                try:
+                    customer = stripe.Customer.create(
+                        plan=billing_cycle,
+                        description=user.username,
+                        card=subscription_form.cleaned_data['stripe_id'],
+                    )
+
+                    if customer:
+                        user.stripe_id = customer.id
+                        user.subscription_ends = arrow.now().replace(months=+months).datetime
+                        user.subscription_plan = billing_cycle
+                        user.subscription_renews = True
+                        user.save()
+                        messages.success(request, 'Your premium registration was successful!')
+                        auth.login(request, user)
+                        return redirect(reverse('user_profile'))
+
+                    else:
+                        messages.error(request, 'Sorry, we were unable to take your payment. '
+                                                'Standard account created.')
+
+                except stripe.error.CardError, e:
+                    messages.error(request, 'Sorry, your card was declined. '
+                                            'Standard account created.')
+
+            else:
+                messages.error(request, 'Sorry, we were unable to register your account. '
+                                        'Please try again.')
+
+    else:
+        registration_form = RegistrationForm()
+        subscription_form = SubscriptionForm()
+        subscription_form.order_fields(['billing_cycle', 'card_number', 'cvv',
+                                        'expiry_month', 'expiry_year', 'stripe_id'])
+
+    args = {'registration_form': registration_form, 'subscription_form': subscription_form,
+            'publishable': settings.STRIPE_PUBLISHABLE}
+    args.update(csrf(request))
+
+    return render(request, 'register_premium.html', args)

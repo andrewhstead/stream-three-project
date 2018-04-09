@@ -23,7 +23,6 @@ $('#right-scroll').click(function(){
             left: '-=50px'
         });
         leftOffset -= 50;
-        console.log(leftOffset);
     }
 });
 
@@ -33,7 +32,6 @@ $('#left-scroll').click(function(){
             left: '+=50px'
         });
         leftOffset += 50;
-        console.log(leftOffset);
     }
 });
 
