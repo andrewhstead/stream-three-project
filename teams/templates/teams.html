@@ -22,6 +22,14 @@
                     <li>
                         <strong>Home Stadium:</strong> {{ team.ballpark }}
                     </li>
+                    <li>
+                        <strong>Championships:</strong> {{ team.champion.count }}
+                            {% if team.champion.count > 0 %}
+                                 - {% for season in team.champion.all %}
+                                    {{ season }}
+                                {% endfor %}
+                            {% endif %}
+                    </li>
                 </ul>
                 <div class="profile-links">
                     <a class="standard-link" href="/teams/{{ team.geographic_name|lower }}">Team Home</a> |

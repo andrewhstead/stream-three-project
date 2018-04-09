@@ -21,8 +21,8 @@ def last_and_next(request):
         if result.game_date not in result_dates:
             result_dates.append(result.game_date)
 
-    game_fixtures = Game.objects.filter(game_status__in=["Scheduled", "In Progress"])\
-        .order_by('game_date').order_by('home_team')
+    game_fixtures = Game.objects.filter(game_status__in=["Scheduled", "In Progress"]) \
+        .order_by('home_team').order_by('game_time').order_by('game_date')
     fixture_dates = []
 
     for fixture in game_fixtures:
