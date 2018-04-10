@@ -19,4 +19,38 @@
 
     {%  endfor %}
 
+    <div class="pagination-menu">
+
+        {% if items.has_previous %}
+            <div class="pagination-button">
+                <a href="?page={{ items.previous_page_number }}">
+                    <
+                </a>
+            </div>
+        {% endif %}
+
+        {% for page in items.paginator.page_range %}
+            {% if page == current_page %}
+                <div class="pagination-current">
+                    {{ page }}
+                </div>
+            {% else %}
+                <div class="pagination-button">
+                    <a href="?page={{ page }}">
+                        {{ page }}
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        {% if items.has_next %}
+            <div class="pagination-button">
+                <a href="?page={{ items.next_page_number }}">
+                    >
+                </a>
+            </div>
+        {% endif %}
+
+    </div>
+
 {% endblock %}

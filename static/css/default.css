@@ -1035,3 +1035,66 @@ a.button-link:hover {
 #news {
     margin: auto 20px;
 }
+
+.pagination-menu {
+    margin: 10px auto;
+    text-align: center;
+    display: flex;
+}
+
+.pagination-menu div:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.pagination-menu div:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.pagination-button {
+    padding: 5px;
+    margin: 0;
+    background-color: #10253f;
+    display: inline;
+    flex: 1;
+    border-right: 1px solid #4f81bd;
+}
+
+.pagination-button:hover {
+    background-color: #32476f;
+}
+
+.pagination-button:last-of-type {
+    border-right: none;
+}
+
+.pagination-button a {
+    color: white;
+    text-decoration: none;
+}
+
+.pagination-button a:hover {
+    text-decoration: underline;
+}
+
+.pagination-current {
+    padding: 5px;
+    margin: 0;
+    background-color: #4f81bd;
+    display: inline;
+    flex: 1;
+    border-right: 1px solid #4f81bd;
+    color: white;
+}
+
+.pagination-current:last-of-type {
+    border-right: none;
+}
+
+.pagination-current a {
+    color: white;
+    text-decoration: none;
+}
+
+.pagination-current a:hover {
+    text-decoration: underline;
+}

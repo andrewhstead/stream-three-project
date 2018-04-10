@@ -64,7 +64,7 @@
                         Premium
                         {% if user.subscription_renews %}
                             <span class="arrow">&#9658;</span>
-                            <a class="standard-link alert-link">Cancel</a><br />
+                            <a class="standard-link alert-link" onclick="confirmationAlert()">Cancel</a><br />
                             Renews every: {% renewal_period %} <br />
                             Next renewal: {{ profile_user.subscription_ends|date:'d/m/Y' }}
                         {% else %}
@@ -98,14 +98,14 @@
                 </p>
             {% endif %}
 
-            <div class="popup-wrapper">
-                <div class="alert-message">
+            <div id="wrapper" class="popup-wrapper hidden">
+                <div id="alert" class="alert-message hidden">
                     <p>Confirmation:</p>
                     <p>Are you sure you want to cancel?</p>
                         <div class="content-link-light">
                             <a href="{% url 'cancel_subscription' %}">OK</a>
                         </div>
-                        <div class="content-link-light alert-link">
+                        <div class="content-link-light alert-link" onclick="confirmationAlert()">
                             Cancel
                         </div>
                 </div>

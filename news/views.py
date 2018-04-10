@@ -15,8 +15,27 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def news_index(request):
-    items = Item.objects.all().order_by('-created_date')
-    return render(request, "news.html", {"items": items})
+    all_items = Item.objects.all().order_by('-created_date')
+
+    page_items = Paginator(all_items, 20)
+
+    page = request.GET.get('page')
+
+    if page:
+        current_page = int(page)
+    else:
+        current_page = 1
+
+    page_count = page_items.num_pages
+
+    try:
+        items = page_items.page(page)
+    except EmptyPage:
+        items = page_items.page(page_count)
+    except PageNotAnInteger:
+        items = page_items.page(1)
+
+    return render(request, "news.html", {"items": items, "current_page": current_page, "page_count": page_count})
 
 
 def news_item(request, news_id):
