@@ -5,6 +5,7 @@ from django.db import models
 from django.utils import timezone
 from teams.models import Team
 from users.models import User
+from games.models import Game
 from tinymce.models import HTMLField
 
 

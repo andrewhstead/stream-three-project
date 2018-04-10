@@ -9,10 +9,10 @@ $('#show-hide').click(function(){
 });
 
 // Pop-up function to ask for confirmation or give information.
-$('.alert-link').click(function(){
-    $('.popup-wrapper').fadeToggle(100);
-    $('.alert-message').fadeToggle(100);
-});
+// $('.alert-link').click(function(){
+//     $('.popup-wrapper').fadeToggle(100);
+//     $('.alert-message').fadeToggle(100);
+// });
 
 // Functions to allow scrolling of hidden overflow on sponsor logos.
 var leftOffset = parseInt($('#logo-wrapper').css('left'));
@@ -44,3 +44,8 @@ function messageRemove() {
 }
 
 messageRemove();
+
+function confirmationAlert(item) {
+    document.getElementById('wrapper-' + item).classList.toggle('activate');
+    document.getElementById('alert-' + item).classList.toggle('activate');
+}

@@ -18,10 +18,12 @@
 
         <div class="item-details">
             Category: {{ item.category }} | {{ item.views }} views<br />
-            Teams:
-            {% for team in item.teams.all %}
-                <a class="{{ team.geographic_name|lower }}-tag team-tag" href="/news/{{ team.geographic_name|lower }}">{{ team.geographic_name }} {{ team.nickname }}</a>
-            {% endfor %}
+            {% if item.teams.count > 0 %}
+                Teams:
+                {% for team in item.teams.all %}
+                    <a class="{{ team.geographic_name|lower }}-tag team-tag" href="/news/{{ team.geographic_name|lower }}">{{ team.geographic_name }} {{ team.nickname }}</a>
+                {% endfor %}
+            {% endif %}
         </div>
 
     </section>

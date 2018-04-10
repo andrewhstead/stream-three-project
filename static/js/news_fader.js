@@ -6,7 +6,7 @@ var interval = setInterval(newsFader,10000);
 
 function restartTimer(){
 		clearInterval(interval);
-		setInterval(newsFader,10000);
+		interval = setInterval(newsFader,10000);
 }
 
 /* Function to run the image slider. */

@@ -768,7 +768,6 @@ footer {
 	position: fixed;
 	top: 0;
 	left: 0;
-    display: none;
 }
 
 .alert-message {
@@ -780,7 +779,6 @@ footer {
 	margin: auto;
     width: 200px;
     height: fit-content;
-    display: none;
     background-color: #4f81bd;
     border: 1px solid #10253f;
     color: white;
