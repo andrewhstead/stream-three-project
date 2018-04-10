@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render, get_object_or_404
 from .models import Team, Conference
 from news.models import Item
-from games.models import Game
+from games.models import Game, get_standings
 from forum.views import Board
 from datetime import datetime
 
@@ -26,6 +26,8 @@ def team_page(request, team_name):
     team_results = []
     team_fixtures = []
 
+    standings = get_standings(current_season)
+
     board = get_object_or_404(Board, team=team)
 
     for game in games:
@@ -40,7 +42,9 @@ def team_page(request, team_name):
         next_game = team_fixtures[0]
 
         return render(request, "team_profile.html", {'team': team, 'items': items, 'board': board,
-                                                     'next_game': next_game, 'last_game': last_game})
+                                                     'next_game': next_game, 'last_game': last_game,
+                                                     'standings': standings})
 
     else:
-        return render(request, "team_profile.html", {'team': team, 'items': items, 'board': board})
+        return render(request, "team_profile.html", {'team': team, 'items': items,
+                                                     'board': board, 'standings': standings})

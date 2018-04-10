@@ -75,7 +75,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'teams.context_processors.team_list',
-                'games.context_processors.league_standings',
                 'store.context_processors.user_is_subscribed',
             ],
         },

@@ -8,13 +8,13 @@
             <div class="banner-story">
                 <a class="banner-link" href="/news/{{ article.id }}">
                     {% if article.cover_image %}
-                        <img class="cover-image" src="/media/{{ article.cover_image }}" />
+                        <img class="cover-image fade-in" src="/media/{{ article.cover_image }}" />
                     {% else %}
-                        <img class="cover-image" src="/media/images/news/covers/default.jpg" />
+                        <img class="cover-image fade-in" src="/media/images/news/covers/default.jpg" />
                     {% endif %}
                 </a>
                 <div class="banner-headline">
-                    <a class="banner-link" href="/news/{{ article.id }}">{{ article.title }}</a>
+                    <a class="banner-link fade-in" href="/news/{{ article.id }}">{{ article.title }}</a>
                 </div>
             </div>
         {% endfor %}
@@ -24,6 +24,61 @@
                 <div class="news-blob"></div>
             {% endfor %}
         </div>
+
+    </section>
+
+    <section id="standings">
+
+        {% for conference in conferences %}
+
+            <div class="conference-standings">
+
+                <div class="sub-header">
+                    {{ conference.short_name }}
+                </div>
+
+                <table class="stat-table alternating-rows">
+                    <tr class="header-row">
+                        <th class="stat-intro">Team</th>
+                        <th class="stat-column">W</th>
+                        <th class="stat-column">L</th>
+                        <th class="stat-column">Pct</th>
+                    </tr>
+
+                    {% for team in standings|dictsort:"name"|dictsortreversed:"pct" %}
+
+                        {% if team.conference == conference %}
+
+                            <tr>
+                                <td class="stat-header">
+                                    <a class="table-link" href="/teams/{{ team.name|lower }}">
+                                        {{ team.abbreviation }}
+                                    </a>
+                                </td>
+                                <td class="stat-detail">
+                                    {{ team.won|floatformat:0 }}
+                                </td>
+                                <td class="stat-detail">
+                                    {{ team.lost|floatformat:0 }}
+                                </td>
+                                <td class="stat-detail-faint">
+                                    {% if team.pct < 1 %}
+                                        {{ team.pct|floatformat:3|slice:"1:" }}
+                                    {% else %}
+                                        {{ team.pct|floatformat:3 }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                </table>
+
+            </div>
+
+        {% endfor %}
 
     </section>
 

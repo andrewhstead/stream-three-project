@@ -989,3 +989,28 @@ a.button-link:hover {
 .banner-link:hover {
     text-decoration: underline;
 }
+
+.fade-in {
+	animation-name: fade-transition;
+	animation-duration: 1s;
+}
+
+@keyframes fade-transition {
+	from {
+		opacity: 0.5;
+        filter: brightness(50%);
+	}
+	to {
+		opacity: 1;
+        filter: brightness(100%);
+	}
+}
+
+#standings {
+    display: flex;
+}
+
+.conference-standings {
+    flex: 1;
+    margin: 10px;
+}

@@ -2,10 +2,12 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404
-from .models import Game, Season
+from .models import Game, Season, get_standings
+from .forms import SeasonSelectForm
 from teams.models import Team, Conference
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import datetime
+from django.template.context_processors import csrf
 
 
 # Create your views here.
@@ -40,10 +42,30 @@ def last_and_next(request):
 
 
 def league_standings(request):
+
     conferences = Conference.objects.all()
     teams = Team.objects.all().order_by('geographic_name')
 
-    return render(request, "standings.html", {"conferences": conferences, 'teams': teams})
+    if request.method == 'POST':
+        form = SeasonSelectForm(request.POST)
+        current_season = request.POST.get('season')
+
+    else:
+        form = SeasonSelectForm()
+        current_season = datetime.now().year
+
+    standings = get_standings(current_season)
+
+    args = {
+        "standings": standings,
+        "form": form,
+        "conferences": conferences,
+        "teams": teams
+    }
+
+    args.update(csrf(request))
+
+    return render(request, "standings.html", args)
 
 
 def games_team(request, team_name):
