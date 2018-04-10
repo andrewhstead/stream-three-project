@@ -35,18 +35,18 @@
     {% if user == comment.user or user.is_staff %}
         <div class="comment-detail comment-controls">
             <a class="table-link" href="{% url 'edit_comment' item.id comment.id %}">[Edit]</a>
-            <span class="alert-link">[Delete]</span>
+            <span class="alert-link" onclick="confirmationAlert({{ comment.id }})">[Delete]</span>
         </div>
     {% endif %}
 
-    <div class="popup-wrapper">
-        <div class="alert-message">
+    <div id="wrapper-{{ comment.id }}" class="popup-wrapper hidden">
+        <div id="alert-{{ comment.id }}" class="alert-message hidden">
             <p>Confirmation:</p>
             <p>Are you sure you want to delete?</p>
             <div class="content-link-light">
                 <a href="{% url 'delete_comment' item.id comment.id %}">OK</a>
             </div>
-            <div class="content-link-light alert-link">
+            <div class="content-link-light alert-link" onclick="confirmationAlert({{ comment.id }})">
                 Cancel
             </div>
         </div>
