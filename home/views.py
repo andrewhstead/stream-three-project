@@ -15,8 +15,9 @@ def home_page(request):
 
     teams = Team.objects.all()
     conferences = Conference.objects.all()
-    news = Item.objects.exclude(category_id=6).order_by('-created_date')[:5]
+    news_headlines = Item.objects.exclude(category_id=6).order_by('-created_date')[:5]
+    older_news = Item.objects.exclude(category_id=6).order_by('-created_date')[5:10]
     standings = get_standings(current_season)
 
-    return render(request, "home.html", {'news': news, 'standings': standings,
-                                         'teams': teams, 'conferences': conferences})
+    return render(request, "home.html", {'news_headlines': news_headlines, 'older_news': older_news,
+                                         'teams': teams, 'conferences': conferences, 'standings': standings})
