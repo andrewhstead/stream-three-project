@@ -17,7 +17,7 @@ class Category(models.Model):
 
 
 class Item(models.Model):
-    author = models.ForeignKey(User, related_name='news')
+    author = models.ForeignKey(User, related_name='news', default='Admin')
     title = models.CharField(max_length=200)
     cover_image = models.ImageField(upload_to="images/news/covers", blank=True, null=True)
     content = HTMLField()

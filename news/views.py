@@ -15,7 +15,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def news_index(request):
-    items = Item.objects.all()
+    items = Item.objects.all().order_by('-created_date')
     return render(request, "news.html", {"items": items})
 
 
@@ -27,7 +27,7 @@ def news_item(request, news_id):
 
 
 def news_team(request, team_name):
-    items = Item.objects.all()
+    items = Item.objects.all().order_by('-created_date')
     team = get_object_or_404(Team, geographic_name=team_name.capitalize())
     return render(request, "news_team.html", {'team': team, 'items': items})
 

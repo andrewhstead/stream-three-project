@@ -19,8 +19,8 @@ def team_page(request, team_name):
 
     current_season = datetime.now().year
 
-    items = Item.objects.all()
     team = get_object_or_404(Team, geographic_name=team_name.capitalize())
+    items = Item.objects.filter(teams=team.id).order_by('-created_date')
 
     games = Game.objects.filter(game_date__year=current_season).order_by('game_date')
     team_results = []

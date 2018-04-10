@@ -21,24 +21,13 @@
 
         <div id="news-navigation">
             {% for article in news_headlines %}
-                <div class="news-blob"></div>
+                <div class="news-blob" onclick="newsFader({{ forloop.counter }})"></div>
             {% endfor %}
         </div>
 
-    </section>
-
-    <section id="news">
-
-        <div class="sub-header">
-            LEAGUE NEWS
-        </div>
-
-        {% for article in older_news %}
-
-            <span class="arrow">&#9658;</span>
-            <a class="standard-link" href="/news/{{ article.id }}/">{{ article.title }}</a><br />
-
-        {% endfor %}
+        <span id="full-details">
+            <a class="standard-link" href="/news/">[All News]</a>
+        </span>
 
     </section>
 

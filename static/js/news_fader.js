@@ -1,8 +1,21 @@
-/* Variable set to 0 to ensure the slideshow starts with the first photo in the array. Initial value set outside the function so as not to interfere with incremented value when the function is running. */
+/* Variable set to 0 to ensure the slideshow starts with the first item in the array.
+Initial value set outside the function so as not to interfere with
+incremented value when the function is running. */
 var leadStory = 0;
+var interval = setInterval(newsFader,10000);
+
+function restartTimer(){
+		clearInterval(interval);
+		setInterval(newsFader,10000);
+}
 
 /* Function to run the image slider. */
-function newsFader() {
+function newsFader(item) {
+
+	if (item !== undefined) {
+		leadStory = item - 1;
+		restartTimer();
+	}
 
 	/* Create an array containing all the slider image elements. */
 	var newsFader = document.getElementsByClassName("banner-story");
@@ -33,4 +46,3 @@ function newsFader() {
 
 /* Run the function on page load and then again at 10 second intervals. */
 newsFader();
-setInterval(newsFader,10000);

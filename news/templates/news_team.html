@@ -14,7 +14,12 @@
         {% for item in items %}
 
             {% if team in item.teams.all %}
-                <span class="arrow">&#9658;</span> <a class="standard-link" href="/news/{{ item.id }}/">{{ item.title }}</a>
+                <div class="news-link">
+                    <span class="arrow">&#9658;</span>
+                    <a class="standard-link" href="/news/{{ item.id }}/">
+                        {{ item.title }}
+                    </a>
+                </div>
             {% endif %}
 
         {%  endfor %}

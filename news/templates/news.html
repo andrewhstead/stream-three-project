@@ -10,8 +10,10 @@
 
         {% if item.category.name != 'Blog Posts' %}
 
-            <span class="arrow">&#9658;</span>
-            <a class="standard-link" href="/news/{{ item.id }}/">{{ item.title }}</a><br />
+            <div class="news-link">
+                <span class="arrow">&#9658;</span>
+                <a class="standard-link" href="/news/{{ item.id }}/">{{ item.title }}</a><br />
+            </div>
 
         {% endif %}
 

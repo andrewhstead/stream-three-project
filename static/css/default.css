@@ -343,6 +343,10 @@ footer {
     margin: 10px auto;
 }
 
+#item-content p {
+    text-align: justify;
+}
+
 .arrow {
     color: #10253f;
 }
@@ -955,6 +959,8 @@ a.button-link:hover {
     text-align: center;
     padding: 5px;
     border-top: 2px solid #10253f;
+    min-height: 40px;
+    margin: auto;
 }
 
 .cover-image {
@@ -965,7 +971,7 @@ a.button-link:hover {
 
 #news-navigation {
     text-align: center;
-    margin: auto;
+    margin: 10px auto;
     height: 20px;
     width: fit-content;
 }
@@ -984,6 +990,10 @@ a.button-link:hover {
 
 .active-blob {
     background-color: #10253f;
+}
+
+.news-link {
+    margin: 5px auto;
 }
 
 .banner-link {
