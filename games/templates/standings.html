@@ -1,16 +1,3 @@
-{% extends "base.html" %}
-
-{% block content %}
-
-    <div id="page-header">
-        LEAGUE STANDINGS
-    </div>
-
-    <form id="inline-form" role="form" onchange="submit();"
-              method="post" action="{% url 'standings' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-    </form>
 
     {% for conference in conferences %}
 
@@ -57,5 +44,3 @@
         </table>
 
     {% endfor %}
-
-{% endblock %}

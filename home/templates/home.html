@@ -10,7 +10,7 @@
                     {% if article.cover_image %}
                         <img class="cover-image fade-in" src="/media/{{ article.cover_image }}" />
                     {% else %}
-                        <img class="cover-image fade-in" src="/media/images/news/covers/default.jpg" />
+                        <img class="cover-image fade-in" src="/media/{{ article.category.default_image }}" />
                     {% endif %}
                 </a>
                 <div class="banner-headline">
@@ -131,7 +131,7 @@
                             {% if team.conference == conference %}
 
                                 <tr>
-                                    <td class="stat-header">
+                                    <td>
                                         <a class="table-link" href="/teams/{{ team.name|lower }}">
                                             {{ team.abbreviation }}
                                         </a>

@@ -1036,7 +1036,7 @@ a.button-link:hover {
 
 .spaced-column {
     flex: 1;
-    margin: 5px;
+    margin: 0 5px;
 }
 
 #news {

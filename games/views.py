@@ -67,7 +67,7 @@ def league_standings(request):
 
     args.update(csrf(request))
 
-    return render(request, "standings.html", args)
+    return render(request, "season_standings.html", args)
 
 
 def games_team(request, team_name):
@@ -193,3 +193,18 @@ def season_archive(request):
     seasons = Season.objects.all().order_by('year')
 
     return render(request, "season_archive.html", {'seasons': seasons})
+
+
+def season_overview(request, year):
+    season = Season.objects.get(year=year)
+
+    conferences = Conference.objects.all()
+    teams = Team.objects.all().order_by('geographic_name')
+
+    championship_series = Game.objects.filter(game_date__year=year, game_type='Postseason')
+
+    standings = get_standings(year)
+
+    return render(request, "season_overview.html", {'year': year, 'season': season, 'standings': standings,
+                                                    'conferences': conferences, 'teams': teams,
+                                                    'championship_series': championship_series})

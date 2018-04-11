@@ -12,6 +12,7 @@ from tinymce.models import HTMLField
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=50)
+    default_image = models.ImageField(upload_to="images/news/categories")
 
     def __unicode__(self):
         return self.name

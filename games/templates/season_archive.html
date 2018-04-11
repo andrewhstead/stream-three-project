@@ -17,7 +17,9 @@
         {% for season in seasons %}
             <tr>
                 <td>
-                    {{ season.year }}
+                    <a class="table-link" href="/archive/{{ season.year }}">
+                        {{ season.year }}
+                    </a>
                 </td>
                 <td>
                     <strong>
