@@ -12,6 +12,14 @@
         {{ form.as_p }}
     </form>
 
-    {% include 'standings.html' %}
+    {% for conference in conferences %}
+
+        <div class="sub-header">
+            {{ conference.name }}
+        </div>
+
+        {% include 'standings.html' %}
+
+    {% endfor %}
 
 {% endblock %}

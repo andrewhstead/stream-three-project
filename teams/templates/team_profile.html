@@ -90,52 +90,10 @@
     </div>
 
     <div class="sub-header">
-        {{ team.conference }}
+        {{ conference }}
     </div>
 
-
-    <table class="stat-table alternating-rows">
-        <tr class="header-row">
-            <th class="stat-intro">Team</th>
-            <th class="stat-column">W</th>
-            <th class="stat-column">L</th>
-            <th class="stat-column">Pct</th>
-        </tr>
-
-        {% for club in standings|dictsort:"name"|dictsortreversed:"pct" %}
-            {% if club.conference == team.conference %}
-
-                <tr>
-                    {% if club.name == team.geographic_name %}
-                        <td class="stat-header {{ team.geographic_name|lower }}-tag">
-                            <img class="small-logo" src="/media/{{ club.small_logo }}" />
-                            {{ club.name }}
-                        </td>
-                    {% else %}
-                        <td class="stat-header">
-                            <img class="small-logo" src="/media/{{ club.small_logo }}" />
-                            <a class="table-link" href="/teams/{{ club.name|lower }}">{{ club.name }}</a>
-                        </td>
-                    {% endif %}
-                    <td class="stat-detail">
-                        {{ club.won|floatformat:0 }}
-                    </td>
-                    <td class="stat-detail">
-                        {{ club.lost|floatformat:0 }}
-                    </td>
-                    <td class="stat-detail-faint">
-                        {% if club.pct < 1 %}
-                            {{ club.pct|floatformat:3|slice:"1:" }}
-                        {% else %}
-                            {{ club.pct|floatformat:3 }}
-                        {% endif %}
-                    </td>
-                </tr>
-
-            {% endif %}
-        {% endfor %}
-
-    </table>
+    {% include 'standings.html' %}
 
     <span id="full-details"><a class="standard-link" href="/standings/">[Full Standings]</a></span>
 

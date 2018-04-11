@@ -118,44 +118,7 @@
                         {{ conference.short_name }}
                     </div>
 
-                    <table class="stat-table alternating-rows">
-                        <tr class="header-row">
-                            <th class="stat-intro">Team</th>
-                            <th class="stat-column">W</th>
-                            <th class="stat-column">L</th>
-                            <th class="stat-column">Pct</th>
-                        </tr>
-
-                        {% for team in standings|dictsort:"name"|dictsortreversed:"pct" %}
-
-                            {% if team.conference == conference %}
-
-                                <tr>
-                                    <td>
-                                        <a class="table-link" href="/teams/{{ team.name|lower }}">
-                                            {{ team.abbreviation }}
-                                        </a>
-                                    </td>
-                                    <td class="stat-detail">
-                                        {{ team.won|floatformat:0 }}
-                                    </td>
-                                    <td class="stat-detail">
-                                        {{ team.lost|floatformat:0 }}
-                                    </td>
-                                    <td class="stat-detail-faint">
-                                        {% if team.pct < 1 %}
-                                            {{ team.pct|floatformat:3|slice:"1:" }}
-                                        {% else %}
-                                            {{ team.pct|floatformat:3 }}
-                                        {% endif %}
-                                    </td>
-                                </tr>
-
-                            {% endif %}
-
-                        {% endfor %}
-
-                    </table>
+                    {% include 'standings.html' %}
 
                 </div>
 

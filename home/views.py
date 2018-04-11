@@ -11,6 +11,7 @@ from datetime import datetime
 # Create your views here.
 def home_page(request):
 
+    home = True
     current_season = datetime.now().year
 
     conferences = Conference.objects.all()
@@ -30,7 +31,7 @@ def home_page(request):
         next_date = fixtures.order_by('game_date')[0].game_date
         next_fixtures = Game.objects.filter(game_date=next_date).order_by('home_team')
 
-        return render(request, "home.html", {"news_headlines": news_headlines,
+        return render(request, "home.html", {"home": home, "news_headlines": news_headlines,
                                              "conferences": conferences, "standings": standings,
                                              "results": latest_results, "fixtures": next_fixtures,
                                              "latest_date": latest_date, "next_date": next_date})
@@ -39,7 +40,7 @@ def home_page(request):
         latest_date = results.order_by('-game_date')[0].game_date
         latest_results = Game.objects.filter(game_date=latest_date).order_by('home_team')
 
-        return render(request, "home.html", {"news_headlines": news_headlines,
+        return render(request, "home.html", {"home": home, "news_headlines": news_headlines,
                                              "conferences": conferences, "standings": standings,
                                              "results": latest_results, "latest_date": latest_date})
 
@@ -47,6 +48,6 @@ def home_page(request):
         next_date = fixtures.order_by('game_date')[0].game_date
         next_fixtures = Game.objects.filter(game_date=next_date).order_by('home_team')
 
-        return render(request, "home.html", {"news_headlines": news_headlines,
+        return render(request, "home.html", {"home": home, "news_headlines": news_headlines,
                                              "conferences": conferences, "standings": standings,
                                              "fixtures": next_fixtures, "next_date": next_date})

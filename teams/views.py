@@ -20,6 +20,7 @@ def team_page(request, team_name):
     current_season = datetime.now().year
 
     team = get_object_or_404(Team, geographic_name=team_name.capitalize())
+    conference = team.conference
     items = Item.objects.filter(teams=team.id).order_by('-created_date')
 
     games = Game.objects.filter(game_date__year=current_season).order_by('game_date')
@@ -43,7 +44,7 @@ def team_page(request, team_name):
 
         return render(request, "team_profile.html", {'team': team, 'items': items, 'board': board,
                                                      'next_game': next_game, 'last_game': last_game,
-                                                     'standings': standings})
+                                                     'standings': standings, 'conference': conference})
 
     else:
         return render(request, "team_profile.html", {'team': team, 'items': items,

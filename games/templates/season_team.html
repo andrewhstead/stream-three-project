@@ -3,11 +3,11 @@
 {% block content %}
 
     <div id="page-header">
-        {{ season_choice.year }} SEASON
+        {{ season.year }} SEASON
     </div>
 
-    <div class="{{ team_choice.geographic_name|lower }}-text team-header">
-        {{ team_choice.geographic_name }} {{ team_choice.nickname }}
+    <div class="{{ team.geographic_name|lower }}-text team-header">
+        {{ team.geographic_name }} {{ team.nickname }}
     </div>
 
     <div class="sub-header">
@@ -15,51 +15,10 @@
     </div>
 
     <div class="sub-header">
-        {{ team_choice.conference }}
+        {{ team.conference }}
     </div>
 
-    <table class="stat-table alternating-rows">
-        <tr class="header-row">
-            <th class="stat-intro">Team</th>
-            <th class="stat-column">W</th>
-            <th class="stat-column">L</th>
-            <th class="stat-column">Pct</th>
-        </tr>
-
-        {% for club in standings|dictsort:"name"|dictsortreversed:"pct" %}
-            {% if club.conference == team_choice.conference %}
-
-                <tr>
-                    {% if club.name == team_choice.geographic_name %}
-                        <td class="stat-header {{ team_choice.geographic_name|lower }}-tag">
-                            <img class="small-logo" src="/media/{{ club.small_logo }}" />
-                            {{ club.name }}
-                        </td>
-                    {% else %}
-                        <td class="stat-header">
-                            <img class="small-logo" src="/media/{{ club.small_logo }}" />
-                            <a class="table-link" href="/archive/{{ season_choice }}/{{ club.name|lower }}">{{ club.name }}</a>
-                        </td>
-                    {% endif %}
-                    <td class="stat-detail">
-                        {{ club.won|floatformat:0 }}
-                    </td>
-                    <td class="stat-detail">
-                        {{ club.lost|floatformat:0 }}
-                    </td>
-                    <td class="stat-detail-faint">
-                        {% if club.pct < 1 %}
-                            {{ club.pct|floatformat:3|slice:"1:" }}
-                        {% else %}
-                            {{ club.pct|floatformat:3 }}
-                        {% endif %}
-                    </td>
-                </tr>
-
-            {% endif %}
-        {% endfor %}
-
-    </table>
+    {% include 'standings.html' %}
 
     {% if not team_games %}
 
@@ -91,7 +50,7 @@
                         {% elif game.team == game.away_team %}
                             @
                         {% endif %}
-                        <a class="table-link" href="/archive/{{ season_choice.year }}/{{ game.opponent.geographic_name|lower }}">
+                        <a class="table-link" href="/archive/{{ season.year }}/{{ game.opponent.geographic_name|lower }}">
                             {{ game.opponent.geographic_name }}</a>
                     </td>
                     {% if game.team_runs > game.opponent_runs %}
@@ -139,7 +98,7 @@
                             {% elif game.team == game.away_team %}
                                 @
                             {% endif %}
-                            <a class="table-link" href="/archive/{{ season_choice.year }}/{{ game.opponent.geographic_name|lower }}">
+                            <a class="table-link" href="/archive/{{ season.year }}/{{ game.opponent.geographic_name|lower }}">
                                 {{ game.opponent.geographic_name }}</a>
                         </td>
                         {% if game.team_runs > game.opponent_runs %}
@@ -162,7 +121,7 @@
             </table>
 
             <div class="sub-header">
-                {{ season_choice.champion.geographic_name }} win series, {{ season_choice.series_score }}.
+                {{ season.champion.geographic_name }} win series, {{ season.series_score }}.
             </div>
 
         {% endif %}
@@ -172,19 +131,19 @@
     <nav id="teams" class="navigation">
 
         <div class="nav-head">
-            {{ season_choice.year }} SEASON
+            {{ season.year }} SEASON
         </div>
 
         <div class="nav-box">
-            <a class="standard-link" href="/archive/{{ season_choice.year }}/">
+            <a class="standard-link" href="/archive/{{ season.year }}/">
                 LEAGUE
             </a><br />
-            {% for team in teams %}
-                {% if team == team_choice %}
-                    <strong>{{ team.abbreviation }}</strong>
+            {% for club in teams %}
+                {% if club == team %}
+                    <strong>{{ club.abbreviation }}</strong>
                 {% else %}
-                    <a class="standard-link" href="/archive/{{ season_choice.year }}/{{ team.geographic_name|lower }}">
-                        {{ team.abbreviation }}
+                    <a class="standard-link" href="/archive/{{ season.year }}/{{ club.geographic_name|lower }}">
+                        {{ club.abbreviation }}
                     </a>
                 {% endif %}
             {% endfor %}
@@ -195,16 +154,16 @@
     <nav id="seasons" class="navigation">
 
         <div class="nav-head">
-            {{ team_choice.geographic_name|upper }} {{ team_choice.nickname|upper }}
+            {{ team.geographic_name|upper }} {{ team.nickname|upper }}
         </div>
 
         <div class="nav-box">
-            {% for season in seasons %}
-                {% if season == season_choice %}
-                    <strong>{{ season.year }}</strong>
+            {% for year in seasons %}
+                {% if year == season %}
+                    <strong>{{ year.year }}</strong>
                 {% else %}
-                    <a class="standard-link" href="/archive/{{ season.year }}/{{ team_choice.geographic_name|lower }}">
-                        {{ season.year }}
+                    <a class="standard-link" href="/archive/{{ year.year }}/{{ team.geographic_name|lower }}">
+                        {{ year.year }}
                     </a>
                 {% endif %}
             {% endfor %}

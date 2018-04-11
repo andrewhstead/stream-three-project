@@ -3,14 +3,22 @@
 {% block content %}
 
     <div id="page-header">
-        {{ season_choice.year }} SEASON
+        {{ season.year }} SEASON
     </div>
 
     <div class="sub-header">
         STANDINGS
     </div>
 
-    {% include 'standings.html' %}
+    {% for conference in conferences %}
+
+        <div class="sub-header">
+            {{ conference.name }}
+        </div>
+
+        {% include 'standings.html' %}
+
+    {% endfor %}
 
     {% if championship_series %}
 
@@ -33,7 +41,7 @@
                 </tr>
                 <tr>
                     <td class="stat-header"><img class="small-logo" src="/media/{{ game.away_team.small_logo }}" />
-                        <a class="table-link" href="/archive/{{ season_choice }}/{{ game.away_team.geographic_name|lower }}">
+                        <a class="table-link" href="/archive/{{ season }}/{{ game.away_team.geographic_name|lower }}">
                             {% if game.away_team_runs > game.home_team_runs %}
                                 <strong>{{ game.away_team }}</strong>
                             {% else %}
@@ -47,7 +55,7 @@
                 </tr>
                 <tr>
                     <td class="stat-header"><img class="small-logo" src="/media/{{ game.home_team.small_logo }}" />
-                        <a class="table-link" href="/archive/{{ season_choice }}/{{ game.home_team.geographic_name|lower }}">
+                        <a class="table-link" href="/archive/{{ season }}/{{ game.home_team.geographic_name|lower }}">
                             {% if game.home_team_runs > game.away_team_runs %}
                                 <strong>{{ game.home_team }}</strong>
                             {% else %}
@@ -64,7 +72,7 @@
         {% endfor %}
 
         <div class="sub-header">
-            {{ season_choice.champion.geographic_name }} win series, {{ season_choice.series_score }}.
+            {{ season.champion.geographic_name }} win series, {{ season.series_score }}.
         </div>
 
     {% endif %}
@@ -72,12 +80,12 @@
     <nav id="teams" class="navigation">
 
         <div class="nav-head">
-            {{ season_choice.year }} SEASON
+            {{ season.year }} SEASON
         </div>
 
         <div class="nav-box">
             {% for team in teams %}
-                    <a class="standard-link" href="/archive/{{ season_choice.year }}/{{ team.geographic_name|lower }}">
+                    <a class="standard-link" href="/archive/{{ season.year }}/{{ team.geographic_name|lower }}">
                         {{ team.abbreviation }}
                     </a>
             {% endfor %}
@@ -92,12 +100,12 @@
         </div>
 
         <div class="nav-box">
-            {% for season in seasons %}
-                {% if season == season_choice %}
-                    <strong>{{ season.year }}</strong>
+            {% for option in seasons %}
+                {% if option == season %}
+                    <strong>{{ option.year }}</strong>
                 {% else %}
-                    <a class="standard-link" href="/archive/{{ season.year }}/">
-                        {{ season.year }}
+                    <a class="standard-link" href="/archive/{{ option.year }}/">
+                        {{ option.year }}
                     </a>
                 {% endif %}
             {% endfor %}

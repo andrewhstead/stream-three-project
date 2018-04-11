@@ -1,10 +1,4 @@
 
-    {% for conference in conferences %}
-
-        <div class="sub-header">
-            {{ conference.name }}
-        </div>
-
         <table class="stat-table alternating-rows">
             <tr class="header-row">
                 <th class="stat-intro">Team</th>
@@ -13,32 +7,53 @@
                 <th class="stat-column">Pct</th>
             </tr>
 
-            {% for team in standings|dictsort:"name"|dictsortreversed:"pct" %}
+            {% for club in standings|dictsort:"name"|dictsortreversed:"pct" %}
 
-                {% if team.conference == conference %}
+                {% if club.conference == conference %}
 
                     <tr>
-                        <td class="stat-header">
-                            <img class="small-logo" src="/media/{{ team.small_logo }}" />
+
+                        {% if club.name == team.geographic_name %}
+                            <td class="stat-header {{ team.geographic_name|lower }}-tag">
+                                <img class="small-logo" src="/media/{{ club.small_logo }}" />
+                                {{ club.name }}
+                            </td>
+                        {% else %}
+
+                        {% if home %}
+                            <td>
+                        {% else %}
+                            <td class="stat-header">
+                                <img class="small-logo" src="/media/{{ club.small_logo }}" />
+                        {% endif %}
+
                             {% if archive %}
-                                <a class="table-link" href="/archive/{{ season_choice }}/{{ team.name|lower }}">
+                                <a class="table-link" href="/archive/{{ season }}/{{ club.name|lower }}">
                             {% else %}
-                                <a class="table-link" href="/teams/{{ team.name|lower }}">
+                                <a class="table-link" href="/teams/{{ club.name|lower }}">
                             {% endif %}
-                                {{ team.name }}
-                            </a>
+
+                                {% if home %}
+                                    {{ club.abbreviation }}
+                                {% else %}
+                                    {{ club.name }}
+                                {% endif %}
+
+                                </a>
+                            </td>
+                        {% endif %}
+
+                        <td class="stat-detail">
+                            {{ club.won|floatformat:0 }}
                         </td>
                         <td class="stat-detail">
-                            {{ team.won|floatformat:0 }}
-                        </td>
-                        <td class="stat-detail">
-                            {{ team.lost|floatformat:0 }}
+                            {{ club.lost|floatformat:0 }}
                         </td>
                         <td class="stat-detail-faint">
-                            {% if team.pct < 1 %}
-                                {{ team.pct|floatformat:3|slice:"1:" }}
+                            {% if club.pct < 1 %}
+                                {{ club.pct|floatformat:3|slice:"1:" }}
                             {% else %}
-                                {{ team.pct|floatformat:3 }}
+                                {{ club.pct|floatformat:3 }}
                             {% endif %}
                         </td>
                     </tr>
@@ -48,5 +63,3 @@
             {% endfor %}
 
         </table>
-
-    {% endfor %}

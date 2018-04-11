@@ -197,7 +197,7 @@ def season_archive(request):
 
 
 def season_overview(request, year):
-    season_choice = Season.objects.get(year=year)
+    season = Season.objects.get(year=year)
     seasons = Season.objects.all()
 
     conferences = Conference.objects.all()
@@ -209,8 +209,8 @@ def season_overview(request, year):
 
     archive = True
 
-    if season_choice.champion:
-        return render(request, "season_overview.html", {'year': year, 'season_choice': season_choice,
+    if season.champion:
+        return render(request, "season_overview.html", {'year': year, 'season': season,
                                                         'seasons': seasons, 'standings': standings,
                                                         'conferences': conferences, 'teams': teams,
                                                         'championship_series': championship_series,
@@ -222,21 +222,24 @@ def season_overview(request, year):
 
 def season_team(request, year, team_name):
 
-    season_choice = Season.objects.get(year=year)
+    season = Season.objects.get(year=year)
     seasons = Season.objects.all()
 
     games = Game.objects.filter(game_date__year=year) \
         .filter(game_type__in=['Regular Season', 'Postseason']).order_by('game_date')
 
     teams = Team.objects.all().order_by('geographic_name')
-    team_choice = get_object_or_404(Team, geographic_name=team_name.capitalize())
+    team = get_object_or_404(Team, geographic_name=team_name.capitalize())
+    conference = team.conference
+
     team_schedule = []
     championship_series = []
 
     standings = get_standings(year)
+    archive = True
 
     for game in games:
-        if game.home_team == team_choice:
+        if game.home_team == team:
             game.team = game.home_team
             game.opponent = game.away_team
             game.team_runs = game.home_team_runs
@@ -245,7 +248,7 @@ def season_team(request, year, team_name):
                 championship_series.append(game)
             else:
                 team_schedule.append(game)
-        elif game.away_team == team_choice:
+        elif game.away_team == team:
             game.team = game.away_team
             game.opponent = game.home_team
             game.team_runs = game.away_team_runs
@@ -255,10 +258,12 @@ def season_team(request, year, team_name):
             else:
                 team_schedule.append(game)
 
-    if season_choice.champion:
-        return render(request, "season_team.html", {"season_choice": season_choice, "team_choice": team_choice,
-                                                    "teams": teams, "seasons": seasons, "team_games": team_schedule,
-                                                    "championship_series": championship_series, "standings": standings})
+    if season.champion:
+        return render(request, "season_team.html", {"season": season, "team": team, "teams": teams,
+                                                    "seasons": seasons, "team_games": team_schedule,
+                                                    "championship_series": championship_series,
+                                                    "standings": standings, "conference": conference,
+                                                    "archive": archive})
 
     else:
         return redirect('team_games', team_name=team_name)
