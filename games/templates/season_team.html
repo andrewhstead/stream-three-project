@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div id="page-header">
+        {{ season.year }} SEASON
+    </div>
+
+    <div class="{{ team.geographic_name|lower }}-text team-header">
+        {{ team.geographic_name }} {{ team.nickname }}
+    </div>
+
+    {% if team_games %}
+
+        <table class="stat-table alternating-rows">
+            <tr class="header-row">
+                <th class="stat-intro">Date</th>
+                <th class="stat-intro">Opponent</th>
+                <th class="stat-column">Res</th>
+                <th class="stat-column-wide">Sc.</th>
+            </tr>
+
+            {% for game in team_games %}
+
+                <tr>
+                    <td class="stat-header">
+                        {{ game.game_date|date:"d/m/y" }}
+                    </td>
+                    <td class="stat-header">
+                        {% if game.team == game.home_team %}
+                            v
+                        {% elif game.team == game.away_team %}
+                            @
+                        {% endif %}
+                        <a class="table-link" href="/archive/{{ season.year }}/{{ game.opponent.geographic_name|lower }}">
+                            {{ game.opponent.geographic_name }}</a>
+                    </td>
+                    {% if game.game_status == "Completed" %}
+                        {% if game.team_runs > game.opponent_runs %}
+                            <td class="stat-win">
+                                W
+                            </td>
+                        {% else %}
+                            <td class="stat-loss">
+                                L
+                            </td>
+                        {% endif %}
+                        <td class="stat-detail">
+                            {{ game.team_runs }}-{{ game.opponent_runs }}
+                        </td>
+                    {% elif game.game_status == "Postponed" %}
+                        <td></td>
+                        <td>P-P</td>
+                    {% elif game.game_status == "Suspended" %}
+                        <td class="stat-detail-faint">
+                            S
+                        </td>
+                        <td class="stat-detail-faint">
+                            {{ game.team_runs }}-{{ game.opponent_runs }}
+                        </td>
+                    {% elif game.game_status == "In Progress" %}
+                        <td class="stat-detail-highlight">
+                            P
+                        </td>
+                        <td class="stat-detail-faint">
+                            {{ game.team_runs }}-{{ game.opponent_runs }}
+                        </td>
+                    {% else %}
+                        <td></td>
+                        <td></td>
+                    {% endif %}
+
+            {% endfor %}
+
+        </table>
+
+    {% else %}
+
+        This season's schedule is not yet available.
+
+    {% endif %}
+
+    <span id="full-details">
+        <a class="standard-link" href="/teams/{{ team.geographic_name|lower }}">[Team Home]</a>
+        <a class="standard-link" href="/archive/">[Archive Index]</a>
+    </span>
+
+{% endblock %}

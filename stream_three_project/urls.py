@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^$', home_views.home_page),
     url(r'^archive/$', games_views.season_archive, name='archive'),
     url(r'^archive/(?P<year>\d+)/$', games_views.season_overview, name='season_overview'),
+    url(r'^archive/(?P<year>\d+)/(?P<team_name>.*)/$', games_views.season_team, name='season_team'),
     url(r'^blogs/$', news_views.blog_home, name='blog_home'),
     url(r'^blogs/post/(?P<post_id>\d+)/$', news_views.blog_post, name='blog_post'),
     url(r'^blogs/post/new/$', news_views.new_blog_post, name='new_blog_post'),

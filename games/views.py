@@ -208,3 +208,29 @@ def season_overview(request, year):
     return render(request, "season_overview.html", {'year': year, 'season': season, 'standings': standings,
                                                     'conferences': conferences, 'teams': teams,
                                                     'championship_series': championship_series})
+
+
+def season_team(request, year, team_name):
+
+    season = Season.objects.get(year=year)
+
+    games = Game.objects.filter(game_date__year=year) \
+        .filter(game_type='Regular Season').order_by('game_date')
+    team = get_object_or_404(Team, geographic_name=team_name.capitalize())
+    team_schedule = []
+
+    for game in games:
+        if game.home_team == team:
+            game.team = game.home_team
+            game.opponent = game.away_team
+            game.team_runs = game.home_team_runs
+            game.opponent_runs = game.away_team_runs
+            team_schedule.append(game)
+        elif game.away_team == team:
+            game.team = game.away_team
+            game.opponent = game.home_team
+            game.team_runs = game.away_team_runs
+            game.opponent_runs = game.home_team_runs
+            team_schedule.append(game)
+
+    return render(request, "season_team.html", {"season": season, "team": team, "team_games": team_schedule})

@@ -14,6 +14,8 @@
 
     {% if championship_series %}
 
+    <a name="championship"></a>
+
         <div class="sub-header">
             CHAMPIONSHIP SERIES
         </div>
@@ -62,7 +64,7 @@
         {% endfor %}
 
         <div class="sub-header">
-            {{ season.champion.geographic_name }} win series {{ season.series_score }}.
+            {{ season.champion.geographic_name }} win series, {{ season.series_score }}.
         </div>
 
     {% endif %}

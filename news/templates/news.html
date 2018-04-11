@@ -6,19 +6,27 @@
         LATEST NEWS
     </div>
 
+    <!-- Display lead story banner for the top item if the user is viewing the first page of stories. -->
     {% for item in items|slice:':1' %}
-        <div class="banner-story">
-            <a class="banner-link" href="/news/{{ item.id }}">
-                {% if item.cover_image %}
-                    <img class="cover-image" src="/media/{{ item.cover_image }}" />
-                {% else %}
-                    <img class="cover-image" src="/media/images/news/covers/default.jpg" />
-                {% endif %}
-            </a>
-            <div class="banner-headline">
-                <a class="banner-link" href="/news/{{ item.id }}">{{ item.title }}</a>
+        {% if current_page == 1 %}
+            <div class="banner-story">
+                <a class="banner-link" href="/news/{{ item.id }}">
+                        {% if item.cover_image %}
+                            <img class="cover-image" src="/media/{{ item.cover_image }}" />
+                        {% else %}
+                            <img class="cover-image" src="/media/{{ item.category.default_image }}" />
+                        {% endif %}
+                    </a>
+                <div class="banner-headline">
+                    <a class="banner-link" href="/news/{{ item.id }}">{{ item.title }}</a>
+                </div>
             </div>
-        </div>
+        {% else %}
+            <div class="news-link">
+                <span class="arrow">&#9658;</span>
+                <a class="standard-link" href="/news/{{ item.id }}/">{{ item.title }}</a><br />
+            </div>
+        {% endif %}
     {% endfor %}
 
     {% for item in items|slice:'1:' %}
