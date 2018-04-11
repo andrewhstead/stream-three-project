@@ -351,12 +351,19 @@ footer {
     color: #10253f;
 }
 
-.team-box {
+.colour-box {
     border-radius: 10px;
     padding: 2px;
     clear: both;
     margin: 10px;
     text-align: center;
+}
+
+.league-box {
+    background-color: #10253f;
+    color: #ffffff;
+    border: 2px solid #10253f;
+    box-shadow: 0 0 2px 2px #4f81bd;
 }
 
 .dublin-box {
@@ -504,7 +511,7 @@ footer {
     background-color: #ffdd99;
 }
 
-.last-next, .pagination-links {
+.last-next, .pagination-links, .multi-column {
     display: flex;
 }
 
@@ -1024,14 +1031,10 @@ a.button-link:hover {
 }
 
 #standings, #scores {
-    margin: 10px 5px
+    margin: 5px
 }
 
-.multi-column {
-    display: flex;
-}
-
-.column {
+.spaced-column {
     flex: 1;
     margin: 5px;
 }
