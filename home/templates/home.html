@@ -31,17 +31,80 @@
 
     </section>
 
+    <section id="scores">
+
+        <div class="multi-column">
+
+            <div class="column">
+
+                <div class="close-header">
+                    RESULTS
+                </div>
+                <div class="close-header">
+                    {{ latest_date|date:"d F Y" }}
+                </div>
+
+                <table class="stat-table alternating-no-header">
+                    {% for result in results %}
+                        <tr>
+                            <td>
+                                {{ result.home_team.abbreviation }}
+                            </td>
+                            <td class="stat-detail">
+                                {{ result.home_team_runs }}
+                                    -
+                                {{ result.away_team_runs }}
+                            </>
+                            <td>
+                                {{ result.away_team.abbreviation }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+            </div>
+
+            <div class="column">
+                <div class="close-header">
+                    FIXTURES
+                </div>
+                <div class="close-header">
+                    {{ next_date|date:"d F Y" }}
+                </div>
+
+                <table class="stat-table alternating-no-header">
+                    {% for fixture in fixtures %}
+                        <tr>
+                            <td>
+                                {{ fixture.home_team.abbreviation }}
+                            </td>
+                            <td class="stat-detail">
+                                {{ fixture.game_time|time:'G:i' }}
+                            </td>
+                            <td>
+                                {{ fixture.away_team.abbreviation }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
     <section id="standings">
 
         <div class="close-header">
             STANDINGS
         </div>
 
-        <div id="conferences">
+        <div class="multi-column">
 
             {% for conference in conferences %}
 
-                <div class="conference-standings">
+                <div class="column">
 
                     <div class="close-header">
                         {{ conference.short_name }}

@@ -520,6 +520,10 @@ footer {
     background-color: #ccddee;
 }
 
+.alternating-no-header tr:nth-child(2n+1) {
+    background-color: #ccddee;
+}
+
 .table-link {
     text-decoration: none;
     color: black;
@@ -991,7 +995,7 @@ a.button-link:hover {
 }
 
 .news-link {
-    margin: 5px auto;
+    margin: 10px auto;
 }
 
 .banner-link {
@@ -1019,15 +1023,15 @@ a.button-link:hover {
 	}
 }
 
-#standings {
+#standings, #scores {
     margin: 10px 5px
 }
 
-#conferences {
+.multi-column {
     display: flex;
 }
 
-.conference-standings {
+.column {
     flex: 1;
     margin: 5px;
 }
@@ -1060,7 +1064,7 @@ a.button-link:hover {
 }
 
 .pagination-button:hover {
-    background-color: #32476f;
+    background-color: #32586f;
 }
 
 .pagination-button:last-of-type {
@@ -1097,4 +1101,8 @@ a.button-link:hover {
 
 .pagination-current a:hover {
     text-decoration: underline;
+}
+
+td.full-header {
+    column-span: all;
 }

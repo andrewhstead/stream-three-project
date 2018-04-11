@@ -20,6 +20,8 @@ def last_and_next(request):
     fixtures = Game.objects.filter(game_date__year=current_season)\
         .filter(game_status__in=["Scheduled", "In Progress"])
 
+    # Dates obtained separately depending on whether there are results and/or fixtures
+    # This is done to prevent errors when there is no list from which to obtain the first value.
     if results and fixtures:
         latest_date = results.order_by('-game_date')[0].game_date
         latest_results = Game.objects.filter(game_date=latest_date).order_by('home_team')

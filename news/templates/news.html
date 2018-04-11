@@ -6,16 +6,27 @@
         LATEST NEWS
     </div>
 
-    {% for item in items %}
-
-        {% if item.category.name != 'Blog Posts' %}
-
-            <div class="news-link">
-                <span class="arrow">&#9658;</span>
-                <a class="standard-link" href="/news/{{ item.id }}/">{{ item.title }}</a><br />
+    {% for item in items|slice:':1' %}
+        <div class="banner-story">
+            <a class="banner-link" href="/news/{{ item.id }}">
+                {% if item.cover_image %}
+                    <img class="cover-image" src="/media/{{ item.cover_image }}" />
+                {% else %}
+                    <img class="cover-image" src="/media/images/news/covers/default.jpg" />
+                {% endif %}
+            </a>
+            <div class="banner-headline">
+                <a class="banner-link" href="/news/{{ item.id }}">{{ item.title }}</a>
             </div>
+        </div>
+    {% endfor %}
 
-        {% endif %}
+    {% for item in items|slice:'1:' %}
+
+        <div class="news-link">
+            <span class="arrow">&#9658;</span>
+            <a class="standard-link" href="/news/{{ item.id }}/">{{ item.title }}</a><br />
+        </div>
 
     {%  endfor %}
 

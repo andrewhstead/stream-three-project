@@ -11,18 +11,49 @@
     </div>
 
     <div class="news-items">
-        {% for item in items %}
 
-            {% if team in item.teams.all %}
+        {% for item in items|slice:':1' %}
+            <div class="banner-story">
+                <a class="banner-link" href="/news/{{ item.id }}">
+                    {% if item.cover_image %}
+                        <img class="cover-image" src="/media/{{ item.cover_image }}" />
+                    {% else %}
+                        <img class="cover-image" src="/media/images/news/covers/default.jpg" />
+                    {% endif %}
+                </a>
+                <div class="banner-headline">
+                    <a class="banner-link" href="/news/{{ item.id }}">{{ item.title }}</a>
+                </div>
+            </div>
+        {%  endfor %}
+
+        {% for item in items|slice:'1:' %}
                 <div class="news-link">
                     <span class="arrow">&#9658;</span>
                     <a class="standard-link" href="/news/{{ item.id }}/">
                         {{ item.title }}
                     </a>
                 </div>
-            {% endif %}
-
         {%  endfor %}
+
+    </div>
+
+    <div class="pagination-menu">
+
+        {% for page in items.paginator.page_range %}
+            {% if page == current_page %}
+                <div class="pagination-current">
+                    {{ page }}
+                </div>
+            {% else %}
+                <div class="pagination-button">
+                    <a href="?page={{ page }}">
+                        {{ page }}
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+
     </div>
 
     <span id="full-details">
