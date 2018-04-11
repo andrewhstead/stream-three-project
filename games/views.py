@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.core.urlresolvers import reverse
 from .models import Game, Season, get_standings
 from .forms import SeasonSelectForm
 from teams.models import Team, Conference
@@ -196,7 +197,8 @@ def season_archive(request):
 
 
 def season_overview(request, year):
-    season = Season.objects.get(year=year)
+    season_choice = Season.objects.get(year=year)
+    seasons = Season.objects.all()
 
     conferences = Conference.objects.all()
     teams = Team.objects.all().order_by('geographic_name')
@@ -205,32 +207,42 @@ def season_overview(request, year):
 
     standings = get_standings(year)
 
-    return render(request, "season_overview.html", {'year': year, 'season': season, 'standings': standings,
-                                                    'conferences': conferences, 'teams': teams,
-                                                    'championship_series': championship_series})
+    if season_choice.champion:
+        return render(request, "season_overview.html", {'year': year, 'season_choice': season_choice,
+                                                        'seasons': seasons, 'standings': standings,
+                                                        'conferences': conferences, 'teams': teams,
+                                                        'championship_series': championship_series})
+
+    else:
+        return redirect(reverse('standings'))
 
 
 def season_team(request, year, team_name):
 
-    season = Season.objects.get(year=year)
+    season_choice = Season.objects.get(year=year)
+    seasons = Season.objects.all()
 
     games = Game.objects.filter(game_date__year=year) \
         .filter(game_type='Regular Season').order_by('game_date')
-    team = get_object_or_404(Team, geographic_name=team_name.capitalize())
+
+    teams = Team.objects.all().order_by('geographic_name')
+    team_choice = get_object_or_404(Team, geographic_name=team_name.capitalize())
     team_schedule = []
 
     for game in games:
-        if game.home_team == team:
+        if game.home_team == team_choice:
             game.team = game.home_team
             game.opponent = game.away_team
             game.team_runs = game.home_team_runs
             game.opponent_runs = game.away_team_runs
             team_schedule.append(game)
-        elif game.away_team == team:
+        elif game.away_team == team_choice:
             game.team = game.away_team
             game.opponent = game.home_team
             game.team_runs = game.away_team_runs
             game.opponent_runs = game.home_team_runs
             team_schedule.append(game)
 
-    return render(request, "season_team.html", {"season": season, "team": team, "team_games": team_schedule})
+    return render(request, "season_team.html", {"season_choice": season_choice, "team_choice": team_choice,
+                                                "teams": teams, "seasons": seasons,
+                                                "team_games": team_schedule})

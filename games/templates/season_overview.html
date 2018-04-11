@@ -3,7 +3,7 @@
 {% block content %}
 
     <div id="page-header">
-        {{ season.year }} SEASON
+        {{ season_choice.year }} SEASON
     </div>
 
     <div class="sub-header">
@@ -64,10 +64,46 @@
         {% endfor %}
 
         <div class="sub-header">
-            {{ season.champion.geographic_name }} win series, {{ season.series_score }}.
+            {{ season_choice.champion.geographic_name }} win series, {{ season_choice.series_score }}.
         </div>
 
     {% endif %}
+
+    <nav id="teams" class="navigation">
+
+        <div class="nav-head">
+            {{ season_choice.year }} SEASON
+        </div>
+
+        <div class="nav-box">
+            {% for team in teams %}
+                    <a class="standard-link" href="/archive/{{ season_choice.year }}/{{ team.geographic_name|lower }}">
+                        {{ team.abbreviation }}
+                    </a>
+            {% endfor %}
+        </div>
+
+    </nav>
+
+    <nav id="seasons" class="navigation">
+
+        <div class="nav-head">
+            SEASON INDEX
+        </div>
+
+        <div class="nav-box">
+            {% for season in seasons %}
+                {% if season == season_choice %}
+                    <strong>{{ season.year }}</strong>
+                {% else %}
+                    <a class="standard-link" href="/archive/{{ season.year }}/">
+                        {{ season.year }}
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+    </nav>
 
     <span id="full-details">
         <a class="standard-link" href="/archive/">[Archive Index]</a>

@@ -3,11 +3,11 @@
 {% block content %}
 
     <div id="page-header">
-        {{ season.year }} SEASON
+        {{ season_choice.year }} SEASON
     </div>
 
-    <div class="{{ team.geographic_name|lower }}-text team-header">
-        {{ team.geographic_name }} {{ team.nickname }}
+    <div class="{{ team_choice.geographic_name|lower }}-text team-header">
+        {{ team_choice.geographic_name }} {{ team_choice.nickname }}
     </div>
 
     {% if team_games %}
@@ -32,7 +32,7 @@
                         {% elif game.team == game.away_team %}
                             @
                         {% endif %}
-                        <a class="table-link" href="/archive/{{ season.year }}/{{ game.opponent.geographic_name|lower }}">
+                        <a class="table-link" href="/archive/{{ season_choice.year }}/{{ game.opponent.geographic_name|lower }}">
                             {{ game.opponent.geographic_name }}</a>
                     </td>
                     {% if game.game_status == "Completed" %}
@@ -79,6 +79,49 @@
         This season's schedule is not yet available.
 
     {% endif %}
+
+    <nav id="teams" class="navigation">
+
+        <div class="nav-head">
+            {{ season_choice.year }} SEASON
+        </div>
+
+        <div class="nav-box">
+            <a class="standard-link" href="/archive/{{ season_choice.year }}/">
+                LEAGUE
+            </a><br />
+            {% for team in teams %}
+                {% if team == team_choice %}
+                    <strong>{{ team.abbreviation }}</strong>
+                {% else %}
+                    <a class="standard-link" href="/archive/{{ season_choice.year }}/{{ team.geographic_name|lower }}">
+                        {{ team.abbreviation }}
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+    </nav>
+
+    <nav id="seasons" class="navigation">
+
+        <div class="nav-head">
+            {{ team_choice.geographic_name|upper }} {{ team_choice.nickname|upper }} SEASONS
+        </div>
+
+        <div class="nav-box">
+            {% for season in seasons %}
+                {% if season == season_choice %}
+                    <strong>{{ season.year }}</strong>
+                {% else %}
+                    <a class="standard-link" href="/archive/{{ season.year }}/{{ team_choice.geographic_name|lower }}">
+                        {{ season.year }}
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+    </nav>
 
     <span id="full-details">
         <a class="standard-link" href="/teams/{{ team.geographic_name|lower }}">[Team Home]</a>

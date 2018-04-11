@@ -17,9 +17,15 @@
         {% for season in seasons %}
             <tr>
                 <td>
-                    <a class="table-link" href="/archive/{{ season.year }}">
-                        {{ season.year }}
-                    </a>
+                    {% if season.champion %}
+                        <a class="table-link" href="/archive/{{ season.year }}">
+                            {{ season.year }}
+                        </a>
+                    {% else %}
+                        <a class="table-link" href="/standings/">
+                            {{ season.year }}
+                        </a>
+                    {% endif %}
                 </td>
                 <td>
                     <strong>

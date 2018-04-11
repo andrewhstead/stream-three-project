@@ -1109,3 +1109,18 @@ a.button-link:hover {
 td.full-header {
     column-span: all;
 }
+
+.navigation {
+    text-align: center;
+    margin: 5px auto;
+}
+
+.nav-head {
+    background-color: #10253f;
+    color: white;
+}
+
+.nav-box {
+    color: #10253f;
+    border: 1px solid #10253f;
+}
