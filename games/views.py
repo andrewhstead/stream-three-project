@@ -223,11 +223,14 @@ def season_team(request, year, team_name):
     seasons = Season.objects.all()
 
     games = Game.objects.filter(game_date__year=year) \
-        .filter(game_type='Regular Season').order_by('game_date')
+        .filter(game_type__in=['Regular Season', 'Postseason']).order_by('game_date')
 
     teams = Team.objects.all().order_by('geographic_name')
     team_choice = get_object_or_404(Team, geographic_name=team_name.capitalize())
     team_schedule = []
+    championship_series = []
+
+    standings = get_standings(year)
 
     for game in games:
         if game.home_team == team_choice:
@@ -235,14 +238,24 @@ def season_team(request, year, team_name):
             game.opponent = game.away_team
             game.team_runs = game.home_team_runs
             game.opponent_runs = game.away_team_runs
-            team_schedule.append(game)
+            if game.game_type == 'Postseason':
+                championship_series.append(game)
+            else:
+                team_schedule.append(game)
         elif game.away_team == team_choice:
             game.team = game.away_team
             game.opponent = game.home_team
             game.team_runs = game.away_team_runs
             game.opponent_runs = game.home_team_runs
-            team_schedule.append(game)
+            if game.game_type == 'Postseason':
+                championship_series.append(game)
+            else:
+                team_schedule.append(game)
 
-    return render(request, "season_team.html", {"season_choice": season_choice, "team_choice": team_choice,
-                                                "teams": teams, "seasons": seasons,
-                                                "team_games": team_schedule})
+    if season_choice.champion:
+        return render(request, "season_team.html", {"season_choice": season_choice, "team_choice": team_choice,
+                                                    "teams": teams, "seasons": seasons, "team_games": team_schedule,
+                                                    "championship_series": championship_series, "standings": standings})
+
+    else:
+        return redirect('team_games', team_name=team_name)

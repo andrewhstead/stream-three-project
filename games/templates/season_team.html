@@ -10,7 +10,66 @@
         {{ team_choice.geographic_name }} {{ team_choice.nickname }}
     </div>
 
-    {% if team_games %}
+    <div class="sub-header">
+        STANDINGS
+    </div>
+
+    <div class="sub-header">
+        {{ team_choice.conference }}
+    </div>
+
+    <table class="stat-table alternating-rows">
+        <tr class="header-row">
+            <th class="stat-intro">Team</th>
+            <th class="stat-column">W</th>
+            <th class="stat-column">L</th>
+            <th class="stat-column">Pct</th>
+        </tr>
+
+        {% for club in standings|dictsort:"name"|dictsortreversed:"pct" %}
+            {% if club.conference == team_choice.conference %}
+
+                <tr>
+                    {% if club.name == team_choice.geographic_name %}
+                        <td class="stat-header {{ team_choice.geographic_name|lower }}-tag">
+                            <img class="small-logo" src="/media/{{ club.small_logo }}" />
+                            {{ club.name }}
+                        </td>
+                    {% else %}
+                        <td class="stat-header">
+                            <img class="small-logo" src="/media/{{ club.small_logo }}" />
+                            <a class="table-link" href="/archive/{{ season_choice }}/{{ club.name|lower }}">{{ club.name }}</a>
+                        </td>
+                    {% endif %}
+                    <td class="stat-detail">
+                        {{ club.won|floatformat:0 }}
+                    </td>
+                    <td class="stat-detail">
+                        {{ club.lost|floatformat:0 }}
+                    </td>
+                    <td class="stat-detail-faint">
+                        {% if club.pct < 1 %}
+                            {{ club.pct|floatformat:3|slice:"1:" }}
+                        {% else %}
+                            {{ club.pct|floatformat:3 }}
+                        {% endif %}
+                    </td>
+                </tr>
+
+            {% endif %}
+        {% endfor %}
+
+    </table>
+
+    {% if not team_games %}
+
+        This season's schedule is not yet available.
+
+    {% else %}
+
+        <div class="sub-header">
+            REGULAR SEASON
+        </div>
 
         <table class="stat-table alternating-rows">
             <tr class="header-row">
@@ -35,7 +94,54 @@
                         <a class="table-link" href="/archive/{{ season_choice.year }}/{{ game.opponent.geographic_name|lower }}">
                             {{ game.opponent.geographic_name }}</a>
                     </td>
-                    {% if game.game_status == "Completed" %}
+                    {% if game.team_runs > game.opponent_runs %}
+                        <td class="stat-win">
+                            W
+                        </td>
+                    {% else %}
+                        <td class="stat-loss">
+                            L
+                        </td>
+                    {% endif %}
+                    <td class="stat-detail">
+                        {{ game.team_runs }}-{{ game.opponent_runs }}
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+        </table>
+
+        {% if championship_series %}
+
+            <div class="sub-header">
+                CHAMPIONSHIP SERIES
+            </div>
+
+            <table class="stat-table alternating-rows">
+                <tr class="header-row">
+                    <th class="stat-intro">Date</th>
+                    <th class="stat-intro">Opponent</th>
+                    <th class="stat-column">Res</th>
+                    <th class="stat-column-wide">Sc.</th>
+                </tr>
+
+                {% for game in championship_series %}
+
+                    <tr>
+                        <td class="stat-header">
+                            {{ game.game_date|date:"d/m/y" }}
+                        </td>
+                        <td class="stat-header">
+                            {% if game.team == game.home_team %}
+                                v
+                            {% elif game.team == game.away_team %}
+                                @
+                            {% endif %}
+                            <a class="table-link" href="/archive/{{ season_choice.year }}/{{ game.opponent.geographic_name|lower }}">
+                                {{ game.opponent.geographic_name }}</a>
+                        </td>
                         {% if game.team_runs > game.opponent_runs %}
                             <td class="stat-win">
                                 W
@@ -48,35 +154,18 @@
                         <td class="stat-detail">
                             {{ game.team_runs }}-{{ game.opponent_runs }}
                         </td>
-                    {% elif game.game_status == "Postponed" %}
-                        <td></td>
-                        <td>P-P</td>
-                    {% elif game.game_status == "Suspended" %}
-                        <td class="stat-detail-faint">
-                            S
-                        </td>
-                        <td class="stat-detail-faint">
-                            {{ game.team_runs }}-{{ game.opponent_runs }}
-                        </td>
-                    {% elif game.game_status == "In Progress" %}
-                        <td class="stat-detail-highlight">
-                            P
-                        </td>
-                        <td class="stat-detail-faint">
-                            {{ game.team_runs }}-{{ game.opponent_runs }}
-                        </td>
-                    {% else %}
-                        <td></td>
-                        <td></td>
-                    {% endif %}
 
-            {% endfor %}
+                    </tr>
 
-        </table>
+                {% endfor %}
 
-    {% else %}
+            </table>
 
-        This season's schedule is not yet available.
+            <div class="sub-header">
+                {{ season_choice.champion.geographic_name }} win series, {{ season_choice.series_score }}.
+            </div>
+
+        {% endif %}
 
     {% endif %}
 
@@ -106,7 +195,7 @@
     <nav id="seasons" class="navigation">
 
         <div class="nav-head">
-            {{ team_choice.geographic_name|upper }} {{ team_choice.nickname|upper }} SEASONS
+            {{ team_choice.geographic_name|upper }} {{ team_choice.nickname|upper }}
         </div>
 
         <div class="nav-box">
