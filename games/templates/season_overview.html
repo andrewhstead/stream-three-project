@@ -33,7 +33,7 @@
                 </tr>
                 <tr>
                     <td class="stat-header"><img class="small-logo" src="/media/{{ game.away_team.small_logo }}" />
-                        <a class="table-link" href="/scores/{{ game.away_team.geographic_name|lower }}">
+                        <a class="table-link" href="/archive/{{ season_choice }}/{{ game.away_team.geographic_name|lower }}">
                             {% if game.away_team_runs > game.home_team_runs %}
                                 <strong>{{ game.away_team }}</strong>
                             {% else %}
@@ -47,7 +47,7 @@
                 </tr>
                 <tr>
                     <td class="stat-header"><img class="small-logo" src="/media/{{ game.home_team.small_logo }}" />
-                        <a class="table-link" href="/scores/{{ game.home_team.geographic_name|lower }}">
+                        <a class="table-link" href="/archive/{{ season_choice }}/{{ game.home_team.geographic_name|lower }}">
                             {% if game.home_team_runs > game.away_team_runs %}
                                 <strong>{{ game.home_team }}</strong>
                             {% else %}

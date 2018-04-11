@@ -207,11 +207,14 @@ def season_overview(request, year):
 
     standings = get_standings(year)
 
+    archive = True
+
     if season_choice.champion:
         return render(request, "season_overview.html", {'year': year, 'season_choice': season_choice,
                                                         'seasons': seasons, 'standings': standings,
                                                         'conferences': conferences, 'teams': teams,
-                                                        'championship_series': championship_series})
+                                                        'championship_series': championship_series,
+                                                        'archive': archive})
 
     else:
         return redirect(reverse('standings'))

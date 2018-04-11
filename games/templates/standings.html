@@ -20,7 +20,13 @@
                     <tr>
                         <td class="stat-header">
                             <img class="small-logo" src="/media/{{ team.small_logo }}" />
-                            <a class="table-link" href="/teams/{{ team.name|lower }}">{{ team.name }}</a>
+                            {% if archive %}
+                                <a class="table-link" href="/archive/{{ season_choice }}/{{ team.name|lower }}">
+                            {% else %}
+                                <a class="table-link" href="/teams/{{ team.name|lower }}">
+                            {% endif %}
+                                {{ team.name }}
+                            </a>
                         </td>
                         <td class="stat-detail">
                             {{ team.won|floatformat:0 }}
