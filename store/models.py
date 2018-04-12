@@ -8,7 +8,6 @@ from users.models import User
 TYPE_OPTIONS = (
     ('Cap', "Cap"),
     ('Jersey', "Jersey"),
-    ('Hoodie', "Hoodie"),
 )
 
 SIZE_OPTIONS = (
@@ -52,6 +51,8 @@ class Cart(models.Model):
     user = models.ForeignKey(User, related_name='cart')
     status = models.CharField(max_length=20, default='Pending', choices=STATUS_OPTIONS)
     cost = models.DecimalField(default=0.00, max_digits=10, decimal_places=2)
+    postage = models.DecimalField(default=0.00, max_digits=10, decimal_places=2)
+    total = models.DecimalField(default=0.00, max_digits=10, decimal_places=2)
     date = models.DateTimeField(blank=True, null=True)
     stripe_id = models.CharField(max_length=40, default='')
 

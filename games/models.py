@@ -28,27 +28,27 @@ def get_standings(year):
     standings = []
 
     for team in teams:
-        team.record = {"name": team.geographic_name, "abbreviation": team.abbreviation,
+        team_record = {"name": team.geographic_name, "abbreviation": team.abbreviation,
                        "conference": team.conference, "small_logo": team.small_logo,
                        "played": 0.0, "won": 0.0, "lost": 0.0}
         for game in games:
             if game.home_team == team:
-                team.record["played"] += 1
+                team_record["played"] += 1
                 if game.home_team_runs > game.away_team_runs:
-                    team.record["won"] += 1
+                    team_record["won"] += 1
                 if game.home_team_runs < game.away_team_runs:
-                    team.record["lost"] += 1
+                    team_record["lost"] += 1
             elif game.away_team == team:
-                team.record["played"] += 1
+                team_record["played"] += 1
                 if game.away_team_runs > game.home_team_runs:
-                    team.record["won"] += 1
+                    team_record["won"] += 1
                 if game.away_team_runs < game.home_team_runs:
-                    team.record["lost"] += 1
-        if team.record["played"] == 0:
-            team.record["pct"] = 0  # To prevent zero-division error when no games played.
+                    team_record["lost"] += 1
+        if team_record["played"] == 0:
+            team_record["pct"] = 0  # To prevent zero-division error when no games played.
         else:
-            team.record["pct"] = team.record["won"] / team.record["played"]
-        standings.append(team.record)
+            team_record["pct"] = team_record["won"] / team_record["played"]
+        standings.append(team_record)
 
     return standings
 

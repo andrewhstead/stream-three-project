@@ -51,6 +51,20 @@
             {% endwith %}
         </p>
 
+        <p class="right-align">
+            <strong>Postage:</strong>
+            {% with order.postage as price %}
+                {{ price|price_display }}
+            {% endwith %}<br />
+        </p>
+
+        <p class="right-align">
+            <strong>Total:</strong>
+            {% with order.total as price %}
+                {{ price|price_display }}
+            {% endwith %}
+        </p>
+
         <span id="full-details">
             <a class="standard-link" href="/store/orders/">[Back to Orders]</a>
         </span>

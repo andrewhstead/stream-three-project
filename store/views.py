@@ -17,6 +17,7 @@ from django.http import HttpResponse
 from django.contrib import messages, auth
 from django.utils import timezone
 from datetime import datetime
+from decimal import Decimal
 import stripe
 import arrow
 import json
@@ -70,6 +71,11 @@ def add_product(request, product_id):
                     try:
                         cart = Cart.objects.get(user=user, status='Pending')
                         cart.cost += cost
+                        if cart.cost >= 50:
+                            cart.postage = 0
+                        else:
+                            cart.postage = Decimal(4.99)
+                        cart.total = cart.postage + cart.cost
                         cart.save()
                         try:
                             new_item = CartItem.objects.get(cart=cart, item=item)
@@ -80,6 +86,11 @@ def add_product(request, product_id):
                             new_item.save()
                     except Cart.DoesNotExist:
                         cart = Cart(user=user, status='Pending', cost=cost)
+                        if cart.cost >= 50:
+                            cart.postage = 0
+                        else:
+                            cart.postage = Decimal(4.99)
+                        cart.total = cart.postage + cart.cost
                         cart.save()
                         try:
                             new_item = CartItem.objects.get(cart=cart, item=item)
@@ -136,6 +147,14 @@ def change_product(request, item_id):
             item.item.save()
 
             cart.cost += price_change
+
+            if cart.cost >= 50:
+                cart.postage = 0
+            else:
+                cart.postage = Decimal(4.99)
+
+            cart.total = cart.postage + cart.cost
+
             cart.save()
 
             return redirect(reverse('shopping_cart'))
@@ -162,12 +181,19 @@ def remove_product(request, item_id):
         total = quantity * price
 
         item.item.stock += quantity
-        item.item.save(
+        item.item.save()
 
-        )
         cart = item.cart
 
         cart.cost -= total
+
+        if cart.cost >= 50:
+            cart.postage = 0
+        else:
+            cart.postage = Decimal(4.99)
+
+        cart.total = cart.postage + cart.cost
+
         cart.save()
         item.delete()
 
@@ -191,7 +217,7 @@ def submit_order(request, order_id):
         if form.is_valid():
             try:
                 invoice = stripe.Charge.create(
-                    amount=int(order.cost * 100),
+                    amount=int(order.total * 100),
                     currency='GBP',
                     description=order.user.username,
                     card=form.cleaned_data['stripe_id'],
