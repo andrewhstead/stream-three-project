@@ -1,22 +1,6 @@
 # -*- coding: UTF-8 -*-
 from django import forms
 
-JERSEY_OPTIONS = (
-    ('XS', "XS"),
-    ('S', "S"),
-    ('M', "M"),
-    ('L', "L"),
-    ('XL', "XL"),
-    ('XXL', "XXL"),
-)
-
-CAP_OPTIONS = (
-    ('S', "S"),
-    ('M', "M"),
-    ('L', "L"),
-    ('XL', "XL"),
-)
-
 QUANTITY_OPTIONS = (
     (1, 1),
     (2, 2),
