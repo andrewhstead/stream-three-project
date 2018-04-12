@@ -24,6 +24,7 @@ class Team(models.Model):
     small_logo = models.ImageField(upload_to="images/teams/logos", blank=True, null=True)
     home_uniform = models.ImageField(upload_to="images/teams/uniforms", blank=True, null=True)
     away_uniform = models.ImageField(upload_to="images/teams/uniforms", blank=True, null=True)
+    alternate_uniform = models.ImageField(upload_to="images/teams/uniforms", blank=True, null=True)
 
     def __unicode__(self):
         return self.geographic_name + " " + self.nickname

@@ -5,9 +5,9 @@ from .views import register, login, logout, user_profile, other_profile,\
     edit_profile, delete_profile, change_password
 from django.core.urlresolvers import resolve
 from django import forms
-from django.conf import settings
-from .forms import UserCreationForm, EditProfileForm, DeletionForm,\
-    ChangePasswordForm, LoginForm, RegistrationForm
+from django.shortcuts import render_to_response
+from .forms import EditProfileForm, DeletionForm, ChangePasswordForm, LoginForm, RegistrationForm
+from .models import User
 
 
 class RegisterTest(TestCase):
@@ -29,9 +29,21 @@ class LogoutTest(TestCase):
 
 
 class UserProfileTest(TestCase):
+    fixtures = ['users', 'teams']
+
     def test_user_profile_resolves(self):
         profile = resolve('/profile/')
         self.assertEqual(profile.func, user_profile)
+
+    def test_user_profile_status_code(self):
+        profile = self.client.get('/profile/')
+        self.assertEqual(profile.status_code, 302)
+
+    def test_user_profile_content(self):
+        profile = self.client.get('/profile/')
+        self.assertTemplateUsed(profile, 'profile.html')
+        profile_template_output = render_to_response('profile.html').content
+        self.assertEqual(profile.content, profile_template_output)
 
 
 class OtherProfileTest(TestCase):

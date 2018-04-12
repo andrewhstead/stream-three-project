@@ -1124,3 +1124,23 @@ td.full-header {
     color: #10253f;
     border: 1px solid #10253f;
 }
+
+ul.errorlist li {
+    list-style-type: none;
+    padding: 5px;
+    background-color: #ffcccc;
+    border: 1px solid #993333;
+    color: #993333;
+    border-radius: 10px;
+}
+
+.uniform {
+    display: inline-block;
+    text-align: center;
+}
+
+.uniform img {
+    display: block;
+    width: 75px;
+    height: 75px;
+}

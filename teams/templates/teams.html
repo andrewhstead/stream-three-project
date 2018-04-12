@@ -18,6 +18,15 @@
                 <div class="team-name">
                     <img class="small-logo" src="/media/{{ team.small_logo }}" /> {{ team.geographic_name }} {{ team.nickname }}
                 </div>
+
+                <div class="profile-links">
+                    <a class="standard-link" href="/teams/{{ team.geographic_name|lower }}">Home</a> |
+                    <a class="standard-link" href="/news/{{ team.geographic_name|lower }}">News</a> |
+                    <a class="standard-link" href="/scores/{{ team.geographic_name|lower }}">Schedule</a> |
+                    <a class="standard-link" href="/forum/{{ team.geographic_name|lower }}">Forum</a> |
+                    <a class="standard-link" href="/store/{{ team.geographic_name|lower }}">Store</a>
+                </div>
+
                 <ul>
                     <li>
                         <strong>Home Stadium:</strong> {{ team.ballpark }}
@@ -31,13 +40,25 @@
                             {% endif %}
                     </li>
                 </ul>
-                <div class="profile-links">
-                    <a class="standard-link" href="/teams/{{ team.geographic_name|lower }}">Home</a> |
-                    <a class="standard-link" href="/news/{{ team.geographic_name|lower }}">News</a> |
-                    <a class="standard-link" href="/scores/{{ team.geographic_name|lower }}">Schedule</a> |
-                    <a class="standard-link" href="/forum/{{ team.geographic_name|lower }}">Forum</a> |
-                    <a class="standard-link" href="/store/{{ team.geographic_name|lower }}">Store</a>
+
+                <div class="team-uniforms">
+                    <div>
+                        <strong>Uniforms:</strong>
+                    </div>
+                    <div class="uniform">
+                        <img src="/media/images/teams/uniforms/{{ team.geographic_name|lower }}_home.png" />
+                        Home
+                    </div>
+                    <div class="uniform">
+                        <img src="/media/images/teams/uniforms/{{ team.geographic_name|lower }}_away.png" />
+                        Away
+                    </div>
+                    <div class="uniform">
+                        <img src="/media/images/teams/uniforms/{{ team.geographic_name|lower }}_alternate.png" />
+                        Alt
+                    </div>
                 </div>
+
             </div>
 
         {% endfor %}
