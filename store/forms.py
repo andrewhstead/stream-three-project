@@ -1,14 +1,20 @@
 # -*- coding: UTF-8 -*-
 from django import forms
-from store.models import Item
 
-SIZE_OPTIONS = (
+JERSEY_OPTIONS = (
     ('XS', "XS"),
     ('S', "S"),
     ('M', "M"),
     ('L', "L"),
     ('XL', "XL"),
     ('XXL', "XXL"),
+)
+
+CAP_OPTIONS = (
+    ('S', "S"),
+    ('M', "M"),
+    ('L', "L"),
+    ('XL', "XL"),
 )
 
 QUANTITY_OPTIONS = (
@@ -26,7 +32,12 @@ QUANTITY_OPTIONS = (
 
 
 class AddToCartForm(forms.Form):
-    size = forms.ChoiceField(choices=SIZE_OPTIONS)
+
+    def __init__(self, *args, **kwargs):
+        choices = kwargs.pop('item_options')
+        super(AddToCartForm, self).__init__(*args, **kwargs)
+        self.fields['size'] = forms.ChoiceField(choices=choices)
+
     quantity = forms.ChoiceField(choices=QUANTITY_OPTIONS)
 
 

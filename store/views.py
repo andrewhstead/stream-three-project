@@ -51,9 +51,13 @@ def add_product(request, product_id):
     user = request.user
     product = get_object_or_404(Product, pk=product_id)
     items = product.items.all()
+    sizes = []
+
+    for item in items:
+        sizes.append((item.size, item.size))
 
     if request.method == 'POST':
-        form = AddToCartForm(request.POST)
+        form = AddToCartForm(request.POST, item_options=sizes)
 
         if form.is_valid():
             size = request.POST.get('size')
@@ -95,7 +99,8 @@ def add_product(request, product_id):
             messages.error(request, 'Sorry, we were unable to add that item. Please try again.')
 
     else:
-        form = AddToCartForm()
+        form = AddToCartForm(item_options=sizes)
+        form.order_fields(['size', 'quantity'])
 
     args = {'form': form, 'product': product, 'items': items, 'button_text': 'Add to Basket'}
     args.update(csrf(request))
