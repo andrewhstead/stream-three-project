@@ -180,7 +180,7 @@ def change_password(request):
                                                password=request.POST.get('password'))
 
             if user_to_change is not None:
-                user.set_password(request.POST.get('newpassword1'))
+                user.set_password(request.POST.get('password1'))
                 user.save()
                 auth.login(request, user)
                 messages.success(request, 'Your password has been changed.')

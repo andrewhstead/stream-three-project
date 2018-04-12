@@ -4,6 +4,7 @@ from django.test import TestCase
 from .views import last_and_next, league_standings, games_team, results_list, fixture_list,\
     full_results, full_fixtures, season_archive, season_overview, season_team
 from django.core.urlresolvers import resolve
+from django.shortcuts import render_to_response
 
 
 class LastNextTest(TestCase):

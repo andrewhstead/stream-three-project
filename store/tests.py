@@ -5,6 +5,8 @@ from .views import store_front, store_team, add_product, shopping_cart, change_p
     remove_product, submit_order, order_confirmation, order_list, order_details,\
     premium_home, upgrade_account, cancel_subscription, subscription_renewal, register_premium
 from django.core.urlresolvers import resolve
+from django.conf import settings
+from .forms import ChangeQuantityForm, SubmitOrderForm, SubscriptionForm
 
 
 class StoreFrontTest(TestCase):
@@ -95,3 +97,36 @@ class RegisterPremiumTest(TestCase):
     def test_register_premium_resolves(self):
         premium_account = resolve('/register/premium/')
         self.assertEqual(premium_account.func, register_premium)
+
+
+class ChangeQuantityFormTest(TestCase):
+    def test_change_quantity_form(self):
+        form = ChangeQuantityForm({
+            'quantity': '3'
+        })
+        self.assertTrue(form.is_valid())
+
+
+class SubscriptionFormTest(TestCase):
+    def test_subscription_form(self):
+        form = SubscriptionForm({
+            'billing_cycle': 'BIBL_SIX',
+            'card_number': '4242424242424242',
+            'cvv': '123',
+            'expiry_month': 1,
+            'expiry_year': 2029,
+            'stripe_id': settings.STRIPE_SECRET
+        })
+        self.assertTrue(form.is_valid())
+
+
+class SubmitOrderFormTest(TestCase):
+    def test_submit_order_form(self):
+        form = SubmitOrderForm({
+            'card_number': '4242424242424242',
+            'cvv': '123',
+            'expiry_month': 1,
+            'expiry_year': 2029,
+            'stripe_id': settings.STRIPE_SECRET
+        })
+        self.assertTrue(form.is_valid())

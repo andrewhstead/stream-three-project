@@ -75,19 +75,18 @@ class DeletionForm(forms.ModelForm):
 
 
 class ChangePasswordForm(forms.ModelForm):
-
-    newpassword1 = forms.CharField(
+    password1 = forms.CharField(
         label='Choose New Password',
         widget=forms.PasswordInput
     )
-    newpassword2 = forms.CharField(
+    password2 = forms.CharField(
         label='Confirm New Password',
         widget=forms.PasswordInput
     )
 
     class Meta:
         model = User
-        fields = ['password', 'newpassword1', 'newpassword2']
+        fields = ['password', 'password1', 'password2']
         labels = {
             'password': 'Current Password',
         }
@@ -96,11 +95,11 @@ class ChangePasswordForm(forms.ModelForm):
         }
 
     def clean_password2(self):
-        newpassword1 = self.cleaned_data.get('newpassword1')
-        newpassword2 = self.cleaned_data.get('newpassword2')
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
 
-        if newpassword1 and newpassword2 and newpassword1 != newpassword2:
-            password_error = "Your new passwords do not match. Please try again."
+        if password1 and password2 and password1 != password2:
+            password_error = "Your passwords do not match. Please try again."
             raise ValidationError(password_error)
 
-        return newpassword2
+        return password2

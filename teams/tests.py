@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.test import TestCase
 from .views import team_index, team_page
 from django.core.urlresolvers import resolve
+from django.shortcuts import render_to_response
 
 
 class TeamIndexTest(TestCase):

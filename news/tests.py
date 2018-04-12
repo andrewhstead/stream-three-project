@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.test import TestCase
 from .views import news_index, news_item, news_team, blog_home, blog_index, blog_post, new_blog_post
 from django.core.urlresolvers import resolve
+from django.shortcuts import render_to_response
 
 
 class LastNextTest(TestCase):

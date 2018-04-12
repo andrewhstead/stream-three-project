@@ -4,6 +4,10 @@ from django.test import TestCase
 from .views import register, login, logout, user_profile, other_profile,\
     edit_profile, delete_profile, change_password
 from django.core.urlresolvers import resolve
+from django import forms
+from django.conf import settings
+from .forms import UserCreationForm, EditProfileForm, DeletionForm,\
+    ChangePasswordForm, LoginForm, RegistrationForm
 
 
 class RegisterTest(TestCase):
@@ -48,7 +52,83 @@ class DeleteProfileTest(TestCase):
         self.assertEqual(account_delete.func, delete_profile)
 
 
-class ChangePassword(TestCase):
+class ChangePasswordTest(TestCase):
     def test_change_password_resolves(self):
         new_password = resolve('/profile/password/')
         self.assertEqual(new_password.func, change_password)
+
+
+class LoginFormTest(TestCase):
+    def test_login_form(self):
+        form = LoginForm({
+            'username': 'username',
+            'password': 'password'
+        })
+        self.assertTrue(form.is_valid())
+
+    def test_login_form_fails(self):
+        form = LoginForm({})
+        self.assertFalse(form.is_valid())
+
+
+class RegistrationFormTest(TestCase):
+    def test_registration_form(self):
+        form = RegistrationForm({
+            'username': 'username',
+            'email': 'user@user.com',
+            'password1': 'password',
+            'password2': 'password'
+        })
+        self.assertTrue(form.is_valid())
+
+    def test_registration_form_fails_different_passwords(self):
+        form = RegistrationForm({
+            'username': 'username',
+            'email': 'user@user.com',
+            'password1': 'password1',
+            'password2': 'password2'
+        })
+        self.assertFalse(form.is_valid())
+        self.assertRaisesMessage(forms.ValidationError,
+                                 "Your passwords do not match. Please try again.",
+                                 form.full_clean())
+
+
+class ChangePasswordFormTest(TestCase):
+    def test_change_password_form(self):
+        form = ChangePasswordForm({
+            'password': 'password',
+            'password1': 'password1',
+            'password2': 'password1'
+        })
+        self.assertTrue(form.is_valid())
+
+    def test_change_password_form_fails_different_passwords(self):
+        form = ChangePasswordForm({
+            'password': 'password',
+            'password1': 'password1',
+            'password2': 'password2'
+        })
+        self.assertFalse(form.is_valid())
+        self.assertRaisesMessage(forms.ValidationError,
+                                 "Your passwords do not match. Please try again.",
+                                 form.full_clean())
+
+
+class EditProfileFormTest(TestCase):
+    def test_edit_profile_form(self):
+        form = EditProfileForm({
+            'username': 'username',
+            'first_name': 'User',
+            'last_name': 'Name',
+            'email': 'user@user.com',
+        })
+        self.assertTrue(form.is_valid())
+
+
+class DeleteProfileFormTest(TestCase):
+    def test_delete_profile_form(self):
+        form = DeletionForm({
+            'password': 'password'
+        })
+        self.assertTrue(form.is_valid())

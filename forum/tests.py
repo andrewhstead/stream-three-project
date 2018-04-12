@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.test import TestCase
 from .views import forum_home, forum_league, forum_team, new_thread, view_thread, new_post, edit_post, delete_post
 from django.core.urlresolvers import resolve
+from .forms import ThreadForm, PostForm
 
 
 class ForumHomeTest(TestCase):
@@ -52,3 +53,19 @@ class DeletePostTest(TestCase):
     def test_delete_post_resolves(self):
         remove_post = resolve('/post/delete/1/1/')
         self.assertEqual(remove_post.func, delete_post)
+
+
+class ThreadFormTest(TestCase):
+    def test_thread_form(self):
+        form = ThreadForm({
+            'title': 'Thread Title'
+        })
+        self.assertTrue(form.is_valid())
+
+
+class PostFormTest(TestCase):
+    def test_post_form(self):
+        form = PostForm({
+            'content': 'The content of the post.'
+        })
+        self.assertTrue(form.is_valid())

@@ -51,3 +51,7 @@ def home_page(request):
         return render(request, "home.html", {"home": home, "news_headlines": news_headlines,
                                              "conferences": conferences, "standings": standings,
                                              "fixtures": next_fixtures, "next_date": next_date})
+
+    else:
+        return render(request, "home.html", {"home": home, "news_headlines": news_headlines,
+                                             "conferences": conferences, "standings": standings})
