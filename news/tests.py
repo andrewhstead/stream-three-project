@@ -11,6 +11,14 @@ class LastNextTest(TestCase):
         news_home = resolve('/news/')
         self.assertEqual(news_home.func, news_index)
 
+    def test_news_index_code(self):
+        news_home = self.client.get('/news/')
+        self.assertEqual(news_home.status_code, 200)
+
+    def test_news_index_content(self):
+        news_home = self.client.get('/news/')
+        self.assertTemplateUsed(news_home, 'news.html')
+
 
 class NewsItemTest(TestCase):
     def test_news_item_resolves(self):
@@ -28,6 +36,14 @@ class BlogHomeTest(TestCase):
     def test_blog_home_resolves(self):
         blogs_home = resolve('/blogs/')
         self.assertEqual(blogs_home.func, blog_home)
+
+    def test_news_index_code(self):
+        blogs_home = self.client.get('/blogs/')
+        self.assertEqual(blogs_home.status_code, 200)
+
+    def test_news_index_content(self):
+        blogs_home = self.client.get('/blogs/')
+        self.assertTemplateUsed(blogs_home, 'blogs.html')
 
 
 class BlogIndexTest(TestCase):

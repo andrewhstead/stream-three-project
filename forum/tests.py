@@ -12,6 +12,14 @@ class ForumHomeTest(TestCase):
         message_board = resolve('/forum/')
         self.assertEqual(message_board.func, forum_home)
 
+    def test_forum_home_code(self):
+        message_board = self.client.get('/forum/')
+        self.assertEqual(message_board.status_code, 200)
+
+    def test_forum_home_content(self):
+        message_board = self.client.get('/forum/')
+        self.assertTemplateUsed(message_board, 'forum.html')
+
 
 class LeagueForumTest(TestCase):
     def test_league_forum_resolves(self):

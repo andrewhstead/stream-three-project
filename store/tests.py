@@ -14,6 +14,14 @@ class StoreFrontTest(TestCase):
         store_home = resolve('/store/')
         self.assertEqual(store_home.func, store_front)
 
+    def test_store_front_code(self):
+        store_home = self.client.get('/store/')
+        self.assertEqual(store_home.status_code, 200)
+
+    def test_store_front_content(self):
+        store_home = self.client.get('/store/')
+        self.assertTemplateUsed(store_home, 'store.html')
+
 
 class StoreTeamTest(TestCase):
     def test_store_team_resolves(self):
@@ -110,6 +118,7 @@ class ChangeQuantityFormTest(TestCase):
 class SubscriptionFormTest(TestCase):
     def test_subscription_form(self):
         form = SubscriptionForm({
+            'name_on_card': 'User Name',
             'billing_cycle': 'BIBL_SIX',
             'card_number': '4242424242424242',
             'cvv': '123',
@@ -123,6 +132,7 @@ class SubscriptionFormTest(TestCase):
 class SubmitOrderFormTest(TestCase):
     def test_submit_order_form(self):
         form = SubmitOrderForm({
+            'name_on_card': 'User Name',
             'card_number': '4242424242424242',
             'cvv': '123',
             'expiry_month': 1,

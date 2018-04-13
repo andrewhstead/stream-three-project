@@ -12,6 +12,14 @@ class LastNextTest(TestCase):
         results_latest = resolve('/scores/')
         self.assertEqual(results_latest.func, last_and_next)
 
+    # def test_last_and_next_code(self):
+    #     results_latest = self.client.get('/scores/')
+    #     self.assertEqual(results_latest.status_code, 200)
+    #
+    # def test_last_and_next_content(self):
+    #     results_latest = self.client.get('/scores/')
+    #     self.assertTemplateUsed(results_latest, 'games_latest.html')
+
 
 class LeagueStandingsTest(TestCase):
     def test_league_standings_resolves(self):

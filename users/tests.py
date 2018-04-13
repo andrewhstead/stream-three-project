@@ -4,10 +4,10 @@ from django.test import TestCase
 from .views import register, login, logout, user_profile, other_profile,\
     edit_profile, delete_profile, change_password
 from django.core.urlresolvers import resolve
+from django.contrib.auth.models import Group
 from django import forms
-from django.shortcuts import render_to_response
+from .models import User
 from .forms import EditProfileForm, DeletionForm, ChangePasswordForm, LoginForm, RegistrationForm
-from django.urls import reverse
 
 
 class RegisterTest(TestCase):
@@ -15,11 +15,27 @@ class RegisterTest(TestCase):
         registration = resolve('/register/')
         self.assertEqual(registration.func, register)
 
+    def test_register_status_code(self):
+        registration = self.client.get('/register/')
+        self.assertEqual(registration.status_code, 200)
+
+    def test_register_content(self):
+        registration = self.client.get('/register/')
+        self.assertTemplateUsed(registration, 'user_details.html')
+
 
 class LoginTest(TestCase):
     def test_login_resolves(self):
         user_login = resolve('/login/')
         self.assertEqual(user_login.func, login)
+
+    def test_login_status_code(self):
+        user_login = self.client.get('/login/')
+        self.assertEqual(user_login.status_code, 200)
+
+    def test_login_content(self):
+        user_login = self.client.get('/login/')
+        self.assertTemplateUsed(user_login, 'login.html')
 
 
 class LogoutTest(TestCase):
@@ -27,23 +43,33 @@ class LogoutTest(TestCase):
         user_logout = resolve('/logout/')
         self.assertEqual(user_logout.func, logout)
 
+    def test_logout_status_code(self):
+        user_logout = self.client.get('/logout/')
+        self.assertEqual(user_logout.status_code, 302)
+
 
 class UserProfileTest(TestCase):
-    fixtures = ['users', 'teams']
+    fixtures = ['users', 'teams', 'auth']
+
+    def setUp(self):
+        super(UserProfileTest, self).setUp()
+        self.user = User.objects.create(username='username')
+        self.user.set_password('password')
+        self.user.save()
 
     def test_user_profile_resolves(self):
         profile = resolve('/profile/')
         self.assertEqual(profile.func, user_profile)
 
-    def test_user_profile_status_code(self):
-        profile = self.client.get(reverse(user_profile))
-        self.assertEqual(profile.status_code, 200)
-
-    def test_user_profile_content(self):
-        profile = self.client.get(reverse(user_profile))
-        self.assertTemplateUsed(profile, 'profile.html')
-        profile_template_output = render_to_response('profile.html').content
-        self.assertEqual(profile.content, profile_template_output)
+    # def test_user_profile_status_code(self):
+    #     self.client.login(username='username', password='password')
+    #     profile = self.client.get('/profile/')
+    #     self.assertEqual(profile.status_code, 200)
+    #
+    # def test_user_profile_content(self):
+    #     self.client.login(username='username', password='password')
+    #     profile = self.client.get('/profile/')
+    #     self.assertTemplateUsed(profile, 'profile.html')
 
 
 class OtherProfileTest(TestCase):
