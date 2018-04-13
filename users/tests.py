@@ -7,7 +7,7 @@ from django.core.urlresolvers import resolve
 from django import forms
 from django.shortcuts import render_to_response
 from .forms import EditProfileForm, DeletionForm, ChangePasswordForm, LoginForm, RegistrationForm
-from .models import User
+from django.urls import reverse
 
 
 class RegisterTest(TestCase):
@@ -36,11 +36,11 @@ class UserProfileTest(TestCase):
         self.assertEqual(profile.func, user_profile)
 
     def test_user_profile_status_code(self):
-        profile = self.client.get('/profile/')
-        self.assertEqual(profile.status_code, 302)
+        profile = self.client.get(reverse(user_profile))
+        self.assertEqual(profile.status_code, 200)
 
     def test_user_profile_content(self):
-        profile = self.client.get('/profile/')
+        profile = self.client.get(reverse(user_profile))
         self.assertTemplateUsed(profile, 'profile.html')
         profile_template_output = render_to_response('profile.html').content
         self.assertEqual(profile.content, profile_template_output)

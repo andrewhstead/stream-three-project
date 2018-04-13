@@ -279,7 +279,7 @@ def upgrade_account(request):
 
         if request.method == 'POST':
             form = SubscriptionForm(request.POST)
-            form.order_fields(['billing_cycle', 'card_number', 'cvv',
+            form.order_fields(['billing_cycle', 'name_on_card', 'card_number', 'cvv',
                               'expiry_month', 'expiry_year', 'stripe_id'])
 
             billing_cycle = request.POST.get('billing_cycle')
@@ -318,7 +318,7 @@ def upgrade_account(request):
 
         else:
             form = SubscriptionForm()
-            form.order_fields(['billing_cycle', 'card_number', 'cvv',
+            form.order_fields(['billing_cycle', 'name_on_card', 'card_number', 'cvv',
                               'expiry_month', 'expiry_year', 'stripe_id'])
 
         args = {'form': form, 'publishable': settings.STRIPE_PUBLISHABLE}
@@ -383,7 +383,7 @@ def register_premium(request):
     if request.method == 'POST':
         registration_form = RegistrationForm(request.POST)
         subscription_form = SubscriptionForm(request.POST)
-        subscription_form.order_fields(['billing_cycle', 'card_number', 'cvv',
+        subscription_form.order_fields(['billing_cycle', 'name_on_card', 'card_number', 'cvv',
                                         'expiry_month', 'expiry_year', 'stripe_id'])
 
         billing_cycle = request.POST.get('billing_cycle')
@@ -435,7 +435,7 @@ def register_premium(request):
     else:
         registration_form = RegistrationForm()
         subscription_form = SubscriptionForm()
-        subscription_form.order_fields(['billing_cycle', 'card_number', 'cvv',
+        subscription_form.order_fields(['billing_cycle', 'name_on_card', 'card_number', 'cvv',
                                         'expiry_month', 'expiry_year', 'stripe_id'])
 
     args = {'registration_form': registration_form, 'subscription_form': subscription_form,

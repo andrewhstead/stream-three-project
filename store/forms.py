@@ -35,6 +35,7 @@ class SubmitOrderForm(forms.Form):
     MONTH_CHOICES = list(enumerate(MONTH_OPTIONS, 1))
     YEAR_CHOICES = [(i, i) for i in range(2018, 2030)]
 
+    name_on_card = forms.CharField(label='Name on Card')
     card_number = forms.CharField(label='Card Number')
     cvv = forms.CharField(label='CVV')
     expiry_month = forms.ChoiceField(choices=MONTH_CHOICES, label='Month')

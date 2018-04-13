@@ -432,6 +432,7 @@ footer {
     font-size: 0.75em;
     display: block;
     text-align: center;
+    clear: both;
 }
 
 .table-details {
@@ -1143,4 +1144,9 @@ ul.errorlist li {
     display: block;
     width: 75px;
     height: 75px;
+}
+
+#submit_order {
+    margin: 0 auto;
+    display: block;
 }

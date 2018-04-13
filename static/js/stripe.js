@@ -1,7 +1,8 @@
 $(function() {
-  $("#checkout-form").submit(function() {
+  $("#default-form").submit(function() {
       var form = this;
       var card = {
+        name:   $("#id_name_on_card").val(),
         number:   $("#id_card_number").val(),
         expMonth: $("#id_expiry_month").val(),
         expYear:  $("#id_expiry_year").val(),

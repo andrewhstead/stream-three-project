@@ -19,7 +19,7 @@
             CHECKOUT
         </div>
 
-        <form role="form" method="post" id="checkout-form" action="{% url 'checkout' order_id %}">
+        <form role="form" method="post" id="default-form" action="{% url 'checkout' order_id %}">
             <div id="credit-card-errors" style="display:none">
                 <div class="alert-message block-message error" id="stripe-error-message"></div>
             </div>
