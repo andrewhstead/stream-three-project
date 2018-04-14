@@ -49,7 +49,7 @@ class LogoutTest(TestCase):
 
 
 class UserProfileTest(TestCase):
-    fixtures = ['users', 'teams', 'auth']
+    fixtures = ['users', 'teams', 'auth', 'store']
 
     def setUp(self):
         super(UserProfileTest, self).setUp()
@@ -73,27 +73,96 @@ class UserProfileTest(TestCase):
 
 
 class OtherProfileTest(TestCase):
+    fixtures = ['users', 'teams', 'auth', 'store']
+
+    def setUp(self):
+        super(OtherProfileTest, self).setUp()
+        self.user = User.objects.create(username='username')
+        self.user.set_password('password')
+        self.user.save()
+
     def test_other_profile_resolves(self):
         other_user = resolve('/profile/2/')
         self.assertEqual(other_user.func, other_profile)
 
+    # def test_other_profile_status_code(self):
+    #     self.client.login(username='username', password='password')
+    #     other_user = self.client.get('/profile/2/')
+    #     self.assertEqual(other_user.status_code, 200)
+    #
+    # def test_other_profile_content(self):
+    #     self.client.login(username='username', password='password')
+    #     other_user = self.client.get('/profile/2/')
+    #     self.assertTemplateUsed(other_user, 'profile.html')
+
 
 class EditProfileTest(TestCase):
+
+    def setUp(self):
+        super(EditProfileTest, self).setUp()
+        self.user = User.objects.create(username='username')
+        self.user.set_password('password')
+        self.user.save()
+
     def test_edit_profile_resolves(self):
         profile_change = resolve('/profile/edit/')
         self.assertEqual(profile_change.func, edit_profile)
 
+    def test_edit_profile_status_code(self):
+        self.client.login(username='username', password='password')
+        profile_change = self.client.get('/profile/edit/')
+        self.assertEqual(profile_change.status_code, 200)
+
+    def test_edit_profile_content(self):
+        self.client.login(username='username', password='password')
+        profile_change = self.client.get('/profile/edit/')
+        self.assertTemplateUsed(profile_change, 'user_details.html')
+
 
 class DeleteProfileTest(TestCase):
+
+    def setUp(self):
+        super(DeleteProfileTest, self).setUp()
+        self.user = User.objects.create(username='username')
+        self.user.set_password('password')
+        self.user.save()
+
     def test_delete_profile_resolves(self):
         account_delete = resolve('/profile/delete/')
         self.assertEqual(account_delete.func, delete_profile)
 
+    def test_delete_profile_status_code(self):
+        self.client.login(username='username', password='password')
+        account_delete = self.client.get('/profile/delete/')
+        self.assertEqual(account_delete.status_code, 200)
+
+    def test_delete_profile_content(self):
+        self.client.login(username='username', password='password')
+        account_delete = self.client.get('/profile/delete/')
+        self.assertTemplateUsed(account_delete, 'delete_profile.html')
+
 
 class ChangePasswordTest(TestCase):
+
+    def setUp(self):
+        super(ChangePasswordTest, self).setUp()
+        self.user = User.objects.create(username='username')
+        self.user.set_password('password')
+        self.user.save()
+
     def test_change_password_resolves(self):
         new_password = resolve('/profile/password/')
         self.assertEqual(new_password.func, change_password)
+
+    def test_change_password_status_code(self):
+        self.client.login(username='username', password='password')
+        new_password = self.client.get('/profile/password/')
+        self.assertEqual(new_password.status_code, 200)
+
+    def test_change_password_content(self):
+        self.client.login(username='username', password='password')
+        new_password = self.client.get('/profile/password/')
+        self.assertTemplateUsed(new_password, 'change_password.html')
 
 
 class LoginFormTest(TestCase):
