@@ -28,6 +28,14 @@ class StoreTeamTest(TestCase):
         team_store = resolve('/store/liverpool/')
         self.assertEqual(team_store.func, store_team)
 
+    # def test_store_team_code(self):
+    #     team_store = self.client.get('/store/liverpool/')
+    #     self.assertEqual(team_store.status_code, 200)
+    #
+    # def test_store_team_content(self):
+    #     team_store = self.client.get('/store/liverpool/')
+    #     self.assertTemplateUsed(team_store, 'store_team.html')
+
 
 class AddProductTest(TestCase):
     def test_add_product_resolves(self):

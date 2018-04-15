@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Item
-from .forms import NewBlogPostForm
+from .forms import BlogPostForm
 from teams.models import Team
 from users.models import User
 from django.contrib.auth.decorators import login_required
@@ -109,10 +109,10 @@ def new_blog_post(request):
     user = request.user
 
     if request.method == 'POST':
-        form = NewBlogPostForm(request.POST)
+        form = BlogPostForm(request.POST)
         if form.is_valid():
             new_post = form.save(False)
-            new_post.author = request.user
+            new_post.author = user
             new_post.category_id = 6
             new_post.save()
             messages.success(request, "Your blog post has been added!")
@@ -120,7 +120,7 @@ def new_blog_post(request):
             return redirect(reverse('blog_post', args={new_post.pk}))
 
     else:
-        form = NewBlogPostForm()
+        form = BlogPostForm()
 
     args = {
         'form': form,
@@ -129,3 +129,38 @@ def new_blog_post(request):
     }
     args.update(csrf(request))
     return render(request, 'blog_post_form.html', args)
+
+
+@login_required(login_url='/login/')
+def edit_blog(request, post_id):
+    post = get_object_or_404(Item, pk=post_id)
+
+    if request.method == 'POST':
+        form = BlogPostForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save()
+            messages.success(request, "Your blog post has been edited.")
+
+            return redirect(reverse('blog_post', args={post.pk}))
+
+    else:
+        form = BlogPostForm(instance=post)
+
+    args = {
+        'form': form,
+        'form_action': reverse('edit_blog', kwargs={'post_id': post.id}),
+        'button_text': 'Submit Post'
+    }
+    args.update(csrf(request))
+    return render(request, 'blog_post_form.html', args)
+
+
+@login_required(login_url='/login/')
+def delete_blog(request, post_id):
+    post = get_object_or_404(Item, pk=post_id)
+
+    post.delete()
+
+    messages.success(request, "Your post has been deleted.")
+
+    return redirect(reverse('blog_home'))

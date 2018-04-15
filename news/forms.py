@@ -2,7 +2,7 @@ from django import forms
 from .models import Item
 
 
-class NewBlogPostForm(forms.ModelForm):
+class BlogPostForm(forms.ModelForm):
 
     class Meta:
         model = Item

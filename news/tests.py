@@ -25,6 +25,14 @@ class NewsItemTest(TestCase):
         article = resolve('/news/1/')
         self.assertEqual(article.func, news_item)
 
+    # def test_news_item_code(self):
+    #     article = self.client.get('/news/1/')
+    #     self.assertEqual(article.status_code, 200)
+    #
+    # def test_news_item_content(self):
+    #     article = self.client.get('/news/1/')
+    #     self.assertTemplateUsed(article, 'news_item.html')
+
 
 class NewsTeamTest(TestCase):
     def test_news_team_resolves(self):
@@ -62,3 +70,15 @@ class NewBlogTest(TestCase):
     def test_new_blog_post_resolves(self):
         new_blog = resolve('/blogs/post/new/')
         self.assertEqual(new_blog.func, new_blog_post)
+
+
+class EditBlogTest(TestCase):
+    def test_edit_blog_resolves(self):
+        edit_blog = resolve('/blogs/post/edit/152/')
+        self.assertEqual(edit_blog.func, edit_blog)
+
+
+class DeleteBlogTest(TestCase):
+    def test_delete_blog_resolves(self):
+        delete_blog = resolve('/blogs/post/delete/152/')
+        self.assertEqual(delete_blog.func, delete_blog)

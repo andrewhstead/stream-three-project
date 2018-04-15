@@ -21,6 +21,7 @@ class TeamIndexTest(TestCase):
 
 
 class TeamPageTest(TestCase):
+
     def test_team_page_resolves(self):
         team_profile = resolve('/teams/glasgow/')
         self.assertEqual(team_profile.func, team_page)

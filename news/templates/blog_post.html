@@ -45,7 +45,22 @@
         </div>
 
         <div class="blog-details">
-            {{ item.created_date|date:'j F Y, H:i' }}, {{ item.views }} views
+            {{ item.created_date|date:'j F Y, H:i' }}, {{ item.views }} views<br />
+            <a class="table-link" href="{% url 'edit_blog' item.id %}">[Edit]</a>
+            <span class="alert-link" onclick="confirmationAlert({{ item.id }})">[Delete]</span>
+        </div>
+
+        <div id="wrapper-{{ item.id }}" class="popup-wrapper hidden">
+            <div id="alert-{{ item.id }}" class="alert-message hidden">
+                <p>Confirmation:</p>
+                <p>Are you sure you want to delete?</p>
+                <div class="content-link-light">
+                    <a href="{% url 'delete_blog' item.id %}">OK</a>
+                </div>
+                <div class="content-link-light alert-link" onclick="confirmationAlert({{ item.id }})">
+                    Cancel
+                </div>
+            </div>
         </div>
 
         <div class="blog-content">
