@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Product, Cart, CartItem
 from users.models import User
 from teams.models import Team
-from .forms import AddToCartForm, ChangeQuantityForm, SubmitOrderForm, SubscriptionForm
+from .forms import AddToCartForm, ChangeQuantityForm, SubmitOrderForm, SubscriptionForm, AddressForm
 from users.forms import RegistrationForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
@@ -209,18 +209,47 @@ def remove_product(request, item_id):
 
 @login_required(login_url='/login/')
 def submit_order(request, order_id):
+    user = request.user
+
+    data = {
+        'name': user.first_name + ' ' + user.last_name,
+        'address_line_1': user.address_line_1,
+        'address_line_2': user.address_line_2,
+        'city': user.city,
+        'postcode': user.postcode,
+        'country': user.country,
+    }
+
     order = get_object_or_404(Cart, pk=order_id)
 
     if request.method == 'POST':
-        form = SubmitOrderForm(request.POST)
+        address_form = AddressForm(request.POST)
+        card_form = SubmitOrderForm(request.POST)
 
-        if form.is_valid():
+        if address_form.is_valid() and card_form.is_valid():
+
+            order.delivery_name = request.POST.get('name')
+            order.address_line_1 = request.POST.get('address_line_1')
+            order.address_line_2 = request.POST.get('address_line_2')
+            order.city = request.POST.get('city')
+            order.postcode = request.POST.get('postcode')
+            order.country = request.POST.get('country')
+            order.save()
+
+            if request.POST.get('set_address_as_default'):
+                user.address_line_1 = order.address_line_1
+                user.address_line_2 = order.address_line_2
+                user.city = order.city
+                user.postcode = order.postcode
+                user.country = order.country
+                user.save()
+
             try:
                 invoice = stripe.Charge.create(
                     amount=int(order.total * 100),
                     currency='GBP',
                     description=order.user.username,
-                    card=form.cleaned_data['stripe_id'],
+                    card=card_form.cleaned_data['stripe_id'],
                 )
 
                 if invoice.paid:
@@ -237,9 +266,11 @@ def submit_order(request, order_id):
                 messages.error(request, 'Sorry, your card was declined. Please try again with a different card.')
 
     else:
-        form = SubmitOrderForm()
+        address_form = AddressForm(initial=data)
+        card_form = SubmitOrderForm()
 
-    args = {'form': form, 'order': order, 'order_id': order_id, 'publishable': settings.STRIPE_PUBLISHABLE}
+    args = {'address_form': address_form, 'card_form': card_form, 'order': order,
+            'order_id': order_id, 'publishable': settings.STRIPE_PUBLISHABLE}
     args.update(csrf(request))
 
     return render(request, 'checkout.html', args)
@@ -279,7 +310,7 @@ def upgrade_account(request):
 
         if request.method == 'POST':
             form = SubscriptionForm(request.POST)
-            form.order_fields(['billing_cycle', 'name_on_card', 'card_number', 'cvv',
+            form.order_fields(['name_on_card', 'billing_cycle', 'card_number', 'cvv',
                               'expiry_month', 'expiry_year', 'stripe_id'])
 
             billing_cycle = request.POST.get('billing_cycle')
@@ -318,7 +349,7 @@ def upgrade_account(request):
 
         else:
             form = SubscriptionForm()
-            form.order_fields(['billing_cycle', 'name_on_card', 'card_number', 'cvv',
+            form.order_fields(['name_on_card', 'billing_cycle', 'card_number', 'cvv',
                               'expiry_month', 'expiry_year', 'stripe_id'])
 
         args = {'form': form, 'publishable': settings.STRIPE_PUBLISHABLE}
@@ -383,7 +414,7 @@ def register_premium(request):
     if request.method == 'POST':
         registration_form = RegistrationForm(request.POST)
         subscription_form = SubscriptionForm(request.POST)
-        subscription_form.order_fields(['billing_cycle', 'name_on_card', 'card_number', 'cvv',
+        subscription_form.order_fields(['billing_cycle', 'card_number', 'cvv',
                                         'expiry_month', 'expiry_year', 'stripe_id'])
 
         billing_cycle = request.POST.get('billing_cycle')
@@ -435,7 +466,7 @@ def register_premium(request):
     else:
         registration_form = RegistrationForm()
         subscription_form = SubscriptionForm()
-        subscription_form.order_fields(['billing_cycle', 'name_on_card', 'card_number', 'cvv',
+        subscription_form.order_fields(['billing_cycle', 'card_number', 'cvv',
                                         'expiry_month', 'expiry_year', 'stripe_id'])
 
     args = {'registration_form': registration_form, 'subscription_form': subscription_form,

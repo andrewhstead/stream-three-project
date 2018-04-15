@@ -49,6 +49,7 @@ class EditProfileForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email',
+                  'address_line_1', 'address_line_2', 'city', 'postcode', 'country',
                   'profile_picture', 'favourite_team', 'is_private']
         exclude = ['password']
         labels = {

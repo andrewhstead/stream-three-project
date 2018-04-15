@@ -65,6 +65,16 @@
             {% endwith %}
         </p>
 
+        <p>
+            <strong>Shipping to:</strong><br />
+            {{ order.delivery_name }}<br />
+            {{ order.address_line_1 }}<br />
+            {{ order.address_line_2 }}<br />
+            {{ order.city }}<br />
+            {{ order.postcode }}<br />
+            {{ order.country }}
+        </p>
+
         <span id="full-details">
             <a class="standard-link" href="/store/orders/">[Back to Orders]</a>
         </span>

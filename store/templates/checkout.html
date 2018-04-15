@@ -24,7 +24,14 @@
                 <div class="alert-message block-message error" id="stripe-error-message"></div>
             </div>
             {% csrf_token %}
-            {{ form.as_p }}
+            <div class="sub-header">
+                <strong>Shipping Details</strong>
+            </div>
+            {{ address_form.as_p }}
+            <div class="sub-header">
+                <strong>Billing Details</strong>
+            </div>
+            {{ card_form.as_p }}
             <input id="submit_order" name="commit" type="submit" value="Complete Order">
         </form>
 

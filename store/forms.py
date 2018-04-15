@@ -55,3 +55,14 @@ class SubscriptionForm(SubmitOrderForm):
 
     class Meta:
         fields = ['billing_cycle', 'card_number', 'cvv', 'expiry_month', 'expiry_year', 'stripe_id']
+
+
+class AddressForm(forms.Form):
+
+    name = forms.CharField(max_length=50)
+    address_line_1 = forms.CharField(max_length=100)
+    address_line_2 = forms.CharField(max_length=100)
+    city = forms.CharField(max_length=50)
+    postcode = forms.CharField(max_length=10)
+    country = forms.CharField(max_length=50)
+    set_address_as_default = forms.BooleanField(required=False)

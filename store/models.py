@@ -55,6 +55,12 @@ class Cart(models.Model):
     total = models.DecimalField(default=0.00, max_digits=10, decimal_places=2)
     date = models.DateTimeField(blank=True, null=True)
     stripe_id = models.CharField(max_length=40, default='')
+    delivery_name = models.CharField(max_length=50, blank=True, null=True)
+    address_line_1 = models.CharField(max_length=100, blank=True, null=True)
+    address_line_2 = models.CharField(max_length=100, blank=True, null=True)
+    city = models.CharField(max_length=50, blank=True, null=True)
+    postcode = models.CharField(max_length=10, blank=True, null=True)
+    country = models.CharField(max_length=50, blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.user) + ' (' + unicode(self.id) + ')'

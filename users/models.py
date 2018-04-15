@@ -15,6 +15,11 @@ class User(AbstractUser):
     is_private = models.BooleanField(default=False)
     profile_picture = models.ImageField(upload_to="images/users", blank=True, null=True)
     favourite_team = models.ForeignKey(Team, related_name="user", blank=True, null=True)
+    address_line_1 = models.CharField(max_length=100, blank=True, null=True)
+    address_line_2 = models.CharField(max_length=100, blank=True, null=True)
+    city = models.CharField(max_length=50, blank=True, null=True)
+    postcode = models.CharField(max_length=10, blank=True, null=True)
+    country = models.CharField(max_length=50, blank=True, null=True)
 
     def __unicode__(self):
         return self.username
