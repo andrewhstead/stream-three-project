@@ -22,7 +22,6 @@ from teams import views as team_views
 from store import views as store_views
 from forum import views as forum_views
 from users import views as users_views
-from comments import views as comments_views
 from django.views.static import serve
 from .settings import MEDIA_ROOT
 
@@ -38,11 +37,11 @@ urlpatterns = [
     url(r'^blogs/post/edit/(?P<post_id>\d+)/$', news_views.edit_blog, name='edit_blog'),
     url(r'^blogs/post/new/$', news_views.new_blog_post, name='new_blog_post'),
     url(r'^blogs/user/(?P<author_name>.*)/$', news_views.blog_index, name='blog_index'),
-    url(r'^comment/new/(?P<item_id>\d+)/$', comments_views.new_comment, name='new_comment'),
+    url(r'^comment/new/(?P<item_id>\d+)/$', news_views.new_comment, name='new_comment'),
     url(r'^comment/edit/(?P<item_id>\d+)/(?P<comment_id>\d+)/$',
-        comments_views.edit_comment, name='edit_comment'),
+        news_views.edit_comment, name='edit_comment'),
     url(r'^comment/delete/(?P<item_id>\d+)/(?P<comment_id>\d+)/$',
-        comments_views.delete_comment, name='delete_comment'),
+        news_views.delete_comment, name='delete_comment'),
     url(r'^forum/$', forum_views.forum_home, name='forum'),
     url(r'^forum/league/(?P<board_id>\d+)/$', forum_views.forum_league, name='forum_league'),
     url(r'^forum/(?P<team_name>.*)/$', forum_views.forum_team, name='forum_team'),

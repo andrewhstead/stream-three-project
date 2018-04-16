@@ -2,8 +2,8 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Item
-from .forms import BlogPostForm
+from .models import Item, Comment
+from .forms import BlogPostForm, CommentForm
 from teams.models import Team
 from users.models import User
 from django.contrib.auth.decorators import login_required
@@ -164,3 +164,74 @@ def delete_blog(request, post_id):
     messages.success(request, "Your post has been deleted.")
 
     return redirect(reverse('blog_home'))
+
+
+@login_required(login_url='/login/')
+def new_comment(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(False)
+            comment.user = request.user
+            comment.item = item
+            comment.save()
+            messages.success(request, "Your comment has been added!")
+
+            if item.category.name == 'Blog Posts':
+                return redirect(reverse('blog_post', args={item.pk}))
+            else:
+                return redirect(reverse('news', args={item.pk}))
+
+    else:
+        form = CommentForm()
+
+    args = {
+        'form': form,
+        'form_action': reverse('new_comment', args={item.id}),
+        'button_text': 'Post Comment'
+    }
+    args.update(csrf(request))
+    return render(request, 'comment_form.html', args)
+
+
+@login_required(login_url='/login/')
+def edit_comment(request, item_id, comment_id):
+    item = get_object_or_404(Item, pk=item_id)
+    comment = get_object_or_404(Comment, pk=comment_id)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your comment has been successfully edited.")
+
+            if item.category.name == 'Blog Posts':
+                return redirect(reverse('blog_post', args={item.pk}))
+            else:
+                return redirect(reverse('news', args={item.pk}))
+
+    else:
+        form = CommentForm(instance=comment)
+
+    args = {
+        'form': form,
+        'form_action': reverse('edit_comment', kwargs={'item_id': item.id, 'comment_id': comment.id}),
+        'button_text': 'Edit Comment',
+        'comment': comment
+    }
+    args.update(csrf(request))
+    return render(request, 'comment_form.html', args)
+
+
+@login_required(login_url='/login/')
+def delete_comment(request, item_id, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
+    item = get_object_or_404(Item, pk=item_id)
+
+    comment.delete()
+    messages.success(request, "Your comment was deleted.")
+
+    return redirect(reverse('news', args={item.pk}))
+

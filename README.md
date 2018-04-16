@@ -11,7 +11,7 @@ would look midway through a season, with data generated up to early July in the 
 1. [Planning](#planning)
 2. [Front End Development](#front-end-development)
 3. [Back End Development](#back-end-development)
-4. [External JavaScript Libraries](#external-javascript-libraries)
+4. [External Libraries](#external-libraries)
 5. [Use of Data](#use-of-data)
 6. [Deployment](#deployment)
 7. [Testing](#testing)

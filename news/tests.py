@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.test import TestCase
-from .views import news_index, news_item, news_team, blog_home, blog_index, blog_post, new_blog_post
+from .views import news_index, news_item, news_team, blog_home, blog_index, blog_post, new_blog_post, new_comment, \
+    delete_comment, edit_comment
 from django.core.urlresolvers import resolve
-from django.shortcuts import render_to_response
+from .forms import CommentForm, BlogPostForm
 
 
 class LastNextTest(TestCase):
@@ -82,3 +83,39 @@ class NewBlogTest(TestCase):
 #     def test_delete_blog_resolves(self):
 #         delete_blog = resolve('/blogs/post/delete/152/')
 #         self.assertEqual(delete_blog.func, delete_blog)
+
+
+class NewCommentTest(TestCase):
+    def test_new_comment_resolves(self):
+        add_comment = resolve('/comment/new/1/')
+        self.assertEqual(add_comment.func, new_comment)
+
+
+class EditCommentTest(TestCase):
+    def test_edit_comment_resolves(self):
+        change_comment = resolve('/comment/edit/1/1/')
+        self.assertEqual(change_comment.func, edit_comment)
+
+
+class DeleteCommentTest(TestCase):
+    def test_delete_comment_resolves(self):
+        remove_comment = resolve('/comment/delete/1/1/')
+        self.assertEqual(remove_comment.func, delete_comment)
+
+
+class CommentFormTest(TestCase):
+    def test_comment_form(self):
+        form = CommentForm({
+            'comment': 'The content of the comment.'
+        })
+        self.assertTrue(form.is_valid())
+
+
+class BlogPostFormTest(TestCase):
+    def test_comment_form(self):
+        form = BlogPostForm({
+            'comment': 'The content of the comment.'
+        })
+        self.assertTrue(form.is_valid())
+
+

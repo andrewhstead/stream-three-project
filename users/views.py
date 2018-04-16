@@ -7,7 +7,7 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from .forms import LoginForm, RegistrationForm, EditProfileForm, DeletionForm, ChangePasswordForm
-from comments.models import Comment
+from news.models import Comment
 from forum.models import Thread, Post
 from store.models import Cart
 from .models import User
