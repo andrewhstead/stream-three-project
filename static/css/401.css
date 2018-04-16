@@ -1,5 +1,91 @@
 
 main {
-    max-width: 800px;
-    padding: 0 100px;
+    max-width: 1200px;
+    padding: 0 10px;
+}
+
+#teams-header {
+    display: none;
+}
+
+.column-wrapper {
+    flex-direction: row;
+}
+
+#news-column {
+    flex: 3;
+}
+
+#stats-column {
+    flex: 1;
+    margin: 0 20px;
+}
+
+.home-logo {
+    height: 120px;
+    width: 120px;
+}
+
+#league-header {
+    font-size: 2.5em;
+    text-align: center;
+    height: 120px;
+	box-shadow: none;
+}
+
+#league-name {
+    padding: 5px;
+    margin: auto;
+}
+
+#menu-button {
+    display: none;
+}
+
+#main-menu {
+    display: block;
+	box-shadow: 0 2px 2px 2px #10253f;
+	background-color: #4f81bd;
+    height: auto;
+    padding: 10px;
+    text-align: center;
+}
+
+.menu-link {
+    display: inline;
+    border-bottom: none;
+    padding: 10px;
+}
+
+.menu-link:hover {
+    padding: 10px;
+}
+
+.menu-link:last-of-type {
+	box-shadow: none;
+}
+
+.multi-column {
+    flex-direction: column;
+}
+
+.stat-detail {
+    width: 50px;
+}
+
+.stat-detail-faint {
+    width: 50px;
+}
+
+.stat-intro {
+    text-align: center;
+}
+
+.company-logo {
+    height: 150px;
+    width: 150px;
+}
+
+.partner-logos {
+    width: 200px;
 }

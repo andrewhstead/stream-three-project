@@ -2,131 +2,144 @@
 
 {% block content %}
 
-    <section id="banner-news">
+    <div class="column-wrapper">
 
-        {% for article in news_headlines %}
-            <div class="banner-story">
-                <a class="banner-link" href="/news/{{ article.id }}">
-                    {% if article.cover_image %}
-                        <img class="cover-image fade-in" src="/media/{{ article.cover_image }}" />
-                    {% else %}
-                        <img class="cover-image fade-in" src="/media/{{ article.category.default_image }}" />
-                    {% endif %}
-                </a>
-                <div class="banner-headline">
-                    <a class="banner-link fade-in" href="/news/{{ article.id }}">{{ article.title }}</a>
-                </div>
-            </div>
-        {% endfor %}
+        <div id="news-column" class="column">
 
-        <div id="news-navigation">
-            {% for article in news_headlines %}
-                <div class="news-blob" onclick="newsFader({{ forloop.counter }})"></div>
-            {% endfor %}
-        </div>
+            <section id="banner-news">
 
-        <span id="full-details">
-            <a class="standard-link" href="/news/">[All News]</a>
-        </span>
+                {% for article in news_headlines %}
+                    <div class="banner-story">
+                        <a class="banner-link" href="/news/{{ article.id }}">
+                            {% if article.cover_image %}
+                                <img class="cover-image fade-in" src="/media/{{ article.cover_image }}" />
+                            {% else %}
+                                <img class="cover-image fade-in" src="/media/{{ article.category.default_image }}" />
+                            {% endif %}
+                        </a>
+                        <div class="banner-headline">
+                            <a class="banner-link fade-in" href="/news/{{ article.id }}">{{ article.title }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
 
-    </section>
-
-    <section id="scores">
-
-        <div class="multi-column">
-
-            <div class="spaced-column">
-
-                <div class="league-box colour-box">
-                    RESULTS
-                </div>
-                <div class="close-header">
-                    {{ latest_date|date:"d F Y" }}
-                </div>
-
-                <table class="stat-table alternating-no-header">
-                    {% for result in results %}
-                        <tr>
-                            <td>
-                                <a class="table-link" href="/teams/{{ result.home_team.geographic_name|lower }}">
-                                    {{ result.home_team.abbreviation }}
-                                </a>
-                            </td>
-                            <td class="stat-detail">
-                                {{ result.home_team_runs }}
-                                    -
-                                {{ result.away_team_runs }}
-                            </td>
-                            <td>
-                                <a class="table-link" href="/teams/{{ result.away_team.geographic_name|lower }}">
-                                    {{ result.away_team.abbreviation }}
-                                </a>
-                            </td>
-                        </tr>
+                <div id="news-navigation">
+                    {% for article in news_headlines %}
+                        <div class="news-blob" onclick="newsFader({{ forloop.counter }})"></div>
                     {% endfor %}
-                </table>
-
-            </div>
-
-            <div class="spaced-column">
-                <div class="league-box colour-box">
-                    FIXTURES
-                </div>
-                <div class="close-header">
-                    {{ next_date|date:"d F Y" }}
                 </div>
 
-                <table class="stat-table alternating-no-header">
-                    {% for fixture in fixtures %}
-                        <tr>
-                            <td>
-                                <a class="table-link" href="/teams/{{ fixture.home_team.geographic_name|lower }}">
-                                    {{ fixture.home_team.abbreviation }}
-                                </a>
-                            </td>
-                            <td class="stat-detail">
-                                {{ fixture.game_time|time:'G:i' }}
-                            </td>
-                            <td>
-                                <a class="table-link" href="/teams/{{ fixture.away_team.geographic_name|lower }}">
-                                    {{ fixture.away_team.abbreviation }}
-                                </a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </table>
+                <span id="full-details">
+                    <a class="standard-link" href="/news/">[All News]</a>
+                </span>
 
-            </div>
+            </section>
 
         </div>
 
-    </section>
+        <div id="stats-column" class="column">
 
-    <section id="standings">
+            <section id="scores">
 
-        <div class="league-box colour-box">
-            STANDINGS
-        </div>
+                <div class="multi-column">
 
-        <div class="multi-column">
+                    <div class="spaced-column">
 
-            {% for conference in conferences %}
+                        <div class="league-box colour-box">
+                            RESULTS
+                        </div>
+                        <div class="close-header">
+                            {{ latest_date|date:"d F Y" }}
+                        </div>
 
-                <div class="spaced-column">
+                        <table class="stat-table alternating-no-header">
+                            {% for result in results %}
+                                <tr>
+                                    <td>
+                                        <a class="table-link" href="/teams/{{ result.home_team.geographic_name|lower }}">
+                                            {{ result.home_team.abbreviation }}
+                                        </a>
+                                    </td>
+                                    <td class="stat-detail">
+                                        {{ result.home_team_runs }}
+                                            -
+                                        {{ result.away_team_runs }}
+                                    </td>
+                                    <td>
+                                        <a class="table-link" href="/teams/{{ result.away_team.geographic_name|lower }}">
+                                            {{ result.away_team.abbreviation }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
 
-                    <div class="close-header">
-                        {{ conference.short_name }}
                     </div>
 
-                    {% include 'standings.html' %}
+                    <div class="spaced-column">
+                        <div class="league-box colour-box">
+                            FIXTURES
+                        </div>
+                        <div class="close-header">
+                            {{ next_date|date:"d F Y" }}
+                        </div>
+
+                        <table class="stat-table alternating-no-header">
+                            {% for fixture in fixtures %}
+                                <tr>
+                                    <td>
+                                        <a class="table-link" href="/teams/{{ fixture.home_team.geographic_name|lower }}">
+                                            {{ fixture.home_team.abbreviation }}
+                                        </a>
+                                    </td>
+                                    <td class="stat-detail">
+                                        {{ fixture.game_time|time:'G:i' }}
+                                    </td>
+                                    <td>
+                                        <a class="table-link" href="/teams/{{ fixture.away_team.geographic_name|lower }}">
+                                            {{ fixture.away_team.abbreviation }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+
+                    </div>
 
                 </div>
 
-            {% endfor %}
+            </section>
+
+            <section id="standings">
+
+                <div class="league-box colour-box">
+                    STANDINGS
+                </div>
+
+                <div class="multi-column">
+
+                    {% for conference in conferences %}
+
+                        <div class="spaced-column">
+
+                            <div class="close-header">
+                                {{ conference.short_name }}
+                            </div>
+
+                            {% include 'standings.html' %}
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
 
         </div>
 
-    </section>
+    </div>
+
 
 {% endblock %}
 
