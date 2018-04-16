@@ -29,6 +29,16 @@ for devices with a width of 400 pixels or fewer. Break points are set at 400 and
  viewport but there will be whitespace at either side of the content, which is centred on the page. The site is designed
   for a minimum screen width of 310 pixels.
 
+The site's main navigation bar is visible at all times on devices wider than 800 pixels, while on narrow devices it is
+hidden by default and can be toggled on and off by the user as required. This toggle is implemented through a simple
+jQuery function.
+
+On many pages of the site a sidebar is incorporated on larger devices to enable the user to view the most important
+statistical information easily. This includes the most recent game results and the next scheduled fixtures, as well as
+the current league standings. This information is incorporated into a separate template which is included in the
+required pages, with a context processor being used to ensure that the relevant data is available to any template on the
+ site. This sidebar is not included on narrower devices, as it would be visible only after a significant amount of
+ scrolling rather than 'above the fold' as it is on wider screens.
 
 ### Page Styling
 

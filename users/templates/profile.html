@@ -3,187 +3,201 @@
 
 {% block content %}
 
-    <div id="page-header">
-        {% if user == profile_user %}
-            YOUR PROFILE
-        {% else %}
-            USER PROFILE
-        {% endif %}
-    </div>
+    <div class="column-wrapper">
 
-    <div>
-        {% if not profile_user.profile_picture %}
-            {% if not profile_user.favourite_team %}
-                <img class="profile-logo" src="/media/images/users/default.png" />
-            {% else %}
-                <img class="profile-logo" src="/media/{{ profile_user.favourite_team.large_logo }}" />
-            {% endif %}
-        {% else %}
-            <img class="profile-logo" src="/media/{{ profile_user.profile_picture }}" />
-        {% endif %}
+        <div id="details-column" class="profile column">
 
-        <div class="left-header">
-            <strong>Username:</strong><br /> {{ profile_user.username }}
-        </div>
-
-        {% if profile_user.is_private and user != profile_user %}
-
-            <p>
-                Sorry, this profile is set to private.
-            </p>
-
-        {% else %}
-
-            {% if user != profile_user %}
-                <p>
-                    <strong>Full name:</strong><br />
-                    {{ profile_user.first_name }} {{ profile_user.last_name }}
-                </p>
-            {% endif %}
-
-            <p>
-                <strong>Member since:</strong><br />
-                {{ profile_user.date_joined|date:'d F Y, H:i' }}
-            </p>
-
-            <p>
-                <strong>Last successful login:</strong><br />
-                {{ profile_user.last_login|date:'d F Y, H:i' }}
-            </p>
-
-            {% if user == profile_user %}
-                <p>
-                    <strong>Registered email address:</strong><br />
-                    {{ profile_user.email }}
-                </p>
-                <p>
-                    <strong>Account Type:</strong><br />
-                    {% if user.is_staff %}
-                        Administrator
-                    {% elif user_is_subscribed %}
-                        Premium
-                        {% if user.subscription_renews %}
-                            <span class="arrow">&#9658;</span>
-                            <a class="standard-link alert-link" onclick="confirmationAlert()">Cancel</a><br />
-                            Renews every: {% renewal_period %} <br />
-                            Next renewal: {{ profile_user.subscription_ends|date:'d/m/Y' }}
-                        {% else %}
-                            <br />
-                            Subscription Cancelled<br />
-                            Access Until: {{ profile_user.subscription_ends|date:'d/m/Y' }}
-                        {% endif %}
-                    {% else %}
-                        Standard <span class="arrow">&#9658;</span>
-                        <a class="standard-link" href="/premium/upgrade/">Upgrade</a>
-                    {% endif %}
-                </p>
-                <p>
-                    <strong>Purchases:</strong> {{ orders.count }}
-                    {% if orders.count > 0 %}
-                        <span class="arrow">&#9658;</span>
-                        <a class="standard-link" href="/store/orders/">
-                            Details
-                        </a>
-                    {% endif %}
-                </p>
-                <p>
-                    <strong>Profile Visibility:</strong><br />
-                    {% if profile_user.is_private %}
-                        Private (only you can see)
-                    {% else %}
-                        Public
-                        (logged in users can view, but e-mail address,
-                        account status and purchase history are still private)
-                    {% endif %}
-                </p>
-            {% endif %}
-
-            <div id="wrapper" class="popup-wrapper hidden">
-                <div id="alert" class="alert-message hidden">
-                    <p>Confirmation:</p>
-                    <p>Are you sure you want to cancel?</p>
-                        <div class="content-link-light">
-                            <a href="{% url 'cancel_subscription' %}">OK</a>
-                        </div>
-                        <div class="content-link-light alert-link" onclick="confirmationAlert()">
-                            Cancel
-                        </div>
-                </div>
+            <div id="page-header">
+                {% if user == profile_user %}
+                    YOUR PROFILE
+                {% else %}
+                    USER PROFILE
+                {% endif %}
             </div>
 
-            <p>
-                <strong>Favourite Team:</strong><br />
-                {% if not profile_user.favourite_team %}
-                    Not Set
-                {% else %}
-                    <img class="small-logo" src="/media/{{ profile_user.favourite_team.small_logo }}" />
-                    <a class="standard-link" href="/teams/{{ profile_user.favourite_team.geographic_name|lower }}">
-                        {{ profile_user.favourite_team }}
-                    </a>
-                {% endif %}
-            </p>
-
-            <p>
-                {% if profile_user|in_group:'Blogger' %}
-                    {% if user == profile_user %}
-                        <strong>Permissions Granted:</strong> Blogger
+            <div>
+                {% if not profile_user.profile_picture %}
+                    {% if not profile_user.favourite_team %}
+                        <img class="user-profile" src="/media/images/users/default.png" />
                     {% else %}
-                        This user is a blogger.
+                        <img class="user-profile" src="/media/{{ profile_user.favourite_team.large_logo }}" />
                     {% endif %}
-                    <br />
-                <span class="arrow">&#9658;</span>
-                <a class="standard-link" href="/blogs/user/{{ profile_user.username|lower }}">
-                    View Blog
-                </a>
-                (Posts: {{ profile_user.news.count }})
+                {% else %}
+                    <img class="user-profile" src="/media/{{ profile_user.profile_picture }}" />
                 {% endif %}
-            </p>
 
-            <p>
-                <strong>Activity:</strong><br />
-                Threads started: {{ profile_user.threads.count }}<br />
-                Forum posts: {{ profile_user.posts.count }}<br />
-                Comments: {{ profile_user.comments.count }}
-            </p>
+                <div class="left-header">
+                    <strong>Username:</strong><br /> {{ profile_user.username }}
+                </div>
 
-            <p>
-                <strong>Recent Activity:</strong><br />
+                {% if profile_user.is_private and user != profile_user %}
 
-                {% if contributions %}
-
-                    {% for contribution in contributions|dictsortreversed:'created_date'|slice:':5' %}
-                        {% with contribution|activity_type as activity %}
-                            {% if activity == 'Comment' %}
-                                <span class="arrow">&#9658;</span>
-                                {{ contribution.created_date|date:'d/m/Y' }} - Commented on:<br />
-                                <a class="standard-link" href="/news/{{ contribution.item.id }}/">
-                                    {{ contribution.item }}
-                                </a><br />
-                            {% elif activity == 'Post' %}
-                                <span class="arrow">&#9658;</span>
-                                {{ contribution.created_date|date:'d/m/Y' }} - Posted in:<br />
-                                <a class="standard-link" href="/thread/{{ contribution.thread.id }}/">
-                                    {{ contribution.thread }}
-                                </a><br />
-                            {% endif %}
-                        {% endwith %}
-                    {% endfor %}
+                    <p>
+                        Sorry, this profile is set to private.
+                    </p>
 
                 {% else %}
-                    No activity yet.
+
+                    {% if user != profile_user %}
+                        <p>
+                            <strong>Full name:</strong><br />
+                            {{ profile_user.first_name }} {{ profile_user.last_name }}
+                        </p>
+                    {% endif %}
+
+                    <p>
+                        <strong>Member since:</strong><br />
+                        {{ profile_user.date_joined|date:'d F Y, H:i' }}
+                    </p>
+
+                    <p>
+                        <strong>Last successful login:</strong><br />
+                        {{ profile_user.last_login|date:'d F Y, H:i' }}
+                    </p>
+
+                    {% if user == profile_user %}
+                        <p>
+                            <strong>Registered email address:</strong><br />
+                            {{ profile_user.email }}
+                        </p>
+                        <p>
+                            <strong>Account Type:</strong><br />
+                            {% if user.is_staff %}
+                                Administrator
+                            {% elif user_is_subscribed %}
+                                Premium
+                                {% if user.subscription_renews %}
+                                    <span class="arrow">&#9658;</span>
+                                    <a class="standard-link alert-link" onclick="confirmationAlert()">Cancel</a><br />
+                                    Renews every: {% renewal_period %} <br />
+                                    Next renewal: {{ profile_user.subscription_ends|date:'d/m/Y' }}
+                                {% else %}
+                                    <br />
+                                    Subscription Cancelled<br />
+                                    Access Until: {{ profile_user.subscription_ends|date:'d/m/Y' }}
+                                {% endif %}
+                            {% else %}
+                                Standard <span class="arrow">&#9658;</span>
+                                <a class="standard-link" href="/premium/upgrade/">Upgrade</a>
+                            {% endif %}
+                        </p>
+                        <p>
+                            <strong>Purchases:</strong> {{ orders.count }}
+                            {% if orders.count > 0 %}
+                                <span class="arrow">&#9658;</span>
+                                <a class="standard-link" href="/store/orders/">
+                                    Details
+                                </a>
+                            {% endif %}
+                        </p>
+                        <p>
+                            <strong>Profile Visibility:</strong><br />
+                            {% if profile_user.is_private %}
+                                Private (only you can see)
+                            {% else %}
+                                Public
+                                (logged in users can view, but e-mail address,
+                                account status and purchase history are still private)
+                            {% endif %}
+                        </p>
+                    {% endif %}
+
+                    <div id="wrapper" class="popup-wrapper hidden">
+                        <div id="alert" class="alert-message hidden">
+                            <p>Confirmation:</p>
+                            <p>Are you sure you want to cancel?</p>
+                                <div class="content-link-light">
+                                    <a href="{% url 'cancel_subscription' %}">OK</a>
+                                </div>
+                                <div class="content-link-light alert-link" onclick="confirmationAlert()">
+                                    Cancel
+                                </div>
+                        </div>
+                    </div>
+
+                    <p>
+                        <strong>Favourite Team:</strong><br />
+                        {% if not profile_user.favourite_team %}
+                            Not Set
+                        {% else %}
+                            <img class="small-logo" src="/media/{{ profile_user.favourite_team.small_logo }}" />
+                            <a class="standard-link" href="/teams/{{ profile_user.favourite_team.geographic_name|lower }}">
+                                {{ profile_user.favourite_team }}
+                            </a>
+                        {% endif %}
+                    </p>
+
+                    <p>
+                        {% if profile_user|in_group:'Blogger' %}
+                            {% if user == profile_user %}
+                                <strong>Permissions Granted:</strong> Blogger
+                            {% else %}
+                                This user is a blogger.
+                            {% endif %}
+                            <br />
+                        <span class="arrow">&#9658;</span>
+                        <a class="standard-link" href="/blogs/user/{{ profile_user.username|lower }}">
+                            View Blog
+                        </a>
+                        (Posts: {{ profile_user.news.count }})
+                        {% endif %}
+                    </p>
+
+                    <p>
+                        <strong>Activity:</strong><br />
+                        Threads started: {{ profile_user.threads.count }}<br />
+                        Forum posts: {{ profile_user.posts.count }}<br />
+                        Comments: {{ profile_user.comments.count }}
+                    </p>
+
+                    <p>
+                        <strong>Recent Activity:</strong><br />
+
+                        {% if contributions %}
+
+                            {% for contribution in contributions|dictsortreversed:'created_date'|slice:':5' %}
+                                {% with contribution|activity_type as activity %}
+                                    {% if activity == 'Comment' %}
+                                        <span class="arrow">&#9658;</span>
+                                        {{ contribution.created_date|date:'d/m/Y' }} - Commented on:<br />
+                                        <a class="standard-link" href="/news/{{ contribution.item.id }}/">
+                                            {{ contribution.item }}
+                                        </a><br />
+                                    {% elif activity == 'Post' %}
+                                        <span class="arrow">&#9658;</span>
+                                        {{ contribution.created_date|date:'d/m/Y' }} - Posted in:<br />
+                                        <a class="standard-link" href="/thread/{{ contribution.thread.id }}/">
+                                            {{ contribution.thread }}
+                                        </a><br />
+                                    {% endif %}
+                                {% endwith %}
+                            {% endfor %}
+
+                        {% else %}
+                            No activity yet.
+                        {% endif %}
+                    </p>
+
+                </div>
+
+                {% if user == profile_user %}
+                    <span id="full-details">
+                        <a class="standard-link" href="/profile/edit/">[Edit Profile]</a>
+                        <a class="standard-link" href="/profile/password/">[Change Password]</a>
+                        <a class="standard-link" href="/profile/delete/">[Delete Profile]</a>
+                    </span>
                 {% endif %}
-            </p>
+
+            {% endif %}
 
         </div>
 
-        {% if user == profile_user %}
-            <span id="full-details">
-                <a class="standard-link" href="/profile/edit/">[Edit Profile]</a>
-                <a class="standard-link" href="/profile/password/">[Change Password]</a>
-                <a class="standard-link" href="/profile/delete/">[Delete Profile]</a>
-            </span>
-        {% endif %}
+        <div id="stats-column" class="column for-desktop">
 
-    {% endif %}
+            {% include 'statistics_bar.html' %}
+
+        </div>
+
+    </div>
 
 {% endblock %}

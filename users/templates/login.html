@@ -2,14 +2,28 @@
 
 {% block content %}
 
-    <div id="page-header">
-        LOG IN TO YOUR ACCOUNT
-    </div>
+    <div class="column-wrapper">
 
-    <form id="default-form" role="form" method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="default-button" type="submit">Log In</button>
-    </form>
+        <div id="details-column" class="column">
+
+            <div id="page-header">
+                LOG IN TO YOUR ACCOUNT
+            </div>
+
+            <form id="default-form" role="form" method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="default-button" type="submit">Log In</button>
+            </form>
+
+        </div>
+
+        <div id="stats-column" class="column for-desktop">
+
+            {% include 'statistics_bar.html' %}
+
+        </div>
+
+    </div>
 
 {% endblock %}

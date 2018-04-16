@@ -95,7 +95,7 @@ main {
     padding-bottom: 10px;
 }
 
-.profile-logo {
+.profile-logo, .user-profile {
     float: right;
     height: 80px;
     width: 80px;
@@ -180,7 +180,7 @@ main {
 #page-header {
     font-size: 1.25em;
     text-align: center;
-    margin: 10px auto;
+    margin-bottom: 10px;
     font-weight: bold;
 }
 
@@ -958,7 +958,7 @@ a.button-link:hover {
 
 .product-details {
     text-align: center;
-    margin: 20px;
+    margin: 20px 10px 5px 10px;
     padding: 10px;
     border: 2px solid #10253f;
     box-shadow: 0 0 2px 2px #4f81bd;

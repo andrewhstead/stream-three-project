@@ -2,24 +2,38 @@
 
 {% block content %}
 
-    <div id="page-header">
-        {% if user.is_authenticated %}
-            EDIT YOUR PROFILE
-        {% else %}
-            REGISTER AN ACCOUNT
-        {% endif %}
-    </div>
+    <div class="column-wrapper">
 
-    {% if user.is_authenticated %}
-        <form id="default-form" enctype="multipart/form-data" role="form"
-              method="post" action="{% url 'edit_profile' %}">
-    {% else %}
-        <form id="default-form" enctype="multipart/form-data" role="form"
-              method="post" action="{% url 'register' %}">
-    {% endif %}
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="default-button" type="submit">{{ button_text }}</button>
-    </form>
+        <div id="details-column" class="column">
+
+            <div id="page-header">
+                {% if user.is_authenticated %}
+                    EDIT YOUR PROFILE
+                {% else %}
+                    REGISTER AN ACCOUNT
+                {% endif %}
+            </div>
+
+            {% if user.is_authenticated %}
+                <form id="default-form" enctype="multipart/form-data" role="form"
+                      method="post" action="{% url 'edit_profile' %}">
+            {% else %}
+                <form id="default-form" enctype="multipart/form-data" role="form"
+                      method="post" action="{% url 'register' %}">
+            {% endif %}
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="default-button" type="submit">{{ button_text }}</button>
+            </form>
+
+        </div>
+
+        <div id="stats-column" class="column for-desktop">
+
+            {% include 'statistics_bar.html' %}
+
+        </div>
+
+    </div>
 
 {% endblock %}

@@ -2,16 +2,32 @@
 
 {% block content %}
 
-    <div id="page-header">
-        DELETE ACCOUNT
+    <div class="column-wrapper">
+
+        <div id="details-column" class="column">
+
+            <div id="page-header">
+                DELETE ACCOUNT
+            </div>
+
+            <p class="sub-header">
+                Please confirm your password to complete the deletion of your account.
+            </p>
+
+            <form id="default-form" role="form" method="post" action="{% url 'delete_profile' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="default-button" type="submit">{{ button_text }}</button>
+            </form>
+
+        </div>
+
+        <div id="stats-column" class="column for-desktop">
+
+            {% include 'statistics_bar.html' %}
+
+        </div>
+
     </div>
-
-    Please confirm your password to complete the deletion of your account.
-
-    <form id="default-form" role="form" method="post" action="{% url 'delete_profile' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="default-button" type="submit">{{ button_text }}</button>
-    </form>
 
 {% endblock %}
