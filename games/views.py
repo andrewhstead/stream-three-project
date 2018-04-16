@@ -14,7 +14,7 @@ from django.template.context_processors import csrf
 # Create your views here.
 def last_and_next(request):
 
-    current_season = datetime.now()
+    current_season = datetime.now().year
 
     results = Game.objects.filter(game_date__year=current_season)\
         .filter(game_status__in=["Completed", "Suspended", "Postponed"])

@@ -22,14 +22,16 @@ class TeamIndexTest(TestCase):
 
 class TeamPageTest(TestCase):
 
+    fixtures = ['teams']
+
     def test_team_page_resolves(self):
         team_profile = resolve('/teams/glasgow/')
         self.assertEqual(team_profile.func, team_page)
 
-    # def test_team_page_code(self):
-    #     team_profile = self.client.get('/teams/glasgow/')
-    #     self.assertEqual(team_profile.status_code, 200)
-    #
-    # def test_team_page_content(self):
-    #     team_profile = self.client.get('/teams/glasgow/')
-    #     self.assertTemplateUsed(team_profile, 'team_profile.html')
+    def test_team_page_code(self):
+        team_profile = self.client.get('/teams/glasgow/')
+        self.assertEqual(team_profile.status_code, 200)
+
+    def test_team_page_content(self):
+        team_profile = self.client.get('/teams/glasgow/')
+        self.assertTemplateUsed(team_profile, 'team_profile.html')
