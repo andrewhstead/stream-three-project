@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'tinymce',
     'home',
     'news',
-    'comments',
     'games',
     'teams',
     'store',

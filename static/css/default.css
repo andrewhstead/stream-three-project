@@ -857,8 +857,8 @@ a.button-link:hover {
     text-align: right;
 }
 
-.blog-index {
-    display: flex;
+.blog-content {
+    margin-left: 80px;
 }
 
 .blog-post {
