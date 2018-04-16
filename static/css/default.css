@@ -17,6 +17,7 @@ main {
 .column-wrapper {
     display: flex;
     flex-direction: column;
+    margin-top: 10px;
 }
 
 .column {
@@ -161,6 +162,7 @@ main {
     padding: 5px 5px 5px 10px;
     text-decoration: none;
     box-sizing: border-box;
+    white-space: nowrap;
 }
 
 .menu-link:last-of-type {
@@ -195,8 +197,9 @@ main {
 }
 
 .team-details {
-    margin: 10px auto;
+    margin: 20px;
 }
+
 .team-details ul {
     list-style-type: none;
     padding: 0;
@@ -523,8 +526,21 @@ footer {
     background-color: #ffdd99;
 }
 
-.last-next, .pagination-links, .multi-column {
+.last-next, .pagination-links {
     display: flex;
+}
+
+.single-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.double-column {
+    flex: 1;
+}
+
+.team-abbreviation {
+    width: 35%;
 }
 
 .double-box, .pagination-section {
@@ -622,7 +638,7 @@ footer {
     font-size: 0.75em;
     display: block;
     margin: 5px;
-    text-align: left;
+    text-align: center;
 }
 
 .content-link {
@@ -971,7 +987,7 @@ a.button-link:hover {
 }
 
 .banner-story {
-    margin: 20px 20px 5px 20px;
+    margin: 0 20px 5px 20px;
     border: 2px solid #10253f;
 }
 
@@ -1015,7 +1031,7 @@ a.button-link:hover {
 }
 
 .news-link {
-    margin: 10px auto;
+    margin: 10px;
 }
 
 .banner-link {

@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render, get_object_or_404
 from .models import Team, Conference
 from news.models import Item
+from store.models import Product
 from games.models import Game, get_standings
 from forum.views import Board
 from datetime import datetime
@@ -20,6 +21,7 @@ def team_page(request, team_name):
     current_season = datetime.now().year
 
     team = get_object_or_404(Team, geographic_name=team_name.capitalize())
+    products = Product.objects.filter(team=team)
     conference = team.conference
     items = Item.objects.filter(teams=team.id).order_by('-created_date')
 
@@ -44,8 +46,9 @@ def team_page(request, team_name):
 
         return render(request, "team_profile.html", {'team': team, 'items': items, 'board': board,
                                                      'next_game': next_game, 'last_game': last_game,
-                                                     'standings': standings, 'conference': conference})
+                                                     'standings': standings, 'conference': conference,
+                                                     'products': products})
 
     else:
-        return render(request, "team_profile.html", {'team': team, 'items': items,
+        return render(request, "team_profile.html", {'team': team, 'items': items, 'products': products,
                                                      'board': board, 'standings': standings})

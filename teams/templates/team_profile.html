@@ -4,145 +4,210 @@
 
     <div id="team-header">
 
+        <img class="profile-logo" src="/media/{{ team.large_logo }}" />
         <div class="{{ team.geographic_name|lower }}-text team-title">
-            <img class="profile-logo" src="/media/{{ team.large_logo }}" />
             {{ team.geographic_name }} {{ team.nickname }}
         </div>
 
     </div>
 
-    <div class="last-next">
+    <div class="column-wrapper">
 
-        <div class="game-box double-box">
-            <div class="{{ team.geographic_name|lower }}-box colour-box">
-                LAST GAME
-            </div>
+        <div id="news-column" class="column">
 
-            {% if last_game %}
-
-                {{ last_game.game_date|date:"d/m/Y" }}<br />
-
-                {% if team == last_game.home_team %}
-                    v <img class="small-logo" src="/media/{{ last_game.away_team.small_logo }}" />
-                    <a class="standard-link" href="/teams/{{ last_game.away_team.geographic_name|lower }}">
-                        {{ last_game.away_team.abbreviation }}</a><br />
-                    {% if last_game.home_team_runs > last_game.away_team_runs %}
-                        W
-                    {% else %}
-                        L
-                    {% endif %}
-                    {{ last_game.home_team_runs }}-{{ last_game.away_team_runs }}
-                {% else %}
-                    @ <img class="small-logo" src="/media/{{ last_game.home_team.small_logo }}" />
-                    <a class="standard-link" href="/teams/{{ last_game.home_team.geographic_name|lower }}">
-                        {{ last_game.home_team.abbreviation }}</a><br />
-                    {% if last_game.away_team_runs > last_game.home_team_runs %}
-                        W
-                    {% else %}
-                        L
-                    {% endif %}
-                    {{ last_game.away_team_runs }}-{{ last_game.home_team_runs }}
-                {% endif %}
-
-            {% else %}
-
-                No results this season.
-
-            {% endif %}
-
-        </div>
-
-        <div class="game-box double-box">
-            <div class="{{ team.geographic_name|lower }}-box colour-box">
-                NEXT GAME
-            </div>
-
-            {% if next_game %}
-
-                {{ next_game.game_date|date:"d/m/Y" }}<br />
-
-                {% if team == next_game.home_team %}
-                    v <img class="small-logo" src="/media/{{ next_game.away_team.small_logo }}" />
-                    <a class="standard-link" href="/teams/{{ next_game.away_team.geographic_name|lower }}">
-                        {{ next_game.away_team.abbreviation }}</a>
-                {% else %}
-                    @ <img class="small-logo" src="/media/{{ next_game.home_team.small_logo }}" />
-                    <a class="standard-link" href="/teams/{{ next_game.home_team.geographic_name|lower }}">
-                        {{ next_game.home_team.abbreviation }}</a>
-                {% endif %}<br />
-
-                {{ next_game.game_time }}
-
-            {% else %}
-
-                No fixtures available.
-
-            {% endif %}
-
-        </div>
-
-    </div>
-
-    <span id="full-details"><a class="standard-link" href="/scores/{{ team.geographic_name|lower }}">[Full Schedule]</a></span>
-
-    <div class="{{ team.geographic_name|lower }}-box colour-box">
-        STANDINGS
-    </div>
-
-    <div class="sub-header">
-        {{ conference }}
-    </div>
-
-    {% include 'standings.html' %}
-
-    <span id="full-details"><a class="standard-link" href="/standings/">[Full Standings]</a></span>
-
-    <div class="{{ team.geographic_name|lower }}-box colour-box">
-        TEAM NEWS
-    </div>
-
-    <div class="link-list">
-        {% for item in items|slice:':5' %}
-
-            {% if team in item.teams.all %}
-
-                <div class="news-link">
-                    <span class="arrow">&#9658;</span>
-                    <a class="standard-link" href="/news/{{ item.id }}/">
-                        {{ item.title }}
+            {% for item in items|slice:':1' %}
+                <div class="banner-story">
+                    <a class="banner-link" href="/news/{{ item.id }}">
+                        {% if item.cover_image %}
+                            <img class="cover-image" src="/media/{{ item.cover_image }}" />
+                        {% else %}
+                            <img class="cover-image" src="/media/{{ item.category.default_image }}" />
+                        {% endif %}
                     </a>
+                    <div class="banner-headline">
+                        <a class="banner-link" href="/news/{{ item.id }}">{{ item.title }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <div class="column-wrapper">
+
+                <div class="double-column">
+
+                    <div class="{{ team.geographic_name|lower }}-box colour-box">
+                        MORE NEWS
+                    </div>
+
+                    <div class="link-list">
+                        {% for item in items|slice:'1:10' %}
+
+                            {% if team in item.teams.all %}
+
+                                <div class="news-link">
+                                    <span class="arrow">&#9658;</span>
+                                    <a class="standard-link" href="/news/{{ item.id }}/">
+                                        {{ item.title }}
+                                    </a>
+                                </div>
+
+                            {% endif %}
+
+                        {%  endfor %}
+                    </div>
+
+                    <span id="full-details">
+                        <a class="standard-link" href="/news/{{ team.geographic_name|lower }}">
+                            [All Articles]
+                        </a>
+                    </span>
+
                 </div>
 
-            {% endif %}
+                <div class="double-column">
 
-        {%  endfor %}
+                    <div class="{{ team.geographic_name|lower }}-box colour-box">
+                        DISCUSSION
+                    </div>
+
+                    <div class="link-list">
+                        {% for thread in board.threads.all %}
+
+                                <span class="arrow">&#9658;</span>
+                                    <a class="standard-link" href="/thread/{{ thread.id }}/">
+                                        {{ thread.title }}
+                                    </a>
+
+                        {%  endfor %}
+                    </div>
+
+                    <span id="full-details">
+                        <a class="standard-link" href="/forum/{{ team.geographic_name|lower }}">
+                            [All Threads]
+                        </a>
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="stats-column" class="column">
+
+            <div class="single-column">
+
+                <div class="game-box">
+                    <div class="{{ team.geographic_name|lower }}-box colour-box">
+                        LAST GAME
+                    </div>
+
+                    {% if last_game %}
+
+                        {{ last_game.game_date|date:"d F Y" }}<br />
+
+                        {% if team == last_game.home_team %}
+                            v <img class="small-logo" src="/media/{{ last_game.away_team.small_logo }}" />
+                            <a class="standard-link" href="/teams/{{ last_game.away_team.geographic_name|lower }}">
+                                {{ last_game.away_team.geographic_name }}</a><br />
+                            {% if last_game.home_team_runs > last_game.away_team_runs %}
+                                Won
+                            {% else %}
+                                Lost
+                            {% endif %}
+                            {{ last_game.home_team_runs }}-{{ last_game.away_team_runs }}
+                        {% else %}
+                            @ <img class="small-logo" src="/media/{{ last_game.home_team.small_logo }}" />
+                            <a class="standard-link" href="/teams/{{ last_game.home_team.geographic_name|lower }}">
+                                {{ last_game.home_team.geographic_name }}</a><br />
+                            {% if last_game.away_team_runs > last_game.home_team_runs %}
+                                Won
+                            {% else %}
+                                Lost
+                            {% endif %}
+                            {{ last_game.away_team_runs }}-{{ last_game.home_team_runs }}
+                        {% endif %}
+
+                    {% else %}
+
+                        No results this season.
+
+                    {% endif %}
+
+                </div>
+
+                <div class="game-box">
+                    <div class="{{ team.geographic_name|lower }}-box colour-box">
+                        NEXT GAME
+                    </div>
+
+                    {% if next_game %}
+
+                        {{ next_game.game_date|date:"d F Y" }}<br />
+
+                        {% if team == next_game.home_team %}
+                            v <img class="small-logo" src="/media/{{ next_game.away_team.small_logo }}" />
+                            <a class="standard-link" href="/teams/{{ next_game.away_team.geographic_name|lower }}">
+                                {{ next_game.away_team.geographic_name }}</a>
+                        {% else %}
+                            @ <img class="small-logo" src="/media/{{ next_game.home_team.small_logo }}" />
+                            <a class="standard-link" href="/teams/{{ next_game.home_team.geographic_name|lower }}">
+                                {{ next_game.home_team.geographic_name }}</a>
+                        {% endif %}<br />
+
+                        {{ next_game.game_time }}
+
+                    {% else %}
+
+                        No fixtures available.
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            <span id="full-details"><a class="standard-link" href="/scores/{{ team.geographic_name|lower }}">[Full Schedule]</a></span>
+
+            <div class="{{ team.geographic_name|lower }}-box colour-box">
+                STANDINGS
+            </div>
+
+            <div class="sub-header">
+                {{ conference }}
+            </div>
+
+            {% include 'standings.html' %}
+
+            <span id="full-details"><a class="standard-link" href="/standings/">[Full Standings]</a></span>
+
+            <div class="{{ team.geographic_name|lower }}-box colour-box">
+                STORE
+            </div>
+
+            {% for product in products|slice:':1' %}
+
+                <div class="product-details">
+
+                    <a class="standard-link" href="/store/product/{{ product.id }}">
+                        <img class="product-border" src="/media/{{ product.picture }}"/>
+                    </a><br />
+                    {{ product.team }}<br />
+                    {{ product.description }}<br />
+                    £{{ product.price }}<br />
+                    <a class="standard-link" href="/store/product/{{ product.id }}">[View Details]</a>
+
+                </div>
+
+            {% endfor %}
+
+            <span id="full-details">
+                <a class="standard-link" href="/store/{{ team.geographic_name|lower }}">
+                    [More Items]
+                </a>
+            </span>
+
+        </div>
+
     </div>
-
-    <span id="full-details">
-        <a class="standard-link" href="/news/{{ team.geographic_name|lower }}">
-            [All Articles]
-        </a>
-    </span>
-
-    <div class="{{ team.geographic_name|lower }}-box colour-box">
-        FORUM
-    </div>
-
-    <div class="link-list">
-        {% for thread in board.threads.all %}
-
-                <span class="arrow">&#9658;</span>
-                    <a class="standard-link" href="/thread/{{ thread.id }}/">
-                        {{ thread.title }}
-                    </a>
-
-        {%  endfor %}
-    </div>
-
-    <span id="full-details">
-        <a class="standard-link" href="/forum/{{ team.geographic_name|lower }}">
-            [All Threads]
-        </a>
-    </span>
 
 {% endblock %}

@@ -10,6 +10,7 @@ main {
 
 .column-wrapper {
     flex-direction: row;
+    clear: both;
 }
 
 #news-column {
@@ -24,6 +25,14 @@ main {
 .home-logo {
     height: 120px;
     width: 120px;
+}
+
+.profile-logo {
+    float: left;
+    margin-bottom: 20px;
+    height: 100px;
+    width: 100px;
+    margin-right: 20px;
 }
 
 #league-header {
@@ -65,20 +74,20 @@ main {
 	box-shadow: none;
 }
 
-.multi-column {
-    flex-direction: column;
-}
-
-.stat-detail {
-    width: 50px;
-}
-
-.stat-detail-faint {
-    width: 50px;
-}
-
 .stat-intro {
     text-align: center;
+}
+
+.team-title {
+    font-size: 2.5em;
+    word-spacing: normal;
+    padding-top: 30px;
+}
+
+.uniform img {
+    display: block;
+    width: 125px;
+    height: 125px;
 }
 
 .company-logo {

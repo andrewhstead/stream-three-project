@@ -20,25 +20,14 @@
                             </td>
                         {% else %}
 
-                        {% if home %}
-                            <td>
-                        {% else %}
                             <td class="stat-header">
                                 <img class="small-logo" src="/media/{{ club.small_logo }}" />
-                        {% endif %}
-
-                            {% if archive %}
-                                <a class="table-link" href="/archive/{{ season }}/{{ club.name|lower }}">
-                            {% else %}
-                                <a class="table-link" href="/teams/{{ club.name|lower }}">
-                            {% endif %}
-
-                                {% if home %}
-                                    {{ club.abbreviation }}
-                                {% else %}
+                                    {% if archive %}
+                                        <a class="table-link" href="/archive/{{ season }}/{{ club.name|lower }}">
+                                    {% else %}
+                                        <a class="table-link" href="/teams/{{ club.name|lower }}">
+                                    {% endif %}
                                     {{ club.name }}
-                                {% endif %}
-
                                 </a>
                             </td>
                         {% endif %}
