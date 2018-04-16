@@ -9,7 +9,9 @@ a {
 }
 
 main {
-    margin: 20px 10px;
+    margin: 20px auto;
+    max-width: 400px;
+    padding: 0 10px;
 }
 
 .hidden {
@@ -903,6 +905,7 @@ a.button-link:hover {
 	box-shadow: 0 0 2px 2px #4f81bd;
     width: 100%;
     margin: 20px auto;
+    text-align: center;
 }
 
 .white-title {

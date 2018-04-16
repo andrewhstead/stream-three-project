@@ -23,6 +23,13 @@ would look midway through a season, with data generated up to early July in the 
 
 ### Responsive Design
 
+The site was designed according mobile-first principles, with most of the functionality set up using the default layout
+for devices with a width of 400 pixels or fewer. Break points are set at 400 and 800 pixels, with a maximum width on the
+ page content set at 1200 pixels. For devices wider than this, the header and footer continue to expand to fill the
+ viewport but there will be whitespace at either side of the content, which is centred on the page. The site is designed
+  for a minimum screen width of 310 pixels.
+
+
 ### Page Styling
 
 ### Use of Custom JavaScript
