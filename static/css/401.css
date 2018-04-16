@@ -4,6 +4,10 @@ main {
     padding: 0 10px;
 }
 
+.for-desktop {
+    display: block;
+}
+
 #teams-header {
     display: none;
 }
@@ -13,7 +17,7 @@ main {
     clear: both;
 }
 
-#news-column {
+#details-column {
     flex: 3;
 }
 
@@ -72,10 +76,6 @@ main {
 
 .menu-link:last-of-type {
 	box-shadow: none;
-}
-
-.stat-intro {
-    text-align: center;
 }
 
 .team-title {

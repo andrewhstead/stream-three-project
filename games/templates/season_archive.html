@@ -2,53 +2,68 @@
 
 {% block content %}
 
-    <div id="page-header">
-        SEASON ARCHIVE
+
+    <div class="column-wrapper">
+
+        <div id="details-column" class="column">
+
+            <div id="page-header">
+                SEASON ARCHIVE
+            </div>
+
+            <table class="stat-table alternating-rows">
+
+                <tr class="header-row">
+                    <th>Year</th>
+                    <th>Champion</th>
+                    <th>Sc.</th>
+                    <th>Runner-Up</th>
+                </tr>
+                {% for season in seasons %}
+                    <tr>
+                        <td>
+                            {% if season.champion %}
+                                <a class="table-link" href="/archive/{{ season.year }}">
+                                    {{ season.year }}
+                                </a>
+                            {% else %}
+                                <a class="table-link" href="/standings/">
+                                    {{ season.year }}
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <strong>
+                                <a class="table-link" href="/archive/{{ season.year }}/{{ season.champion.geographic_name|lower }}">
+                                    {{ season.champion.geographic_name }}
+                                </a>
+                            </strong>
+                        </td>
+                        <td>
+                            {% if season.series_score %}
+                                <a class="table-link" href="/archive/{{ season.year }}/#championship">
+                                    {{ season.series_score }}
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a class="table-link" href="/archive/{{ season.year }}/{{ season.finalist.geographic_name|lower }}">
+                                {{ season.finalist.geographic_name }}
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <div id="stats-column" class="column for-desktop">
+
+            {% include 'statistics_bar.html' %}
+
+        </div>
+
     </div>
-
-    <table class="stat-table alternating-rows">
-
-        <tr class="header-row">
-            <th>Year</th>
-            <th>Champion</th>
-            <th>Sc.</th>
-            <th>Runner-Up</th>
-        </tr>
-        {% for season in seasons %}
-            <tr>
-                <td>
-                    {% if season.champion %}
-                        <a class="table-link" href="/archive/{{ season.year }}">
-                            {{ season.year }}
-                        </a>
-                    {% else %}
-                        <a class="table-link" href="/standings/">
-                            {{ season.year }}
-                        </a>
-                    {% endif %}
-                </td>
-                <td>
-                    <strong>
-                        <a class="table-link" href="/archive/{{ season.year }}/{{ season.champion.geographic_name|lower }}">
-                            {{ season.champion.geographic_name }}
-                        </a>
-                    </strong>
-                </td>
-                <td>
-                    {% if season.series_score %}
-                        <a class="table-link" href="/archive/{{ season.year }}/#championship">
-                            {{ season.series_score }}
-                        </a>
-                    {% endif %}
-                </td>
-                <td>
-                    <a class="table-link" href="/archive/{{ season.year }}/{{ season.finalist.geographic_name|lower }}">
-                        {{ season.finalist.geographic_name }}
-                    </a>
-                </td>
-            </tr>
-        {% endfor %}
-
-    </table>
 
 {% endblock %}

@@ -14,10 +14,13 @@ main {
     padding: 0 10px;
 }
 
+.for-desktop {
+    display: none;
+}
+
 .column-wrapper {
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
 }
 
 .column {
@@ -895,7 +898,6 @@ a.button-link:hover {
 
 .blog-title {
     font-size: 1.5em;
-    border-bottom: 1px solid #10253f;
 }
 
 .blog-details {

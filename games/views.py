@@ -14,7 +14,7 @@ from django.template.context_processors import csrf
 # Create your views here.
 def last_and_next(request):
 
-    current_season = datetime.now().year
+    current_season = datetime.now()
 
     results = Game.objects.filter(game_date__year=current_season)\
         .filter(game_status__in=["Completed", "Suspended", "Postponed"])
@@ -192,8 +192,9 @@ def full_fixtures(request):
 
 def season_archive(request):
     seasons = Season.objects.all().order_by('year')
+    standings = get_standings(datetime.now().year)
 
-    return render(request, "season_archive.html", {'seasons': seasons})
+    return render(request, "season_archive.html", {'seasons': seasons, 'standings': standings})
 
 
 def season_overview(request, year):

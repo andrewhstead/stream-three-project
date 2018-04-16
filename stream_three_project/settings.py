@@ -75,6 +75,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'teams.context_processors.team_list',
                 'store.context_processors.user_is_subscribed',
+                'games.context_processors.statistics_bar',
             ],
         },
     },
