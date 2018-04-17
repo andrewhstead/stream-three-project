@@ -13,17 +13,31 @@
  
 {% block content %}
 
-    <div id="page-header">
-        UPGRADE YOUR ACCOUNT
-    </div>
+    <div class="column-wrapper">
 
-        <form role="form" method="post" id="checkout-form" action="{% url 'upgrade' %}">
-            <div id="credit-card-errors" style="display:none">
-                <div class="alert-message block-message error" id="stripe-error-message"></div>
-            </div>
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input id="submit_order" name="commit" type="submit" value="Upgrade">
-        </form>
+        <div id="details-column" class="column">
+
+        <div id="page-header">
+            UPGRADE YOUR ACCOUNT
+        </div>
+
+            <form role="form" method="post" id="default-form" action="{% url 'upgrade' %}">
+                <div id="credit-card-errors" style="display:none">
+                    <div class="alert-message block-message error" id="stripe-error-message"></div>
+                </div>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input id="submit_order" name="commit" type="submit" value="Upgrade">
+            </form>
+
+        </div>
+
+        <div id="stats-column" class="column for-desktop">
+
+            {% include 'statistics_bar.html' %}
+
+        </div>
+
+    </div>
 
 {% endblock %}

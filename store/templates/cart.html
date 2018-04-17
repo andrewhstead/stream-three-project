@@ -88,23 +88,7 @@
 
         <div id="stats-column" class="column">
 
-            <div class="sub-header">
-                SHOP BY TEAM
-            </div>
-
-            <div id="team-list">
-
-                {% for team in teams %}
-
-                    <div class="store-team">
-                        <a href="/store/{{ team.geographic_name|lower }}/">
-                            <img src="/media/{{ team.large_logo }}/" alt="{{ team.geographic_name }} {{ team.nickname }}" />
-                        </a>
-                    </div>
-
-                {% endfor %}
-
-            </div>
+            {% include 'store_sidebar.html' %}
 
         </div>
 
