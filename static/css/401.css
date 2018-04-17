@@ -89,6 +89,10 @@ main {
     padding-top: 30px;
 }
 
+.team-header {
+    font-size: 2em;
+}
+
 .uniform img {
     display: block;
     width: 125px;

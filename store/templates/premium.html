@@ -50,7 +50,8 @@
                             </a>
                         </td>
                         <td class="stat-detail">
-                            {{ game.game_date|date:'d/m/y' }}<br />{{ game.game_time|time:'G:i' }}
+                            <strong>{{ game.game_date|date:'d/m/y' }}</strong><br />
+                            {{ game.game_time|time:'G:i' }}
                         </td>
                         <td>
                             <a class="table-link" href="/teams/{{ game.home_team.geographic_name|lower }}">

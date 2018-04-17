@@ -2,71 +2,85 @@
 
 {% block content %}
 
-    <div id="page-header">
-        LATEST NEWS
+    <div class="column-wrapper">
+
+        <div id="details-column" class="column">
+
+            <div id="page-header">
+                LATEST NEWS
+            </div>
+
+            <div class="{{ team.geographic_name|lower }}-text team-header">
+                {{ team.geographic_name }} {{ team.nickname }}
+            </div>
+
+            <div class="news-items">
+
+                <!-- Display lead story banner for the top item if the user is viewing the first page of stories. -->
+                {% for item in items|slice:':1' %}
+                    {% if current_page == 1 %}
+                        <div class="banner-story">
+                            <a class="banner-link" href="/news/{{ item.id }}">
+                                    {% if item.cover_image %}
+                                        <img class="cover-image" src="/media/{{ item.cover_image }}" />
+                                    {% else %}
+                                        <img class="cover-image" src="/media/{{ item.category.default_image }}" />
+                                    {% endif %}
+                                </a>
+                            <div class="banner-headline">
+                                <a class="banner-link" href="/news/{{ item.id }}">{{ item.title }}</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="news-link">
+                            <span class="arrow">&#9658;</span>
+                            <a class="standard-link" href="/news/{{ item.id }}/">{{ item.title }}</a><br />
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                {% for item in items|slice:'1:' %}
+                        <div class="news-link">
+                            <span class="arrow">&#9658;</span>
+                            <a class="standard-link" href="/news/{{ item.id }}/">
+                                {{ item.title }}
+                            </a>
+                        </div>
+                {%  endfor %}
+
+            </div>
+
+            <div class="pagination-menu">
+
+                {% for page in items.paginator.page_range %}
+                    {% if page == current_page %}
+                        <div class="pagination-current">
+                            {{ page }}
+                        </div>
+                    {% else %}
+                        <div class="pagination-button">
+                            <a href="?page={{ page }}">
+                                {{ page }}
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+            </div>
+
+            <span id="full-details">
+                <a class="standard-link" href="/teams/{{ team.geographic_name|lower }}">[Team Home]</a>
+                <a class="standard-link" href="/news/">[News Home]</a>
+            </span>
+
+        </div>
+
+        <div id="stats-column" class="column for-desktop">
+
+            {% include 'statistics_bar.html' %}
+
+        </div>
+
     </div>
-
-    <div class="{{ team.geographic_name|lower }}-text team-header">
-        {{ team.geographic_name }} {{ team.nickname }}
-    </div>
-
-    <div class="news-items">
-
-        <!-- Display lead story banner for the top item if the user is viewing the first page of stories. -->
-        {% for item in items|slice:':1' %}
-            {% if current_page == 1 %}
-                <div class="banner-story">
-                    <a class="banner-link" href="/news/{{ item.id }}">
-                            {% if item.cover_image %}
-                                <img class="cover-image" src="/media/{{ item.cover_image }}" />
-                            {% else %}
-                                <img class="cover-image" src="/media/{{ item.category.default_image }}" />
-                            {% endif %}
-                        </a>
-                    <div class="banner-headline">
-                        <a class="banner-link" href="/news/{{ item.id }}">{{ item.title }}</a>
-                    </div>
-                </div>
-            {% else %}
-                <div class="news-link">
-                    <span class="arrow">&#9658;</span>
-                    <a class="standard-link" href="/news/{{ item.id }}/">{{ item.title }}</a><br />
-                </div>
-            {% endif %}
-        {% endfor %}
-
-        {% for item in items|slice:'1:' %}
-                <div class="news-link">
-                    <span class="arrow">&#9658;</span>
-                    <a class="standard-link" href="/news/{{ item.id }}/">
-                        {{ item.title }}
-                    </a>
-                </div>
-        {%  endfor %}
-
-    </div>
-
-    <div class="pagination-menu">
-
-        {% for page in items.paginator.page_range %}
-            {% if page == current_page %}
-                <div class="pagination-current">
-                    {{ page }}
-                </div>
-            {% else %}
-                <div class="pagination-button">
-                    <a href="?page={{ page }}">
-                        {{ page }}
-                    </a>
-                </div>
-            {% endif %}
-        {% endfor %}
-
-    </div>
-
-    <span id="full-details">
-        <a class="standard-link" href="/teams/{{ team.geographic_name|lower }}">[Team Home]</a>
-        <a class="standard-link" href="/news/">[News Home]</a>
-    </span>
 
 {% endblock %}

@@ -2,58 +2,76 @@
 
 {% block content %}
 
-    <section id="news-story">
+    <div class="column-wrapper">
 
-        <div id="news-headline">
-            {{ item.title }}
-        </div>
+        <div id="details-column" class="column">
 
-        <div class="item-details">
-            {{ item.created_date|date:'j F Y, g:i a' }}<br />Written by: {{ item.author }}
-        </div>
+            <section id="news-story">
 
-        <div id="item-content">
-            {{ item.content|safe }}
-        </div>
+                <div id="page-header">
+                    BIBL NEWS
+                </div>
 
-        <div class="item-details">
-            Category: {{ item.category }} | {{ item.views }} views<br />
-            {% if item.teams.count > 0 %}
-                Teams:
-                {% for team in item.teams.all %}
-                    <a class="{{ team.geographic_name|lower }}-tag team-tag" href="/news/{{ team.geographic_name|lower }}">{{ team.geographic_name }} {{ team.nickname }}</a>
-                {% endfor %}
+                <div id="news-headline">
+                    {{ item.title }}
+                </div>
+
+                <div class="item-details">
+                    {{ item.created_date|date:'j F Y, g:i a' }}<br />Written by: {{ item.author }}
+                </div>
+
+                <div id="item-content">
+                    {{ item.content|safe }}
+                </div>
+
+                <div class="item-details">
+                    Category: {{ item.category }} | {{ item.views }} views<br />
+                    {% if item.teams.count > 0 %}
+                        Teams:
+                        {% for team in item.teams.all %}
+                            <a class="{{ team.geographic_name|lower }}-tag team-tag" href="/news/{{ team.geographic_name|lower }}">{{ team.geographic_name }} {{ team.nickname }}</a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+            </section>
+
+            {% if user.is_authenticated %}
+                <div class="content-link">
+                    <a href="{% url 'new_comment' item.id %}">Add a Comment</a>
+                </div>
+            {% else %}
+                <div id="not-logged-in">
+                    You must be <a class="standard-link" href="/login/">logged in</a> to comment.
+                </div>
             {% endif %}
+
+            <div class="left-header">
+                Comments <span id="show-hide">(Hide/Show)</span>
+            </div>
+
+            <section id="comments">
+
+                {% for comment in item.comments.all %}
+
+                    {% include "comment_body.html" %}
+
+                {% endfor %}
+
+            </section>
+
+            <span id="full-details">
+                <a class="standard-link" href="/news/">[News Home]</a>
+            </span>
+
         </div>
 
-    </section>
+        <div id="stats-column" class="column for-desktop">
 
-    {% if user.is_authenticated %}
-        <div class="content-link">
-            <a href="{% url 'new_comment' item.id %}">Add a Comment</a>
-        </div>
-    {% else %}
-        <div id="not-logged-in">
-            You must be <a class="standard-link" href="/login/">logged in</a> to comment.
-        </div>
-    {% endif %}
+            {% include 'statistics_bar.html' %}
 
-    <div class="left-header">
-        Comments <span id="show-hide">(Hide/Show)</span>
+        </div>
+
     </div>
-
-    <section id="comments">
-
-        {% for comment in item.comments.all %}
-
-            {% include "comment_body.html" %}
-
-        {% endfor %}
-
-    </section>
-
-    <span id="full-details">
-        <a class="standard-link" href="/news/">[News Home]</a>
-    </span>
 
 {% endblock %}

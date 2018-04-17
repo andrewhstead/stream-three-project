@@ -2,73 +2,87 @@
 
 {% block content %}
 
-    <div id="page-header">
-        LATEST NEWS
-    </div>
+    <div class="column-wrapper">
 
-    <!-- Display lead story banner for the top item if the user is viewing the first page of stories. -->
-    {% for item in items|slice:':1' %}
-        {% if current_page == 1 %}
-            <div class="banner-story">
-                <a class="banner-link" href="/news/{{ item.id }}">
-                        {% if item.cover_image %}
-                            <img class="cover-image" src="/media/{{ item.cover_image }}" />
-                        {% else %}
-                            <img class="cover-image" src="/media/{{ item.category.default_image }}" />
-                        {% endif %}
-                    </a>
-                <div class="banner-headline">
-                    <a class="banner-link" href="/news/{{ item.id }}">{{ item.title }}</a>
+        <div id="details-column" class="column">
+
+            <div id="page-header">
+                LATEST NEWS
+            </div>
+
+            <!-- Display lead story banner for the top item if the user is viewing the first page of stories. -->
+            {% for item in items|slice:':1' %}
+                {% if current_page == 1 %}
+                    <div class="banner-story">
+                        <a class="banner-link" href="/news/{{ item.id }}">
+                                {% if item.cover_image %}
+                                    <img class="cover-image" src="/media/{{ item.cover_image }}" />
+                                {% else %}
+                                    <img class="cover-image" src="/media/{{ item.category.default_image }}" />
+                                {% endif %}
+                            </a>
+                        <div class="banner-headline">
+                            <a class="banner-link" href="/news/{{ item.id }}">{{ item.title }}</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="news-link">
+                        <span class="arrow">&#9658;</span>
+                        <a class="standard-link" href="/news/{{ item.id }}/">{{ item.title }}</a><br />
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            {% for item in items|slice:'1:' %}
+
+                <div class="news-link">
+                    <span class="arrow">&#9658;</span>
+                    <a class="standard-link" href="/news/{{ item.id }}/">{{ item.title }}</a><br />
                 </div>
-            </div>
-        {% else %}
-            <div class="news-link">
-                <span class="arrow">&#9658;</span>
-                <a class="standard-link" href="/news/{{ item.id }}/">{{ item.title }}</a><br />
-            </div>
-        {% endif %}
-    {% endfor %}
 
-    {% for item in items|slice:'1:' %}
+            {%  endfor %}
 
-        <div class="news-link">
-            <span class="arrow">&#9658;</span>
-            <a class="standard-link" href="/news/{{ item.id }}/">{{ item.title }}</a><br />
+            <div class="pagination-menu">
+
+                {% if items.has_previous %}
+                    <div class="pagination-button">
+                        <a href="?page={{ items.previous_page_number }}">
+                            <
+                        </a>
+                    </div>
+                {% endif %}
+
+                {% for page in items.paginator.page_range %}
+                    {% if page == current_page %}
+                        <div class="pagination-current">
+                            {{ page }}
+                        </div>
+                    {% else %}
+                        <div class="pagination-button">
+                            <a href="?page={{ page }}">
+                                {{ page }}
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                {% if items.has_next %}
+                    <div class="pagination-button">
+                        <a href="?page={{ items.next_page_number }}">
+                            >
+                        </a>
+                    </div>
+                {% endif %}
+
+            </div>
+
         </div>
 
-    {%  endfor %}
+        <div id="stats-column" class="column for-desktop">
 
-    <div class="pagination-menu">
+            {% include 'statistics_bar.html' %}
 
-        {% if items.has_previous %}
-            <div class="pagination-button">
-                <a href="?page={{ items.previous_page_number }}">
-                    <
-                </a>
-            </div>
-        {% endif %}
-
-        {% for page in items.paginator.page_range %}
-            {% if page == current_page %}
-                <div class="pagination-current">
-                    {{ page }}
-                </div>
-            {% else %}
-                <div class="pagination-button">
-                    <a href="?page={{ page }}">
-                        {{ page }}
-                    </a>
-                </div>
-            {% endif %}
-        {% endfor %}
-
-        {% if items.has_next %}
-            <div class="pagination-button">
-                <a href="?page={{ items.next_page_number }}">
-                    >
-                </a>
-            </div>
-        {% endif %}
+        </div>
 
     </div>
 
