@@ -2,25 +2,74 @@
 
 {% block content %}
 
-    <div id="page-header">
-        BIBL PREMIUM
-    </div>
+    <div class="column-wrapper">
 
-    {% if user_is_subscribed or user.is_superuser %}
-        <p>
-            Premium Content
-        </p>
-    {% elif user.is_authenticated %}
-        <p>
-            <a class="standard-link" href="/premium/upgrade/">Upgrade</a> to view premium content.
-        </p>
-    {% else %}
-        <p>
-            <a class="standard-link" href="/register/premium/">Register and subscribe</a> to view premium content.
-        </p>
-        <p>
-            Already subscribed? <a class="standard-link" href="/login/">Log in </a> to your account.
-        </p>
-    {% endif %}
+        <div id="details-column" class="column">
+
+            <div id="page-header">
+                BIBL PREMIUM
+            </div>
+
+            {% if user_is_subscribed %}
+                <p class="sub-header">
+                    Your Premium subscription is paid up until {{ user.subscription_ends }}
+                </p>
+            {% elif user.is_superuser %}
+                <p class="sub-header">
+                    As a site administrator, you have access to all premium content.
+                </p>
+            {% elif user.is_authenticated %}
+                <p class="sub-header">
+                    <a class="standard-link" href="/premium/upgrade/">Upgrade</a> to view premium content.
+                </p>
+            {% else %}
+                <p class="sub-header">
+                    <a class="standard-link" href="/register/premium/">Register and subscribe</a> to view premium content.
+                </p>
+                <p class="sub-header">
+                    Already subscribed? <a class="standard-link" href="/login/">Log in </a> to your account.
+                </p>
+            {% endif %}
+
+            <div class="sub-header">
+                LIVE STREAMING SCHEDULE
+            </div>
+
+            <table class="stat-table alternating-rows">
+                <tr class="header-row">
+                    <th>Away</th>
+                    <th>@</th>
+                    <th>Home</th>
+                </tr>
+
+                {% for game in schedule %}
+                    <tr>
+                        <td>
+                            <a class="table-link" href="/teams/{{ game.away_team.geographic_name|lower }}">
+                                {{ game.away_team.geographic_name }}
+                            </a>
+                        </td>
+                        <td class="stat-detail">
+                            {{ game.game_date|date:'d/m/y' }}<br />{{ game.game_time|time:'G:i' }}
+                        </td>
+                        <td>
+                            <a class="table-link" href="/teams/{{ game.home_team.geographic_name|lower }}">
+                                {{ game.home_team.geographic_name }}
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <div id="stats-column" class="column for-desktop">
+
+            {% include 'statistics_bar.html' %}
+
+        </div>
+
+    </div>
 
 {% endblock %}

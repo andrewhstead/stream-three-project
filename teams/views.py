@@ -31,7 +31,7 @@ def team_page(request, team_name):
 
     standings = get_standings(current_season)
 
-    board = get_object_or_404(Board, team=team)
+    board = Board.objects.get(team=team)
 
     for game in games:
         if game.home_team == team or game.away_team == team:

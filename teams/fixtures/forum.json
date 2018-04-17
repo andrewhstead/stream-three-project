@@ -1,0 +1,332 @@
+[
+{
+    "model": "forum.section",
+    "pk": 1,
+    "fields": {
+        "title": "League Forums"
+    }
+},
+{
+    "model": "forum.section",
+    "pk": 2,
+    "fields": {
+        "title": "Team Forums"
+    }
+},
+{
+    "model": "forum.board",
+    "pk": 1,
+    "fields": {
+        "title": "General Discussion",
+        "section": 1,
+        "team": null,
+        "description": "<p>The latest news around the British and Irish Baseball League.</p>"
+    }
+},
+{
+    "model": "forum.board",
+    "pk": 2,
+    "fields": {
+        "title": "Game Threads",
+        "section": 1,
+        "team": null,
+        "description": "<p>Discuss a particular game before, while or after it is played.</p>"
+    }
+},
+{
+    "model": "forum.board",
+    "pk": 3,
+    "fields": {
+        "title": "Transactions",
+        "section": 1,
+        "team": null,
+        "description": "<p>Discuss the latest trade rumours, deals and free agency signings.</p>"
+    }
+},
+{
+    "model": "forum.board",
+    "pk": 4,
+    "fields": {
+        "title": "Birmingham Rhinos",
+        "section": 2,
+        "team": 5,
+        "description": "<p>Team board for discussion of the Birmingham Rhinos.</p>"
+    }
+},
+{
+    "model": "forum.board",
+    "pk": 5,
+    "fields": {
+        "title": "Bristol Bulls",
+        "section": 2,
+        "team": 6,
+        "description": "<p>Team board for discussion of the Bristol Bulls.</p>"
+    }
+},
+{
+    "model": "forum.board",
+    "pk": 6,
+    "fields": {
+        "title": "Cardiff Dragons",
+        "section": 2,
+        "team": 7,
+        "description": "<p>Team board for discussion of the Cardiff Dragons.</p>"
+    }
+},
+{
+    "model": "forum.board",
+    "pk": 7,
+    "fields": {
+        "title": "Dublin Harps",
+        "section": 2,
+        "team": 1,
+        "description": "<p>Team board for discussion of the Dublin Harps.</p>"
+    }
+},
+{
+    "model": "forum.board",
+    "pk": 8,
+    "fields": {
+        "title": "Glasgow Leopards",
+        "section": 2,
+        "team": 2,
+        "description": "<p>Team board for discussion of the Glasgow Leopards.</p>"
+    }
+},
+{
+    "model": "forum.board",
+    "pk": 9,
+    "fields": {
+        "title": "Liverpool Dockers",
+        "section": 2,
+        "team": 3,
+        "description": "<p>Team board for discussion of the Liverpool Dockers.</p>"
+    }
+},
+{
+    "model": "forum.board",
+    "pk": 10,
+    "fields": {
+        "title": "London Kings",
+        "section": 2,
+        "team": 8,
+        "description": "<p>Team board for discussion of the London Kings.</p>"
+    }
+},
+{
+    "model": "forum.board",
+    "pk": 11,
+    "fields": {
+        "title": "Manchester Comets",
+        "section": 2,
+        "team": 4,
+        "description": "<p>Team board for discussion of the Manchester Comets.</p>"
+    }
+},
+{
+    "model": "forum.thread",
+    "pk": 1,
+    "fields": {
+        "title": "Sample Thread",
+        "user": 1,
+        "board": 1,
+        "created_date": "2018-04-01T19:30:29.541Z",
+        "last_post": "2018-04-02T11:35:17.593Z",
+        "views": 53
+    }
+},
+{
+    "model": "forum.thread",
+    "pk": 2,
+    "fields": {
+        "title": "Bristol @ Birmingham, 26/03/18",
+        "user": 1,
+        "board": 2,
+        "created_date": "2018-04-01T19:34:35.717Z",
+        "last_post": "2018-04-01T19:34:36.184Z",
+        "views": 52
+    }
+},
+{
+    "model": "forum.thread",
+    "pk": 3,
+    "fields": {
+        "title": "Baseless Rumour",
+        "user": 1,
+        "board": 3,
+        "created_date": "2018-04-01T19:36:48.189Z",
+        "last_post": "2018-04-01T19:36:48.362Z",
+        "views": 28
+    }
+},
+{
+    "model": "forum.thread",
+    "pk": 4,
+    "fields": {
+        "title": "Birmingham...",
+        "user": 1,
+        "board": 4,
+        "created_date": "2018-04-01T19:38:04.950Z",
+        "last_post": "2018-04-01T19:38:05.403Z",
+        "views": 47
+    }
+},
+{
+    "model": "forum.thread",
+    "pk": 5,
+    "fields": {
+        "title": "Bristol...",
+        "user": 1,
+        "board": 5,
+        "created_date": "2018-04-01T19:38:57.774Z",
+        "last_post": "2018-04-01T19:38:57.880Z",
+        "views": 41
+    }
+},
+{
+    "model": "forum.thread",
+    "pk": 6,
+    "fields": {
+        "title": "Another Sample Thread",
+        "user": 1,
+        "board": 1,
+        "created_date": "2018-04-01T20:06:00.273Z",
+        "last_post": "2018-04-02T08:30:50.981Z",
+        "views": 31
+    }
+},
+{
+    "model": "forum.thread",
+    "pk": 7,
+    "fields": {
+        "title": "Manchester @ Liverpool, 26/03/18",
+        "user": 8,
+        "board": 2,
+        "created_date": "2018-04-02T20:03:18.108Z",
+        "last_post": "2018-04-04T12:49:29.706Z",
+        "views": 38
+    }
+},
+{
+    "model": "forum.thread",
+    "pk": 8,
+    "fields": {
+        "title": "Glasgow @ Dublin, 26/03/18",
+        "user": 1,
+        "board": 2,
+        "created_date": "2018-04-04T11:49:05.141Z",
+        "last_post": "2018-04-04T11:49:05.578Z",
+        "views": 55
+    }
+},
+{
+    "model": "forum.post",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "thread": 1,
+        "content": "<p>Some boring drivel about nothing in particular.</p>",
+        "created_date": "2018-04-01T19:32:46.218Z"
+    }
+},
+{
+    "model": "forum.post",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "thread": 2,
+        "content": "<p>This was a very one sided game.</p>",
+        "created_date": "2018-04-01T19:34:36.184Z"
+    }
+},
+{
+    "model": "forum.post",
+    "pk": 3,
+    "fields": {
+        "user": 1,
+        "thread": 3,
+        "content": "<p>Something I've completely made up.</p>",
+        "created_date": "2018-04-01T19:36:48.362Z"
+    }
+},
+{
+    "model": "forum.post",
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "thread": 4,
+        "content": "<p>...are rubbish.</p>",
+        "created_date": "2018-04-01T19:38:05.403Z"
+    }
+},
+{
+    "model": "forum.post",
+    "pk": 5,
+    "fields": {
+        "user": 1,
+        "thread": 5,
+        "content": "<p>...are also rubbish.</p>",
+        "created_date": "2018-04-01T19:38:57.880Z"
+    }
+},
+{
+    "model": "forum.post",
+    "pk": 6,
+    "fields": {
+        "user": 1,
+        "thread": 6,
+        "content": "<p>A random observation that no-one really cares about.</p>",
+        "created_date": "2018-04-01T20:06:00.708Z"
+    }
+},
+{
+    "model": "forum.post",
+    "pk": 7,
+    "fields": {
+        "user": 8,
+        "thread": 6,
+        "content": "<p>More random drivel.</p>",
+        "created_date": "2018-04-02T08:30:50.981Z"
+    }
+},
+{
+    "model": "forum.post",
+    "pk": 9,
+    "fields": {
+        "user": 8,
+        "thread": 1,
+        "content": "<p>A totally inane remark.</p>",
+        "created_date": "2018-04-02T11:35:17.593Z"
+    }
+},
+{
+    "model": "forum.post",
+    "pk": 11,
+    "fields": {
+        "user": 8,
+        "thread": 7,
+        "content": "<p>This game was really exciting!</p>",
+        "created_date": "2018-04-02T20:03:18.535Z"
+    }
+},
+{
+    "model": "forum.post",
+    "pk": 16,
+    "fields": {
+        "user": 1,
+        "thread": 8,
+        "content": "<p>Great win for Dublin.</p>",
+        "created_date": "2018-04-04T11:49:05.578Z"
+    }
+},
+{
+    "model": "forum.post",
+    "pk": 17,
+    "fields": {
+        "user": 1,
+        "thread": 7,
+        "content": "<p>Thrilling.</p>",
+        "created_date": "2018-04-04T11:49:29.530Z"
+    }
+}
+]

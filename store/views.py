@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Cart, CartItem
 from users.models import User
+from games.models import Game
 from teams.models import Team
 from .forms import AddToCartForm, ChangeQuantityForm, SubmitOrderForm, SubscriptionForm, AddressForm
 from users.forms import RegistrationForm
@@ -296,7 +297,8 @@ def order_details(request, order_id):
 
 
 def premium_home(request):
-    return render(request, 'premium.html')
+    schedule = Game.objects.filter(game_status='Scheduled').filter(is_premium=True)
+    return render(request, 'premium.html', {'schedule': schedule})
 
 
 @login_required(login_url='/login/')

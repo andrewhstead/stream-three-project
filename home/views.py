@@ -11,9 +11,6 @@ from datetime import datetime
 # Create your views here.
 def home_page(request):
 
-    home = True
-
-    conferences = Conference.objects.all()
     news_headlines = Item.objects.exclude(category_id=6).order_by('-created_date')[:7]
 
-    return render(request, "home.html", {"home": home, "news_headlines": news_headlines})
+    return render(request, "home.html", {"news_headlines": news_headlines})

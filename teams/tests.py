@@ -22,7 +22,7 @@ class TeamIndexTest(TestCase):
 
 class TeamPageTest(TestCase):
 
-    fixtures = ['teams']
+    fixtures = ['teams', 'forum', 'users']
 
     def test_team_page_resolves(self):
         team_profile = resolve('/teams/glasgow/')

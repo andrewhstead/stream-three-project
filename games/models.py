@@ -85,6 +85,7 @@ class Game(models.Model):
     home_team_hits = models.IntegerField(blank=True, null=True)
     home_team_errors = models.IntegerField(blank=True, null=True)
     attendance = models.IntegerField(blank=True, null=True)
+    is_premium = models.BooleanField()
 
     def __unicode__(self):
         return unicode(self.game_date) + ': ' + unicode(self.away_team) + ' @ ' + unicode(self.home_team)
