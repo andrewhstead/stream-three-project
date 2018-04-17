@@ -16,7 +16,7 @@
             {{ conference.name }}
         </div>
 
-        {% include 'standings.html' %}
+        {% include 'full_standings.html' %}
 
     {% endfor %}
 
@@ -35,9 +35,9 @@
                     <th class="stat-intro">
                         GAME {{ forloop.counter }}
                     </th>
-                    <th class="stat-column">R</th>
-                    <th class="stat-column">H</th>
-                    <th class="stat-column">E</th>
+                    <th class="score-column">R</th>
+                    <th class="score-column">H</th>
+                    <th class="score-column">E</th>
                 </tr>
                 <tr>
                     <td class="stat-header"><img class="small-logo" src="/media/{{ game.away_team.small_logo }}" />

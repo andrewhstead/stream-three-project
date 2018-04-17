@@ -13,18 +13,67 @@
  
 {% block content %}
 
-    <div id="page-header">
-        REGISTER PREMIUM ACCOUNT
-    </div>
+    <div class="column-wrapper">
 
-        <form role="form" method="post" id="checkout-form" action="{% url 'register_premium' %}">
-            <div id="credit-card-errors" style="display:none">
-                <div class="alert-message block-message error" id="stripe-error-message"></div>
+        <div id="details-column" class="column">
+
+            <div id="page-header">
+                REGISTER PREMIUM ACCOUNT
             </div>
-            {% csrf_token %}
-            {{ registration_form.as_p }}
-            {{ subscription_form.as_p }}
-            <input id="submit_order" name="commit" type="submit" value="Register">
-        </form>
+
+                <form role="form" method="post" id="default-form" action="{% url 'register_premium' %}">
+                    <div id="credit-card-errors" style="display:none">
+                        <div class="alert-message block-message error" id="stripe-error-message"></div>
+                    </div>
+                    {% csrf_token %}
+
+                    <div class="column-wrapper">
+                        <div class="column">
+                            <div class="sub-header">
+                                <strong>Shipping Details</strong>
+                            </div>
+                            {{ registration_form.as_p }}
+                        </div>
+                        <div class="column">
+                            <div class="sub-header">
+                                <strong>Billing Details</strong>
+                            </div>
+                            {{ subscription_form.as_p }}
+                        </div>
+                    </div>
+
+                    <input id="submit_order" name="commit" type="submit" value="Register">
+                </form>
+
+        </div>
+
+        <div id="stats-column" class="column">
+
+            {% if user == cart.user %}
+                <div class="page-detail">
+                    <a class="standard-link" href="/store/cart/">[View Cart]</a><br />
+                    <strong>{{ cart.items.count }}</strong> Item(s)
+                </div>
+            {% endif %}
+
+            <div class="sub-header">
+                SHOP BY TEAM
+            </div>
+
+            <div id="team-list">
+
+                {% for team in teams %}
+
+                    <div class="store-team">
+                        <a href="/store/{{ team.geographic_name|lower }}/">
+                            <img src="/media/{{ team.large_logo }}/" alt="{{ team.geographic_name }} {{ team.nickname }}" />
+                        </a>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
 
 {% endblock %}

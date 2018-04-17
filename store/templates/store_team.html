@@ -2,32 +2,66 @@
 
 {% block content %}
 
-    <div id="page-header">
-        TEAM STORE
-    </div>
+    <div class="column-wrapper">
 
-    <div class="{{ team.geographic_name|lower }}-text team-header">
-        {{ team.geographic_name }} {{ team.nickname }}
-    </div>
+        <div id="details-column" class="column">
 
-    {% for product in team.products.all %}
+            <div id="page-header">
+                TEAM STORE
+            </div>
 
-        <div class="product-details">
+            <div class="{{ team.geographic_name|lower }}-text team-header">
+                {{ team.geographic_name }} {{ team.nickname }}
+            </div>
 
-            <a class="standard-link" href="/store/product/{{ product.id }}">
-                <img class="product-border" src="/media/{{ product.picture }}"/>
-            </a><br />
-            {{ product.team }}<br />
-            {{ product.description }}<br />
-            £{{ product.price }}<br />
-            <a class="standard-link" href="/store/product/{{ product.id }}">[View Details]</a>
+            <div id="store-products">
+
+                {% for product in team.products.all %}
+
+                    <div class="product-details">
+
+                        <a class="standard-link" href="/store/product/{{ product.id }}">
+                            <img class="product-border" src="/media/{{ product.picture }}"/>
+                        </a><br />
+                        {{ product.team }}<br />
+                        {{ product.description }}<br />
+                        £{{ product.price }}<br />
+                        <a class="standard-link" href="/store/product/{{ product.id }}">[View Details]</a>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+            <span id="full-details">
+                <a class="standard-link" href="/store/">[Store Home]</a>
+            </span>
 
         </div>
 
-    {% endfor %}
+        <div id="stats-column" class="column for-desktop">
 
-    <span id="full-details">
-        <a class="standard-link" href="/store/">[Store Home]</a>
-    </span>
+            <div class="sub-header">
+                SHOP BY TEAM
+            </div>
+
+            <div id="team-list">
+
+                {% for team in teams %}
+
+                    <div class="store-team">
+                        <a href="/store/{{ team.geographic_name|lower }}/">
+                            <img src="/media/{{ team.large_logo }}/" alt="{{ team.geographic_name }} {{ team.nickname }}" />
+                        </a>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
 
 {% endblock %}

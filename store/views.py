@@ -7,6 +7,7 @@ from users.models import User
 from games.models import Game
 from teams.models import Team
 from .forms import AddToCartForm, ChangeQuantityForm, SubmitOrderForm, SubscriptionForm, AddressForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from users.forms import RegistrationForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
@@ -29,8 +30,26 @@ stripe.api_key = settings.STRIPE_SECRET
 # Create your views here.
 def store_front(request):
     user = request.user
-    products = Product.objects.all()
+    all_products = Product.objects.all().order_by('-team').order_by('-description')
     teams = Team.objects.all().order_by('geographic_name')
+
+    view_products = Paginator(all_products, 8)
+
+    page = request.GET.get('page')
+
+    if page:
+        current_page = int(page)
+    else:
+        current_page = 1
+
+    page_count = view_products.num_pages
+
+    try:
+        products = view_products.page(page)
+    except EmptyPage:
+        products = view_products.page(page_count)
+    except PageNotAnInteger:
+        products = view_products.page(1)
 
     if user.is_authenticated:
         try:
@@ -40,7 +59,7 @@ def store_front(request):
         except Cart.DoesNotExist:
             pass
 
-    return render(request, 'store.html', {'products': products, 'teams': teams})
+    return render(request, 'store.html', {'products': products, 'teams': teams, "current_page": current_page})
 
 
 def store_team(request, team_name):
@@ -129,6 +148,8 @@ def shopping_cart(request):
 @login_required(login_url='/login/')
 def change_product(request, item_id):
     item = get_object_or_404(CartItem, pk=item_id)
+    user = request.user
+    cart = Cart.objects.get(user=user, status='Pending')
 
     if request.method == 'POST':
         form = ChangeQuantityForm(request.POST)
@@ -166,7 +187,7 @@ def change_product(request, item_id):
     else:
         form = ChangeQuantityForm()
 
-    args = {'form': form, 'item': item, 'button_text': 'Change'}
+    args = {'form': form, 'item': item, 'cart': cart, 'button_text': 'Change'}
     args.update(csrf(request))
 
     return render(request, 'change_quantity.html', args)

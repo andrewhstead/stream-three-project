@@ -3,27 +3,87 @@
 
 {% block content %}
 
-    <div id="page-header">
-        STORE
-    </div>
+    <div class="column-wrapper">
 
-    {% if user == cart.user %}
-        <div id="full-details">
-            <a class="standard-link" href="/store/cart/">[View Cart]</a><br />
-            <strong>{{ cart.items.count }}</strong> Items
-        </div>
-    {% endif %}
+        <div id="details-column" class="column">
 
-    <div id="team-list">
-        {% for team in teams %}
-
-            <div class="store-team">
-                <a href="/store/{{ team.geographic_name|lower }}/">
-                    <img src="/media/{{ team.large_logo }}/" alt="{{ team.geographic_name }} {{ team.nickname }}" />
-                </a>
+            <div id="page-header">
+                BIBL STORE
             </div>
 
-        {% endfor %}
+            <div class="sub-header">
+                BROWSE ALL PRODUCTS
+            </div>
+
+            <div id="store-products">
+
+                {% for product in products %}
+
+                    <div class="product-details">
+
+                        <a class="standard-link" href="/store/product/{{ product.id }}">
+                            <img class="product-border" src="/media/{{ product.picture }}"/>
+                        </a><br />
+                        {{ product.team }}<br />
+                        {{ product.description }}<br />
+                        £{{ product.price }}<br />
+                        <a class="standard-link" href="/store/product/{{ product.id }}">[View Details]</a>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+            <div class="pagination-menu">
+
+                {% for page in products.paginator.page_range %}
+                    {% if page == current_page %}
+                        <div class="pagination-current">
+                            {{ page }}
+                        </div>
+                    {% else %}
+                        <div class="pagination-button">
+                            <a href="?page={{ page }}">
+                                {{ page }}
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <div id="stats-column" class="column">
+
+            {% if user == cart.user %}
+                <div class="page-detail">
+                    <a class="standard-link" href="/store/cart/">[View Cart]</a><br />
+                    <strong>{{ cart.items.count }}</strong> Item(s)
+                </div>
+            {% endif %}
+
+            <div class="sub-header">
+                SHOP BY TEAM
+            </div>
+
+            <div id="team-list">
+
+                {% for team in teams %}
+
+                    <div class="store-team">
+                        <a href="/store/{{ team.geographic_name|lower }}/">
+                            <img src="/media/{{ team.large_logo }}/" alt="{{ team.geographic_name }} {{ team.nickname }}" />
+                        </a>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
     </div>
 
 {% endblock %}

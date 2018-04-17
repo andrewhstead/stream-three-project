@@ -3,32 +3,69 @@
 
 {% block content %}
 
-    <div id="page-header">
-        PRODUCT DETAILS
-    </div>
+    <div class="column-wrapper">
 
-    <div id="product-details">
+        <div id="details-column" class="column">
 
-        <img class="product-border" src="/media/{{ product.picture }}"/><br />
-        {{ product.team }}<br />
-        {{ product.description }}<br />
-        £{{ product.price }}<br />
+            <div id="page-header">
+                PRODUCT DETAILS
+            </div>
 
-    </div>
+            <div id="product-details">
 
-    <form id="inline-form" method="post" action="{{ form_action }}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        {% if user.is_authenticated %}
-            <button class="default-button" type="submit">{{ button_text }}</button>
-        {% endif %}
-    </form>
+                <img class="product-border" src="/media/{{ product.picture }}"/><br />
+                {{ product.team }}<br />
+                {{ product.description }}<br />
+                £{{ product.price }}<br />
 
-    {% if not user.is_authenticated %}
-        <div class="sub-header">
-            Please <a class="standard-link" href="{% url 'register' %}">register</a> or
-            <a class="standard-link" href="{% url 'login' %}">log in</a> to add items.
+            </div>
+
+            <form id="inline-form" method="post" action="{{ form_action }}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {% if user.is_authenticated %}
+                    <button class="default-button" type="submit">{{ button_text }}</button>
+                {% endif %}
+            </form>
+
+            {% if not user.is_authenticated %}
+                <div class="sub-header">
+                    Please <a class="standard-link" href="{% url 'register' %}">register</a> or
+                    <a class="standard-link" href="{% url 'login' %}">log in</a> to add items.
+                </div>
+            {% endif %}
+
         </div>
-    {% endif %}
+
+        <div id="stats-column" class="column">
+
+            {% if user == cart.user %}
+                <div class="page-detail">
+                    <a class="standard-link" href="/store/cart/">[View Cart]</a><br />
+                    <strong>{{ cart.items.count }}</strong> Item(s)
+                </div>
+            {% endif %}
+
+            <div class="sub-header">
+                SHOP BY TEAM
+            </div>
+
+            <div id="team-list">
+
+                {% for team in teams %}
+
+                    <div class="store-team">
+                        <a href="/store/{{ team.geographic_name|lower }}/">
+                            <img src="/media/{{ team.large_logo }}/" alt="{{ team.geographic_name }} {{ team.nickname }}" />
+                        </a>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
 
 {% endblock %}

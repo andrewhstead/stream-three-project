@@ -2,16 +2,16 @@
         <table class="stat-table alternating-rows">
             <tr class="header-row">
                 <th class="stat-intro">Team</th>
-                <th class="stat-column">W</th>
-                <th class="stat-column">L</th>
-                <th class="stat-column">Pct</th>
-                <th class="stat-column desktop-cell">RF</th>
-                <th class="stat-column desktop-cell">RA</th>
-                <th class="stat-column desktop-cell">+/-</th>
-                <th class="stat-column desktop-cell right-align">Ho</th>
-                <th class="stat-column desktop-cell left-align">me</th>
-                <th class="stat-column desktop-cell right-align">Aw</th>
-                <th class="stat-column desktop-cell left-align">ay</th>
+                <th class="standings-column">W</th>
+                <th class="standings-column">L</th>
+                <th class="standings-column-wide">Pct</th>
+                <th class="standings-column-wide desktop-cell">RF</th>
+                <th class="standings-column-wide desktop-cell">RA</th>
+                <th class="standings-column-wide desktop-cell">+/-</th>
+                <th class="standings-column desktop-cell right-align">Ho</th>
+                <th class="standings-column desktop-cell left-align">me</th>
+                <th class="standings-column desktop-cell right-align">Aw</th>
+                <th class="standings-column desktop-cell left-align">ay</th>
             </tr>
 
             {% for club in standings|dictsort:"name"|dictsortreversed:"pct" %}

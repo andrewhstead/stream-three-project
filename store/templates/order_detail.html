@@ -3,92 +3,129 @@
 
 {% block content %}
 
-    {% if user == order.user %}
+    <div class="column-wrapper">
 
-        <div id="page-header">
-            ORDER DETAIL
+        <div id="details-column" class="column">
+
+            {% if user == order.user %}
+
+                <div id="page-header">
+                    ORDER DETAIL
+                </div>
+
+                <p>
+                    <strong>Order Number:</strong> {{ order.id }}
+                </p>
+
+                <p>
+                    <strong>Date Submitted:</strong> {{ order.date|date:'d/m/Y, H:i' }}
+                </p>
+
+                <p>
+                    <strong>Status:</strong> {{ order.status }}
+                </p>
+
+                <table class="store-table alternating-rows">
+                    <tr class='header-row'>
+                        <td>Item</td>
+                        <td>Price</td>
+                        <td>Qty</td>
+                    </tr>
+                    {% for item in items %}
+                        <tr>
+                            <td>
+                                {{ item.item }}
+                            </td>
+                            <td>
+                                {% with item.item.product.price as price %}
+                                    {{ price|price_display }}
+                                {% endwith %}
+                            </td>
+                            <td>
+                                {{ item.quantity }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+                <p class="right-align">
+                    <strong>Total:</strong>
+                    {% with order.cost as price %}
+                        {{ price|price_display }}
+                    {% endwith %}
+                </p>
+
+                <p class="right-align">
+                    <strong>Postage:</strong>
+                    {% with order.postage as price %}
+                        {{ price|price_display }}
+                    {% endwith %}<br />
+                </p>
+
+                <p class="right-align">
+                    <strong>Total:</strong>
+                    {% with order.total as price %}
+                        {{ price|price_display }}
+                    {% endwith %}
+                </p>
+
+                <p>
+                    <strong>Shipping to:</strong><br />
+                    {{ order.delivery_name }}<br />
+                    {{ order.address_line_1 }}<br />
+                    {{ order.address_line_2 }}<br />
+                    {{ order.city }}<br />
+                    {{ order.postcode }}<br />
+                    {{ order.country }}
+                </p>
+
+                <span id="full-details">
+                    <a class="standard-link" href="/store/orders/">[Back to Orders]</a>
+                </span>
+
+            {% else %}
+
+                <div id="page-header">
+                    ERROR
+                </div>
+
+                <p>
+                    Sorry, you are not authorised to view this page.
+                </p>
+
+            {% endif %}
+
         </div>
 
-        <p>
-            <strong>Order Number:</strong> {{ order.id }}
-        </p>
+        <div id="stats-column" class="column">
 
-        <p>
-            <strong>Date Submitted:</strong> {{ order.date|date:'d/m/Y, H:i' }}
-        </p>
+            {% if user == cart.user %}
+                <div class="page-detail">
+                    <a class="standard-link" href="/store/cart/">[View Cart]</a><br />
+                    <strong>{{ cart.items.count }}</strong> Item(s)
+                </div>
+            {% endif %}
 
-        <p>
-            <strong>Status:</strong> {{ order.status }}
-        </p>
+            <div class="sub-header">
+                SHOP BY TEAM
+            </div>
 
-        <table class="store-table alternating-rows">
-            <tr class='header-row'>
-                <td>Item</td>
-                <td>Price</td>
-                <td>Qty</td>
-            </tr>
-            {% for item in items %}
-                <tr>
-                    <td>
-                        {{ item.item }}
-                    </td>
-                    <td>
-                        {% with item.item.product.price as price %}
-                            {{ price|price_display }}
-                        {% endwith %}
-                    </td>
-                    <td>
-                        {{ item.quantity }}
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
+            <div id="team-list">
 
-        <p class="right-align">
-            <strong>Total:</strong>
-            {% with order.cost as price %}
-                {{ price|price_display }}
-            {% endwith %}
-        </p>
+                {% for team in teams %}
 
-        <p class="right-align">
-            <strong>Postage:</strong>
-            {% with order.postage as price %}
-                {{ price|price_display }}
-            {% endwith %}<br />
-        </p>
+                    <div class="store-team">
+                        <a href="/store/{{ team.geographic_name|lower }}/">
+                            <img src="/media/{{ team.large_logo }}/" alt="{{ team.geographic_name }} {{ team.nickname }}" />
+                        </a>
+                    </div>
 
-        <p class="right-align">
-            <strong>Total:</strong>
-            {% with order.total as price %}
-                {{ price|price_display }}
-            {% endwith %}
-        </p>
+                {% endfor %}
 
-        <p>
-            <strong>Shipping to:</strong><br />
-            {{ order.delivery_name }}<br />
-            {{ order.address_line_1 }}<br />
-            {{ order.address_line_2 }}<br />
-            {{ order.city }}<br />
-            {{ order.postcode }}<br />
-            {{ order.country }}
-        </p>
+            </div>
 
-        <span id="full-details">
-            <a class="standard-link" href="/store/orders/">[Back to Orders]</a>
-        </span>
-
-    {% else %}
-
-        <div id="page-header">
-            ERROR
         </div>
 
-        <p>
-            Sorry, you are not authorised to view this page.
-        </p>
-
-    {% endif %}
+    </div>
 
 {% endblock %}

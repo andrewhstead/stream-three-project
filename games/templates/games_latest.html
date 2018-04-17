@@ -36,9 +36,9 @@
                                     FINAL {% if result.innings > 9 %}({{ result.innings }}){% endif %}
                                 {% endif %}
                             </th>
-                            <th class="stat-column">R</th>
-                            <th class="stat-column">H</th>
-                            <th class="stat-column">E</th>
+                            <th class="score-column">R</th>
+                            <th class="score-column">H</th>
+                            <th class="score-column">E</th>
                         </tr>
                         <tr>
                             <td class="stat-header"><img class="small-logo" src="/media/{{ result.away_team.small_logo }}" />
@@ -113,9 +113,9 @@
                                 <th class="stat-intro">
                                     In progress... ({{ fixture.innings|ordinal }})
                                 </th>
-                                <th class="stat-column">R</th>
-                                <th class="stat-column">H</th>
-                                <th class="stat-column">E</th>
+                                <th class="score-column">R</th>
+                                <th class="score-column">H</th>
+                                <th class="score-column">E</th>
                             {% else %}
                                 <th class="stat-intro">
                                     {{ fixture.game_time }}

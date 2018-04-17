@@ -3,81 +3,111 @@
 
 {% block content %}
 
-    <div id="page-header">
-        SHOPPING CART
-    </div>
+    <div class="column-wrapper">
 
-    <table class="store-table alternating-rows">
-        <tr class='header-row'>
-            <td>Item</td>
-            <td>Price</td>
-            <td>Qty</td>
-            <td></td>
-        </tr>
-        {% for object in cart.items.all %}
-            <tr>
-                <td>
-                    <a class="table-link" href="/store/product/{{ object.item.product.id }}">
-                        {{ object.item }}
-                    </a>
-                </td>
-                <td>
-                    {% with object.item.product.price as price %}
-                        {{ price|price_display }}
-                    {% endwith %}
-                </td>
-                <td>
-                    {{ object.quantity }}
-                </td>
-                <td>
-                    <a class="cart-controls table-link" href="/store/cart/edit/{{ object.id }}">
-                        [Change]
-                    </a>
-                    <span class="cart-controls alert-link" onclick="confirmationAlert({{ object.id }})">[Remove]</span>
+        <div id="details-column" class="column">
 
-                    <div id="wrapper-{{ object.id }}" class="popup-wrapper hidden">
-                        <div id="alert-{{ object.id }}" class="alert-message hidden">
-                            <p>Confirmation:</p>
-                            <p>Are you sure you want to delete?</p>
-                            <div class="content-link-light">
-                                <a href="/store/cart/remove/{{ object.id }}">OK</a>
+            <div id="page-header">
+                SHOPPING CART
+            </div>
+
+            <table class="store-table alternating-rows">
+                <tr class='header-row'>
+                    <td>Item</td>
+                    <td>Price</td>
+                    <td>Qty</td>
+                    <td></td>
+                </tr>
+                {% for object in cart.items.all %}
+                    <tr>
+                        <td>
+                            <a class="table-link" href="/store/product/{{ object.item.product.id }}">
+                                {{ object.item }}
+                            </a>
+                        </td>
+                        <td>
+                            {% with object.item.product.price as price %}
+                                {{ price|price_display }}
+                            {% endwith %}
+                        </td>
+                        <td>
+                            {{ object.quantity }}
+                        </td>
+                        <td>
+                            <a class="cart-controls table-link" href="/store/cart/edit/{{ object.id }}">
+                                [Change]
+                            </a>
+                            <span class="cart-controls alert-link" onclick="confirmationAlert({{ object.id }})">[Remove]</span>
+
+                            <div id="wrapper-{{ object.id }}" class="popup-wrapper hidden">
+                                <div id="alert-{{ object.id }}" class="alert-message hidden">
+                                    <p>Confirmation:</p>
+                                    <p>Are you sure you want to delete?</p>
+                                    <div class="content-link-light">
+                                        <a href="/store/cart/remove/{{ object.id }}">OK</a>
+                                    </div>
+                                    <div class="content-link-light alert-link" onclick="confirmationAlert({{ object.id }})">
+                                        Cancel
+                                    </div>
+                                </div>
                             </div>
-                            <div class="content-link-light alert-link" onclick="confirmationAlert({{ object.id }})">
-                                Cancel
-                            </div>
-                        </div>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <p class="right-align">
+                <strong>Sub-total:</strong>
+                {% with cart.cost as price %}
+                    {{ price|price_display }}
+                {% endwith %}
+            </p>
+
+            <p class="right-align">
+                <strong>Postage:</strong>
+                {% with cart.postage as price %}
+                    {{ price|price_display }}
+                {% endwith %}<br />
+                (Free postage on orders over £50)
+            </p>
+
+            <p class="right-align">
+                <strong>Total:</strong>
+                {% with cart.total as price %}
+                    {{ price|price_display }}
+                {% endwith %}
+            </p>
+
+            <span id="full-details">
+                <a class="button-link" href="/store/">Continue Shopping</a>
+                <a class="button-link" href="/store/checkout/{{ cart.id }}">Checkout</a>
+            </span>
+
+        </div>
+
+        <div id="stats-column" class="column">
+
+            <div class="sub-header">
+                SHOP BY TEAM
+            </div>
+
+            <div id="team-list">
+
+                {% for team in teams %}
+
+                    <div class="store-team">
+                        <a href="/store/{{ team.geographic_name|lower }}/">
+                            <img src="/media/{{ team.large_logo }}/" alt="{{ team.geographic_name }} {{ team.nickname }}" />
+                        </a>
                     </div>
 
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+                {% endfor %}
 
-    <p class="right-align">
-        <strong>Sub-total:</strong>
-        {% with cart.cost as price %}
-            {{ price|price_display }}
-        {% endwith %}
-    </p>
+            </div>
 
-    <p class="right-align">
-        <strong>Postage:</strong>
-        {% with cart.postage as price %}
-            {{ price|price_display }}
-        {% endwith %}<br />
-        (Free postage on orders over £50)
-    </p>
+        </div>
 
-    <p class="right-align">
-        <strong>Total:</strong>
-        {% with cart.total as price %}
-            {{ price|price_display }}
-        {% endwith %}
-    </p>
-
-    <span id="full-details">
-        <a class="button-link" href="/store/">Continue Shopping</a>
-        <a class="button-link" href="/store/checkout/{{ cart.id }}">Checkout</a>
-    </span>
+    </div>
 
 {% endblock %}

@@ -19,11 +19,13 @@ main {
 
 #details-column {
     flex: 3;
+    margin: 10px;
 }
 
 #stats-column {
     flex: 1;
     margin-left: 10px;
+    min-width: 260px;
 }
 
 .home-logo {
@@ -90,7 +92,7 @@ main {
 }
 
 .team-header {
-    font-size: 2em;
+    font-size: 2.5em;
 }
 
 .uniform img {
@@ -106,10 +108,6 @@ main {
 
 .partner-logos {
     width: 200px;
-}
-
-.profile {
-    margin: 0 20px;
 }
 
 .desktop-cell {

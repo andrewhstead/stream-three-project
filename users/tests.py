@@ -61,15 +61,15 @@ class UserProfileTest(TestCase):
         profile = resolve('/profile/')
         self.assertEqual(profile.func, user_profile)
 
-    # def test_user_profile_status_code(self):
-    #     self.client.login(username='username', password='password')
-    #     profile = self.client.get('/profile/')
-    #     self.assertEqual(profile.status_code, 200)
-    #
-    # def test_user_profile_content(self):
-    #     self.client.login(username='username', password='password')
-    #     profile = self.client.get('/profile/')
-    #     self.assertTemplateUsed(profile, 'profile.html')
+    def test_user_profile_status_code(self):
+        self.client.login(username='username', password='password')
+        profile = self.client.get('/profile/')
+        self.assertEqual(profile.status_code, 200)
+
+    def test_user_profile_content(self):
+        self.client.login(username='username', password='password')
+        profile = self.client.get('/profile/')
+        self.assertTemplateUsed(profile, 'profile.html')
 
 
 class OtherProfileTest(TestCase):

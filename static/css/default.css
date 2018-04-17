@@ -492,7 +492,15 @@ footer {
     margin: 0 5px;
 }
 
-.stat-column {
+.score-column {
+    width: 30px;
+}
+
+.standings-column {
+    width: 30px;
+}
+
+.standings-column-wide {
     width: 40px;
 }
 
@@ -963,18 +971,25 @@ a.button-link:hover {
     text-align: center;
 }
 
+#store-products {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 #product-details {
     text-align: center;
     margin: auto;
 }
 
 .product-details {
+    flex: 1;
     text-align: center;
-    margin: 20px 10px 5px 10px;
+    margin: 10px;
     padding: 10px;
     border: 2px solid #10253f;
     box-shadow: 0 0 2px 2px #4f81bd;
     background-color: #eeeeff;
+    min-width: 250px;
 }
 
 .product-border {

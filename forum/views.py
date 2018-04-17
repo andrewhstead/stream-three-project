@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
+from django.utils import timezone
 
 
 # Create your views here.
@@ -153,7 +154,7 @@ def new_post(request, thread_id):
             post.user = request.user
             post.thread = thread
             post.save()
-            thread.last_post = datetime.now()
+            thread.last_post = timezone.now()
             thread.save()
 
             messages.success(request, "Your post was successful!")

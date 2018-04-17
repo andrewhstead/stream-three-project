@@ -3,33 +3,72 @@
 
 {% block content %}
 
-    <div id="page-header">
-        PAST ORDERS
+    <div class="column-wrapper">
+
+        <div id="details-column" class="column">
+
+            <div id="page-header">
+                PAST ORDERS
+            </div>
+
+            <p>
+                <strong>Logged in as:</strong> {{ user.username }}
+            </p>
+
+            <table class="store-table alternating-rows">
+                <tr class='header-row'>
+                    <td>#</td>
+                    <td>Date</td>
+                    <td>Total</td>
+                </tr>
+                {% for order in orders %}
+                    <tr>
+                        <td>
+                            {{ order.id }}
+                        </td>
+                        <td>
+                            {{ order.date|date:'d/m/Y, H:i' }}
+                        </td>
+                        <td>
+                            <a class="standard-link" href="/store/order/{{ order.id }}">
+                                {{ order.cost|price_display }}
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+
+        <div id="stats-column" class="column">
+
+            {% if user == cart.user %}
+                <div class="page-detail">
+                    <a class="standard-link" href="/store/cart/">[View Cart]</a><br />
+                    <strong>{{ cart.items.count }}</strong> Item(s)
+                </div>
+            {% endif %}
+
+            <div class="sub-header">
+                SHOP BY TEAM
+            </div>
+
+            <div id="team-list">
+
+                {% for team in teams %}
+
+                    <div class="store-team">
+                        <a href="/store/{{ team.geographic_name|lower }}/">
+                            <img src="/media/{{ team.large_logo }}/" alt="{{ team.geographic_name }} {{ team.nickname }}" />
+                        </a>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
     </div>
-
-    <p>
-        <strong>Logged in as:</strong> {{ user.username }}
-    </p>
-
-    <table class="store-table alternating-rows">
-        <tr class='header-row'>
-            <td>#</td>
-            <td>Date</td>
-            <td>Price</td>
-        </tr>
-        {% for order in orders %}
-            <tr>
-                <td>
-                    {{ order.id }}
-                </td>
-                <td>
-                    {{ order.date|date:'d/m/Y, H:i' }}
-                </td>
-                <td>
-                    <a class="standard-link" href="/store/order/{{ order.id }}">{{ order.cost|price_display }}
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
 
 {% endblock %}

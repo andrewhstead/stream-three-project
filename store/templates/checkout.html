@@ -13,38 +13,83 @@
  
 {% block content %}
 
-    {% if user == order.user %}
+    <div class="column-wrapper">
 
-        <div id="page-header">
-            CHECKOUT
+        <div id="details-column" class="column">
+
+            {% if user == order.user %}
+
+                <div id="page-header">
+                    CHECKOUT
+                </div>
+
+                <form role="form" method="post" id="default-form" action="{% url 'checkout' order_id %}">
+                    <div id="credit-card-errors" style="display:none">
+                        <div class="alert-message block-message error" id="stripe-error-message"></div>
+                    </div>
+                    {% csrf_token %}
+
+                    <div class="column-wrapper">
+                        <div class="column">
+                            <div class="sub-header">
+                                <strong>Shipping Details</strong>
+                            </div>
+                            {{ address_form.as_p }}
+                        </div>
+                        <div class="column">
+                            <div class="sub-header">
+                                <strong>Billing Details</strong>
+                            </div>
+                            {{ card_form.as_p }}
+                        </div>
+                    </div>
+
+                    <input id="submit_order" name="commit" type="submit" value="Complete Order">
+                </form>
+
+            {% else %}
+
+                <div id="page-header">
+                    ERROR
+                </div>
+
+                <p>
+                    Sorry, you are not authorised to view this page.
+                </p>
+
+            {% endif %}
+
         </div>
 
-        <form role="form" method="post" id="default-form" action="{% url 'checkout' order_id %}">
-            <div id="credit-card-errors" style="display:none">
-                <div class="alert-message block-message error" id="stripe-error-message"></div>
-            </div>
-            {% csrf_token %}
-            <div class="sub-header">
-                <strong>Shipping Details</strong>
-            </div>
-            {{ address_form.as_p }}
-            <div class="sub-header">
-                <strong>Billing Details</strong>
-            </div>
-            {{ card_form.as_p }}
-            <input id="submit_order" name="commit" type="submit" value="Complete Order">
-        </form>
+        <div id="stats-column" class="column">
 
-    {% else %}
+            {% if user == cart.user %}
+                <div class="page-detail">
+                    <a class="standard-link" href="/store/cart/">[View Cart]</a><br />
+                    <strong>{{ cart.items.count }}</strong> Item(s)
+                </div>
+            {% endif %}
 
-        <div id="page-header">
-            ERROR
+            <div class="sub-header">
+                SHOP BY TEAM
+            </div>
+
+            <div id="team-list">
+
+                {% for team in teams %}
+
+                    <div class="store-team">
+                        <a href="/store/{{ team.geographic_name|lower }}/">
+                            <img src="/media/{{ team.large_logo }}/" alt="{{ team.geographic_name }} {{ team.nickname }}" />
+                        </a>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
         </div>
 
-        <p>
-            Sorry, you are not authorised to view this page.
-        </p>
-
-    {% endif %}
+    </div>
 
 {% endblock %}

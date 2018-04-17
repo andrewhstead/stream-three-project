@@ -6,7 +6,7 @@ from .views import store_front, store_team, add_product, shopping_cart, change_p
     premium_home, upgrade_account, cancel_subscription, subscription_renewal, register_premium
 from django.core.urlresolvers import resolve
 from django.conf import settings
-from .forms import ChangeQuantityForm, SubmitOrderForm, SubscriptionForm
+from .forms import ChangeQuantityForm, SubmitOrderForm, SubscriptionForm, AddToCartForm
 
 
 class StoreFrontTest(TestCase):
@@ -113,6 +113,15 @@ class RegisterPremiumTest(TestCase):
     def test_register_premium_resolves(self):
         premium_account = resolve('/register/premium/')
         self.assertEqual(premium_account.func, register_premium)
+
+
+class AddToCartFormTest(TestCase):
+    def test_add_to_cart_form(self):
+        form = AddToCartForm({
+            'size': 'L',
+            'quantity': '3'
+        }, item_options=[('M', 'M'), ('L', 'L')])
+        self.assertTrue(form.is_valid())
 
 
 class ChangeQuantityFormTest(TestCase):
