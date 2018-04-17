@@ -1,0 +1,59 @@
+<div class="single-column">
+
+    <div class="league-box colour-box">
+        RESULTS
+    </div>
+    <div class="close-header">
+        {{ latest_date|date:"d F Y" }}
+    </div>
+
+    <table class="stat-table alternating-no-header">
+        {% for result in results %}
+            <tr>
+                <td class="team-abbreviation">
+                    <a class="table-link" href="/teams/{{ result.home_team.geographic_name|lower }}">
+                        {{ result.home_team.abbreviation }}
+                    </a>
+                </td>
+                <td class="stat-detail">
+                    {{ result.home_team_runs }}
+                    -
+                    {{ result.away_team_runs }}
+                </td>
+                <td class="team-abbreviation">
+                    <a class="table-link" href="/teams/{{ result.away_team.geographic_name|lower }}">
+                        {{ result.away_team.abbreviation }}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <div class="league-box colour-box">
+        FIXTURES
+    </div>
+    <div class="close-header">
+        {{ next_date|date:"d F Y" }}
+    </div>
+
+    <table class="stat-table alternating-no-header">
+        {% for fixture in fixtures %}
+            <tr>
+                <td class="team-abbreviation">
+                    <a class="table-link" href="/teams/{{ fixture.home_team.geographic_name|lower }}">
+                        {{ fixture.home_team.abbreviation }}
+                    </a>
+                </td>
+                <td class="stat-detail">
+                    {{ fixture.game_time|time:'G:i' }}
+                </td>
+                <td class="team-abbreviation">
+                    <a class="table-link" href="/teams/{{ fixture.away_team.geographic_name|lower }}">
+                        {{ fixture.away_team.abbreviation }}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+</div>

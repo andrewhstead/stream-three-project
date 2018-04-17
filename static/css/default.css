@@ -843,7 +843,7 @@ footer {
     border: 1px solid #339933;
     color: #339933;
     border-radius: 10px;
-    margin: auto;
+    margin: 0 auto 10px auto;
     padding: 5px;
     text-align: center;
     width: fit-content;
@@ -854,7 +854,7 @@ footer {
     border: 1px solid #993333;
     color: #993333;
     border-radius: 10px;
-    margin: auto;
+    margin: 0 auto 10px auto;
     padding: 5px;
     text-align: center;
     width: fit-content;

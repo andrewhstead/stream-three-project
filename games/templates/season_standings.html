@@ -2,24 +2,52 @@
 
 {% block content %}
 
-    <div id="page-header">
-        LEAGUE STANDINGS
-    </div>
+    <div class="column-wrapper">
 
-    <form id="inline-form" role="form" onchange="submit();"
-              method="post" action="{% url 'standings' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-    </form>
+        <div id="details-column" class="column">
 
-    {% for conference in conferences %}
+            <div id="page-header">
+                LEAGUE STANDINGS
+            </div>
 
-        <div class="sub-header">
-            {{ conference.name }}
+            <form id="inline-form" role="form" onchange="submit();"
+                      method="post" action="{% url 'standings' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </form>
+
+            {% for conference in conferences %}
+
+                <div class="sub-header">
+                    {{ conference.name }}
+                </div>
+
+                {% include 'standings.html' %}
+
+            {% endfor %}
+
+            <div id="item-content">
+                <p>
+                    NB:<br />
+                    The winners of each Conference meet in the best-of-7 game Championship Series. In
+                    the event of two or more teams finishing in a tie for first place, tie-breakers games will be
+                    played to determine the Conference champion.
+                </p>
+
+            </div>
+
         </div>
 
-        {% include 'standings.html' %}
+        <div id="stats-column" class="column for-desktop">
 
-    {% endfor %}
+            <section id="scores">
+
+                {% include 'quick_scores.html' %}
+
+            </section>
+
+        </div>
+
+    </div>
 
 {% endblock %}

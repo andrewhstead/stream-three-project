@@ -3,96 +3,134 @@
 
 {% block content %}
 
-    <div id="page-header">
-        LEAGUE SCHEDULE
-    </div>
+    <div class="column-wrapper">
 
-    {% if fixtures %}
+        <div id="details-column" class="column">
 
-        {% for date in dates %}
-
-            <div class="sub-header">
-                {{ date }}
+            <div id="page-header">
+                LEAGUE SCHEDULE
             </div>
 
-            {% for fixture in fixtures %}
+            {% if fixtures %}
 
-                {% if fixture.game_date == date %}
+                {% for date in dates %}
 
-                    <table class="stat-table">
-                        <tr class="header-row">
-                            {% if fixture.game_status == "In Progress" %}
-                                <th class="stat-intro">
-                                    In progress... ({{ fixture.innings|ordinal }})
-                                </th>
-                                <th class="stat-column">R</th>
-                                <th class="stat-column">H</th>
-                                <th class="stat-column">E</th>
-                            {% else %}
-                                <th class="stat-intro">
-                                    {{ fixture.game_time }}
-                                </th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            {% endif %}
-                        </tr>
-                        <tr>
-                            <td class="stat-header"><img class="small-logo" src="/media/{{ fixture.away_team.small_logo }}" />
-                                <a class="table-link" href="/scores/{{ fixture.away_team.geographic_name|lower }}">
-                                    {{ fixture.away_team }}</a></td>
-                            {% if fixture.game_status == "In Progress" %}
-                                <td class="stat-detail-highlight"><strong>{{ fixture.home_team_runs }}</strong></td>
-                                <td class="stat-detail-highfaint">{{ fixture.home_team_hits }}</td>
-                                <td class="stat-detail-highfaint">{{ fixture.home_team_errors }}</td>
-                            {% else %}
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            {% endif %}
-                        </tr>
-                        <tr>
-                            <td class="stat-header"><img class="small-logo" src="/media/{{ fixture.home_team.small_logo }}" />
-                                <a class="table-link" href="/scores/{{ fixture.home_team.geographic_name|lower }}">
-                                    {{ fixture.home_team }}</a></td>
-                            {% if fixture.game_status == "In Progress" %}
-                                <td class="stat-detail-highlight"><strong>{{ fixture.home_team_runs }}</strong></td>
-                                <td class="stat-detail-highfaint">{{ fixture.home_team_hits }}</td>
-                                <td class="stat-detail-highfaint">{{ fixture.home_team_errors }}</td>
-                            {% else %}
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            {% endif %}
-                        </tr>
-                    </table>
+                    <div class="sub-header">
+                        {{ date }}
+                    </div>
 
-                {% endif %}
+                    {% for fixture in fixtures %}
 
-            {% endfor %}
+                        {% if fixture.game_date == date %}
 
-        {% endfor %}
+                            <table class="stat-table">
+                                <tr class="header-row">
+                                    {% if fixture.game_status == "In Progress" %}
+                                        <th class="stat-intro">
+                                            In progress... ({{ fixture.innings|ordinal }})
+                                        </th>
+                                        <th class="stat-column">R</th>
+                                        <th class="stat-column">H</th>
+                                        <th class="stat-column">E</th>
+                                    {% else %}
+                                        <th class="stat-intro">
+                                            {{ fixture.game_time }}
+                                        </th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <td class="stat-header"><img class="small-logo" src="/media/{{ fixture.away_team.small_logo }}" />
+                                        <a class="table-link" href="/scores/{{ fixture.away_team.geographic_name|lower }}">
+                                            {{ fixture.away_team }}</a></td>
+                                    {% if fixture.game_status == "In Progress" %}
+                                        <td class="stat-detail-highlight"><strong>{{ fixture.home_team_runs }}</strong></td>
+                                        <td class="stat-detail-highfaint">{{ fixture.home_team_hits }}</td>
+                                        <td class="stat-detail-highfaint">{{ fixture.home_team_errors }}</td>
+                                    {% else %}
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <td class="stat-header"><img class="small-logo" src="/media/{{ fixture.home_team.small_logo }}" />
+                                        <a class="table-link" href="/scores/{{ fixture.home_team.geographic_name|lower }}">
+                                            {{ fixture.home_team }}</a></td>
+                                    {% if fixture.game_status == "In Progress" %}
+                                        <td class="stat-detail-highlight"><strong>{{ fixture.home_team_runs }}</strong></td>
+                                        <td class="stat-detail-highfaint">{{ fixture.home_team_hits }}</td>
+                                        <td class="stat-detail-highfaint">{{ fixture.home_team_errors }}</td>
+                                    {% else %}
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    {% endif %}
+                                </tr>
+                            </table>
 
-        <div class="pagination-links">
+                        {% endif %}
 
-            <div class="pagination-section previous-page">
-                {% if dates.has_previous %}
-                    <a class="standard-link" href="?page={{ dates.previous_page_number }}"><< Earlier Fixtures</a>
-                {% endif %}
-            </div>
+                    {% endfor %}
 
-            <div class="pagination-section next-page">
-                {% if dates.has_next %}
-                    <a class="standard-link" href="?page={{ dates.next_page_number }}">Later Fixtures >></a>
-                {% endif %}
-            </div>
+                {% endfor %}
+
+                <div class="pagination-links">
+
+                    <div class="pagination-section previous-page">
+                        {% if dates.has_previous %}
+                            <a class="standard-link" href="?page={{ dates.previous_page_number }}"><< Earlier Fixtures</a>
+                        {% endif %}
+                    </div>
+
+                    <div class="pagination-section next-page">
+                        {% if dates.has_next %}
+                            <a class="standard-link" href="?page={{ dates.next_page_number }}">Later Fixtures >></a>
+                        {% endif %}
+                    </div>
+
+                </div>
+
+            {% else %}
+
+                No fixtures available for this season.
+
+            {% endif %}
 
         </div>
 
-    {% else %}
+        <div id="stats-column" class="column for-desktop">
 
-        No fixtures available for this season.
+            <section id="standings">
 
-    {% endif %}
+                <div class="league-box colour-box">
+                    STANDINGS
+                </div>
+
+                <div class="single-column">
+
+                    {% for conference in conferences %}
+
+                        <div class="spaced-column">
+
+                            <div class="close-header">
+                                {{ conference.name }}
+                            </div>
+
+                            {% include 'standings.html' %}
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
 
 {% endblock %}

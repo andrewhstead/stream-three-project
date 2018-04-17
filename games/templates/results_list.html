@@ -2,76 +2,114 @@
 
 {% block content %}
 
-    <div id="page-header">
-        LEAGUE RESULTS
-    </div>
+    <div class="column-wrapper">
 
-    {% if results %}
+        <div id="details-column" class="column">
 
-        {% for date in dates %}
-
-            <div class="sub-header">
-                {{ date|date:"d F Y" }}
+            <div id="page-header">
+                LEAGUE RESULTS
             </div>
 
-            <table class="stat-table alternating-rows">
+            {% if results %}
 
-                <tr class="header-row">
-                    <th>Away</th>
-                    <th>@</th>
-                    <th>Home</th>
-                </tr>
+                {% for date in dates %}
 
-                {% for result in results %}
+                    <div class="sub-header">
+                        {{ date|date:"d F Y" }}
+                    </div>
 
-                    {% if result.game_date == date %}
-                        <tr>
-                            <td class="stat-team">
-                                <a class="table-link" href="/scores/{{ result.away_team.geographic_name|lower }}">
-                                    {% if result.game_status == "Completed" and result.away_team_runs > result.home_team_runs %}
-                                        <strong>{{ result.away_team.geographic_name }}</strong>
-                                    {% else %}
-                                        {{ result.away_team.geographic_name }}
-                                    {% endif %}
-                                </a></td>
-                            {% if result.game_status != "Completed" %}
-                                <td class="stat-detail-faint">
-                                    {% if result.game_status == "Postponed" %}
-                                        P - P
-                                    {% else %}
-                                        {{ result.away_team_runs }} - {{ result.home_team_runs }}
-                                    {% endif %}
-                                </td>
-                            {% else %}
-                                <td class="stat-detail">
-                                    <strong>{{ result.away_team_runs }}</strong>
-                                    -
-                                    <strong>{{ result.home_team_runs }}</strong>
-                                </td>
-                            {% endif %}
-                            <td class="stat-team">
-                                <a class="table-link" href="/scores/{{ result.home_team.geographic_name|lower }}">
-                                    {% if result.game_status == "Completed" and result.home_team_runs > result.away_team_runs %}
-                                        <strong>{{ result.home_team.geographic_name }}</strong>
-                                    {% else %}
-                                        {{ result.home_team.geographic_name }}
-                                    {% endif %}
-                                </a>
-                            </td>
+                    <table class="stat-table alternating-rows">
+
+                        <tr class="header-row">
+                            <th>Away</th>
+                            <th>@</th>
+                            <th>Home</th>
                         </tr>
 
-                    {% endif %}
+                        {% for result in results %}
+
+                            {% if result.game_date == date %}
+                                <tr>
+                                    <td class="stat-team">
+                                        <a class="table-link" href="/scores/{{ result.away_team.geographic_name|lower }}">
+                                            {% if result.game_status == "Completed" and result.away_team_runs > result.home_team_runs %}
+                                                <strong>{{ result.away_team.geographic_name }}</strong>
+                                            {% else %}
+                                                {{ result.away_team.geographic_name }}
+                                            {% endif %}
+                                        </a></td>
+                                    {% if result.game_status != "Completed" %}
+                                        <td class="stat-detail-faint">
+                                            {% if result.game_status == "Postponed" %}
+                                                P - P
+                                            {% else %}
+                                                {{ result.away_team_runs }} - {{ result.home_team_runs }}
+                                            {% endif %}
+                                        </td>
+                                    {% else %}
+                                        <td class="stat-detail">
+                                            <strong>{{ result.away_team_runs }}</strong>
+                                            -
+                                            <strong>{{ result.home_team_runs }}</strong>
+                                        </td>
+                                    {% endif %}
+                                    <td class="stat-team">
+                                        <a class="table-link" href="/scores/{{ result.home_team.geographic_name|lower }}">
+                                            {% if result.game_status == "Completed" and result.home_team_runs > result.away_team_runs %}
+                                                <strong>{{ result.home_team.geographic_name }}</strong>
+                                            {% else %}
+                                                {{ result.home_team.geographic_name }}
+                                            {% endif %}
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            {% endif %}
+
+                        {% endfor %}
+
+                    </table>
 
                 {% endfor %}
 
-            </table>
+            {% else %}
 
-        {% endfor %}
+                No results available for this season.
 
-    {% else %}
+            {% endif %}
 
-        No results available for this season.
+        </div>
 
-    {% endif %}
+        <div id="stats-column" class="column for-desktop">
+
+            <section id="standings">
+
+                <div class="league-box colour-box">
+                    STANDINGS
+                </div>
+
+                <div class="single-column">
+
+                    {% for conference in conferences %}
+
+                        <div class="spaced-column">
+
+                            <div class="close-header">
+                                {{ conference.name }}
+                            </div>
+
+                            {% include 'standings.html' %}
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
 
 {% endblock %}
