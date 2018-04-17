@@ -32,10 +32,13 @@ def get_standings(year):
                        "conference": team.conference, "small_logo": team.small_logo,
                        "played": 0.0, "won": 0.0, "lost": 0.0,
                        "home_won": 0.0, "home_lost": 0.0,
-                       "away_won": 0.0, "away_lost": 0.0}
+                       "away_won": 0.0, "away_lost": 0.0,
+                       "runs_for": 0.0, "runs_against": 0.0}
         for game in games:
             if game.home_team == team:
                 team_record["played"] += 1
+                team_record["runs_for"] += game.home_team_runs
+                team_record["runs_against"] += game.away_team_runs
                 if game.home_team_runs > game.away_team_runs:
                     team_record["home_won"] += 1
                     team_record["won"] += 1
@@ -44,6 +47,8 @@ def get_standings(year):
                     team_record["lost"] += 1
             elif game.away_team == team:
                 team_record["played"] += 1
+                team_record["runs_for"] += game.away_team_runs
+                team_record["runs_against"] += game.home_team_runs
                 if game.away_team_runs > game.home_team_runs:
                     team_record["away_won"] += 1
                     team_record["won"] += 1
@@ -54,6 +59,7 @@ def get_standings(year):
             team_record["pct"] = 0  # To prevent zero-division error when no games played.
         else:
             team_record["pct"] = team_record["won"] / team_record["played"]
+        team_record["net_runs"] = team_record["runs_for"] - team_record["runs_against"]
         standings.append(team_record)
 
     return standings

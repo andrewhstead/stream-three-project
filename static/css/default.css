@@ -445,6 +445,10 @@ footer {
     margin-bottom: 10px;
 }
 
+.desktop-cell {
+    display: none;
+}
+
 #full-details {
     font-size: 0.75em;
     display: block;
@@ -489,7 +493,7 @@ footer {
 }
 
 .stat-column {
-    width: 25px;
+    width: 40px;
 }
 
 .stat-header {
@@ -519,6 +523,10 @@ footer {
 
 .stat-detail-faint {
     background-color: #6fa1dd;
+}
+
+.stat-detail-fainter {
+    background-color: #afc1fd;
 }
 
 .stat-detail-highlight {
@@ -885,6 +893,10 @@ a.button-link:hover {
 
 .right-align {
     text-align: right;
+}
+
+.left-align {
+    text-align: left;
 }
 
 .blog-content {

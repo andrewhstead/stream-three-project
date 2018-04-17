@@ -23,7 +23,7 @@ main {
 
 #stats-column {
     flex: 1;
-    margin: 0 20px;
+    margin-left: 10px;
 }
 
 .home-logo {
@@ -110,4 +110,8 @@ main {
 
 .profile {
     margin: 0 20px;
+}
+
+.desktop-cell {
+    display: table-cell;
 }
