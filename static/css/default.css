@@ -456,6 +456,13 @@ footer {
     clear: both;
 }
 
+.full-details {
+    font-size: 0.75em;
+    display: block;
+    text-align: center;
+    clear: both;
+}
+
 .table-details {
     font-size: 0.75em;
     display: block;
@@ -503,6 +510,10 @@ footer {
 
 .standings-column-wide {
     width: 40px;
+}
+
+.standings-column-wider {
+    width: 50px;
 }
 
 .stat-header {
@@ -997,7 +1008,7 @@ a.button-link:hover {
     border: 2px solid #10253f;
     box-shadow: 0 0 2px 2px #4f81bd;
     background-color: #eeeeff;
-    min-width: 250px;
+    min-width: 200px;
 }
 
 .product-border {

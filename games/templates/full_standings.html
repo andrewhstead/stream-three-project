@@ -8,10 +8,8 @@
                 <th class="standings-column-wide desktop-cell">RF</th>
                 <th class="standings-column-wide desktop-cell">RA</th>
                 <th class="standings-column-wide desktop-cell">+/-</th>
-                <th class="standings-column desktop-cell right-align">Ho</th>
-                <th class="standings-column desktop-cell left-align">me</th>
-                <th class="standings-column desktop-cell right-align">Aw</th>
-                <th class="standings-column desktop-cell left-align">ay</th>
+                <th class="standings-column-wider desktop-cell">H</th>
+                <th class="standings-column-wider desktop-cell">A</th>
             </tr>
 
             {% for club in standings|dictsort:"name"|dictsortreversed:"pct" %}
@@ -65,16 +63,10 @@
                         </td>
 
                         <td class="stat-detail-faint desktop-cell">
-                            {{ club.home_won|floatformat:0 }}
-                        </td>
-                        <td class="stat-detail-faint desktop-cell">
-                            {{ club.home_lost|floatformat:0 }}
+                            {{ club.home_won|floatformat:0 }}-{{ club.home_lost|floatformat:0 }}
                         </td>
                         <td class="stat-detail-fainter desktop-cell">
-                            {{ club.away_won|floatformat:0 }}
-                        </td>
-                        <td class="stat-detail-fainter desktop-cell">
-                            {{ club.away_lost|floatformat:0 }}
+                            {{ club.away_won|floatformat:0 }}-{{ club.away_lost|floatformat:0 }}
                         </td>
 
                     </tr>

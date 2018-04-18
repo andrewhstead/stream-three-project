@@ -33,7 +33,7 @@ def store_front(request):
     all_products = Product.objects.all().order_by('-team').order_by('-description')
     teams = Team.objects.all().order_by('geographic_name')
 
-    view_products = Paginator(all_products, 8)
+    view_products = Paginator(all_products, 6)
 
     page = request.GET.get('page')
 
