@@ -19,12 +19,12 @@
             {% endif %}
 
             <div class="blog-author-title">
-                <a class="standard-link" href="/profile/{{ author.id }}">
+                <a class="standard-link" href="{% url 'other_profile' author.id %}">
                     {{ author.username|truncatechars:15 }}
                 </a>
             </div>
 
-            <a class="standard-link" href="/teams/{{ author.favourite_team.geographic_name|lower }}/">
+            <a class="standard-link" href="{% url 'team_page' author.favourite_team.geographic_name|lower %}">
                 {{ author.favourite_team }}
             </a>
             <br />
@@ -38,7 +38,7 @@
 
             {% if user == author %}
                 <div class="content-link">
-                    <a href="/blogs/post/new/{{ thread.id }}">New Post</a>
+                    <a href="{% url 'new_blog_post' %}">New Post</a>
                 </div>
             {% endif %}
 
@@ -47,7 +47,7 @@
                 <div class="blog-post">
 
                     <div class="blog-title">
-                            <a class="standard-link" href="/blogs/post/{{ post.id }}">
+                            <a class="standard-link" href="{% url 'blog_post' post.id %}">
                             {{ post.title }}
                         </a>
                     </div>
@@ -64,7 +64,7 @@
 
             {% endfor %}
 
-            <div id="full-details">
+            <div class="full-details">
 
                 <div class="pagination-links">
 
@@ -82,7 +82,8 @@
 
                 </div>
 
-                <a class="standard-link" href="/blogs/">[Blogs Index]</a>
+                <a class="standard-link" href="{% url 'blog_home' %}">[Blogs
+                    Index]</a>
 
             </div>
 
@@ -90,33 +91,7 @@
 
         <div id="stats-column" class="column for-desktop">
 
-            <div class="sub-header">
-                ALL BLOGS
-            </div>
-
-            {% for blogger in bloggers %}
-                <div class="blogger-details">
-                    {% if blogger.profile_picture %}
-                        <img class="blog-author" src="/media/{{ blogger.profile_picture }}" />
-                    {% elif blogger.favourite_team %}
-                        <img class="blog-author" src="/media/{{ blogger.favourite_team.large_logo }}" />
-                    {% else %}
-                        <img class="blog-author" src="/media/images/users/default.png" />
-                    {% endif %}
-                    <a class="standard-link" href="/blogs/user/{{ blogger.username|lower }}/">
-                        {{ blogger.username }}
-                    </a><br />
-                    <a class="standard-link" href="/teams/{{ blogger.favourite_team.geographic_name|lower }}/">
-                        {{ blogger.favourite_team }}
-                    </a><br />
-                    {{ blogger.news.count }}
-                    {% if blogger.news.count == 1 %}
-                        post
-                    {% else %}
-                        posts
-                    {% endif %}
-                </div>
-            {% endfor %}
+            {% include 'blog_sidebar.html' %}
 
         </div>
 

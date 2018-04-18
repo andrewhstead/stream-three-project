@@ -29,7 +29,10 @@
                     {% if item.teams.count > 0 %}
                         Teams:
                         {% for team in item.teams.all %}
-                            <a class="{{ team.geographic_name|lower }}-tag team-tag" href="/news/{{ team.geographic_name|lower }}">{{ team.geographic_name }} {{ team.nickname }}</a>
+                            <a class="{{ team.geographic_name|lower }}-tag team-tag" href=
+                                    "{% url 'team_news' team.geographic_name|lower %}">
+                                {{ team.geographic_name }} {{ team.nickname }}
+                            </a>
                         {% endfor %}
                     {% endif %}
                 </div>
@@ -42,7 +45,7 @@
                 </div>
             {% else %}
                 <div id="not-logged-in">
-                    You must be <a class="standard-link" href="/login/">logged in</a> to comment.
+                    You must be <a class="standard-link" href="{% url 'login' %}">logged in</a> to comment.
                 </div>
             {% endif %}
 
@@ -61,7 +64,7 @@
             </section>
 
             <span id="full-details">
-                <a class="standard-link" href="/news/">[News Home]</a>
+                <a class="standard-link" href="{% url 'news_index' %}">[News Home]</a>
             </span>
 
         </div>

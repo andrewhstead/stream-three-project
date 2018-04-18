@@ -13,9 +13,9 @@
     <div class="comment-user">
         {% if user.is_authenticated %}
             {% if user == comment.user %}
-                <a class="table-link" href="/profile/">
+                <a class="table-link" href="{% url 'user_profile' %}">
             {% else %}
-                <a class="table-link" href="/profile/{{ comment.user_id }}">
+                <a class="table-link" href="{% url 'other_profile' comment.user.id %}">
             {% endif %}
                 {{ comment.user }}
             </a>

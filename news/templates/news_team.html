@@ -20,7 +20,7 @@
                 {% for item in items|slice:':1' %}
                     {% if current_page == 1 %}
                         <div class="banner-story">
-                            <a class="banner-link" href="/news/{{ item.id }}">
+                            <a class="banner-link" href="{% url 'news' item.id %}">
                                     {% if item.cover_image %}
                                         <img class="cover-image" src="/media/{{ item.cover_image }}" />
                                     {% else %}
@@ -28,13 +28,13 @@
                                     {% endif %}
                                 </a>
                             <div class="banner-headline">
-                                <a class="banner-link" href="/news/{{ item.id }}">{{ item.title }}</a>
+                                <a class="banner-link" href="{% url 'news' item.id %}">{{ item.title }}</a>
                             </div>
                         </div>
                     {% else %}
                         <div class="news-link">
                             <span class="arrow">&#9658;</span>
-                            <a class="standard-link" href="/news/{{ item.id }}/">{{ item.title }}</a><br />
+                            <a class="standard-link" href="{% url 'news' item.id %}">{{ item.title }}</a><br />
                         </div>
                     {% endif %}
                 {% endfor %}
@@ -42,7 +42,7 @@
                 {% for item in items|slice:'1:' %}
                         <div class="news-link">
                             <span class="arrow">&#9658;</span>
-                            <a class="standard-link" href="/news/{{ item.id }}/">
+                            <a class="standard-link" href="{% url 'news' item.id %}">
                                 {{ item.title }}
                             </a>
                         </div>
@@ -69,8 +69,8 @@
             </div>
 
             <span id="full-details">
-                <a class="standard-link" href="/teams/{{ team.geographic_name|lower }}">[Team Home]</a>
-                <a class="standard-link" href="/news/">[News Home]</a>
+                <a class="standard-link" href="{% url 'team_page' team.geographic_name|lower %}">[Team Home]</a>
+                <a class="standard-link" href="{% url 'news_index' %}">[News Home]</a>
             </span>
 
         </div>

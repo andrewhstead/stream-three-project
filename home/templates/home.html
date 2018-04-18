@@ -10,7 +10,7 @@
 
                 {% for article in news_headlines %}
                     <div class="banner-story">
-                        <a class="banner-link" href="/news/{{ article.id }}">
+                        <a class="banner-link" href="{% url 'news' article.id %}">
                             {% if article.cover_image %}
                                 <img class="cover-image fade-in" src="/media/{{ article.cover_image }}" />
                             {% else %}
@@ -18,7 +18,7 @@
                             {% endif %}
                         </a>
                         <div class="banner-headline">
-                            <a class="banner-link fade-in" href="/news/{{ article.id }}">{{ article.title }}</a>
+                            <a class="banner-link fade-in" href="{% url 'news' article.id %}">{{ article.title }}</a>
                         </div>
                     </div>
                 {% endfor %}
@@ -30,7 +30,7 @@
                 </div>
 
                 <span id="full-details">
-                    <a class="standard-link" href="/news/">[All News]</a>
+                    <a class="standard-link" href="{% url 'news_index' %}">[All News]</a>
                 </span>
 
             </section>

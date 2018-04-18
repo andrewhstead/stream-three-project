@@ -25,14 +25,14 @@
                 <div class="blog-content">
 
                     <div class="blog-title">
-                        <a class="standard-link" href="/blogs/post/{{ post.id }}">
+                        <a class="standard-link" href="{% url 'blog_post' post.id %}">
                             {{ post.title }}
                         </a>
                     </div>
 
                     <div class="blog-details">
                         written by
-                        <a class="standard-link" href="/blogs/user/{{ post.author.username|lower }}">
+                        <a class="standard-link" href="{% url 'blog_index' post.author.username|lower %}">
                             {{ post.author.username }}
                         </a><br />
                         {{ post.created_date|date:'j F Y, H:i' }}
@@ -51,33 +51,7 @@
 
         <div id="stats-column" class="column for-desktop">
 
-            <div class="sub-header">
-                ALL BLOGS
-            </div>
-
-            {% for blogger in bloggers %}
-                <div class="blogger-details">
-                    {% if blogger.profile_picture %}
-                        <img class="blog-author" src="/media/{{ blogger.profile_picture }}" />
-                    {% elif blogger.favourite_team %}
-                        <img class="blog-author" src="/media/{{ blogger.favourite_team.large_logo }}" />
-                    {% else %}
-                        <img class="blog-author" src="/media/images/users/default.png" />
-                    {% endif %}
-                    <a class="standard-link" href="/blogs/user/{{ blogger.username|lower }}/">
-                        {{ blogger.username }}
-                    </a><br />
-                    <a class="standard-link" href="/teams/{{ blogger.favourite_team.geographic_name|lower }}/">
-                        {{ blogger.favourite_team }}
-                    </a><br />
-                    {{ blogger.news.count }}
-                    {% if blogger.news.count == 1 %}
-                        post
-                    {% else %}
-                        posts
-                    {% endif %}
-                </div>
-            {% endfor %}
+            {% include 'blog_sidebar.html' %}
 
         </div>
 

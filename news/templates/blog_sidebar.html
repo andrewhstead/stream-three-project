@@ -1,0 +1,28 @@
+
+            <div class="sub-header">
+                ALL BLOGS
+            </div>
+
+            {% for blogger in bloggers %}
+                <div class="blogger-details">
+                    {% if blogger.profile_picture %}
+                        <img class="blog-author" src="/media/{{ blogger.profile_picture }}" />
+                    {% elif blogger.favourite_team %}
+                        <img class="blog-author" src="/media/{{ blogger.favourite_team.large_logo }}" />
+                    {% else %}
+                        <img class="blog-author" src="/media/images/users/default.png" />
+                    {% endif %}
+                    <a class="standard-link" href="{% url 'blog_index' blogger.username|lower %}">
+                        {{ blogger.username }}
+                    </a><br />
+                    <a class="standard-link" href="{% url 'team_page' blogger.favourite_team.geographic_name|lower %}">
+                        {{ blogger.favourite_team }}
+                    </a><br />
+                    {{ blogger.news.count }}
+                    {% if blogger.news.count == 1 %}
+                        post
+                    {% else %}
+                        posts
+                    {% endif %}
+                </div>
+            {% endfor %}
