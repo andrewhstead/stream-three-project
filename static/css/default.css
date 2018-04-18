@@ -911,6 +911,7 @@ a.button-link:hover {
 
 .blog-content {
     margin-left: 80px;
+    text-align: justify;
 }
 
 .blog-post {
@@ -1011,8 +1012,8 @@ a.button-link:hover {
 }
 
 .store-team img {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     margin: auto;
     display: block;
 }
@@ -1208,4 +1209,9 @@ ul.errorlist li {
 #submit_order {
     margin: 0 auto;
     display: block;
+}
+
+.blogger-details {
+    clear: both;
+    padding: 10px;
 }

@@ -113,3 +113,8 @@ main {
 .desktop-cell {
     display: table-cell;
 }
+
+.store-team img {
+    width: 100px;
+    height: 100px;
+}

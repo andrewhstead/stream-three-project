@@ -11,6 +11,7 @@ from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.template.context_processors import csrf
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.models import Group
 
 
 # Create your views here.
@@ -75,12 +76,29 @@ def news_team(request, team_name):
 
 def blog_home(request):
     posts = Item.objects.filter(category_id=6).order_by('-created_date')
-    return render(request, "blogs.html", {'posts': posts})
+
+    blogger = Group.objects.get(name='Blogger')
+    bloggers = []
+
+    users = User.objects.all()
+    for user in users:
+        if blogger in user.groups.all():
+            bloggers.append(user)
+
+    return render(request, "blogs.html", {'posts': posts, 'bloggers': bloggers})
 
 
 def blog_index(request, author_name):
     author = User.objects.get(username__iexact=author_name)
     all_posts = Item.objects.filter(author=author).order_by('created_date')
+
+    blogger = Group.objects.get(name='Blogger')
+    bloggers = []
+
+    users = User.objects.all()
+    for user in users:
+        if blogger in user.groups.all():
+            bloggers.append(user)
 
     posts_for = Paginator(all_posts, 10)
 
@@ -92,7 +110,8 @@ def blog_index(request, author_name):
     except PageNotAnInteger:
         posts = posts_for.page(posts_for.num_pages)
 
-    return render(request, "blog_index.html", {'all_posts': all_posts, 'posts': posts, 'author': author})
+    return render(request, "blog_index.html", {'all_posts': all_posts, 'posts': posts,
+                                               'author': author, 'bloggers': bloggers})
 
 
 def blog_post(request, post_id):
@@ -101,7 +120,15 @@ def blog_post(request, post_id):
     item.views += 1
     item.save()
 
-    return render(request, "blog_post.html", {'item': item, 'posts': posts})
+    blogger = Group.objects.get(name='Blogger')
+    bloggers = []
+
+    users = User.objects.all()
+    for user in users:
+        if blogger in user.groups.all():
+            bloggers.append(user)
+
+    return render(request, "blog_post.html", {'item': item, 'posts': posts, 'bloggers': bloggers})
 
 
 @login_required(login_url='/login/')
@@ -122,10 +149,19 @@ def new_blog_post(request):
     else:
         form = BlogPostForm()
 
+    blogger = Group.objects.get(name='Blogger')
+    bloggers = []
+
+    users = User.objects.all()
+    for user in users:
+        if blogger in user.groups.all():
+            bloggers.append(user)
+
     args = {
         'form': form,
         'form_action': reverse('new_blog_post'),
-        'button_text': 'Submit Post'
+        'button_text': 'Submit Post',
+        'bloggers': bloggers
     }
     args.update(csrf(request))
     return render(request, 'blog_post_form.html', args)
@@ -146,10 +182,19 @@ def edit_blog(request, post_id):
     else:
         form = BlogPostForm(instance=post)
 
+    blogger = Group.objects.get(name='Blogger')
+    bloggers = []
+
+    users = User.objects.all()
+    for user in users:
+        if blogger in user.groups.all():
+            bloggers.append(user)
+
     args = {
         'form': form,
         'form_action': reverse('edit_blog', kwargs={'post_id': post.id}),
-        'button_text': 'Submit Post'
+        'button_text': 'Submit Post',
+        'bloggers': bloggers
     }
     args.update(csrf(request))
     return render(request, 'blog_post_form.html', args)
@@ -187,10 +232,19 @@ def new_comment(request, item_id):
     else:
         form = CommentForm()
 
+    blogger = Group.objects.get(name='Blogger')
+    bloggers = []
+
+    users = User.objects.all()
+    for user in users:
+        if blogger in user.groups.all():
+            bloggers.append(user)
+
     args = {
         'form': form,
         'form_action': reverse('new_comment', args={item.id}),
-        'button_text': 'Post Comment'
+        'button_text': 'Post Comment',
+        'bloggers': bloggers
     }
     args.update(csrf(request))
     return render(request, 'comment_form.html', args)
@@ -215,10 +269,19 @@ def edit_comment(request, item_id, comment_id):
     else:
         form = CommentForm(instance=comment)
 
+    blogger = Group.objects.get(name='Blogger')
+    bloggers = []
+
+    users = User.objects.all()
+    for user in users:
+        if blogger in user.groups.all():
+            bloggers.append(user)
+
     args = {
         'form': form,
         'form_action': reverse('edit_comment', kwargs={'item_id': item.id, 'comment_id': comment.id}),
         'button_text': 'Edit Comment',
+        'bloggers': bloggers,
         'comment': comment
     }
     args.update(csrf(request))
