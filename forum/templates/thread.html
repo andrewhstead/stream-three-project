@@ -13,11 +13,11 @@
             <div id="left-header">
 
             {% if board.team_id %}
-                <a class="table-link" href="/forum/{{ board.team.geographic_name|lower }}">
+                <a class="table-link" href="{% url 'forum_team' board.team.geographic_name|lower %}">
                     {{ board.title }}
                 </a>
             {% else %}
-                <a class="table-link" href="/forum/league/{{ board.id }}">
+                <a class="table-link" href="{% url 'forum_league' board.id %}">
                     {{ board.title }}
                 </a>
             {% endif %}
@@ -28,11 +28,11 @@
 
             {% if user.is_authenticated %}
                 <div class="content-link">
-                    <a href="/post/new/{{ thread.id }}">New Post</a>
+                    <a href="{% url 'new_post' thread.id %}">New Post</a>
                 </div>
             {% else %}
                 <div id="not-logged-in">
-                    You must be <a class="standard-link" href="/login/">logged in</a> to post.
+                    You must be <a class="standard-link" href="{% url 'login' %}">logged in</a> to post.
                 </div>
             {% endif %}
 
@@ -65,32 +65,22 @@
                 </div>
 
                 {% if board.team_id %}
-                    <a class="standard-link" href="/forum/{{ board.team.geographic_name|lower }}">
+                    <a class="standard-link" href="{% url 'forum_team' board.team.geographic_name|lower %}">
                         [Thread List]
                     </a>
                 {% else %}
-                    <a class="standard-link" href="/forum/league/{{ board.id }}">
+                    <a class="standard-link" href="{% url 'forum_league' board.id %}">
                         [Thread List]
                     </a>
                 {% endif %}
-                <a class="standard-link" href="/forum/">[Forum Home]</a>
+                <a class="standard-link" href="{% url 'forum' %}">[Forum Home]</a>
             </span>
 
         </div>
 
         <div id="stats-column" class="column for-desktop">
 
-            <div class="sub-header">
-                RECENT ACTIVITY
-            </div>
-
-            {% for post in recent_posts %}
-                <div class="recent-activity">
-                    <a class="standard-link" href="/profile/{{ post.user_id }}/">{{ post.user }}</a> posted in<br />
-                    <a class="standard-link" href="/thread/{{ post.thread_id }}/">{{ post.thread }}</a><br />
-                    at {{ post.created_date|time:'G:i' }} on {{ post.created_date|date:'d/m/Y' }}
-                </div>
-            {% endfor %}
+            {% include 'forum_sidebar.html' %}
 
         </div>
 

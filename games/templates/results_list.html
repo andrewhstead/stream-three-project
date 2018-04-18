@@ -31,7 +31,8 @@
                             {% if result.game_date == date %}
                                 <tr>
                                     <td class="stat-team">
-                                        <a class="table-link" href="/scores/{{ result.away_team.geographic_name|lower }}">
+                                        <a class="table-link" href=
+                                                "{% url 'team_games' result.away_team.geographic_name|lower %}">
                                             {% if result.game_status == "Completed" and result.away_team_runs > result.home_team_runs %}
                                                 <strong>{{ result.away_team.geographic_name }}</strong>
                                             {% else %}
@@ -54,7 +55,8 @@
                                         </td>
                                     {% endif %}
                                     <td class="stat-team">
-                                        <a class="table-link" href="/scores/{{ result.home_team.geographic_name|lower }}">
+                                        <a class="table-link" href=
+                                                "{% url 'team_games' result.home_team.geographic_name|lower %}">
                                             {% if result.game_status == "Completed" and result.home_team_runs > result.away_team_runs %}
                                                 <strong>{{ result.home_team.geographic_name }}</strong>
                                             {% else %}

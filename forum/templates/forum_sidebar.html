@@ -1,0 +1,12 @@
+
+            <div class="sub-header">
+                RECENT ACTIVITY
+            </div>
+
+            {% for post in recent_posts %}
+                <div class="recent-activity">
+                    <a class="standard-link" href="/profile/{{ post.user_id }}/">{{ post.user }}</a> posted in<br />
+                    <a class="standard-link" href="/thread/{{ post.thread_id }}/">{{ post.thread }}</a><br />
+                    at {{ post.created_date|time:'G:i' }} on {{ post.created_date|date:'d/m/Y' }}
+                </div>
+            {% endfor %}

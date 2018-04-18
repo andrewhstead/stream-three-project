@@ -22,31 +22,33 @@
                     <tr>
                         <td>
                             {% if season.champion %}
-                                <a class="table-link" href="/archive/{{ season.year }}">
+                                <a class="table-link" href="{% url 'season_overview' season.year %}">
                                     {{ season.year }}
                                 </a>
                             {% else %}
-                                <a class="table-link" href="/standings/">
+                                <a class="table-link" href="{% url 'standings' %}">
                                     {{ season.year }}
                                 </a>
                             {% endif %}
                         </td>
                         <td>
                             <strong>
-                                <a class="table-link" href="/archive/{{ season.year }}/{{ season.champion.geographic_name|lower }}">
+                                <a class="table-link" href=
+                                        "{% url 'season_team' season.year season.champion.geographic_name|lower %}">
                                     {{ season.champion.geographic_name }}
                                 </a>
                             </strong>
                         </td>
                         <td>
                             {% if season.series_score %}
-                                <a class="table-link" href="/archive/{{ season.year }}/#championship">
+                                <a class="table-link" href="{% url 'season_overview' season.year %}#championship">
                                     {{ season.series_score }}
                                 </a>
                             {% endif %}
                         </td>
                         <td>
-                            <a class="table-link" href="/archive/{{ season.year }}/{{ season.finalist.geographic_name|lower }}">
+                            <a class="table-link" href=
+                                    "{% url 'season_team' season.year season.finalist.geographic_name|lower %}">
                                 {{ season.finalist.geographic_name }}
                             </a>
                         </td>

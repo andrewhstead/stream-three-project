@@ -41,8 +41,10 @@
                             <th class="score-column">E</th>
                         </tr>
                         <tr>
-                            <td class="stat-header"><img class="small-logo" src="/media/{{ result.away_team.small_logo }}" />
-                                <a class="table-link" href="/scores/{{ result.away_team.geographic_name|lower }}">
+                            <td class="stat-header">
+                                <img class="small-logo" src="/media/{{ result.away_team.small_logo }}" />
+                                <a class="table-link" href=
+                                        "{% url 'team_games' result.away_team.geographic_name|lower %}">
                                     {% if result.game_status == "Completed" and result.away_team_runs > result.home_team_runs %}
                                         <strong>{{ result.away_team }}</strong>
                                     {% else %}
@@ -61,8 +63,10 @@
                             {% endif %}
                         </tr>
                         <tr>
-                            <td class="stat-header"><img class="small-logo" src="/media/{{ result.home_team.small_logo }}" />
-                                <a class="table-link" href="/scores/{{ result.home_team.geographic_name|lower }}">
+                            <td class="stat-header">
+                                <img class="small-logo" src="/media/{{ result.home_team.small_logo }}" />
+                                <a class="table-link" href=
+                                        "{% url 'team_games' result.home_team.geographic_name|lower %}">
                                     {% if result.game_status == "Completed" and result.home_team_runs > result.away_team_runs %}
                                         <strong>{{ result.home_team }}</strong>
                                     {% else %}
@@ -84,10 +88,10 @@
 
                 {% endfor %}
 
-                <span id="full-details">
-                    <a class="standard-link" href="/scores/results/">[More Results]</a>
-                    <a class="standard-link" href="/scores/results/all/">[Complete List]</a>
-                </span>
+                <div class="full-details">
+                    <a class="standard-link" href="{% url 'full_results' %}">[More Results]</a>
+                    <a class="standard-link" href="{% url 'list_results' %}">[Complete List]</a>
+                </div>
 
             {% else %}
 
@@ -126,13 +130,14 @@
                             {% endif %}
                         </tr>
                         <tr>
-                            <td class="stat-header"><img class="small-logo" src="/media/{{ fixture.away_team.small_logo }}" />
-                                <a class="table-link" href="/scores/{{ fixture.away_team.geographic_name|lower }}">
+                            <td class="stat-header">
+                                <img class="small-logo" src="/media/{{ fixture.away_team.small_logo }}" />
+                                <a class="table-link" href="{% url 'team_games' fixture.away_team.geographic_name|lower %}">
                                     {{ fixture.away_team }}</a></td>
                             {% if fixture.game_status == "In Progress" %}
-                                <td class="stat-detail-highlight"><strong>{{ fixture.home_team_runs }}</strong></td>
-                                <td class="stat-detail-highfaint">{{ fixture.home_team_hits }}</td>
-                                <td class="stat-detail-highfaint">{{ fixture.home_team_errors }}</td>
+                                <td class="stat-detail-highlight"><strong>{{ fixture.away_team_runs }}</strong></td>
+                                <td class="stat-detail-highfaint">{{ fixture.away_team_hits }}</td>
+                                <td class="stat-detail-highfaint">{{ fixture.away_team_errors }}</td>
                             {% else %}
                                 <td></td>
                                 <td></td>
@@ -140,8 +145,10 @@
                             {% endif %}
                         </tr>
                         <tr>
-                            <td class="stat-header"><img class="small-logo" src="/media/{{ fixture.home_team.small_logo }}" />
-                                <a class="table-link" href="/scores/{{ fixture.home_team.geographic_name|lower }}">
+                            <td class="stat-header">
+                                <img class="small-logo" src="/media/{{ fixture.home_team.small_logo }}" />
+                                <a class="table-link" href=
+                                        "{% url 'team_games' fixtures.home_team.geographic_name|lower %}">
                                     {{ fixture.home_team }}</a></td>
                             {% if fixture.game_status == "In Progress" %}
                                 <td class="stat-detail-highlight"><strong>{{ fixture.home_team_runs }}</strong></td>
@@ -157,10 +164,10 @@
 
                 {% endfor %}
 
-                <span id="full-details">
-                    <a class="standard-link" href="/scores/fixtures/">[More Fixtures]</a>
-                    <a class="standard-link" href="/scores/fixtures/all/">[Complete List]</a>
-                </span>
+                <div class="full-details">
+                    <a class="standard-link" href="{% url 'full_fixtures' %}">[More Fixtures]</a>
+                    <a class="standard-link" href="{% url 'list_fixtures' %}">[Complete List]</a>
+                </div>
 
             {% else %}
 

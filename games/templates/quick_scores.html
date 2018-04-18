@@ -11,7 +11,7 @@
         {% for result in results %}
             <tr>
                 <td class="team-abbreviation">
-                    <a class="table-link" href="/teams/{{ result.home_team.geographic_name|lower }}">
+                    <a class="table-link" href="{% url 'team_page' result.home_team.geographic_name|lower %}">
                         {{ result.home_team.abbreviation }}
                     </a>
                 </td>
@@ -21,7 +21,7 @@
                     {{ result.away_team_runs }}
                 </td>
                 <td class="team-abbreviation">
-                    <a class="table-link" href="/teams/{{ result.away_team.geographic_name|lower }}">
+                    <a class="table-link" href="{% url 'team_page' result.away_team.geographic_name|lower %}">
                         {{ result.away_team.abbreviation }}
                     </a>
                 </td>
@@ -30,7 +30,7 @@
     </table>
 
     <span class="full-details">
-        <a class="standard-link" href="/scores/results/">[More Results]</a>
+        <a class="standard-link" href="{% url 'full_results' %}">[More Results]</a>
     </span>
 
     <div class="league-box colour-box">
@@ -44,7 +44,7 @@
         {% for fixture in fixtures %}
             <tr>
                 <td class="team-abbreviation">
-                    <a class="table-link" href="/teams/{{ fixture.home_team.geographic_name|lower }}">
+                    <a class="table-link" href="{% url 'team_page' fixture.home_team.geographic_name|lower %}">
                         {{ fixture.home_team.abbreviation }}
                     </a>
                 </td>
@@ -52,7 +52,7 @@
                     {{ fixture.game_time|time:'G:i' }}
                 </td>
                 <td class="team-abbreviation">
-                    <a class="table-link" href="/teams/{{ fixture.away_team.geographic_name|lower }}">
+                    <a class="table-link" href="{% url 'team_page' fixture.away_team.geographic_name|lower %}">
                         {{ fixture.away_team.abbreviation }}
                     </a>
                 </td>
@@ -61,7 +61,7 @@
     </table>
 
     <span class="full-details">
-        <a class="standard-link" href="/scores/fixtures/">[More Fixtures]</a>
+        <a class="standard-link" href="{% url 'full_fixtures' %}">[More Fixtures]</a>
     </span>
 
 </div>

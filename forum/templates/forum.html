@@ -14,11 +14,11 @@
 
             {% if user.is_authenticated %}
                 <div class="sub-header">
-                    Logged in as: <a class="standard-link" href="/profile/">{{ user.username }}</a>
+                    Logged in as: <a class="standard-link" href="{% url 'user_profile' %}">{{ user.username }}</a>
                 </div>
             {% else %}
                 <div class="sub-header">
-                    NB: You must be <a class="standard-link" href="/login/">logged in</a> to post.
+                    NB: You must be <a class="standard-link" href="{% url 'login' %}">logged in</a> to post.
                 </div>
             {% endif %}
 
@@ -40,11 +40,12 @@
 
                                     <div class="board-header">
                                         {% if board.team %}
-                                            <a class="table-link" href="/forum/{{ board.team.geographic_name|lower }}">
+                                            <a class="table-link" href=
+                                                    "{% url 'forum_team' board.team.geographic_name|lower %}">
                                                 {{ board.title }}
                                             </a>
                                         {% else %}
-                                            <a class="table-link" href="/forum/league/{{ board.id }}">
+                                            <a class="table-link" href="{% url 'forum_league' board.id %}">
                                                 {{ board.title }}
                                             </a>
                                         {% endif %}
@@ -77,17 +78,7 @@
 
         <div id="stats-column" class="column for-desktop">
 
-            <div class="sub-header">
-                RECENT ACTIVITY
-            </div>
-
-            {% for post in recent_posts %}
-                <div class="recent-activity">
-                    <a class="standard-link" href="/profile/{{ post.user_id }}/">{{ post.user }}</a> posted in<br />
-                    <a class="standard-link" href="/thread/{{ post.thread_id }}/">{{ post.thread }}</a><br />
-                    at {{ post.created_date|time:'G:i' }} on {{ post.created_date|date:'d/m/Y' }}
-                </div>
-            {% endfor %}
+            {% include 'forum_sidebar.html' %}
 
         </div>
 

@@ -23,9 +23,9 @@
                             <td class="stat-header">
                                 <img class="small-logo" src="/media/{{ club.small_logo }}" />
                                     {% if archive %}
-                                        <a class="table-link" href="/archive/{{ season }}/{{ club.name|lower }}">
+                                        <a class="table-link" href="{% url 'season_team' season club.name|lower %}">
                                     {% else %}
-                                        <a class="table-link" href="/teams/{{ club.name|lower }}">
+                                        <a class="table-link" href="{% url 'team_page' club.name|lower %}">
                                     {% endif %}
                                     {{ club.name }}
                                 </a>

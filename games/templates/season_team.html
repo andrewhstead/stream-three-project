@@ -54,7 +54,8 @@
                                 {% elif game.team == game.away_team %}
                                     @
                                 {% endif %}
-                                <a class="table-link" href="/archive/{{ season.year }}/{{ game.opponent.geographic_name|lower }}">
+                                <a class="table-link" href=
+                                        "{% url 'season_team' season.year game.opponent.geographic_name|lower %}">
                                     {{ game.opponent.geographic_name }}</a>
                             </td>
                             {% if game.team_runs > game.opponent_runs %}
@@ -104,7 +105,8 @@
                                 {% elif game.team == game.away_team %}
                                     @
                                 {% endif %}
-                                <a class="table-link" href="/archive/{{ season.year }}/{{ game.opponent.geographic_name|lower }}">
+                                <a class="table-link" href=
+                                        "{% url 'season_team' season.year game.opponent.geographic_name|lower %}">
                                     {{ game.opponent.geographic_name }}</a>
                             </td>
                             {% if game.team_runs > game.opponent_runs %}
@@ -139,14 +141,15 @@
                 </div>
 
                 <div class="nav-box">
-                    <a class="standard-link" href="/archive/{{ season.year }}/">
+                    <a class="standard-link" href="{% url 'season_overview' season.year %}">
                         LEAGUE
                     </a><br />
                     {% for club in teams %}
                         {% if club == team %}
                             <strong>{{ club.abbreviation }}</strong>
                         {% else %}
-                            <a class="standard-link" href="/archive/{{ season.year }}/{{ club.geographic_name|lower }}">
+                            <a class="standard-link" href=
+                                    "{% url 'season_team' season.year club.geographic_name|lower %}">
                                 {{ club.abbreviation }}
                             </a>
                         {% endif %}
@@ -166,7 +169,8 @@
                         {% if year == season %}
                             <strong>{{ year.year }}</strong>
                         {% else %}
-                            <a class="standard-link" href="/archive/{{ year.year }}/{{ team.geographic_name|lower }}">
+                            <a class="standard-link" href=
+                                    "{% url 'season_team' year.year team.geographic_name|lower %}">
                                 {{ year.year }}
                             </a>
                         {% endif %}
@@ -176,7 +180,7 @@
             </nav>
 
             <span id="full-details">
-                <a class="standard-link" href="/archive/">[Archive Index]</a>
+                <a class="standard-link" href="{% url 'archive' %}">[Archive Index]</a>
             </span>
 
         </div>
