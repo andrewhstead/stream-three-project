@@ -72,10 +72,12 @@
                     <div class="link-list">
                         {% for thread in board.threads.all %}
 
-                                <span class="arrow">&#9658;</span>
-                                    <a class="standard-link" href="/thread/{{ thread.id }}/">
-                                        {{ thread.title }}
-                                    </a>
+                                <div class="news-link">
+                                    <span class="arrow">&#9658;</span>
+                                        <a class="standard-link" href="/thread/{{ thread.id }}/">
+                                            {{ thread.title }}
+                                        </a>
+                                </div>
 
                         {%  endfor %}
                     </div>

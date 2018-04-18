@@ -2,178 +2,188 @@
 
 {% block content %}
 
-    <div id="page-header">
-        {{ season.year }} SEASON
-    </div>
+    <div class="column-wrapper">
 
-    <div class="{{ team.geographic_name|lower }}-text team-header">
-        {{ team.geographic_name }} {{ team.nickname }}
-    </div>
+        <div id="details-column" class="column">
 
-    <div class="sub-header">
-        STANDINGS
-    </div>
-
-    <div class="sub-header">
-        {{ team.conference }}
-    </div>
-
-    {% include 'full_standings.html' %}
-
-    {% if not team_games %}
-
-        This season's schedule is not yet available.
-
-    {% else %}
-
-        <div class="sub-header">
-            REGULAR SEASON
-        </div>
-
-        <table class="stat-table alternating-rows">
-            <tr class="header-row">
-                <th class="stat-intro">Date</th>
-                <th class="stat-intro">Opponent</th>
-                <th class="stat-column">Res</th>
-                <th class="stat-column-wide">Sc.</th>
-            </tr>
-
-            {% for game in team_games %}
-
-                <tr>
-                    <td class="stat-header">
-                        {{ game.game_date|date:"d/m/y" }}
-                    </td>
-                    <td class="stat-header">
-                        {% if game.team == game.home_team %}
-                            v
-                        {% elif game.team == game.away_team %}
-                            @
-                        {% endif %}
-                        <a class="table-link" href="/archive/{{ season.year }}/{{ game.opponent.geographic_name|lower }}">
-                            {{ game.opponent.geographic_name }}</a>
-                    </td>
-                    {% if game.team_runs > game.opponent_runs %}
-                        <td class="stat-win">
-                            W
-                        </td>
-                    {% else %}
-                        <td class="stat-loss">
-                            L
-                        </td>
-                    {% endif %}
-                    <td class="stat-detail">
-                        {{ game.team_runs }}-{{ game.opponent_runs }}
-                    </td>
-
-                </tr>
-
-            {% endfor %}
-
-        </table>
-
-        {% if championship_series %}
-
-            <div class="sub-header">
-                CHAMPIONSHIP SERIES
+            <div id="page-header">
+                {{ season.year }} SEASON
             </div>
 
-            <table class="stat-table alternating-rows">
-                <tr class="header-row">
-                    <th class="stat-intro">Date</th>
-                    <th class="stat-intro">Opponent</th>
-                    <th class="stat-column">Res</th>
-                    <th class="stat-column-wide">Sc.</th>
-                </tr>
+            <div class="{{ team.geographic_name|lower }}-text team-header">
+                {{ team.geographic_name }} {{ team.nickname }}
+            </div>
 
-                {% for game in championship_series %}
+            <div class="sub-header">
+                STANDINGS
+            </div>
 
-                    <tr>
-                        <td class="stat-header">
-                            {{ game.game_date|date:"d/m/y" }}
-                        </td>
-                        <td class="stat-header">
-                            {% if game.team == game.home_team %}
-                                v
-                            {% elif game.team == game.away_team %}
-                                @
-                            {% endif %}
-                            <a class="table-link" href="/archive/{{ season.year }}/{{ game.opponent.geographic_name|lower }}">
-                                {{ game.opponent.geographic_name }}</a>
-                        </td>
-                        {% if game.team_runs > game.opponent_runs %}
-                            <td class="stat-win">
-                                W
-                            </td>
-                        {% else %}
-                            <td class="stat-loss">
-                                L
-                            </td>
-                        {% endif %}
-                        <td class="stat-detail">
-                            {{ game.team_runs }}-{{ game.opponent_runs }}
-                        </td>
+            <div class="sub-header">
+                {{ conference }}
+            </div>
 
+            {% include 'archive_standings.html' %}
+
+            {% if not team_games %}
+
+                This season's schedule is not yet available.
+
+            {% else %}
+
+                <div class="sub-header">
+                    REGULAR SEASON
+                </div>
+
+                <table class="stat-table alternating-rows">
+                    <tr class="header-row">
+                        <th class="stat-intro">Date</th>
+                        <th class="stat-intro">Opponent</th>
+                        <th class="stat-column">Res</th>
+                        <th class="stat-column-wide">Sc.</th>
                     </tr>
 
-                {% endfor %}
+                    {% for game in team_games %}
 
-            </table>
+                        <tr>
+                            <td class="stat-header">
+                                {{ game.game_date|date:"d/m/y" }}
+                            </td>
+                            <td class="stat-header">
+                                {% if game.team == game.home_team %}
+                                    v
+                                {% elif game.team == game.away_team %}
+                                    @
+                                {% endif %}
+                                <a class="table-link" href="/archive/{{ season.year }}/{{ game.opponent.geographic_name|lower }}">
+                                    {{ game.opponent.geographic_name }}</a>
+                            </td>
+                            {% if game.team_runs > game.opponent_runs %}
+                                <td class="stat-win">
+                                    W
+                                </td>
+                            {% else %}
+                                <td class="stat-loss">
+                                    L
+                                </td>
+                            {% endif %}
+                            <td class="stat-detail">
+                                {{ game.team_runs }}-{{ game.opponent_runs }}
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                </table>
+
+            {% endif %}
+
+            {% if championship_series %}
+
+                <div class="sub-header">
+                    CHAMPIONSHIP SERIES
+                </div>
+
+                <table class="stat-table alternating-rows">
+                    <tr class="header-row">
+                        <th class="stat-intro">Date</th>
+                        <th class="stat-intro">Opponent</th>
+                        <th class="stat-column">Res</th>
+                        <th class="stat-column-wide">Sc.</th>
+                    </tr>
+
+                    {% for game in championship_series %}
+
+                        <tr>
+                            <td class="stat-header">
+                                {{ game.game_date|date:"d/m/y" }}
+                            </td>
+                            <td class="stat-header">
+                                {% if game.team == game.home_team %}
+                                    v
+                                {% elif game.team == game.away_team %}
+                                    @
+                                {% endif %}
+                                <a class="table-link" href="/archive/{{ season.year }}/{{ game.opponent.geographic_name|lower }}">
+                                    {{ game.opponent.geographic_name }}</a>
+                            </td>
+                            {% if game.team_runs > game.opponent_runs %}
+                                <td class="stat-win">
+                                    W
+                                </td>
+                            {% else %}
+                                <td class="stat-loss">
+                                    L
+                                </td>
+                            {% endif %}
+                            <td class="stat-detail">
+                                {{ game.team_runs }}-{{ game.opponent_runs }}
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                </table>
+
+                <div class="sub-header">
+                    {{ season.champion.geographic_name }} win series, {{ season.series_score }}.
+                </div>
+
+            {% endif %}
+
+            <nav id="teams" class="navigation">
+
+                <div class="nav-head">
+                    {{ season.year }} SEASON
+                </div>
+
+                <div class="nav-box">
+                    {% for team in teams %}
+                            <a class="standard-link" href="/archive/{{ season.year }}/{{ team.geographic_name|lower }}">
+                                {{ team.abbreviation }}
+                            </a>
+                    {% endfor %}
+                </div>
+
+            </nav>
+
+            <nav id="seasons" class="navigation">
+
+                <div class="nav-head">
+                    SEASON INDEX
+                </div>
+
+                <div class="nav-box">
+                    {% for option in seasons %}
+                        {% if option == season %}
+                            <strong>{{ option.year }}</strong>
+                        {% else %}
+                            <a class="standard-link" href="/archive/{{ option.year }}/">
+                                {{ option.year }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+            </nav>
+
+            <span id="full-details">
+                <a class="standard-link" href="/archive/">[Archive Index]</a>
+            </span>
+
+        </div>
+
+        <div id="stats-column" class="column for-desktop">
 
             <div class="sub-header">
-                {{ season.champion.geographic_name }} win series, {{ season.series_score }}.
+                CURRENT SEASON
             </div>
 
-        {% endif %}
+            {% include 'statistics_bar.html' %}
 
-    {% endif %}
-
-    <nav id="teams" class="navigation">
-
-        <div class="nav-head">
-            {{ season.year }} SEASON
         </div>
 
-        <div class="nav-box">
-            <a class="standard-link" href="/archive/{{ season.year }}/">
-                LEAGUE
-            </a><br />
-            {% for club in teams %}
-                {% if club == team %}
-                    <strong>{{ club.abbreviation }}</strong>
-                {% else %}
-                    <a class="standard-link" href="/archive/{{ season.year }}/{{ club.geographic_name|lower }}">
-                        {{ club.abbreviation }}
-                    </a>
-                {% endif %}
-            {% endfor %}
-        </div>
-
-    </nav>
-
-    <nav id="seasons" class="navigation">
-
-        <div class="nav-head">
-            {{ team.geographic_name|upper }} {{ team.nickname|upper }}
-        </div>
-
-        <div class="nav-box">
-            {% for year in seasons %}
-                {% if year == season %}
-                    <strong>{{ year.year }}</strong>
-                {% else %}
-                    <a class="standard-link" href="/archive/{{ year.year }}/{{ team.geographic_name|lower }}">
-                        {{ year.year }}
-                    </a>
-                {% endif %}
-            {% endfor %}
-        </div>
-
-    </nav>
-
-    <span id="full-details">
-        <a class="standard-link" href="/teams/{{ team.geographic_name|lower }}">[Team Home]</a>
-        <a class="standard-link" href="/archive/">[Archive Index]</a>
-    </span>
+    </div>
 
 {% endblock %}

@@ -198,6 +198,7 @@ def season_archive(request):
 
 
 def season_overview(request, year):
+
     season = Season.objects.get(year=year)
     seasons = Season.objects.all()
 
@@ -206,13 +207,13 @@ def season_overview(request, year):
 
     championship_series = Game.objects.filter(game_date__year=year, game_type='Postseason')
 
-    standings = get_standings(year)
+    archive_standings = get_standings(year)
 
     archive = True
 
     if season.champion:
         return render(request, "season_overview.html", {'year': year, 'season': season,
-                                                        'seasons': seasons, 'standings': standings,
+                                                        'seasons': seasons, 'archive_standings': archive_standings,
                                                         'conferences': conferences, 'teams': teams,
                                                         'championship_series': championship_series,
                                                         'archive': archive})
@@ -236,7 +237,7 @@ def season_team(request, year, team_name):
     team_schedule = []
     championship_series = []
 
-    standings = get_standings(year)
+    archive_standings = get_standings(year)
     archive = True
 
     for game in games:
@@ -263,8 +264,8 @@ def season_team(request, year, team_name):
         return render(request, "season_team.html", {"season": season, "team": team, "teams": teams,
                                                     "seasons": seasons, "team_games": team_schedule,
                                                     "championship_series": championship_series,
-                                                    "standings": standings, "conference": conference,
-                                                    "archive": archive})
+                                                    "archive_standings": archive_standings,
+                                                    "conference": conference, "archive": archive})
 
     else:
         return redirect('team_games', team_name=team_name)

@@ -2,119 +2,137 @@
 
 {% block content %}
 
-    <div id="page-header">
-        {{ season.year }} SEASON
-    </div>
+    <div class="column-wrapper">
 
-    <div class="sub-header">
-        STANDINGS
-    </div>
+        <div id="details-column" class="column">
 
-    {% for conference in conferences %}
+            <div id="page-header">
+                {{ season.year }} SEASON
+            </div>
 
-        <div class="sub-header">
-            {{ conference.name }}
-        </div>
+            <div class="sub-header">
+                STANDINGS
+            </div>
 
-        {% include 'full_standings.html' %}
+            {% for conference in conferences %}
 
-    {% endfor %}
+                <div class="sub-header">
+                    {{ conference.name }}
+                </div>
 
-    {% if championship_series %}
+                {% include 'archive_standings.html' %}
 
-    <a name="championship"></a>
-
-        <div class="sub-header">
-            CHAMPIONSHIP SERIES
-        </div>
-
-        {% for game in championship_series %}
-
-            <table class="stat-table">
-                <tr class="header-row">
-                    <th class="stat-intro">
-                        GAME {{ forloop.counter }}
-                    </th>
-                    <th class="score-column">R</th>
-                    <th class="score-column">H</th>
-                    <th class="score-column">E</th>
-                </tr>
-                <tr>
-                    <td class="stat-header"><img class="small-logo" src="/media/{{ game.away_team.small_logo }}" />
-                        <a class="table-link" href="/archive/{{ season }}/{{ game.away_team.geographic_name|lower }}">
-                            {% if game.away_team_runs > game.home_team_runs %}
-                                <strong>{{ game.away_team }}</strong>
-                            {% else %}
-                                {{ game.away_team }}
-                            {% endif %}
-                        </a>
-                    </td>
-                    <td class="stat-detail"><strong>{{ game.away_team_runs }}</strong></td>
-                    <td class="stat-detail-faint">{{ game.away_team_hits }}</td>
-                    <td class="stat-detail-faint">{{ game.away_team_errors }}</td>
-                </tr>
-                <tr>
-                    <td class="stat-header"><img class="small-logo" src="/media/{{ game.home_team.small_logo }}" />
-                        <a class="table-link" href="/archive/{{ season }}/{{ game.home_team.geographic_name|lower }}">
-                            {% if game.home_team_runs > game.away_team_runs %}
-                                <strong>{{ game.home_team }}</strong>
-                            {% else %}
-                                {{ game.home_team }}
-                            {% endif %}
-                        </a>
-                    </td>
-                    <td class="stat-detail"><strong>{{ game.home_team_runs }}</strong></td>
-                    <td class="stat-detail-faint">{{ game.home_team_hits }}</td>
-                    <td class="stat-detail-faint">{{ game.home_team_errors }}</td>
-                </tr>
-            </table>
-
-        {% endfor %}
-
-        <div class="sub-header">
-            {{ season.champion.geographic_name }} win series, {{ season.series_score }}.
-        </div>
-
-    {% endif %}
-
-    <nav id="teams" class="navigation">
-
-        <div class="nav-head">
-            {{ season.year }} SEASON
-        </div>
-
-        <div class="nav-box">
-            {% for team in teams %}
-                    <a class="standard-link" href="/archive/{{ season.year }}/{{ team.geographic_name|lower }}">
-                        {{ team.abbreviation }}
-                    </a>
             {% endfor %}
+
+            {% if championship_series %}
+
+            <a name="championship"></a>
+
+                <div class="sub-header">
+                    CHAMPIONSHIP SERIES
+                </div>
+
+                {% for game in championship_series %}
+
+                    <table class="stat-table">
+                        <tr class="header-row">
+                            <th class="stat-intro">
+                                GAME {{ forloop.counter }}
+                            </th>
+                            <th class="score-column">R</th>
+                            <th class="score-column">H</th>
+                            <th class="score-column">E</th>
+                        </tr>
+                        <tr>
+                            <td class="stat-header"><img class="small-logo" src="/media/{{ game.away_team.small_logo }}" />
+                                <a class="table-link" href="/archive/{{ season }}/{{ game.away_team.geographic_name|lower }}">
+                                    {% if game.away_team_runs > game.home_team_runs %}
+                                        <strong>{{ game.away_team }}</strong>
+                                    {% else %}
+                                        {{ game.away_team }}
+                                    {% endif %}
+                                </a>
+                            </td>
+                            <td class="stat-detail"><strong>{{ game.away_team_runs }}</strong></td>
+                            <td class="stat-detail-faint">{{ game.away_team_hits }}</td>
+                            <td class="stat-detail-faint">{{ game.away_team_errors }}</td>
+                        </tr>
+                        <tr>
+                            <td class="stat-header"><img class="small-logo" src="/media/{{ game.home_team.small_logo }}" />
+                                <a class="table-link" href="/archive/{{ season }}/{{ game.home_team.geographic_name|lower }}">
+                                    {% if game.home_team_runs > game.away_team_runs %}
+                                        <strong>{{ game.home_team }}</strong>
+                                    {% else %}
+                                        {{ game.home_team }}
+                                    {% endif %}
+                                </a>
+                            </td>
+                            <td class="stat-detail"><strong>{{ game.home_team_runs }}</strong></td>
+                            <td class="stat-detail-faint">{{ game.home_team_hits }}</td>
+                            <td class="stat-detail-faint">{{ game.home_team_errors }}</td>
+                        </tr>
+                    </table>
+
+                {% endfor %}
+
+                <div class="sub-header">
+                    {{ season.champion.geographic_name }} win series, {{ season.series_score }}.
+                </div>
+
+            {% endif %}
+
+            <nav id="teams" class="navigation">
+
+                <div class="nav-head">
+                    {{ season.year }} SEASON
+                </div>
+
+                <div class="nav-box">
+                    {% for team in teams %}
+                            <a class="standard-link" href="/archive/{{ season.year }}/{{ team.geographic_name|lower }}">
+                                {{ team.abbreviation }}
+                            </a>
+                    {% endfor %}
+                </div>
+
+            </nav>
+
+            <nav id="seasons" class="navigation">
+
+                <div class="nav-head">
+                    SEASON INDEX
+                </div>
+
+                <div class="nav-box">
+                    {% for option in seasons %}
+                        {% if option == season %}
+                            <strong>{{ option.year }}</strong>
+                        {% else %}
+                            <a class="standard-link" href="/archive/{{ option.year }}/">
+                                {{ option.year }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+            </nav>
+
+            <span id="full-details">
+                <a class="standard-link" href="/archive/">[Archive Index]</a>
+            </span>
+
         </div>
 
-    </nav>
+        <div id="stats-column" class="column for-desktop">
 
-    <nav id="seasons" class="navigation">
+            <div class="sub-header">
+                CURRENT SEASON
+            </div>
 
-        <div class="nav-head">
-            SEASON INDEX
+            {% include 'statistics_bar.html' %}
+
         </div>
 
-        <div class="nav-box">
-            {% for option in seasons %}
-                {% if option == season %}
-                    <strong>{{ option.year }}</strong>
-                {% else %}
-                    <a class="standard-link" href="/archive/{{ option.year }}/">
-                        {{ option.year }}
-                    </a>
-                {% endif %}
-            {% endfor %}
-        </div>
-
-    </nav>
-
-    <span id="full-details">
-        <a class="standard-link" href="/archive/">[Archive Index]</a>
-    </span>
+    </div>
 
 {% endblock %}
