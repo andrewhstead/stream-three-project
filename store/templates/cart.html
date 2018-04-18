@@ -21,7 +21,7 @@
                 {% for object in cart.items.all %}
                     <tr>
                         <td>
-                            <a class="table-link" href="/store/product/{{ object.item.product.id }}">
+                            <a class="table-link" href="{% url 'store_product' object.item.product.id %}">
                                 {{ object.item }}
                             </a>
                         </td>
@@ -34,7 +34,7 @@
                             {{ object.quantity }}
                         </td>
                         <td>
-                            <a class="cart-controls table-link" href="/store/cart/edit/{{ object.id }}">
+                            <a class="cart-controls table-link" href="{% url 'change_product' object.id %}">
                                 [Change]
                             </a>
                             <span class="cart-controls alert-link" onclick="confirmationAlert({{ object.id }})">[Remove]</span>
@@ -44,7 +44,7 @@
                                     <p>Confirmation:</p>
                                     <p>Are you sure you want to delete?</p>
                                     <div class="content-link-light">
-                                        <a href="/store/cart/remove/{{ object.id }}">OK</a>
+                                        <a href="{% url 'remove_product' object.id %}">OK</a>
                                     </div>
                                     <div class="content-link-light alert-link" onclick="confirmationAlert({{ object.id }})">
                                         Cancel
@@ -80,8 +80,8 @@
             </p>
 
             <div class="full-details">
-                <a class="button-link" href="/store/">Continue Shopping</a>
-                <a class="button-link" href="/store/checkout/{{ cart.id }}">Checkout</a>
+                <a class="button-link" href="{% url 'store_front' %}">Continue Shopping</a>
+                <a class="button-link" href="{% url 'checkout' cart.id %}">Checkout</a>
             </div>
 
         </div>

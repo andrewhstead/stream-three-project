@@ -21,13 +21,13 @@
 
                     <div class="product-details">
 
-                        <a class="standard-link" href="/store/product/{{ product.id }}">
+                        <a class="standard-link" href="{% url 'store_product' product.id %}">
                             <img class="product-border" src="/media/{{ product.picture }}"/>
                         </a><br />
                         {{ product.team }}<br />
                         {{ product.description }}<br />
                         £{{ product.price }}<br />
-                        <a class="standard-link" href="/store/product/{{ product.id }}">[View Details]</a>
+                        <a class="standard-link" href="{% url 'store_product' product.id %}">[View Details]</a>
 
                     </div>
 

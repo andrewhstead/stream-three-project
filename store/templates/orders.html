@@ -30,7 +30,7 @@
                             {{ order.date|date:'d/m/Y, H:i' }}
                         </td>
                         <td>
-                            <a class="standard-link" href="/store/order/{{ order.id }}">
+                            <a class="standard-link" href="{% url 'order_details' order.id %}">
                                 {{ order.cost|price_display }}
                             </a>
                         </td>

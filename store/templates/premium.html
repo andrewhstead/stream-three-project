@@ -26,14 +26,14 @@
                 </p>
             {% elif user.is_authenticated %}
                 <p class="sub-header">
-                    <a class="standard-link" href="/premium/upgrade/">Upgrade</a> to view premium content.
+                    <a class="standard-link" href="{% url 'upgrade' %}">Upgrade</a> to view premium content.
                 </p>
             {% else %}
                 <p class="sub-header">
-                    <a class="standard-link" href="/register/premium/">Register and subscribe</a> to view premium content.
+                    <a class="standard-link" href="{% url 'register_premium' %}">Register and subscribe</a> to view premium content.
                 </p>
                 <p class="sub-header">
-                    Already subscribed? <a class="standard-link" href="/login/">Log in </a> to your account.
+                    Already subscribed? <a class="standard-link" href="{% url 'login' %}">Log in </a> to your account.
                 </p>
             {% endif %}
 
@@ -51,7 +51,7 @@
                 {% for game in schedule %}
                     <tr>
                         <td>
-                            <a class="table-link" href="/teams/{{ game.away_team.geographic_name|lower }}">
+                            <a class="table-link" href="{% url 'team_page' game.away_team.geographic_name|lower %}">
                                 {{ game.away_team.geographic_name }}
                             </a>
                         </td>
@@ -60,7 +60,7 @@
                             {{ game.game_time|time:'G:i' }}
                         </td>
                         <td>
-                            <a class="table-link" href="/teams/{{ game.home_team.geographic_name|lower }}">
+                            <a class="table-link" href="{% url 'team_page' game.home_team.geographic_name|lower %}">
                                 {{ game.home_team.geographic_name }}
                             </a>
                         </td>
