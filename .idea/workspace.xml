@@ -4,17 +4,9 @@
     <list default="true" id="7aa13549-3897-41b9-9904-8bd12ebae0f1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change beforePath="$PROJECT_DIR$/forum/templates/board.html" afterPath="$PROJECT_DIR$/forum/templates/board.html" />
-      <change beforePath="$PROJECT_DIR$/forum/templates/forum.html" afterPath="$PROJECT_DIR$/forum/templates/forum.html" />
-      <change beforePath="$PROJECT_DIR$/forum/templates/thread.html" afterPath="$PROJECT_DIR$/forum/templates/thread.html" />
-      <change beforePath="$PROJECT_DIR$/games/templates/full_standings.html" afterPath="$PROJECT_DIR$/games/templates/full_standings.html" />
-      <change beforePath="$PROJECT_DIR$/games/templates/quick_scores.html" afterPath="$PROJECT_DIR$/games/templates/quick_scores.html" />
-      <change beforePath="$PROJECT_DIR$/games/templates/season_standings.html" afterPath="$PROJECT_DIR$/games/templates/season_standings.html" />
-      <change beforePath="$PROJECT_DIR$/home/templates/statistics_bar.html" afterPath="$PROJECT_DIR$/home/templates/statistics_bar.html" />
-      <change beforePath="$PROJECT_DIR$/static/css/401.css" afterPath="$PROJECT_DIR$/static/css/401.css" />
+      <change beforePath="$PROJECT_DIR$/static/css/401.css" afterPath="" />
       <change beforePath="$PROJECT_DIR$/static/css/default.css" afterPath="$PROJECT_DIR$/static/css/default.css" />
-      <change beforePath="$PROJECT_DIR$/store/templates/premium.html" afterPath="$PROJECT_DIR$/store/templates/premium.html" />
-      <change beforePath="$PROJECT_DIR$/store/views.py" afterPath="$PROJECT_DIR$/store/views.py" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,18 +27,28 @@
       <file leaf-file-name="default.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/css/default.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="515" column="12" lean-forward="false" selection-start-line="515" selection-start-column="12" selection-end-line="515" selection-end-column="12" />
+            <state relative-caret-position="252">
+              <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="401.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/css/401.css">
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/home/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1575">
-              <caret line="75" column="17" lean-forward="true" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
+            <state relative-caret-position="-189">
+              <caret line="6" column="48" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="6" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="team_profile.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/teams/templates/team_profile.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-231">
+              <caret line="10" column="32" lean-forward="false" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -62,31 +64,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/store/views.py">
+      <file leaf-file-name="teams.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/teams/templates/teams.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="35" column="45" lean-forward="false" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
+            <state relative-caret-position="294">
+              <caret line="20" column="32" lean-forward="false" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="premium.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/store/templates/premium.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="24" column="63" lean-forward="false" selection-start-line="24" selection-start-column="63" selection-end-line="24" selection-end-column="63" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="8" column="68" lean-forward="false" selection-start-line="8" selection-start-column="56" selection-end-line="8" selection-end-column="68" />
+            <state relative-caret-position="189">
+              <caret line="9" column="35" lean-forward="false" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -106,27 +98,17 @@
         <entry file="file://$PROJECT_DIR$/static/js/custom.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="252">
-              <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+              <caret line="18" column="25" lean-forward="false" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="season_standings.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="season_standings.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/games/templates/season_standings.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="482">
               <caret line="40" column="105" lean-forward="false" selection-start-line="40" selection-start-column="105" selection-end-line="40" selection-end-column="105" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="thread.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/forum/templates/thread.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -145,11 +127,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>just</find>
-      <find>team-h</find>
-      <find>faint</find>
-      <find>right-</find>
-      <find>stat-c</find>
       <find>2018-04-02</find>
       <find>12:30</find>
       <find>text-align: center</find>
@@ -175,6 +152,11 @@
       <find>menu-li</find>
       <find>main-m</find>
       <find>stand</find>
+      <find>home-lo</find>
+      <find>league-head</find>
+      <find>league-h</find>
+      <find>multi</find>
+      <find>team-details</find>
     </findStrings>
     <dirStrings>
       <dir>D:\PycharmProjects\stream_three_project</dir>
@@ -231,12 +213,12 @@
         <option value="$PROJECT_DIR$/forum/templates/thread.html" />
         <option value="$PROJECT_DIR$/store/views.py" />
         <option value="$PROJECT_DIR$/store/templates/premium.html" />
-        <option value="$PROJECT_DIR$/static/css/401.css" />
         <option value="$PROJECT_DIR$/static/js/custom.js" />
-        <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/games/templates/full_standings.html" />
-        <option value="$PROJECT_DIR$/static/css/default.css" />
         <option value="$PROJECT_DIR$/games/templates/season_standings.html" />
+        <option value="$PROJECT_DIR$/static/css/401.css" />
+        <option value="$PROJECT_DIR$/static/css/default.css" />
+        <option value="$PROJECT_DIR$/templates/base.html" />
       </list>
     </option>
   </component>
@@ -281,33 +263,6 @@
             <path>
               <item name="stream_three_project" type="b2602c69:ProjectViewProjectNode" />
               <item name="stream_three_project" type="462c0819:PsiDirectoryNode" />
-              <item name="forum" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stream_three_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stream_three_project" type="462c0819:PsiDirectoryNode" />
-              <item name="forum" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stream_three_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stream_three_project" type="462c0819:PsiDirectoryNode" />
-              <item name="games" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stream_three_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stream_three_project" type="462c0819:PsiDirectoryNode" />
-              <item name="games" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stream_three_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stream_three_project" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stream_three_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stream_three_project" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -315,17 +270,6 @@
               <item name="stream_three_project" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stream_three_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stream_three_project" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stream_three_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stream_three_project" type="462c0819:PsiDirectoryNode" />
-              <item name="stream_three_project" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="stream_three_project" type="b2602c69:ProjectViewProjectNode" />
@@ -763,30 +707,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/teams/templates/team_profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="32" lean-forward="false" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/teams/templates/teams.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="32" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/home/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="48" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="6" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/forum/templates/thread_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -902,31 +822,7 @@
     <entry file="file://$PROJECT_DIR$/static/js/custom.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
-          <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="68" lean-forward="false" selection-start-line="8" selection-start-column="56" selection-end-line="8" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/401.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1575">
-          <caret line="75" column="17" lean-forward="true" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/default.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="515" column="12" lean-forward="false" selection-start-line="515" selection-start-column="12" selection-end-line="515" selection-end-column="12" />
+          <caret line="18" column="25" lean-forward="false" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -943,6 +839,54 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="482">
           <caret line="40" column="105" lean-forward="false" selection-start-line="40" selection-start-column="105" selection-end-line="40" selection-end-column="105" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-189">
+          <caret line="6" column="48" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="6" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/teams/templates/team_profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-231">
+          <caret line="10" column="32" lean-forward="false" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/teams/templates/teams.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="20" column="32" lean-forward="false" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/401.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="54" column="17" lean-forward="false" selection-start-line="54" selection-start-column="17" selection-end-line="54" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/default.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="35" lean-forward="false" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
           <folding />
         </state>
       </provider>
