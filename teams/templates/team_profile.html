@@ -17,7 +17,7 @@
 
             {% for item in items|slice:':1' %}
                 <div class="banner-story">
-                    <a class="banner-link" href="/news/{{ item.id }}">
+                    <a class="banner-link" href="{% url 'news' item.id %}">
                         {% if item.cover_image %}
                             <img class="cover-image" src="/media/{{ item.cover_image }}" />
                         {% else %}
@@ -25,7 +25,7 @@
                         {% endif %}
                     </a>
                     <div class="banner-headline">
-                        <a class="banner-link" href="/news/{{ item.id }}">{{ item.title }}</a>
+                        <a class="banner-link" href="{% url 'news' item.id %}">{{ item.title }}</a>
                     </div>
                 </div>
             {% endfor %}
@@ -45,7 +45,7 @@
 
                                 <div class="news-link">
                                     <span class="arrow">&#9658;</span>
-                                    <a class="standard-link" href="/news/{{ item.id }}/">
+                                    <a class="standard-link" href="{% url 'news' item.id %}">
                                         {{ item.title }}
                                     </a>
                                 </div>
@@ -55,11 +55,11 @@
                         {%  endfor %}
                     </div>
 
-                    <span id="full-details">
-                        <a class="standard-link" href="/news/{{ team.geographic_name|lower }}">
+                    <div class="full-details">
+                        <a class="standard-link" href="{% url 'team_news' team.geographic_name|lower %}">
                             [All Articles]
                         </a>
-                    </span>
+                    </div>
 
                 </div>
 
@@ -74,7 +74,7 @@
 
                                 <div class="news-link">
                                     <span class="arrow">&#9658;</span>
-                                        <a class="standard-link" href="/thread/{{ thread.id }}/">
+                                        <a class="standard-link" href="{% url 'view_thread' thread.id %}">
                                             {{ thread.title }}
                                         </a>
                                 </div>
@@ -82,11 +82,11 @@
                         {%  endfor %}
                     </div>
 
-                    <span id="full-details">
-                        <a class="standard-link" href="/forum/{{ team.geographic_name|lower }}">
+                    <div class="full-details">
+                        <a class="standard-link" href="{% url 'forum_team' team.geographic_name|lower %}">
                             [All Threads]
                         </a>
-                    </span>
+                    </div>
 
                 </div>
 
@@ -109,7 +109,8 @@
 
                         {% if team == last_game.home_team %}
                             v <img class="small-logo" src="/media/{{ last_game.away_team.small_logo }}" />
-                            <a class="standard-link" href="/teams/{{ last_game.away_team.geographic_name|lower }}">
+                            <a class="standard-link" href=
+                                    "{% url 'team_page' last_game.away_team.geographic_name|lower %}">
                                 {{ last_game.away_team.geographic_name }}</a><br />
                             {% if last_game.home_team_runs > last_game.away_team_runs %}
                                 Won
@@ -119,7 +120,8 @@
                             {{ last_game.home_team_runs }}-{{ last_game.away_team_runs }}
                         {% else %}
                             @ <img class="small-logo" src="/media/{{ last_game.home_team.small_logo }}" />
-                            <a class="standard-link" href="/teams/{{ last_game.home_team.geographic_name|lower }}">
+                            <a class="standard-link" href=
+                                    "{% url 'team_page' last_game.home_team.geographic_name|lower %}">
                                 {{ last_game.home_team.geographic_name }}</a><br />
                             {% if last_game.away_team_runs > last_game.home_team_runs %}
                                 Won
@@ -148,11 +150,13 @@
 
                         {% if team == next_game.home_team %}
                             v <img class="small-logo" src="/media/{{ next_game.away_team.small_logo }}" />
-                            <a class="standard-link" href="/teams/{{ next_game.away_team.geographic_name|lower }}">
+                            <a class="standard-link" href=
+                                    "{% url 'team_page' next_game.away_team.geographic_name|lower %}">
                                 {{ next_game.away_team.geographic_name }}</a>
                         {% else %}
                             @ <img class="small-logo" src="/media/{{ next_game.home_team.small_logo }}" />
-                            <a class="standard-link" href="/teams/{{ next_game.home_team.geographic_name|lower }}">
+                            <a class="standard-link" href=
+                                    "{% url 'team_page' next_game.home_team.geographic_name|lower %}">
                                 {{ next_game.home_team.geographic_name }}</a>
                         {% endif %}<br />
 
@@ -168,7 +172,11 @@
 
             </div>
 
-            <span id="full-details"><a class="standard-link" href="/scores/{{ team.geographic_name|lower }}">[Full Schedule]</a></span>
+            <div class="full-details">
+                <a class="standard-link" href="{% url 'team_games' team.geographic_name|lower %}">
+                    [Full Schedule]
+                </a>
+            </div>
 
             <div class="{{ team.geographic_name|lower }}-box colour-box">
                 STANDINGS
@@ -180,7 +188,7 @@
 
             {% include 'standings.html' %}
 
-            <span id="full-details"><a class="standard-link" href="/standings/">[Full Standings]</a></span>
+            <div class="full-details"><a class="standard-link" href="{% url 'standings' %}">[Full Standings]</a></div>
 
             <div class="{{ team.geographic_name|lower }}-box colour-box">
                 STORE
@@ -190,23 +198,23 @@
 
                 <div class="product-details">
 
-                    <a class="standard-link" href="/store/product/{{ product.id }}">
+                    <a class="standard-link" href="{% url 'add_product' product.id %}">
                         <img class="product-border" src="/media/{{ product.picture }}"/>
                     </a><br />
                     {{ product.team }}<br />
                     {{ product.description }}<br />
                     £{{ product.price }}<br />
-                    <a class="standard-link" href="/store/product/{{ product.id }}">[View Details]</a>
+                    <a class="standard-link" href="{% url 'add_product' product.id %}">[View Details]</a>
 
                 </div>
 
             {% endfor %}
 
-            <span id="full-details">
-                <a class="standard-link" href="/store/{{ team.geographic_name|lower }}">
+            <div class="full-details">
+                <a class="standard-link" href="{% url 'store_team' team.geographic_name|lower %}">
                     [More Items]
                 </a>
-            </span>
+            </div>
 
         </div>
 

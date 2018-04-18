@@ -18,7 +18,7 @@
         <div id="teams-header">
             {% for team in teams %}
                 <div class="header-logos">
-                    <a href="/teams/{{ team.geographic_name|lower }}">
+                    <a href="{% url 'team_page' team.geographic_name|lower %}">
                         <img class="header-logo" src="/media/{{ team.large_logo }}" alt="{{ team.geographic_name }}" />
                     </a>
                 </div>
@@ -27,7 +27,7 @@
 
         <div id="league-header">
             <div id="league-logo">
-                <a href="/"><img class="home-logo" src="/media/images/league/bibl_logo.png" /></a>
+                <a href="{% url 'home' %}"><img class="home-logo" src="/media/images/league/bibl_logo.png" /></a>
             </div>
             <div id="league-name">
                 BRITISH AND IRISH BASEBALL LEAGUE
@@ -40,22 +40,22 @@
     </header>
 
 	    <nav id="main-menu">
-		    <a class="menu-link" href="/">Home Page</a>
-		    <a class="menu-link" href="/news/">News</a>
-		    <a class="menu-link" href="/blogs/">Fan Blogs</a>
-		    <a class="menu-link" href="/scores/">Scores</a>
-		    <a class="menu-link" href="/standings/">Standings</a>
-		    <a class="menu-link" href="/teams/">Teams</a>
-		    <a class="menu-link" href="/archive/">Archives</a>
-		    <a class="menu-link" href="/store/">Store</a>
-		    <a class="menu-link" href="/premium/">Premium</a>
-		    <a class="menu-link" href="/forum/">Forum</a>
+		    <a class="menu-link" href="{% url 'home' %}">Home Page</a>
+		    <a class="menu-link" href="{% url 'news_index' %}">News</a>
+		    <a class="menu-link" href="{% url 'blog_home' %}">Fan Blogs</a>
+		    <a class="menu-link" href="{% url 'score_index' %}">Scores</a>
+		    <a class="menu-link" href="{% url 'standings' %}">Standings</a>
+		    <a class="menu-link" href="{% url 'team_index' %}">Teams</a>
+		    <a class="menu-link" href="{% url 'archive' %}">Archives</a>
+		    <a class="menu-link" href="{% url 'store_front' %}">Store</a>
+		    <a class="menu-link" href="{% url 'premium_home' %}">Premium</a>
+		    <a class="menu-link" href="{% url 'forum' %}">Forum</a>
             {% if user.is_authenticated %}
-                <a class="menu-link" href="/profile/">Profile</a>
-                <a class="menu-link" href="/logout/">Log Out</a>
+                <a class="menu-link" href="{% url 'user_profile' %}">Profile</a>
+                <a class="menu-link" href="{% url 'logout' %}">Log Out</a>
             {% else %}
-                <a class="menu-link" href="/register/">Register</a>
-                <a class="menu-link" href="/login/">Log In</a>
+                <a class="menu-link" href="{% url 'register' %}">Register</a>
+                <a class="menu-link" href="{% url 'login' %}">Log In</a>
             {% endif %}
         </nav>
 
@@ -87,9 +87,9 @@
         </div>
 
         <div id="footer-content">
-            <a class="footer-link" href="/">Contact Us</a> |
-            <a class="footer-link" href="/">Privacy Policy</a> |
-            <a class="footer-link" href="/">Terms and Conditions</a>
+            <a class="footer-link" href="{% url 'home' %}">Contact Us</a> |
+            <a class="footer-link" href="{% url 'home' %}">Privacy Policy</a> |
+            <a class="footer-link" href="{% url 'home' %}">Terms and Conditions</a>
             <div id="copyright">&#169; {% now 'Y' %} British and Irish Baseball League</div>
         </div>
 

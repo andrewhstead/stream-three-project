@@ -78,14 +78,14 @@
                                 {% endif %}
                             {% else %}
                                 Standard <span class="arrow">&#9658;</span>
-                                <a class="standard-link" href="/premium/upgrade/">Upgrade</a>
+                                <a class="standard-link" href="{% url 'upgrade' %}">Upgrade</a>
                             {% endif %}
                         </p>
                         <p>
                             <strong>Purchases:</strong> {{ orders.count }}
                             {% if orders.count > 0 %}
                                 <span class="arrow">&#9658;</span>
-                                <a class="standard-link" href="/store/orders/">
+                                <a class="standard-link" href="{% url 'order_list' %}">
                                     Details
                                 </a>
                             {% endif %}
@@ -121,7 +121,8 @@
                             Not Set
                         {% else %}
                             <img class="small-logo" src="/media/{{ profile_user.favourite_team.small_logo }}" />
-                            <a class="standard-link" href="/teams/{{ profile_user.favourite_team.geographic_name|lower }}">
+                            <a class="standard-link" href=
+                                    "{% url 'team_page' profile_user.favourite_team.geographic_name|lower %}">
                                 {{ profile_user.favourite_team }}
                             </a>
                         {% endif %}
@@ -136,7 +137,7 @@
                             {% endif %}
                             <br />
                         <span class="arrow">&#9658;</span>
-                        <a class="standard-link" href="/blogs/user/{{ profile_user.username|lower }}">
+                        <a class="standard-link" href="{% url 'blog_index' profile_user.username|lower %}">
                             View Blog
                         </a>
                         (Posts: {{ profile_user.news.count }})
@@ -160,13 +161,13 @@
                                     {% if activity == 'Comment' %}
                                         <span class="arrow">&#9658;</span>
                                         {{ contribution.created_date|date:'d/m/Y' }} - Commented on:<br />
-                                        <a class="standard-link" href="/news/{{ contribution.item.id }}/">
+                                        <a class="standard-link" href="{% url 'news' contribution.item.id %}">
                                             {{ contribution.item }}
                                         </a><br />
                                     {% elif activity == 'Post' %}
                                         <span class="arrow">&#9658;</span>
                                         {{ contribution.created_date|date:'d/m/Y' }} - Posted in:<br />
-                                        <a class="standard-link" href="/thread/{{ contribution.thread.id }}/">
+                                        <a class="standard-link" href="{% url 'view_thread' contribution.thread.id %}">
                                             {{ contribution.thread }}
                                         </a><br />
                                     {% endif %}
@@ -181,11 +182,11 @@
                 </div>
 
                 {% if user == profile_user %}
-                    <span id="full-details">
-                        <a class="standard-link" href="/profile/edit/">[Edit Profile]</a>
-                        <a class="standard-link" href="/profile/password/">[Change Password]</a>
-                        <a class="standard-link" href="/profile/delete/">[Delete Profile]</a>
-                    </span>
+                    <div class="full-details">
+                        <a class="standard-link" href="{% url 'edit_profile' %}">[Edit Profile]</a>
+                        <a class="standard-link" href="{% url 'change_password' %}">[Change Password]</a>
+                        <a class="standard-link" href="{% url 'delete_profile' %}">[Delete Profile]</a>
+                    </div>
                 {% endif %}
 
             {% endif %}

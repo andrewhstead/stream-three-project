@@ -27,7 +27,7 @@ from .settings import MEDIA_ROOT
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', home_views.home_page),
+    url(r'^$', home_views.home_page, name='home'),
     url(r'^archive/$', games_views.season_archive, name='archive'),
     url(r'^archive/(?P<year>\d+)/$', games_views.season_overview, name='season_overview'),
     url(r'^archive/(?P<year>\d+)/(?P<team_name>.*)/$', games_views.season_team, name='season_team'),

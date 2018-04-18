@@ -24,11 +24,11 @@
                         </div>
 
                         <div class="profile-links">
-                            <a class="standard-link" href="/teams/{{ team.geographic_name|lower }}">Home</a> |
-                            <a class="standard-link" href="/news/{{ team.geographic_name|lower }}">News</a> |
-                            <a class="standard-link" href="/scores/{{ team.geographic_name|lower }}">Schedule</a> |
-                            <a class="standard-link" href="/forum/{{ team.geographic_name|lower }}">Forum</a> |
-                            <a class="standard-link" href="/store/{{ team.geographic_name|lower }}">Store</a>
+                            <a class="standard-link" href="{% url 'team_page' team.geographic_name|lower %}">Home</a> |
+                            <a class="standard-link" href="{% url 'team_news' team.geographic_name|lower %}">News</a> |
+                            <a class="standard-link" href="{% url 'team_games' team.geographic_name|lower %}">Schedule</a> |
+                            <a class="standard-link" href="{% url 'forum_team' team.geographic_name|lower %}">Forum</a> |
+                            <a class="standard-link" href="{% url 'store_team' team.geographic_name|lower %}">Store</a>
                         </div>
 
                         <ul>
