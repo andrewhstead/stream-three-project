@@ -4,79 +4,103 @@
 {% block content %}
 
     <div id="page-header">
-        FORUM
+        BIBL DISCUSSION FORUM
     </div>
 
-    {% if team %}
-        <div class="{{ team.geographic_name|lower }}-text team-header">
-            {{ team.geographic_name }} {{ team.nickname }}
-        </div>
-    {% else %}
-        <div class="forum-sub-header">
-            {{ board.title }}
-        </div>
-    {% endif %}
+    <div class="column-wrapper">
 
-    {% if user.is_authenticated %}
-        <div class="content-link">
-            <a href="/thread/new/{{ board.id }}">New Thread</a>
-        </div>
-    {% else %}
-        <div id="not-logged-in">
-            You must be <a class="standard-link" href="/login/">logged in</a> to post.
-        </div>
-    {% endif %}
+        <div id="details-column" class="column">
 
-    {% if board.threads.count == 0 %}
-        No threads in this forum yet.
-    {% endif %}
+            {% if team %}
+                <div class="{{ team.geographic_name|lower }}-text team-header">
+                    {{ team.geographic_name }} {{ team.nickname }}
+                </div>
+            {% else %}
+                <div class="forum-sub-header">
+                    {{ board.title }}
+                </div>
+            {% endif %}
 
-    <table class="forum-table alternating-rows">
-        <tr class="header-row">
-            <td>Thread</td>
-            <td class="forum-count">Posts</td>
-            <td class="forum-count">Views</td>
-        </tr>
-        {% for thread in threads %}
-            <tr>
-                <td>
-                    <a class="table-link" href="{% url 'view_thread' thread.id %}">{{ thread.title }}</a><br />
-                    <span class="table-details">
-                        Last Post: {{ thread.last_post|date:'d/m/Y, H:i' }}
-                    </span>
-                </td>
-                <td class="forum-count">
-                    {{ thread.posts.count }}
-                </td>
-                <td class="forum-count">
-                    {{ thread.views }}
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+            {% if user.is_authenticated %}
+                <div class="content-link">
+                    <a href="/thread/new/{{ board.id }}">New Thread</a>
+                </div>
+            {% else %}
+                <div id="not-logged-in">
+                    You must be <a class="standard-link" href="/login/">logged in</a> to post.
+                </div>
+            {% endif %}
 
-    <div id="full-details">
+            {% if board.threads.count == 0 %}
+                No threads in this forum yet.
+            {% endif %}
 
-        <div class="pagination-links">
+            <table class="forum-table alternating-rows">
+                <tr class="header-row">
+                    <td>Thread</td>
+                    <td class="forum-count">Posts</td>
+                    <td class="forum-count">Views</td>
+                </tr>
+                {% for thread in threads %}
+                    <tr>
+                        <td>
+                            <a class="table-link" href="{% url 'view_thread' thread.id %}">{{ thread.title }}</a><br />
+                            <span class="table-details">
+                                Last Post: {{ thread.last_post|date:'d/m/Y, H:i' }}
+                            </span>
+                        </td>
+                        <td class="forum-count">
+                            {{ thread.posts.count }}
+                        </td>
+                        <td class="forum-count">
+                            {{ thread.views }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
 
-            <div class="pagination-section previous-page">
-                {% if threads.has_previous %}
-                    <a class="standard-link" href="?page={{ threads.previous_page_number }}"><< Previous Page</a>
+            <div id="full-details">
+
+                <div class="pagination-links">
+
+                    <div class="pagination-section previous-page">
+                        {% if threads.has_previous %}
+                            <a class="standard-link" href="?page={{ threads.previous_page_number }}"><< Previous Page</a>
+                        {% endif %}
+                    </div>
+
+                    <div class="pagination-section next-page">
+                        {% if threads.has_next %}
+                            <a class="standard-link" href="?page={{ threads.next_page_number }}">Next Page >></a>
+                        {% endif %}
+                    </div>
+
+                </div>
+
+                {% if team %}
+                    <a class="standard-link" href="/teams/{{ team.geographic_name|lower }}">[Team Home]</a>
                 {% endif %}
+                <a class="standard-link" href="/forum/">[Forum Home]</a>
+
             </div>
 
-            <div class="pagination-section next-page">
-                {% if threads.has_next %}
-                    <a class="standard-link" href="?page={{ threads.next_page_number }}">Next Page >></a>
-                {% endif %}
-            </div>
-
         </div>
 
-        {% if team %}
-            <a class="standard-link" href="/teams/{{ team.geographic_name|lower }}">[Team Home]</a>
-        {% endif %}
-        <a class="standard-link" href="/forum/">[Forum Home]</a>
+        <div id="stats-column" class="column for-desktop">
+
+            <div class="sub-header">
+                RECENT ACTIVITY
+            </div>
+
+            {% for post in recent_posts %}
+                <div class="recent-activity">
+                    <a class="standard-link" href="/profile/{{ post.user_id }}/">{{ post.user }}</a> posted in<br />
+                    <a class="standard-link" href="/thread/{{ post.thread_id }}/">{{ post.thread }}</a><br />
+                    at {{ post.created_date|time:'G:i' }} on {{ post.created_date|date:'d/m/Y' }}
+                </div>
+            {% endfor %}
+
+        </div>
 
     </div>
 

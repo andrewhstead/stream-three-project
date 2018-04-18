@@ -139,10 +139,17 @@
                 </div>
 
                 <div class="nav-box">
-                    {% for team in teams %}
-                            <a class="standard-link" href="/archive/{{ season.year }}/{{ team.geographic_name|lower }}">
-                                {{ team.abbreviation }}
+                    <a class="standard-link" href="/archive/{{ season.year }}/">
+                        LEAGUE
+                    </a><br />
+                    {% for club in teams %}
+                        {% if club == team %}
+                            <strong>{{ club.abbreviation }}</strong>
+                        {% else %}
+                            <a class="standard-link" href="/archive/{{ season.year }}/{{ club.geographic_name|lower }}">
+                                {{ club.abbreviation }}
                             </a>
+                        {% endif %}
                     {% endfor %}
                 </div>
 
@@ -151,16 +158,16 @@
             <nav id="seasons" class="navigation">
 
                 <div class="nav-head">
-                    SEASON INDEX
+                    {{ team.geographic_name|upper }} {{ team.nickname|upper }}
                 </div>
 
                 <div class="nav-box">
-                    {% for option in seasons %}
-                        {% if option == season %}
-                            <strong>{{ option.year }}</strong>
+                    {% for year in seasons %}
+                        {% if year == season %}
+                            <strong>{{ year.year }}</strong>
                         {% else %}
-                            <a class="standard-link" href="/archive/{{ option.year }}/">
-                                {{ option.year }}
+                            <a class="standard-link" href="/archive/{{ year.year }}/{{ team.geographic_name|lower }}">
+                                {{ year.year }}
                             </a>
                         {% endif %}
                     {% endfor %}

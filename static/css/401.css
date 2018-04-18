@@ -13,7 +13,9 @@ main {
 }
 
 .column-wrapper {
+    display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     clear: both;
 }
 
@@ -88,7 +90,7 @@ main {
 .team-title {
     font-size: 2.5em;
     word-spacing: normal;
-    padding-top: 30px;
+    padding-top: 20px;
 }
 
 .team-header {
@@ -117,4 +119,11 @@ main {
 .store-team img {
     width: 100px;
     height: 100px;
+}
+
+.recent-activity {
+    margin: 10px 0 10px 10px;
+    border-left: 5px solid #10253f;
+    border-bottom: 1px solid #10253f;
+    padding-left: 5px;
 }

@@ -10,19 +10,42 @@
 
 {% block content %}
 
-    <div id="page-header">
-        START NEW THREAD
-    </div>
+    <div class="column-wrapper">
 
-    <div class="sub-header">
-        New thread in: {{ board.title }}
-    </div>
+        <div id="details-column" class="column">
+            <div id="page-header">
+                START NEW THREAD
+            </div>
 
-    <form id="default-form" method="post" action="{{ form_action }}">
-        {% csrf_token %}
-        {{ thread_form.as_p }}
-        {{ post_form.as_p }}
-        <button class="default-button" type="submit">{{ button_text }}</button>
-    </form>
+            <div class="sub-header">
+                New thread in: {{ board.title }}
+            </div>
+
+            <form id="default-form" method="post" action="{{ form_action }}">
+                {% csrf_token %}
+                {{ thread_form.as_p }}
+                {{ post_form.as_p }}
+                <button class="default-button" type="submit">{{ button_text }}</button>
+            </form>
+
+        </div>
+
+        <div id="stats-column" class="column for-desktop">
+
+            <div class="sub-header">
+                RECENT ACTIVITY
+            </div>
+
+            {% for post in recent_posts %}
+                <div class="recent-activity">
+                    <a class="standard-link" href="/profile/{{ post.user_id }}/">{{ post.user }}</a> posted in<br />
+                    <a class="standard-link" href="/thread/{{ post.thread_id }}/">{{ post.thread }}</a><br />
+                    at {{ post.created_date|time:'G:i' }} on {{ post.created_date|date:'d/m/Y' }}
+                </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
 
 {% endblock %}

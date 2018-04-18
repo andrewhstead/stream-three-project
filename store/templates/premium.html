@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load user_tags %}
 
 {% block content %}
 
@@ -12,7 +13,12 @@
 
             {% if user_is_subscribed %}
                 <p class="sub-header">
-                    Your Premium subscription is paid up until {{ user.subscription_ends }}
+                    Your Premium subscription is paid up until {{ user.subscription_ends|date:'d F Y' }}.<br />
+                    {% if user.subscription_renews %}
+                        On this date it will automatically renew for another {% renewal_period %}.
+                    {% else %}
+                        Automatic renewal has been cancelled, access will end on this date.
+                    {% endif %}
                 </p>
             {% elif user.is_superuser %}
                 <p class="sub-header">

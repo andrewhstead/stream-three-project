@@ -4,56 +4,92 @@
 {% block content %}
 
     <div id="page-header">
-        FORUM
+        BIBL DISCUSSION FORUM
     </div>
 
-    {% if user.is_authenticated %}
-        Logged in as: <a class="standard-link" href="/profile/">{{ user.username }}</a>
-    {% else %}
-        NB: You must be <a class="standard-link" href="/login/">logged in</a> to post.
-    {% endif %}
+    <div class="column-wrapper">
 
-    {% for section in sections %}
+        <div id="details-column" class="column">
 
-        <div class="forum-section">
+            {% if user.is_authenticated %}
+                <div class="sub-header">
+                    Logged in as: <a class="standard-link" href="/profile/">{{ user.username }}</a>
+                </div>
+            {% else %}
+                <div class="sub-header">
+                    NB: You must be <a class="standard-link" href="/login/">logged in</a> to post.
+                </div>
+            {% endif %}
 
-            <div class="forum-header">
-                {{ section.title }}
+            <div class="column-wrapper">
+
+                {% for section in sections %}
+
+                    <div class="single-column">
+
+                        <div class="forum-section">
+
+                            <div class="forum-header">
+                                {{ section.title }}
+                            </div>
+
+                            {% for board in section.boards.all %}
+
+                                <div class="forum-board">
+
+                                    <div class="board-header">
+                                        {% if board.team %}
+                                            <a class="table-link" href="/forum/{{ board.team.geographic_name|lower }}">
+                                                {{ board.title }}
+                                            </a>
+                                        {% else %}
+                                            <a class="table-link" href="/forum/league/{{ board.id }}">
+                                                {{ board.title }}
+                                            </a>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="board-description">
+                                        {{ board.description|safe }}
+                                    </div>
+
+                                    <table class="board-counter">
+                                        <tr>
+                                            <td class="counter-amount">Threads: {{ board.threads.count }}</td>
+                                            <td class="counter-amount">Posts: {{ board|board_posts }}</td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
             </div>
 
-            {% for board in section.boards.all %}
+        </div>
 
-                <div class="forum-board">
+        <div id="stats-column" class="column for-desktop">
 
-                    <div class="board-header">
-                        {% if board.team %}
-                            <a class="table-link" href="/forum/{{ board.team.geographic_name|lower }}">
-                                {{ board.title }}
-                            </a>
-                        {% else %}
-                            <a class="table-link" href="/forum/league/{{ board.id }}">
-                                {{ board.title }}
-                            </a>
-                        {% endif %}
-                    </div>
+            <div class="sub-header">
+                RECENT ACTIVITY
+            </div>
 
-                    <div class="board-description">
-                        {{ board.description|safe }}
-                    </div>
-
-                    <table class="board-counter">
-                        <tr>
-                            <td class="counter-amount">Threads: {{ board.threads.count }}</td>
-                            <td class="counter-amount">Posts: {{ board|board_posts }}</td>
-                        </tr>
-                    </table>
-
+            {% for post in recent_posts %}
+                <div class="recent-activity">
+                    <a class="standard-link" href="/profile/{{ post.user_id }}/">{{ post.user }}</a> posted in<br />
+                    <a class="standard-link" href="/thread/{{ post.thread_id }}/">{{ post.thread }}</a><br />
+                    at {{ post.created_date|time:'G:i' }} on {{ post.created_date|date:'d/m/Y' }}
                 </div>
-
             {% endfor %}
 
         </div>
 
-    {% endfor %}
+    </div>
 
 {% endblock %}

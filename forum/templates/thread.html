@@ -3,73 +3,97 @@
 {% block content %}
 
     <div id="page-header">
-        FORUM
+        BIBL DISCUSSION FORUM
     </div>
 
-    <div id="left-header">
+    <div class="column-wrapper">
 
-    {% if board.team_id %}
-        <a class="table-link" href="/forum/{{ board.team.geographic_name|lower }}">
-            {{ board.title }}
-        </a>
-    {% else %}
-        <a class="table-link" href="/forum/league/{{ board.id }}">
-            {{ board.title }}
-        </a>
-    {% endif %}
+        <div id="details-column" class="column">
 
-        > {{ thread.title }}
+            <div id="left-header">
+
+            {% if board.team_id %}
+                <a class="table-link" href="/forum/{{ board.team.geographic_name|lower }}">
+                    {{ board.title }}
+                </a>
+            {% else %}
+                <a class="table-link" href="/forum/league/{{ board.id }}">
+                    {{ board.title }}
+                </a>
+            {% endif %}
+
+                > {{ thread.title }}
+
+            </div>
+
+            {% if user.is_authenticated %}
+                <div class="content-link">
+                    <a href="/post/new/{{ thread.id }}">New Post</a>
+                </div>
+            {% else %}
+                <div id="not-logged-in">
+                    You must be <a class="standard-link" href="/login/">logged in</a> to post.
+                </div>
+            {% endif %}
+
+            <section id="posts">
+
+                {% for post in posts %}
+
+                    {% include 'post.html' %}
+
+                {% endfor %}
+
+            </section>
+
+            <span id="full-details">
+
+                <div class="pagination-links">
+
+                    <div class="pagination-section previous-page">
+                        {% if posts.has_previous %}
+                            <a class="standard-link" href="?page={{ posts.previous_page_number }}"><< Previous Page</a>
+                        {% endif %}
+                    </div>
+
+                    <div class="pagination-section next-page">
+                        {% if posts.has_next %}
+                            <a class="standard-link" href="?page={{ posts.next_page_number }}">Next Page >></a>
+                        {% endif %}
+                    </div>
+
+                </div>
+
+                {% if board.team_id %}
+                    <a class="standard-link" href="/forum/{{ board.team.geographic_name|lower }}">
+                        [Thread List]
+                    </a>
+                {% else %}
+                    <a class="standard-link" href="/forum/league/{{ board.id }}">
+                        [Thread List]
+                    </a>
+                {% endif %}
+                <a class="standard-link" href="/forum/">[Forum Home]</a>
+            </span>
+
+        </div>
+
+        <div id="stats-column" class="column for-desktop">
+
+            <div class="sub-header">
+                RECENT ACTIVITY
+            </div>
+
+            {% for post in recent_posts %}
+                <div class="recent-activity">
+                    <a class="standard-link" href="/profile/{{ post.user_id }}/">{{ post.user }}</a> posted in<br />
+                    <a class="standard-link" href="/thread/{{ post.thread_id }}/">{{ post.thread }}</a><br />
+                    at {{ post.created_date|time:'G:i' }} on {{ post.created_date|date:'d/m/Y' }}
+                </div>
+            {% endfor %}
+
+        </div>
 
     </div>
-
-    {% if user.is_authenticated %}
-        <div class="content-link">
-            <a href="/post/new/{{ thread.id }}">New Post</a>
-        </div>
-    {% else %}
-        <div id="not-logged-in">
-            You must be <a class="standard-link" href="/login/">logged in</a> to post.
-        </div>
-    {% endif %}
-
-    <section id="posts">
-
-        {% for post in posts %}
-
-            {% include 'post.html' %}
-
-        {% endfor %}
-
-    </section>
-
-    <span id="full-details">
-
-        <div class="pagination-links">
-
-            <div class="pagination-section previous-page">
-                {% if posts.has_previous %}
-                    <a class="standard-link" href="?page={{ posts.previous_page_number }}"><< Previous Page</a>
-                {% endif %}
-            </div>
-
-            <div class="pagination-section next-page">
-                {% if posts.has_next %}
-                    <a class="standard-link" href="?page={{ posts.next_page_number }}">Next Page >></a>
-                {% endif %}
-            </div>
-
-        </div>
-
-        {% if board.team_id %}
-            <a class="standard-link" href="/forum/{{ board.team.geographic_name|lower }}">
-                [Thread List]
-            </a>
-        {% else %}
-            <a class="standard-link" href="/forum/league/{{ board.id }}">
-                [Thread List]
-            </a>
-        {% endif %}
-        <a class="standard-link" href="/forum/">[Forum Home]</a>
-    </span>
 
 {% endblock %}

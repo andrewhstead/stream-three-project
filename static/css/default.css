@@ -92,7 +92,7 @@ main {
 }
 
 #team-header {
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 
 .profile-logo, .user-profile {
@@ -553,11 +553,13 @@ footer {
 .single-column {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
-.double-column {
+.multi-column {
     flex: 1;
     margin: 0 10px;
+    min-width: 250px;
 }
 
 .team-abbreviation {
@@ -714,7 +716,7 @@ footer {
     height: 75px;
     width: 75px;
     z-index: 2;
-    margin-right: 5px;
+    margin-right: 10px;
     border-radius: 50%;
 }
 
@@ -767,6 +769,9 @@ footer {
 
 .forum-section {
     margin: 10px auto;
+    border-left: 1px solid #10253f;
+    border-right: 1px solid #10253f;
+    width: 100%;
 }
 
 .board-header {
