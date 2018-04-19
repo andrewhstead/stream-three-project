@@ -46,6 +46,10 @@ required pages, with a context processor being used to ensure that the relevant 
 
 ## Back End Development
 
+### Django Apps
+
+### Forms
+
 ## External JavaScript Libraries
 
 ## Use of Data

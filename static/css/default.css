@@ -735,6 +735,18 @@ footer {
     border: 1px solid #10253f;
 }
 
+.news-image {
+    text-align: center;
+    margin: 10px auto;
+    font-size: 0.9em;
+}
+
+.news-image img {
+    border: 2px solid #10253f;
+    box-shadow: 0 0 2px 2px #4f81bd;
+    width: 150px;
+}
+
 .blog-author {
     float: left;
     height: 70px;

@@ -24,6 +24,7 @@ class Item(models.Model):
     cover_image = models.ImageField(upload_to="images/news/covers", blank=True, null=True)
     content = HTMLField()
     content_image = models.ImageField(upload_to="images/news/content", blank=True, null=True)
+    image_caption = models.CharField(max_length=100, blank=True, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category, related_name='item')
     teams = models.ManyToManyField(Team, related_name="item", blank=True)

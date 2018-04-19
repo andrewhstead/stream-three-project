@@ -21,6 +21,12 @@
                 </div>
 
                 <div id="item-content">
+                    <div class="news-image">
+                        <img src="/media/{{ item.content_image }}" />
+                        <div class="image-caption">
+                            {{ item.image_caption }}
+                        </div>
+                    </div>
                     {{ item.content|safe }}
                 </div>
 
