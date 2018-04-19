@@ -45,6 +45,7 @@ urlpatterns = [
     url(r'^forum/$', forum_views.forum_home, name='forum'),
     url(r'^forum/league/(?P<board_id>\d+)/$', forum_views.forum_league, name='forum_league'),
     url(r'^forum/(?P<team_name>.*)/$', forum_views.forum_team, name='forum_team'),
+    url(r'^info/', include('django.contrib.flatpages.urls')),
     url(r'^login/$', users_views.login, name="login"),
     url(r'^logout/$', users_views.logout, name="logout"),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),

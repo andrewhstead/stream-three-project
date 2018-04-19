@@ -26,7 +26,7 @@ SECRET_KEY = '0@y1kx&b2_kovr(tb#_zuzl6+67!r9(8_h!&ebfz6v61f0!#zb'
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'bibl.herokuapp.com']
-
+SITE_ID = 5
 
 # Application definition
 
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
     'tinymce',
     'home',
     'news',
@@ -58,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'stream_three_project.urls'
