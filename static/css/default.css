@@ -101,11 +101,20 @@ main {
     word-spacing: 9999999px;
 }
 
-#team-header {
+#team-profile-header {
     padding-bottom: 20px;
 }
 
-.profile-logo, .user-profile {
+.profile-logo {
+    float: right;
+    height: 80px;
+    width: 80px;
+    z-index: 2;
+    margin-top: 5px;
+    border-radius: 50%;
+}
+
+.user-profile {
     float: right;
     height: 80px;
     width: 80px;
