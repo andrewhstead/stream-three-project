@@ -20,13 +20,16 @@
                     {{ item.created_date|date:'j F Y, g:i a' }}<br />Written by: {{ item.author }}
                 </div>
 
+
                 <div id="item-content">
-                    <div class="news-image">
-                        <img src="/media/{{ item.content_image }}" />
-                        <div class="image-caption">
-                            {{ item.image_caption }}
+                    {% if item.content_image %}
+                        <div class="news-image">
+                            <img src="/media/{{ item.content_image }}" />
+                            <div class="image-caption">
+                                {{ item.image_caption }}
+                            </div>
                         </div>
-                    </div>
+                    {% endif %}
                     {{ item.content|safe }}
                 </div>
 
