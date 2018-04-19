@@ -306,7 +306,7 @@ def order_confirmation(request):
 @login_required(login_url='/login/')
 def order_list(request):
     user = request.user
-    orders = Cart.objects.filter(user=user, status='Received').order_by('-date')
+    orders = Cart.objects.filter(user=user, status__in=['Received', 'Dispatched']).order_by('-date')
     return render(request, 'orders.html', {'orders': orders})
 
 

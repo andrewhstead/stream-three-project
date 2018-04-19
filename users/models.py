@@ -8,7 +8,7 @@ from teams.models import Team
 # Create your models here.
 class User(AbstractUser):
     objects = UserManager()
-    stripe_id = models.CharField(max_length=40, default='')
+    stripe_id = models.CharField(max_length=40, default='', blank=True, null=True)
     subscription_ends = models.DateTimeField(blank=True, null=True)
     subscription_renews = models.BooleanField(default=False)
     subscription_plan = models.CharField(max_length=25, blank=True, null=True)

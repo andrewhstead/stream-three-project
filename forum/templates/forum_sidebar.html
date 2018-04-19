@@ -5,8 +5,9 @@
 
             {% for post in recent_posts %}
                 <div class="recent-activity">
-                    <a class="standard-link" href="/profile/{{ post.user_id }}/">{{ post.user }}</a> posted in<br />
-                    <a class="standard-link" href="/thread/{{ post.thread_id }}/">{{ post.thread }}</a><br />
+                    <a class="standard-link" href="{% url 'other_profile' post.user.id %}">{{ post.user }}</a> posted
+                    in<br />
+                    <a class="standard-link" href="{% url 'view_thread' post.thread.id %}">{{ post.thread }}</a><br />
                     at {{ post.created_date|time:'G:i' }} on {{ post.created_date|date:'d/m/Y' }}
                 </div>
             {% endfor %}
