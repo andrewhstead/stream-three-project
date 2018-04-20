@@ -1266,3 +1266,12 @@ ul.errorlist li {
     clear: both;
     padding: 10px;
 }
+
+.header-link {
+    color: white;
+    text-decoration: none;
+}
+
+.header-link:hover {
+    text-decoration: underline;
+}
