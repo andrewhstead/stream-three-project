@@ -75,7 +75,7 @@ def news_team(request, team_name):
 
 
 def blog_home(request):
-    posts = Item.objects.filter(category_id=6).order_by('-created_date')
+    blog_posts = Item.objects.filter(category_id=6).order_by('-created_date')
 
     blogger = Group.objects.get(name='Blogger')
     bloggers = []
@@ -85,12 +85,27 @@ def blog_home(request):
         if blogger in user.groups.all():
             bloggers.append(user)
 
-    return render(request, "blogs.html", {'posts': posts, 'bloggers': bloggers})
+    posts_for = Paginator(blog_posts, 5)
+
+    page = request.GET.get('page')
+    try:
+        posts = posts_for.page(page)
+    except EmptyPage:
+        posts = posts_for.page(posts_for.num_pages)
+    except PageNotAnInteger:
+        posts = posts_for.page(1)
+
+    if page:
+        current_page = int(page)
+    else:
+        current_page = 1
+
+    return render(request, "blogs.html", {'posts': posts, 'bloggers': bloggers, 'current_page': current_page})
 
 
 def blog_index(request, author_name):
     author = User.objects.get(username__iexact=author_name)
-    all_posts = Item.objects.filter(author=author).order_by('created_date')
+    all_posts = Item.objects.filter(author=author).order_by('-created_date')
 
     blogger = Group.objects.get(name='Blogger')
     bloggers = []
