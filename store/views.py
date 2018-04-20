@@ -73,9 +73,13 @@ def add_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     items = product.items.all()
     sizes = []
+    out_of_stock = []
 
     for item in items:
-        sizes.append((item.size, item.size))
+        if item.stock > 0:
+            sizes.append((item.size, item.size))
+        else:
+            out_of_stock.append(item.size)
 
     if request.method == 'POST':
         form = AddToCartForm(request.POST, item_options=sizes)
@@ -133,7 +137,8 @@ def add_product(request, product_id):
         form = AddToCartForm(item_options=sizes)
         form.order_fields(['size', 'quantity'])
 
-    args = {'form': form, 'product': product, 'items': items, 'button_text': 'Add to Basket'}
+    args = {'form': form, 'product': product, 'items': items,
+            'out_of_stock': out_of_stock, 'button_text': 'Add to Basket'}
     args.update(csrf(request))
     return render(request, 'product.html', args)
 

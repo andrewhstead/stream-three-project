@@ -18,6 +18,18 @@
                 {{ product.description }}<br />
                 £{{ product.price }}<br />
 
+                {% if out_of_stock %}
+                    <p class="full-details">
+                        NB: Size(s)
+
+                        {% for size in out_of_stock %}
+                            {{ size }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+
+                        currently out of stock.
+                    </p>
+                {% endif %}
+
             </div>
 
             <form id="inline-form" method="post" action="{{ form_action }}">
