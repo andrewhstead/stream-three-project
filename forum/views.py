@@ -26,7 +26,7 @@ def forum_home(request):
 
 def forum_team(request, team_name):
     team = get_object_or_404(Team, geographic_name=team_name.capitalize())
-    board = get_object_or_404(Board, team=team)
+    board = Board.objects.get(team=team)
     all_threads = board.threads.all().order_by('-last_post')
     recent_posts = Post.objects.all().order_by('-created_date')[:10]
 
@@ -45,7 +45,7 @@ def forum_team(request, team_name):
 
 
 def forum_league(request, board_id):
-    board = get_object_or_404(Board, pk=board_id)
+    board = Board.objects.get(pk=board_id)
     all_threads = board.threads.all().order_by('-last_post')
     recent_posts = Post.objects.all().order_by('-created_date')[:10]
 
@@ -118,9 +118,9 @@ def view_thread(request, thread_id):
         thread.views += 1
         thread.save()
 
-    all_posts = thread.posts.all()
+    all_posts = thread.posts.all().order_by('created_date')
 
-    posts_per_page = 20
+    posts_per_page = 10
     page_posts = Paginator(all_posts, posts_per_page)
 
     page = request.GET.get('page')

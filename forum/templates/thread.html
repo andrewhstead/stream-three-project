@@ -26,16 +26,6 @@
 
             </div>
 
-            {% if user.is_authenticated %}
-                <div class="content-link">
-                    <a href="{% url 'new_post' thread.id %}">New Post</a>
-                </div>
-            {% else %}
-                <div id="not-logged-in">
-                    You must be <a class="standard-link" href="{% url 'login' %}">logged in</a> to post.
-                </div>
-            {% endif %}
-
             <section id="posts">
 
                 {% for post in posts %}
@@ -45,6 +35,16 @@
                 {% endfor %}
 
             </section>
+
+            {% if user.is_authenticated %}
+                <div class="content-link">
+                    <a href="{% url 'new_post' thread.id %}">New Post</a>
+                </div>
+            {% else %}
+                <div id="not-logged-in">
+                    You must be <a class="standard-link" href="{% url 'login' %}">logged in</a> to post.
+                </div>
+            {% endif %}
 
             <div class="full-details">
 

@@ -961,7 +961,7 @@ a.button-link:hover {
 }
 
 .blog-content {
-    margin: 0 30px;
+    margin-left: 80px;
     text-align: justify;
 }
 
@@ -972,6 +972,7 @@ a.button-link:hover {
 
 .blog-title {
     font-size: 1.5em;
+    text-align: left;
 }
 
 .blog-details {
