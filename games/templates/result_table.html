@@ -1,0 +1,63 @@
+{% load humanize %}
+
+<table class="stat-table">
+    <tr class="header-row">
+        <th class="stat-intro">
+            {% if result.game_status != "Completed" %}
+                {% if result.game_status == "Postponed" %}
+                    POSTPONED
+                {% else %}
+                    SUSPENDED ({{ result.innings|ordinal }})
+                {% endif %}
+            {% else %}
+                FINAL {% if result.innings > 9 %}({{ result.innings }}){% endif %}
+            {% endif %}
+        </th>
+        <th class="score-column">R</th>
+        <th class="score-column">H</th>
+        <th class="score-column">E</th>
+    </tr>
+    <tr>
+        <td class="stat-header">
+            <img class="small-logo" src="/media/{{ result.away_team.small_logo }}" />
+            <a class="table-link" href="{% url 'team_games' result.away_team.geographic_name|lower %}">
+                {% if result.game_status == "Completed" and result.away_team_runs > result.home_team_runs %}
+                    <strong>{{ result.away_team }}</strong>
+                {% else %}
+                    {{ result.away_team }}
+                {% endif %}
+            </a>
+        </td>
+        {% if result.game_status == "Postponed" %}
+            <td></td>
+            <td></td>
+            <td></td>
+        {% else %}
+            <td class="stat-detail"><strong>{{ result.away_team_runs }}</strong></td>
+            <td class="stat-detail-faint">{{ result.away_team_hits }}</td>
+            <td class="stat-detail-faint">{{ result.away_team_errors }}</td>
+        {% endif %}
+    </tr>
+    <tr>
+        <td class="stat-header">
+            <img class="small-logo" src="/media/{{ result.home_team.small_logo }}" />
+            <a class="table-link" href=
+                    "{% url 'team_games' result.home_team.geographic_name|lower %}">
+                {% if result.game_status == "Completed" and result.home_team_runs > result.away_team_runs %}
+                    <strong>{{ result.home_team }}</strong>
+                {% else %}
+                    {{ result.home_team }}
+                {% endif %}
+            </a>
+        </td>
+        {% if result.game_status == "Postponed" %}
+            <td></td>
+            <td></td>
+            <td></td>
+        {% else %}
+            <td class="stat-detail"><strong>{{ result.home_team_runs }}</strong></td>
+            <td class="stat-detail-faint">{{ result.home_team_hits }}</td>
+            <td class="stat-detail-faint">{{ result.home_team_errors }}</td>
+        {% endif %}
+    </tr>
+</table>
