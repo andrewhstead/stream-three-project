@@ -25,6 +25,16 @@
                                 <img class="small-logo" src="/media/{{ club.small_logo }}" />
                                 {{ club.name }}
                             </td>
+
+                        {% elif not team and club.name == user.favourite_team.geographic_name %}
+                            <td class="stat-header {{ user.favourite_team.geographic_name|lower }}-tag">
+                                <img class="small-logo" src="/media/{{ club.small_logo }}" />
+                                <a class="{{ user.favourite_team.geographic_name|lower }}-link team-link" href=
+                                        "{% url 'team_page' club.name|lower %}">
+                                    {{ club.name }}
+                                </a>
+                            </td>
+
                         {% else %}
 
                             <td class="stat-header">
