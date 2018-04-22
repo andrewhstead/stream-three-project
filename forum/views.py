@@ -30,7 +30,7 @@ def forum_team(request, team_name):
     all_threads = board.threads.all().order_by('-last_post')
     recent_posts = Post.objects.all().order_by('-created_date')[:10]
 
-    page_threads = Paginator(all_threads, 20)
+    page_threads = Paginator(all_threads, 10)
 
     page = request.GET.get('page')
 
@@ -49,7 +49,7 @@ def forum_league(request, board_id):
     all_threads = board.threads.all().order_by('-last_post')
     recent_posts = Post.objects.all().order_by('-created_date')[:10]
 
-    page_threads = Paginator(all_threads, 20)
+    page_threads = Paginator(all_threads, 10)
 
     page = request.GET.get('page')
 
