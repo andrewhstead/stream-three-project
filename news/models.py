@@ -7,6 +7,20 @@ from teams.models import Team
 from users.models import User
 from games.models import Game
 from tinymce.models import HTMLField
+from django.contrib.auth.models import Group
+
+
+def list_bloggers():
+
+    blogger = Group.objects.get(name='Blogger')
+    bloggers = []
+
+    users = User.objects.all()
+    for user in users:
+        if blogger in user.groups.all():
+            bloggers.append(user)
+
+    return bloggers
 
 
 # Create your models here.

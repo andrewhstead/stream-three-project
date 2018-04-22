@@ -41,7 +41,8 @@ def forum_team(request, team_name):
     except PageNotAnInteger:
         threads = page_threads.page(1)
 
-    return render(request, 'board.html', {'board': board, 'team': team, 'threads': threads, 'recent_posts': recent_posts})
+    return render(request, 'board.html', {'board': board, 'team': team,
+                                          'threads': threads, 'recent_posts': recent_posts})
 
 
 def forum_league(request, board_id):

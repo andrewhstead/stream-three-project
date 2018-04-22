@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Item, Comment
+from .models import Item, Comment, list_bloggers
 from .forms import BlogPostForm, CommentForm
 from teams.models import Team
 from users.models import User
@@ -77,13 +77,7 @@ def news_team(request, team_name):
 def blog_home(request):
     blog_posts = Item.objects.filter(category_id=6).order_by('-created_date')
 
-    blogger = Group.objects.get(name='Blogger')
-    bloggers = []
-
-    users = User.objects.all()
-    for user in users:
-        if blogger in user.groups.all():
-            bloggers.append(user)
+    bloggers = list_bloggers()
 
     posts_for = Paginator(blog_posts, 5)
 
@@ -107,13 +101,7 @@ def blog_index(request, author_name):
     author = User.objects.get(username__iexact=author_name)
     all_posts = Item.objects.filter(author=author).order_by('-created_date')
 
-    blogger = Group.objects.get(name='Blogger')
-    bloggers = []
-
-    users = User.objects.all()
-    for user in users:
-        if blogger in user.groups.all():
-            bloggers.append(user)
+    bloggers = list_bloggers()
 
     posts_for = Paginator(all_posts, 10)
 
@@ -135,13 +123,7 @@ def blog_post(request, post_id):
     item.views += 1
     item.save()
 
-    blogger = Group.objects.get(name='Blogger')
-    bloggers = []
-
-    users = User.objects.all()
-    for user in users:
-        if blogger in user.groups.all():
-            bloggers.append(user)
+    bloggers = list_bloggers()
 
     return render(request, "blog_post.html", {'item': item, 'posts': posts, 'bloggers': bloggers})
 
@@ -164,13 +146,7 @@ def new_blog_post(request):
     else:
         form = BlogPostForm()
 
-    blogger = Group.objects.get(name='Blogger')
-    bloggers = []
-
-    users = User.objects.all()
-    for user in users:
-        if blogger in user.groups.all():
-            bloggers.append(user)
+    bloggers = list_bloggers()
 
     args = {
         'form': form,
@@ -197,13 +173,7 @@ def edit_blog(request, post_id):
     else:
         form = BlogPostForm(instance=post)
 
-    blogger = Group.objects.get(name='Blogger')
-    bloggers = []
-
-    users = User.objects.all()
-    for user in users:
-        if blogger in user.groups.all():
-            bloggers.append(user)
+    bloggers = list_bloggers()
 
     args = {
         'form': form,
@@ -247,13 +217,7 @@ def new_comment(request, item_id):
     else:
         form = CommentForm()
 
-    blogger = Group.objects.get(name='Blogger')
-    bloggers = []
-
-    users = User.objects.all()
-    for user in users:
-        if blogger in user.groups.all():
-            bloggers.append(user)
+    bloggers = list_bloggers()
 
     args = {
         'form': form,
@@ -284,13 +248,7 @@ def edit_comment(request, item_id, comment_id):
     else:
         form = CommentForm(instance=comment)
 
-    blogger = Group.objects.get(name='Blogger')
-    bloggers = []
-
-    users = User.objects.all()
-    for user in users:
-        if blogger in user.groups.all():
-            bloggers.append(user)
+    bloggers = list_bloggers()
 
     args = {
         'form': form,
