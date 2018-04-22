@@ -37,14 +37,22 @@
 
             {% if user.favourite_team %}
 
-                <section id="team-news" class="{{ user.team.geographic_name|lower }}-news">
-                    CLUB NEWS
-                    <img class="small-logo" src="/media/{{ user.favourite_team.small_logo }}" />
-                    {{ user.favourite_team }}
+                <section id="team-news" class="{{ user.favourite_team.geographic_name|lower }}-news">
+
+                    <div class="user-news {{ user.favourite_team.geographic_name|lower }}-tag">
+                        <img class="user-news-logo" src="/media/{{ user.favourite_team.small_logo }}" />
+                        CLUB NEWS
+                    </div>
 
                     {% for item in team_news %}
-                        {{ item.title }}
+                        <div class="news-link">
+                            <span class="arrow">&#9658;</span>
+                            <a class="standard-link" href="{% url 'news' item.id %}">
+                                {{ item.title }}
+                            </a>
+                        </div>
                     {% endfor %}
+
                 </section>
 
             {% endif %}

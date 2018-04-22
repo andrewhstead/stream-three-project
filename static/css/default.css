@@ -1317,3 +1317,18 @@ ul.errorlist li {
 .team-link:hover {
     text-decoration: underline;
 }
+
+#team-news {
+    margin: 20px;
+}
+
+.user-news {
+    padding: 10px;
+    font-size: 1.2em;
+}
+
+.user-news-logo {
+    height: 30px;
+    width: 30px;
+    vertical-align: middle;
+}
