@@ -42,6 +42,9 @@ class NewsTeamTest(TestCase):
 
 
 class BlogHomeTest(TestCase):
+
+    fixtures = ['auth']
+
     def test_blog_home_resolves(self):
         blogs_home = resolve('/blogs/')
         self.assertEqual(blogs_home.func, blog_home)
@@ -104,6 +107,7 @@ class DeleteCommentTest(TestCase):
 
 
 class CommentFormTest(TestCase):
+
     def test_comment_form(self):
         form = CommentForm({
             'comment': 'The content of the comment.'
@@ -112,10 +116,9 @@ class CommentFormTest(TestCase):
 
 
 class BlogPostFormTest(TestCase):
-    def test_comment_form(self):
+    def test_blog_post_form(self):
         form = BlogPostForm({
-            'comment': 'The content of the comment.'
+            'title': 'Post Title',
+            'content': 'The content of the post.'
         })
         self.assertTrue(form.is_valid())
-
-
