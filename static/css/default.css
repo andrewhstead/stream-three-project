@@ -1277,3 +1277,43 @@ ul.errorlist li {
 .header-link:hover {
     text-decoration: underline;
 }
+
+.dublin-link {
+    color: rgb(255,128,39);
+}
+
+.glasgow-link {
+    color: rgb(0,0,0);
+}
+
+.liverpool-link {
+    color: rgb(0,0,157);
+}
+
+.manchester-link {
+    color: rgb(204,204,204);
+}
+
+.birmingham-link {
+    color: rgb(255,255,255);
+}
+
+.bristol-link {
+    color: rgb(255,255,0);
+}
+
+.cardiff-link {
+    color: rgb(255,255,255);
+}
+
+.london-link {
+    color: rgb(128,0,128);
+}
+
+.team-link {
+    text-decoration: none;
+}
+
+.team-link:hover {
+    text-decoration: underline;
+}

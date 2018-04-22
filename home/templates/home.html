@@ -35,6 +35,20 @@
 
             </section>
 
+            {% if user.favourite_team %}
+
+                <section id="team-news" class="{{ user.team.geographic_name|lower }}-news">
+                    CLUB NEWS
+                    <img class="small-logo" src="/media/{{ user.favourite_team.small_logo }}" />
+                    {{ user.favourite_team }}
+
+                    {% for item in team_news %}
+                        {{ item.title }}
+                    {% endfor %}
+                </section>
+
+            {% endif %}
+
         </div>
 
         <div id="stats-column" class="column">
