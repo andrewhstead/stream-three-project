@@ -52,7 +52,6 @@ main {
     background-color: #10253f;
     color: white;
     font-size: 1.4em;
-    height: 100px;
     position: relative;
     margin: 0 auto;
     text-align: center;
@@ -65,19 +64,19 @@ main {
     margin-right: auto;
     padding: 0;
     text-align: center;
-    height: 35px;
     display: inline-block;
 }
 
 .header-logo {
     height: 35px;
     width: 35px;
+    display: block;
 }
 
 .home-logo {
     height: 100px;
     width: 100px;
-    display: inline-block;
+    display: block;
 }
 
 #league-name {
