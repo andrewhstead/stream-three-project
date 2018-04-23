@@ -62,8 +62,7 @@ def forum_league(request, board_id):
         threads = page_threads.page(1)
 
     return render(request, 'board.html', {'board': board, 'board_id': board_id,
-                                          'threads': threads, 'recent_posts':
-    recent_posts})
+                                          'threads': threads, 'recent_posts': recent_posts})
 
 
 @login_required(login_url='/login/')
@@ -172,7 +171,7 @@ def new_post(request, thread_id):
 
             messages.success(request, "Your post was successful!")
 
-        return redirect(reverse('view_thread', args={thread.pk}))
+        return redirect(request.GET.get('next') or reverse('user_profile'), args={thread.pk})
 
     else:
         form = PostForm()

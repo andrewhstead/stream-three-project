@@ -38,7 +38,8 @@
 
             {% if user.is_authenticated %}
                 <div class="content-link">
-                    <a href="{% url 'new_post' thread.id %}">New Post</a>
+                    <a href="{% url 'new_post' thread.id %}?next={% url 'view_thread' thread.id %}?page={{ pages }}">
+                        New Post</a>
                 </div>
             {% else %}
                 <div id="not-logged-in">
