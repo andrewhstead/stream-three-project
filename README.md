@@ -26,7 +26,6 @@ the site.
 	* [Users App](#users-app)
 4. [Deployment](#deployment)
 5. [Testing](#testing)
-6. [Issues](#issues)
 
 ## Planning
 
@@ -123,7 +122,8 @@ with the project's superuser also having the ability to moderate posts in the sa
 form, used for either the creation of a new post or the editing of an existing one.
 
 The only other form in this app is the one which allows for the posting and editing of comments. The user who posted the
- comment or the administration superuser are permitted to edit a given comment.
+ comment or the administration superuser are permitted to edit a given comment. Comments can be deleted, and  JavaScript
+  is used to confirm that the user does indeed wish to delete the comment.
 
 ### Games App
 
@@ -230,9 +230,76 @@ Payment works in much the same was as the subscription for premium content. The 
 
 ### Forum App
 
+The forum app is a relatively straight forward message board facility, allowing site users to create threads and
+contribute posts to existing threads. The app contains four models. The first of these, the section model, divides the
+forum up allowing the individual boards to be categorised. The board model allocates each subject to a particular
+section, and the boards are separated on this basis on the forum home page. When a new thread is created, it is then
+allocated to the board within which it was created. Likewise, when a new post is added it is allocated to the correct
+thread. Both the thread model and the post model allocate a user, allowing posts to be credited to the right person and
+keeping a track of who originally created the thread.
 
+Additionally, the thread model records when it was created and also the time of the most recent post. This is updated
+whenever a new post is added and is also recalculated when a post is deleted, in case the deleted post was the last one.
+ This ensures that the recorded time and date is always that of the most recent remaining post. The post model functions
+  in much the same way as the comment model in the news app. The use who has posted the comment, or the admin superuser,
+   are able to edit the comment or delete it. JavaScript is used to confirm that the user does indeed wish to delete the
+    comment. Two forms are used to create the threads and the posts. When a new thread is being created, both forms are
+    used - one to create the thread and the other to create the initial post.
+
+In the template files for the forum app, users can see an overview of all boards with a count of threads and posts in
+each, while for each individual board a list of threads is shown with details of which user opened the thread and when
+the last post was made. Pagination is used to limit the number visible at a time to 10. This is also done within each
+individual thread to limit the number of posts per page in the same way. A post counter is used in each post to show
+where it fits into the overall discussion. Posts are shown in chronological order with the oldest appearing first, so
+that the discussion can be read in order, but threads are listed with the most recently updated at the top so that the
+user can see where the newest discussions are taking place.
+
+Recent discussions can also be seen in the sidebar on larger sized screens, where the ten most recent posts are listed
+and linked.
 
 ### Users App
+
+The users app contains a single model which overrides the default Django user model. It incorporates all the same fields
+ as the default model, but adds a number of additional fields to provide more information about the user. These are all
+ optional fields, allowing the user to control how much information they provide beyond the basic name, username, email
+ address and password. Fields in the user record can by changed at any time by the user editing their profile.
+
+Users have the option to choose a team as their favourite, giving customised news on the home page and highlighting
+the chosen team in the league standings and the scores in the sidebar. Users can also set a profile picture which is
+displayed if they comment on a news item or contribute to a thread in the forum. If the user has no picture set but does
+ have a favourite team chosen, the logo of their chosen team will be used in place of a profile picture. If neither are
+ set, a default picture will be used instead.
+
+The user model also contains fields for a default address, which can be used when ordering items through the store. This
+ can not be set by the user on registration but can be added using the profile editing facility. Fields regarding
+ subscription status are blank by default unless the user has subscribed to premium content on registration. Otherwise
+ they will be set when the account is upgraded. A Stripe ID is used to identify the author and the date when the user's
+ subscription is due to end is set here. There is also a setting for whether or not the user's subscription will renew
+ automatically, which it may not if the user has chosen to cancel.
+
+Another important field is the ability to set a profile to private, as logged in users can view each other's profiles. A profile is public by default, but a user can choose to hid all but their user name. It is
+ important to note that even in a public profile, information such as the user's e-mail address, order history and
+ subscription status will remain private. These are visible to the user themselves, but not to other users.
+
+The registration and profile editing forms are both model forms based on the user model. Separate forms are required
+because additional authentication is not required to edit a profile once the user has logged in. Another form is used to
+ give the user the option to change their password. This requires the user to provide their current password and then
+ choose and confirm a new one, before re-authenticating and logging the user in again with their new password. The login
+  form is also defined in the user app, requiring the user to provide their username and password.
+
+A user's profile page gives a great deal of information about them and their account. Their username and real name are
+shown, although the real name is not included when the user is viewing their own profile. Dates of registration and last
+ login are included, as the registered e-mail address. The user can view the status of their account, whether standard
+ or premium, and a link to upgrade is provided for standard users. For premium users, the next automatic renewal date is
+  shown alongside a link to cancel this if required. As with other cancellations or deletions on the site, JavaScript
+  is used to prompt for confirmation before completing the cancellation. Users can also view their purchase history from
+   the store through their own profile page.
+
+When visiting the profile of another user, it is possible to see if that person is an authorised blogger and link to
+their blog page if so. Counts are shown of the user's contributions to the site in terms of forum threads and posts as
+well as comments on news stories. The most recent five such contributions are linked from the profile page. Because
+different information is required depending on whether the user is viewing their own profile or somebody else's, two
+separate views are used to render the profile template.
 
 ## Deployment
 
@@ -250,5 +317,3 @@ site. In total, this testing covers 67% of all the lines of code in the project.
 navigating the links on the site and entering a variety of data into the forms, ensuring that the site navigation worked
  as intended and that the forms were accepted with correct inputs and rejected when wrong entries were made, such as
  passwords which did not match on registration.
-
-## Issues
