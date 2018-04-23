@@ -13,12 +13,21 @@ the site.
 ## Contents
 1. [Planning](#planning)
 2. [Front End Development](#front-end-development)
+	* [Responsive Design](#responsive-design)
+	* [Use of Custom JavaScript](#use-of-custom-javascript)
+	* [External JavaScript Libraries](#external-javascript-libraries)
+	* [Other External Sources](#other-external-sources)
 3. [Back End Development](#back-end-development)
-4. [External Libraries](#external-libraries)
-5. [Use of Data](#use-of-data)
-6. [Deployment](#deployment)
-7. [Testing](#testing)
-8. [Issues](#issues)
+	* [News App](#news-app)
+	* [Games App](#games-app)
+	* [Teams App](#teams-app)
+	* [Store App](#store-app)
+	* [Forum App](#forum-app)
+	* [Users App](#users-app)
+4. [Use of Data](#use-of-data)
+5. [Deployment](#deployment)
+6. [Testing](#testing)
+7. [Issues](#issues)
 
 ## Planning
 
@@ -49,6 +58,11 @@ the current league standings. This information is incorporated into a separate t
 required pages, with a context processor being used to ensure that the relevant data is available to any template on the
  site. This sidebar is not included on narrower devices, as it would be visible only after a significant amount of
  scrolling rather than 'above the fold' as it is on wider screens.
+
+In some sections of the site, this statistical data is replaced by alternative sidebar content. In the store, this
+sidebar contains links which enable the user to view items related to a particular team. When viewing blogs, the sidebar
+ shows a list of all site users who are registered as bloggers. Finally, in the forum the additional information shows
+ the user then ten most recent posts, enabling them to link directly to the relevant thread.
 
 ### Use of Custom JavaScript
 
@@ -81,9 +95,46 @@ outline [Privacy Policy](https://privacypolicytemplate.net/) and [Terms and Cond
 
 ## Back End Development
 
-### Django Apps
+In addition to a 'Home' app which contains the template for the site's Home Page plus an HTML include for use across the
+ site, there are six further apps which make up the project.
 
-### Forms
+### News App
+
+This app contains all the templates for rending news stories on the site. It also contains the templates which allow
+site users with the relevant permission to add blog posts, as a blog post is treated as a specific category of news
+story.
+
+The app contains three models, the most important of which is that for the news stories themselves. There is a model for
+ the category of the story, as well as one for comments which allows logged in users to comment on a particular story.
+ The models file also contains a function which defines a list of registered 'bloggers', which is used to render a
+ sidebar in wider screen displays which shows all the available blogs.
+
+News can be viewed as a whole or on pages specific to each team. On each of these pages, pagination is used to
+ensure that a maximum of 20 headlines are seen on screen at any one time. On any of these templates, the most recent
+story is always displayed at the top with a banner image. These images, which are set using the 'cover_image' field in
+the news item model, are optional and if one is not set for a particular story, then a default image for the relevant
+category will be shown instead. Data from the news app is used elsewhere on the site, with recent stories being
+incorporated on both the home page and also on the home pages for each individual team.
+
+Team news is set up by 'tagging' one more more teams in a particular story by means of a many-to-many relationship. It
+is not necessary to include any teams in the story, but the story will appear on the team news pages for any which are
+selected. With the exception of authorised bloggers, all other news stories must be posted through the Administration
+area by an authorised site administrator. Bloggers can add, edit and delete their posts through the site's front end,
+with the project's superuser also having the ability to moderate posts in the same way. This is done through a single
+form, used for either the creation of a new post or the editing of an existing one.
+
+The only other form in this app is the one which allows for the posting and editing of comments. The user who posted the
+ comment or the administration superuser are permitted to edit a given comment.
+
+### Scores App
+
+### Teams App
+
+### Store App
+
+### Forum App
+
+### Users App
 
 ## Use of Data
 

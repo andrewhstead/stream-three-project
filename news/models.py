@@ -43,11 +43,6 @@ class Item(models.Model):
     category = models.ForeignKey(Category, related_name='item')
     teams = models.ManyToManyField(Team, related_name="item", blank=True)
     views = models.IntegerField(default=0)
-    published_date = models.DateTimeField(blank=True, null=True)
-
-    def publish(self):
-        self.published_date = timezone.now()
-        self.save()
 
     def __unicode__(self):
         return self.title
