@@ -24,10 +24,9 @@ the site.
 	* [Store App](#store-app)
 	* [Forum App](#forum-app)
 	* [Users App](#users-app)
-4. [Use of Data](#use-of-data)
-5. [Deployment](#deployment)
-6. [Testing](#testing)
-7. [Issues](#issues)
+4. [Deployment](#deployment)
+5. [Testing](#testing)
+6. [Issues](#issues)
 
 ## Planning
 
@@ -126,17 +125,70 @@ form, used for either the creation of a new post or the editing of an existing o
 The only other form in this app is the one which allows for the posting and editing of comments. The user who posted the
  comment or the administration superuser are permitted to edit a given comment.
 
-### Scores App
+### Games App
+
+The games app contains all the information about past results and scheduled fixtures. It includes templates for
+displaying both data about individual games and also generating the league standings. The app includes two models - one
+of which is to set up a list of seasons, in order to be able to allocate a game to a particular season and thus generate
+ standings for that year.
+
+The other model is the main game model, which sets a number of important details about a game. It is possible to
+allocate to each game a date, a start time, a game 'type' (pre-season, regular or play-off game) and also the status of
+the game, i.e. whether it has already been played or not. The model gives the opportunity to set the score details and
+attendance for the game, as well as giving some games a setting of 'premium'. The premium setting is used to generate a
+list of games which subscribers would have access to be able to stream live.
+
+Equally important with the models file is a function which generates league standings. This takes all the games in a
+specified season (taken as a parameter by the function) and includes the results of each one in the playing record of
+the two teams involved. Calculation of the playing record involves adding to the number of games played and either wins
+or losses, depending on the result of the game. The game score is added to the team's 'runs for' or 'runs against'
+totals, while separate records are also created for home games and away games.
+
+The standings function is used to create three different templates - one for the simple standings view used in the sidebar on many pages, another for more
+detailed statistics on the main standings page and a third for archive standings of past seasons. A separate template
+was created for this in order to ensure that the archive standings did not interfere with the current standings in the
+sidebar on larger screens.
+
+Templates in the games app allow a information to be presented in a variety of ways. The default scores page as linked
+from the main menu shows the scores on the most recent game date, and the fixtures on the next scheduled game date. It
+is this information which is included alongside the league standings in the sidebar. Users can then view results from
+longer ago or statistics from further into the future, with pagination used to display three game dates at a time in
+each case. There is also a template which renders a full list of either results or fixtures for the current season.
+
+The main league standings page makes use of the only form in the games app, which allows the user to select a season to
+easily view the standings for that year. In the scores and standings views, if a logged in user has taken the
+opportunity to set a particular team as their 'favourite' then that team will be highlighted in the standings and in the
+ games listed in the sidebar.
 
 ### Teams App
+
+The teams app creates both the information about the teams in the league and also the details of the league's overall
+structure. Two models exist, the first of which defines the 'Conferences' within the league. This splits the teams into
+two sections (North and South) and is required both for listing the teams in some templates and also for generating the
+standings in the correct way. Each team is allocated to one conference by use of a foreign key.
+
+The main teams model gives each team a geographic name (i.e. the city in which they are based) and a nickname - put
+together, these two fields create the team's full name. Each team also has an abbreviated name for use in templates
+where space is more limited. Teams are given two different logos and three different team jerseys as images, all of
+which are used in various places around the project. Because every page on the site needs to have access to an
+alphabetical list of the teams in order to generate the logo links at the top of the page header, a context processor is
+ used to make this data available site-wide.
+
+The teams app requires only two templates, one of which is an index page which lists each team in turn (sorted into
+conferences) and gives an overview of the available information about that team. The second template is the team's
+'home' or 'profile' page, which gives more detail about that team. This template draws in data such as news stories,
+forum discussions and game data to give a team specific overview. The most recent and next scheduled game for the team
+is shown, as are the standings for that team's conference. Here, it is the team being displayed which is highlighted in
+the standings rather than the user's favourite team (if set).
+
+Templates for other pages linked from the team index page, such as the team-specific news, discussion forum or
+merchandise store are created within the relevant apps.
 
 ### Store App
 
 ### Forum App
 
 ### Users App
-
-## Use of Data
 
 ## Deployment
 
