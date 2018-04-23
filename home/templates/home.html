@@ -35,46 +35,33 @@
 
             </section>
 
-            {% if favourite_team %}
+            <section id="extra-news">
 
-                <section id="extra-news" class="{{ favourite_team.geographic_name|lower }}-news">
+                {% if favourite_team %}
 
                     <div class="user-news {{ favourite_team.geographic_name|lower }}-tag">
                         <img class="user-news-logo" src="/media/{{ favourite_team.small_logo }}" />
                         CLUB NEWS
                     </div>
 
-                    {% for item in extra_news %}
-                        <div class="news-link">
-                            <span class="arrow">&#9658;</span>
-                            <a class="standard-link" href="{% url 'news' item.id %}">
-                                {{ item.title }}
-                            </a>
-                        </div>
-                    {% endfor %}
-
-                </section>
-
-            {% else %}
-
-                <section id="extra-news">
+                {% else %}
 
                     <div class="user-news league-news">
                         OLDER NEWS
                     </div>
 
-                    {% for item in extra_news %}
-                        <div class="news-link">
-                            <span class="arrow">&#9658;</span>
-                            <a class="standard-link" href="{% url 'news' item.id %}">
-                                {{ item.title }}
-                            </a>
-                        </div>
-                    {% endfor %}
+                {% endif %}
 
-                </section>
+                {% for item in extra_news %}
+                    <div class="news-link">
+                        <span class="arrow">&#9658;</span>
+                        <a class="standard-link" href="{% url 'news' item.id %}">
+                            {{ item.title }}
+                        </a>
+                    </div>
+                {% endfor %}
 
-            {% endif %}
+            </section>
 
         </div>
 

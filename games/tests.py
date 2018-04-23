@@ -136,15 +136,15 @@ class SeasonOverviewTest(TestCase):
     fixtures = ['games', 'teams']
 
     def test_season_overview_resolves(self):
-        past_season = resolve('/archive/2008/')
+        past_season = resolve('/archive/2000/')
         self.assertEqual(past_season.func, season_overview)
 
     def test_season_overview_code(self):
-        past_season = self.client.get('/archive/2008/')
+        past_season = self.client.get('/archive/2000/')
         self.assertEqual(past_season.status_code, 200)
 
     def test_season_overview_content(self):
-        past_season = self.client.get('/archive/2008/')
+        past_season = self.client.get('/archive/2000/')
         self.assertTemplateUsed(past_season, 'season_overview.html')
 
 
@@ -153,13 +153,13 @@ class SeasonTeamTest(TestCase):
     fixtures = ['games', 'teams']
 
     def test_season_team_resolves(self):
-        team_season = resolve('/archive/2011/cardiff/')
+        team_season = resolve('/archive/2000/cardiff/')
         self.assertEqual(team_season.func, season_team)
 
     def test_season_team_code(self):
-        team_season = self.client.get('/archive/2011/cardiff/')
+        team_season = self.client.get('/archive/2000/cardiff/')
         self.assertEqual(team_season.status_code, 200)
 
     def test_season_team_content(self):
-        team_season = self.client.get('/archive/2011/cardiff/')
+        team_season = self.client.get('/archive/2000/cardiff/')
         self.assertTemplateUsed(team_season, 'season_team.html')
