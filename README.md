@@ -130,7 +130,8 @@ The only other form in this app is the one which allows for the posting and edit
 The games app contains all the information about past results and scheduled fixtures. It includes templates for
 displaying both data about individual games and also generating the league standings. The app includes two models - one
 of which is to set up a list of seasons, in order to be able to allocate a game to a particular season and thus generate
- standings for that year.
+ standings for that year. This setting is used to generate templates for the 'Archive' section, where a league-wide
+ overview and team-specific details are available for each season.
 
 The other model is the main game model, which sets a number of important details about a game. It is possible to
 allocate to each game a date, a start time, a game 'type' (pre-season, regular or play-off game) and also the status of
@@ -186,7 +187,50 @@ merchandise store are created within the relevant apps.
 
 ### Store App
 
+The store app includes all the e-commerce functionality of the project. It contains two different types of
+functionality, the ability to purchase merchandise and the ability to subscribe to the site as a 'premium' user in order
+ to see premium content.
+
+In terms of premium content, this allows a registered site user to subscribe to one of four different prices plans (1,
+3, 6 or 12 months at a time) and upgrade their account. It also allows a new user to both register and subscribe at the
+same time. For users who are registering for the first time, the user registration form from the users app is imported
+to be used alongside the subscription form. The subscription form is derived from the payment form for the
+merchandise store, with an extra field included to allow the user to choose their preferred payment plan before
+endering card details to complete the upgrade. The payments are handled by Stripe and the user has the ability to
+  cancel their plan at any time to prevent another payment from being taken. If this is done, then access is retained
+  until the end of the current billing period.
+
+All the models in the store app relate to ordering merchandise. There is a model which defines each product which a user
+ might wish to purchase, for example a replica home jersey for a given team. Another model then allows for a number of
+ different size options for each product. These must be tracked separately in order to keep accurate records of stock
+ levels for each size. When a user views a particular product, a form allows them to add the product to their shopping
+ cart. A list of available sizes for that product is shown, along with a field to select a quantity. In order to be able
+  to add items, the user must be logged in to the site.
+
+When the user adds a product for the first time, their shopping cart is created with a status of 'Pending'. If a user
+already has a pending cart when they try to add an item, it will be placed in that existing cart. If the user has no
+pending cart, a new one is set up for them. The user has the opportunity to change the quantity of each individual items
+ in their cart or to delete items. If deleting an item would leave a cart empty, the cart is also deleted and the user
+ will then be allocated a new one the next time they add a product.
+
+As items are added and deleted or quantities changed, the stock level of the specific size option is altered
+ accordingly. This is done to ensure that items are  allocated as soon as they go into a cart and cannot be bought by
+ any other user unless they are first removed. The running total of the user's order is calculated each time an item is
+ added or deleted, with a calculation being made to check whether the new total exceeds £50. This is done to allow postage charges to be removed for orders above that
+ amount.
+
+Payment works in much the same was as the subscription for premium content. The user is however also required to enter a
+ delivery address. In the users app the user may have already set a default address, although this is not compulsory. If
+  an address is set, it will appear by default in the address form, although the user can change it if they wish. A
+  checkbox is provided to give the user the option to set the address they have entered as 'default'. If they choose
+  this option, the address will be stored on their profile. Otherwise, it is allocated only to their current shopping
+  cart. The same payment form is used to send card details to Stripe and the user is then given confirmation that their
+  order was placed. When this is done, the status of the cart is changed from 'Pending' to 'Received'. This means that
+  if the user then tries to add more items, a new cart will be created for them.
+
 ### Forum App
+
+
 
 ### Users App
 

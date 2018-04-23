@@ -4,7 +4,7 @@
     <list default="true" id="7aa13549-3897-41b9-9904-8bd12ebae0f1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+      <change beforePath="$PROJECT_DIR$/static/css/default.css" afterPath="$PROJECT_DIR$/static/css/default.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,41 +22,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="games.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/games/fixtures/games.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="705" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="games.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/teams/fixtures/games.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="704" column="1" lean-forward="false" selection-start-line="704" selection-start-column="1" selection-end-line="704" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="teams.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/games/fixtures/teams.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="184" column="0" lean-forward="true" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+            <state relative-caret-position="515">
+              <caret line="202" column="0" lean-forward="true" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/store/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-377">
+              <caret line="22" column="25" lean-forward="false" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="context_processors.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/store/context_processors.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="9" column="56" lean-forward="true" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/store/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="37" column="42" lean-forward="true" selection-start-line="37" selection-start-column="42" selection-end-line="37" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="default.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/css/default.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="819">
+              <caret line="73" column="19" lean-forward="false" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -104,16 +114,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/news/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/news/models.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -137,7 +137,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>full-det</find>
       <find>product-d</find>
       <find>menu-li</find>
       <find>main-m</find>
@@ -167,6 +166,7 @@
       <find>news-naviga</find>
       <find>height</find>
       <find>published_date</find>
+      <find>user_is_subscribed</find>
     </findStrings>
     <dirStrings>
       <dir>D:\PycharmProjects\stream_three_project</dir>
@@ -222,12 +222,12 @@
         <option value="$PROJECT_DIR$/home/views.py" />
         <option value="$PROJECT_DIR$/static/js/custom.js" />
         <option value="$PROJECT_DIR$/store/templates/product.html" />
-        <option value="$PROJECT_DIR$/static/css/default.css" />
         <option value="$PROJECT_DIR$/home/templates/home.html" />
         <option value="$PROJECT_DIR$/games/tests.py" />
         <option value="$PROJECT_DIR$/games/fixtures/games.json" />
         <option value="$PROJECT_DIR$/teams/fixtures/games.json" />
         <option value="$PROJECT_DIR$/news/models.py" />
+        <option value="$PROJECT_DIR$/static/css/default.css" />
         <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
@@ -239,8 +239,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="465" />
-    <option name="y" value="3" />
+    <option name="x" value="-8" />
+    <option name="y" value="4" />
     <option name="width" value="1462" />
     <option name="height" value="1085" />
   </component>
@@ -273,7 +273,18 @@
             <path>
               <item name="stream_three_project" type="b2602c69:ProjectViewProjectNode" />
               <item name="stream_three_project" type="462c0819:PsiDirectoryNode" />
-              <item name="teams" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stream_three_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stream_three_project" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stream_three_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stream_three_project" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -411,7 +422,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="465" y="3" width="1462" height="1085" extended-state="0" />
+    <frame x="-8" y="4" width="1462" height="1085" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -460,14 +471,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/stream_three_project/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="43" column="36" lean-forward="false" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/store/templates/premium.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-861">
@@ -678,14 +681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/store/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="22" column="25" lean-forward="false" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/store/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -693,14 +688,6 @@
           <folding>
             <element signature="e#24#63#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -766,14 +753,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="109">
           <caret line="6" column="38" lean-forward="false" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/default.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-24252">
-          <caret line="71" column="16" lean-forward="false" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -868,10 +847,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/default.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="819">
+          <caret line="73" column="19" lean-forward="false" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/context_processors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="56" lean-forward="true" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-377">
+          <caret line="22" column="25" lean-forward="false" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="184" column="0" lean-forward="true" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+        <state relative-caret-position="515">
+          <caret line="202" column="0" lean-forward="true" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="37" column="42" lean-forward="true" selection-start-line="37" selection-start-column="42" selection-end-line="37" selection-end-column="42" />
           <folding />
         </state>
       </provider>

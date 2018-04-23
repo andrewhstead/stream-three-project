@@ -71,6 +71,7 @@ main {
     height: 35px;
     width: 35px;
     display: block;
+    margin: 0 auto;
 }
 
 .home-logo {
