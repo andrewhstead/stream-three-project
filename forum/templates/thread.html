@@ -42,7 +42,9 @@
                 </div>
             {% else %}
                 <div id="not-logged-in">
-                    You must be <a class="standard-link" href="{% url 'login' %}">logged in</a> to post.
+                    You must be <a class="standard-link"
+                                   href="{% url 'login' %}?next={% url 'view_thread' thread.id %}?page={{ pages }}">
+                    logged in</a> to post.
                 </div>
             {% endif %}
 

@@ -472,7 +472,7 @@ def register_premium(request):
                         user.save()
                         messages.success(request, 'Your premium registration was successful!')
                         auth.login(request, user)
-                        return redirect(reverse('user_profile'))
+                        return redirect(reverse('premium_home'))
 
                     else:
                         messages.error(request, 'Sorry, we were unable to take your payment. '

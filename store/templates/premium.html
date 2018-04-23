@@ -31,10 +31,14 @@
                 </p>
             {% else %}
                 <p class="sub-header">
-                    <a class="standard-link" href="{% url 'register_premium' %}">Register and subscribe</a> to view premium content.
+                    <a class="standard-link"
+                       href="{% url 'register_premium' %}?next={% url 'premium_home' %}">
+                        Register and subscribe</a> to view premium content.
                 </p>
                 <p class="sub-header">
-                    Already subscribed? <a class="standard-link" href="{% url 'login' %}">Log in </a> to your account.
+                    Already subscribed?
+                    <a class="standard-link"
+                       href="{% url 'login' %}?next={% url 'premium_home' %}">Log in </a> to your account.
                 </p>
             {% endif %}
 
@@ -109,7 +113,7 @@
                 </tr>
 
                 {% for game in schedule %}
-                    <tr>
+                    <tr class="lined-row">
                         <td>
                             <a class="table-link" href="{% url 'team_page' game.away_team.geographic_name|lower %}">
                                 {{ game.away_team.geographic_name }}

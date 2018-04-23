@@ -18,7 +18,7 @@
                 </div>
             {% else %}
                 <div class="sub-header">
-                    NB: You must be <a class="standard-link" href="{% url 'login' %}">logged in</a> to post.
+                    NB: You must be <a class="standard-link" href="{% url 'login' %}?next={% url 'forum' %}">logged in</a> to post.
                 </div>
             {% endif %}
 

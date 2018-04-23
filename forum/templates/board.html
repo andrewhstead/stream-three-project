@@ -27,7 +27,15 @@
                 </div>
             {% else %}
                 <div id="not-logged-in">
-                    You must be <a class="standard-link" href="{% url 'login' %}">logged in</a> to post.
+                    {% if team %}
+                        You must be <a class="standard-link"
+                                       href="{% url 'login' %}?next={% url 'forum_team' team.geographic_name|lower %}">
+                        logged in</a> to post.
+                    {% else %}
+                        You must be <a class="standard-link"
+                                       href="{% url 'login' %}?next={% url 'forum_league' board_id %}">
+                        logged in</a> to post.
+                    {% endif %}
                 </div>
             {% endif %}
 

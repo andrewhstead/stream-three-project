@@ -10,7 +10,7 @@
                 LOG IN TO YOUR ACCOUNT
             </div>
 
-            <form id="default-form" role="form" method="post" action="{% url 'login' %}">
+            <form id="default-form" role="form" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button class="default-button" type="submit">Log In</button>

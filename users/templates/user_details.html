@@ -15,11 +15,9 @@
             </div>
 
             {% if user.is_authenticated %}
-                <form id="default-form" enctype="multipart/form-data" role="form"
-                      method="post" action="{% url 'edit_profile' %}">
+                <form id="default-form" enctype="multipart/form-data" role="form" method="post">
             {% else %}
-                <form id="default-form" enctype="multipart/form-data" role="form"
-                      method="post" action="{% url 'register' %}">
+                <form id="default-form" enctype="multipart/form-data" role="form" method="post">
             {% endif %}
                 {% csrf_token %}
                 {{ form.as_p }}

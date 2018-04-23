@@ -79,7 +79,7 @@
                 </div>
             {% else %}
                 <div id="not-logged-in">
-                    You must be <a class="standard-link" href="{% url 'login' %}">logged in</a> to
+                    You must be <a class="standard-link" href="{% url 'login' %}?next={% url 'news' item.id %}">logged in</a> to
                     comment.
                 </div>
             {% endif %}

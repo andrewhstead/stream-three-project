@@ -61,7 +61,9 @@ def forum_league(request, board_id):
     except PageNotAnInteger:
         threads = page_threads.page(1)
 
-    return render(request, 'board.html', {'board': board, 'threads': threads, 'recent_posts': recent_posts})
+    return render(request, 'board.html', {'board': board, 'board_id': board_id,
+                                          'threads': threads, 'recent_posts':
+    recent_posts})
 
 
 @login_required(login_url='/login/')
@@ -123,6 +125,7 @@ def view_thread(request, thread_id):
 
     posts_per_page = 10
     page_posts = Paginator(all_posts, posts_per_page)
+    pages = page_posts.num_pages
 
     page = request.GET.get('page')
 
@@ -144,10 +147,10 @@ def view_thread(request, thread_id):
         team = get_object_or_404(Team, pk=board.team_id)
         return render(request, 'thread.html', {'thread': thread, 'board': board, 'team': team,
                                                'posts': posts, 'page': page, 'previous': previous,
-                                               'recent_posts': recent_posts})
+                                               'recent_posts': recent_posts, 'pages': pages})
 
     else:
-        return render(request, 'thread.html', {'thread': thread, 'board': board, 'posts': posts,
+        return render(request, 'thread.html', {'thread': thread, 'board': board, 'posts': posts, 'pages': pages,
                                                'page': page, 'previous': previous, 'recent_posts': recent_posts})
 
 

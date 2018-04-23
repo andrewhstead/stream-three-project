@@ -26,7 +26,7 @@ def register(request):
             if user:
                 messages.success(request, 'Your registration was successful!')
                 auth.login(request, user)
-                return redirect(reverse('user_profile'))
+                return redirect(request.GET.get('next') or reverse('user_profile'))
             else:
                 messages.error(request, 'Sorry, we were unable to register your account. Please try again.')
 
@@ -51,7 +51,7 @@ def login(request):
             if user is not None:
                 auth.login(request, user)
                 messages.success(request, "You have successfully logged in!")
-                return redirect(reverse('user_profile'))
+                return redirect(request.GET.get('next') or reverse('user_profile'))
             else:
                 messages.error(request, "Your username or password was not recognised. Please try again.")
 
