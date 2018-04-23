@@ -73,13 +73,9 @@ def add_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     items = product.items.all()
     sizes = []
-    out_of_stock = []
 
     for item in items:
-        if item.stock > 0:
-            sizes.append((item.size, item.size))
-        else:
-            out_of_stock.append(item.size)
+        sizes.append((item.size, item.size))
 
     if request.method == 'POST':
         form = AddToCartForm(request.POST, item_options=sizes)
@@ -137,8 +133,7 @@ def add_product(request, product_id):
         form = AddToCartForm(item_options=sizes)
         form.order_fields(['size', 'quantity'])
 
-    args = {'form': form, 'product': product, 'items': items,
-            'out_of_stock': out_of_stock, 'button_text': 'Add to Basket'}
+    args = {'form': form, 'product': product, 'items': items, 'button_text': 'Add to Basket'}
     args.update(csrf(request))
     return render(request, 'product.html', args)
 
@@ -311,7 +306,7 @@ def order_confirmation(request):
 @login_required(login_url='/login/')
 def order_list(request):
     user = request.user
-    orders = Cart.objects.filter(user=user, status__in=['Received', 'Dispatched']).order_by('-date')
+    orders = Cart.objects.filter(user=user, status='Received').order_by('-date')
     return render(request, 'orders.html', {'orders': orders})
 
 
@@ -324,8 +319,7 @@ def order_details(request, order_id):
 
 def premium_home(request):
     schedule = Game.objects.filter(game_status='Scheduled').filter(is_premium=True)
-    live_games = Game.objects.filter(game_status='In Progress').filter(is_premium=True)
-    return render(request, 'premium.html', {'schedule': schedule, 'live_games': live_games})
+    return render(request, 'premium.html', {'schedule': schedule})
 
 
 @login_required(login_url='/login/')

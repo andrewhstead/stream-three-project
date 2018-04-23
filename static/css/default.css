@@ -1318,7 +1318,7 @@ ul.errorlist li {
     text-decoration: underline;
 }
 
-#team-news {
+#extra-news {
     margin: 20px;
 }
 
@@ -1331,4 +1331,9 @@ ul.errorlist li {
     height: 30px;
     width: 30px;
     vertical-align: middle;
+}
+
+.league-news {
+    background-color: #10253f;
+    color: white;
 }
