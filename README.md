@@ -161,6 +161,11 @@ easily view the standings for that year. In the scores and standings views, if a
 opportunity to set a particular team as their 'favourite' then that team will be highlighted in the standings and in the
  games listed in the sidebar.
 
+In order to make the last and next game dates and league standings available to templates across the site, a context
+processor is used to set up this information. This is done because the need to prevent errors when there are no results
+or fixtures available leads to a relatively complex function and it is included here to avoid repetition of large
+amounts of code.
+
 ### Teams App
 
 The teams app creates both the information about the teams in the league and also the details of the league's overall
@@ -311,9 +316,12 @@ A GitHub repository was created for the project right at the beginning of develo
 
 ## Testing
 
-Testing the project was done by a mixture of automatic and manual methods. Automatic tests were written within the
-Django project to test the URLs and views, as well as testing validation for all the forms which are included on the
-site. In total, this testing covers 67% of all the lines of code in the project. Further testing was done manually, by
-navigating the links on the site and entering a variety of data into the forms, ensuring that the site navigation worked
- as intended and that the forms were accepted with correct inputs and rejected when wrong entries were made, such as
- passwords which did not match on registration.
+Much of the site development was done on a Windows PC using the Chrome browser, and making use of the developer tools to
+ view at different screen sizes and troubleshoot any problems which may occur. Testing the project was done by a mixture
+  of automatic and manual methods. Automatic tests were written within the Django project to test the URLs and views, as
+   well as testing validation for all the forms which are included on the site. In total, this testing covers 67% of all
+    the lines of code in the project. Further testing was done manually, using different browsers such as Firefox and
+    difference operating systems in terms of using Android devices. The project was tested by navigating the links
+    on the site and entering a variety of data into the forms, ensuring that the site navigation worked as intended and
+    that the forms were accepted with correct inputs and rejected when wrong entries were made, such as passwords which did not match
+    on registration.

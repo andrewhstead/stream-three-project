@@ -70,13 +70,17 @@
 
                     <div class="pagination-section previous-page">
                         {% if posts.has_previous %}
-                            <a class="standard-link" href="?page={{ posts.previous_page_number }}"><< Earlier Posts</a>
+                            <a class="standard-link" href="?page={{ posts.previous_page_number }}">
+                                &lt;&lt; Earlier Posts
+                            </a>
                         {% endif %}
                     </div>
 
                     <div class="pagination-section next-page">
                         {% if posts.has_next %}
-                            <a class="standard-link" href="?page={{ posts.next_page_number }}">Later Posts >></a>
+                            <a class="standard-link" href="?page={{ posts.next_page_number }}">
+                                Later Posts &gt;&gt;
+                            </a>
                         {% endif %}
                     </div>
 
