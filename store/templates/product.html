@@ -13,39 +13,100 @@
 
             <div id="product-details">
 
-                <img class="product-border" src="/media/{{ product.picture }}"/><br />
-                {{ product.team }}<br />
-                {{ product.description }}<br />
-                £{{ product.price }}<br />
+                <div class="column-wrapper">
 
-                {% if out_of_stock %}
-                    <p class="full-details">
-                        NB: Size(s)
+                    <div class="multi-column">
 
-                        {% for size in out_of_stock %}
-                            {{ size }}{% if not forloop.last %}, {% endif %}
-                        {% endfor %}
+                        <img class="product-border" src="/media/{{ product.picture }}"/><br />
+                        {{ product.team }}<br />
+                        {{ product.description }}<br />
+                        £{{ product.price }}<br />
 
-                        currently out of stock.
-                    </p>
-                {% endif %}
+                        {% if out_of_stock %}
+                            <p class="full-details">
+                                NB: Size(s)
+
+                                {% for size in out_of_stock %}
+                                    {{ size }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+
+                                currently out of stock.
+                            </p>
+                        {% endif %}
+
+                        <form id="inline-form" method="post" action="{{ form_action }}">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            {% if user.is_authenticated %}
+                                <button class="default-button" type="submit">{{ button_text }}</button>
+                            {% endif %}
+                        </form>
+
+                        {% if not user.is_authenticated %}
+                            <div class="sub-header">
+                                Please <a class="standard-link" href="{% url 'register' %}">register</a> or
+                                <a class="standard-link" href="{% url 'login' %}">log in</a> to add items.
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="multi-column">
+
+                        {% if product.type == 'Jersey' %}
+
+                            PRODUCT INFORMATION
+
+                            <ul class="product-list">
+                                <li>Authentic replica of jerseys worn by BIBL players.</li>
+                                <li>Includes BIBL logo sleeve patches.</li>
+                                <li>100% polyester.</li>
+                                <li>Ships within two working days of order.</li>
+                                <li>We aim to deliver within seven working days.</li>
+                            </ul>
+
+                            SIZE GUIDE<br />
+                            (Chest)
+
+                            <ul class="product-list">
+                                <li>XS: 28-30"</li>
+                                <li>S: 32-34"</li>
+                                <li>M: 36-38"</li>
+                                <li>L: 40-42"</li>
+                                <li>XL: 44-46"</li>
+                                <li>XXL: 48-50"</li>
+                            </ul>
+
+                        {% elif product.type == 'Cap' %}
+
+                            PRODUCT INFORMATION
+
+                            <ul class="product-list">
+                                <li>Authentic replica of caps worn by BIBL players.</li>
+                                <li>Includes embroidered team logo.</li>
+                                <li>BIBL logo embroidered on the back.</li>
+                                <li>100% polyester.</li>
+                                <li>Ships within two working days of order.</li>
+                                <li>We aim to deliver within seven working days.</li>
+                            </ul>
+
+                            SIZE GUIDE<br />
+                            (Head)
+
+                            <ul class="product-list">
+                                <li>S: 21"</li>
+                                <li>M: 22"</li>
+                                <li>L: 23"</li>
+                                <li>XL: 24"</li>
+                            </ul>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
 
             </div>
-
-            <form id="inline-form" method="post" action="{{ form_action }}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                {% if user.is_authenticated %}
-                    <button class="default-button" type="submit">{{ button_text }}</button>
-                {% endif %}
-            </form>
-
-            {% if not user.is_authenticated %}
-                <div class="sub-header">
-                    Please <a class="standard-link" href="{% url 'register' %}">register</a> or
-                    <a class="standard-link" href="{% url 'login' %}">log in</a> to add items.
-                </div>
-            {% endif %}
 
         </div>
 

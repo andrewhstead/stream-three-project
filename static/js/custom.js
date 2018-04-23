@@ -10,22 +10,31 @@ $('#show-hide').click(function(){
 
 // Functions to allow scrolling of hidden overflow on sponsor logos.
 var leftOffset = parseInt($('#logo-wrapper').css('left'));
+var rightOffset = parseInt($('#logo-wrapper').css('right'));
 
 $('#right-scroll').click(function(){
     if (leftOffset >= -500) {
         $("#logo-wrapper").animate({
-            left: '-=50px'
+            left: '-=50px',
+            right: '+=50px'
         });
         leftOffset -= 50;
+        rightOffset += 50;
+        console.log(leftOffset);
+        console.log(rightOffset);
     }
 });
 
 $('#left-scroll').click(function(){
     if (leftOffset < 0) {
         $("#logo-wrapper").animate({
-            left: '+=50px'
+            left: '+=50px',
+            right: '-=50px'
         });
         leftOffset += 50;
+        rightOffset -= 50;
+        console.log(leftOffset);
+        console.log(rightOffset);
     }
 });
 

@@ -1337,3 +1337,8 @@ ul.errorlist li {
     background-color: #10253f;
     color: white;
 }
+
+.product-list {
+    text-align: left;
+    margin-right: 10px;
+}
