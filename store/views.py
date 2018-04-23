@@ -437,7 +437,7 @@ def register_premium(request):
     if request.method == 'POST':
         registration_form = RegistrationForm(request.POST)
         subscription_form = SubscriptionForm(request.POST)
-        subscription_form.order_fields(['billing_cycle', 'card_number', 'cvv',
+        subscription_form.order_fields(['name_on_card', 'billing_cycle', 'card_number', 'cvv',
                                         'expiry_month', 'expiry_year', 'stripe_id'])
 
         billing_cycle = request.POST.get('billing_cycle')

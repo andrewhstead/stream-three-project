@@ -18,6 +18,7 @@ the site.
 	* [External JavaScript Libraries](#external-javascript-libraries)
 	* [Other External Sources](#other-external-sources)
 3. [Back End Development](#back-end-development)
+	* [Home App](#home-app)
 	* [News App](#news-app)
 	* [Games App](#games-app)
 	* [Teams App](#teams-app)
@@ -93,8 +94,11 @@ outline [Privacy Policy](https://privacypolicytemplate.net/) and [Terms and Cond
 
 ## Back End Development
 
-In addition to a 'Home' app which contains the template for the site's Home Page plus an HTML include for use across the
- site, there are six further apps which make up the project.
+### Home App
+
+The simple 'Home' app contains the template for the site's Home Page, as well as a model which enables site users,
+whether registered or not, to send messages to the site administrators. This is done by means of a form which saves the
+message, along with the user's name and email address, to the database.
 
 ### News App
 

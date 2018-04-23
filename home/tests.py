@@ -5,6 +5,7 @@ from django.test import TestCase
 from home.views import home_page
 from django.core.urlresolvers import resolve
 from django.shortcuts import render_to_response
+from .forms import MessageForm
 
 
 class HomePageTest(TestCase):
@@ -22,3 +23,14 @@ class HomePageTest(TestCase):
         self.assertTemplateUsed(site_home, "home.html")
         site_home_template_output = render_to_response("home.html").content
         self.assertEqual(site_home.content, site_home_template_output)
+
+
+class ContactFormTest(TestCase):
+    def test_message_form(self):
+        form = MessageForm({
+            'sender': 'Sender Name',
+            'email': 'email@address.me ',
+            'subject': 'Message Subject',
+            'message': 'The content of the message.'
+        })
+        self.assertTrue(form.is_valid())

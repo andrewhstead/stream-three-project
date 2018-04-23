@@ -5,7 +5,6 @@ from django.db import models
 from tinymce.models import HTMLField
 from users.models import User
 from teams.models import Team
-from datetime import datetime
 
 
 # Create your models here.

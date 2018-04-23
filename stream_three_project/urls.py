@@ -42,6 +42,7 @@ urlpatterns = [
         news_views.edit_comment, name='edit_comment'),
     url(r'^comment/delete/(?P<item_id>\d+)/(?P<comment_id>\d+)/$',
         news_views.delete_comment, name='delete_comment'),
+    url(r'^contact/$', home_views.contact, name='contact'),
     url(r'^forum/$', forum_views.forum_home, name='forum'),
     url(r'^forum/league/(?P<board_id>\d+)/$', forum_views.forum_league, name='forum_league'),
     url(r'^forum/(?P<team_name>.*)/$', forum_views.forum_team, name='forum_team'),
