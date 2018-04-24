@@ -1,51 +1,50 @@
+/* General site layout styles */
 body {
     margin: 0;
     padding: 0;
     font-family: "Merriweather", "Times New Roman", serif;
 }
-
 a {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-
 header {
     background-color: #10253f;
 	box-shadow: 0 2px 2px 2px #4f81bd;
 }
-
 main {
     margin: 20px auto;
     max-width: 400px;
     padding: 0 10px;
 }
 
+/* Hide extra content on smaller devices */
 .for-desktop {
     display: none;
 }
 
+/* Multiple column layouts */
 .column-wrapper {
     display: flex;
     flex-direction: column;
 }
-
 .column {
     flex: 1;
 }
 
+/* Toggle content based on user action */
 .hidden {
     display: none;
 }
-
-.active {
-    display: block;
+.activate {
+	display: block;
 }
 
+/* Styles for the main site header */
 #teams-header {
     display: flex;
     padding: 5px;
     background-color: #4f81bd;
 }
-
 #league-header {
     display: flex;
     padding: 5px;
@@ -57,7 +56,6 @@ main {
     text-align: center;
     max-width: 600px;
 }
-
 .header-logos {
     flex: 1;
     margin-left: auto;
@@ -66,26 +64,22 @@ main {
     text-align: center;
     display: inline-block;
 }
-
 .header-logo {
     height: 35px;
     width: 35px;
     display: block;
     margin: 0 auto;
 }
-
 .home-logo {
     height: 100px;
     width: 100px;
     display: block;
 }
-
 #league-name {
     padding: 5px;
     margin: auto;
     text-align: left;
 }
-
 #menu-button {
     position: absolute;
     bottom: 5px;
@@ -96,86 +90,11 @@ main {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-.team-title {
-    font-size: 2em;
-    word-spacing: 9999999px;
-}
-
-#team-profile-header {
-    padding-bottom: 20px;
-}
-
-.profile-logo {
-    float: right;
-    height: 80px;
-    width: 80px;
-    z-index: 2;
-    margin-top: 5px;
-    border-radius: 50%;
-}
-
-.user-profile {
-    float: right;
-    height: 80px;
-    width: 80px;
-    z-index: 2;
-    margin-top: 5px;
-    border-radius: 50%;
-    border: 2px solid #10253f;
-}
-
-.dublin-text {
-    color: rgb(0,128,0);
-    text-shadow: 1px 1px rgb(243,116,27);
-}
-
-.glasgow-text {
-    color: rgb(221,208,0);
-    text-shadow: 1px 1px rgb(0,0,0);
-}
-
-.liverpool-text {
-    color: rgb(255,0,0);
-    text-shadow: 1px 1px rgb(0,0,157);
-}
-
-.manchester-text {
-    color: rgb(0,0,0);
-    text-shadow: 1px 1px rgb(204,204,204);
-}
-
-.birmingham-text {
-    color: rgb(150,130,104);
-    text-shadow: 1px 1px rgb(191,191,191);
-}
-
-.bristol-text {
-    color: rgb(123,72,4);
-    text-shadow: 1px 1px rgb(255,255,0);
-}
-
-.cardiff-text {
-    color: rgb(191,0,0);
-    text-shadow: 1px 1px rgb(0,127,63);
-}
-
-.london-text {
-    color: rgb(229,179,2);
-    text-shadow: 1px 1px rgb(128,0,128);
-}
-
-.toggle {
-	display: none;
-}
-.activate {
-	display: block;
-}
-
+/* Styles for the main menu */
 #main-menu {
     display: none;
     position: relative;
 }
-
 .menu-link {
 	background-color: #4f81bd;
     border-bottom: 1px solid #10253f;
@@ -187,78 +106,219 @@ main {
     box-sizing: border-box;
     white-space: nowrap;
 }
-
 .menu-link:last-of-type {
 	box-shadow: 0 2px 2px 2px #10253f;
 }
-
 .menu-link:hover {
 	background-color: #10253f;
     transition: 0.25s;
 }
 
+/* Styling for page headers */
 #page-header {
     font-size: 1.25em;
     text-align: center;
     margin-bottom: 10px;
     font-weight: bold;
 }
+.left-header {
+    margin: 10px auto;
+}
+.sub-header {
+    margin: 10px auto;
+    text-align: center;
+}
+.close-header {
+    margin: 0;
+    text-align: center;
+}
 
+/* Styling for team headers */
 .team-name {
     font-size: 1.2em;
     font-weight: bold;
 }
-
-.left-header {
-    margin: 10px auto;
+.team-title {
+    font-size: 2em;
+    word-spacing: 9999999px;
+}
+#team-profile-header {
+    padding-bottom: 20px;
+}
+.profile-logo {
+    float: right;
+    height: 80px;
+    width: 80px;
+    z-index: 2;
+    margin-top: 5px;
+    border-radius: 50%;
 }
 
+/* Styles for user profile images */
+.user-profile {
+    float: right;
+    height: 80px;
+    width: 80px;
+    z-index: 2;
+    margin-top: 5px;
+    border-radius: 50%;
+    border: 2px solid #10253f;
+}
 .small-logo {
     height: 20px;
     width: 20px;
     vertical-align: middle;
 }
+.comment-logo {
+    float: left;
+    height: 30px;
+    width: 30px;
+    z-index: 2;
+    margin-right: 5px;
+    border-radius: 50%;
+    border: 1px solid #10253f;
+}
+#comments {
+    margin-bottom: 10px;
+}
 
+/* Styling for home page news headlines */
+.banner-story {
+    margin: 0 20px 5px 20px;
+    border: 2px solid #10253f;
+}
+.banner-headline {
+    background-color: #4f81bd;
+    color: #10253f;
+    text-align: center;
+    padding: 5px;
+    border-top: 2px solid #10253f;
+    min-height: 40px;
+    margin: auto;
+}
+.cover-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+#news-navigation {
+    text-align: center;
+    margin: 10px auto;
+    height: 20px;
+    width: fit-content;
+}
+.news-blob {
+    float: left;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+.default-blob {
+    background-color: #ccddee;
+}
+.active-blob {
+    background-color: #10253f;
+}
+.news-link {
+    margin: 10px;
+}
+.banner-link {
+    color: #10253f;
+    text-decoration: none;
+}
+.banner-link:hover {
+    text-decoration: underline;
+}
+.fade-in {
+	animation-name: fade-transition;
+	animation-duration: 1s;
+}
+@keyframes fade-transition {
+	from {
+		opacity: 0.5;
+        filter: brightness(50%);
+	}
+	to {
+		opacity: 1;
+        filter: brightness(100%);
+	}
+}
+
+/* Styles for extra news on home page */
+#extra-news {
+    margin: 20px;
+}
+.user-news {
+    padding: 10px;
+    font-size: 1.2em;
+}
+.user-news-logo {
+    height: 30px;
+    width: 30px;
+    vertical-align: middle;
+}
+.league-news {
+    background-color: #10253f;
+    color: white;
+}
+
+/* Styles for index of teams */
 .team-details {
     margin: 20px;
     padding: 10px
 }
-
 .team-details ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
-
 .profile-links {
     font-size: 0.75em;
 }
+.uniform {
+    display: inline-block;
+    text-align: center;
+}
 
+.uniform img {
+    display: block;
+    width: 75px;
+    height: 75px;
+}
+
+/* Styles for links */
 .standard-link {
     text-decoration: none;
     color: #4f81bd;
 }
-
 .standard-link:hover {
     text-decoration: underline;
     color: #10253f;
 }
+.plain-link {
+    text-decoration: none;
+}
+.plain-link:hover {
+    text-decoration: underline;
+}
+.link-list {
+    margin: 5px auto;
+}
 
+/* Styles for site footer */
 footer {
 	box-shadow: 0 -2px 2px 2px #10253f;
 }
-
 #footer-content {
     background-color: #10253f;
     padding: 10px;
     color: white;
     font-size: 0.75em;
 }
-
 #copyright {
     margin-top: 5px;
 }
-
 .footer-link {
     color: white;
     text-decoration: none;
@@ -267,20 +327,19 @@ footer {
     text-decoration: underline;
 }
 
+/* Styles for social media icons */
 #social-media {
     padding: 10px;
     background-color: #4f81bd;
     height: 35px;
     text-align: center;
 }
-
 .social {
     height: 35px;
     width: 35px;
     display: inline-block;
     margin: auto;
 }
-
 .facebook {
     background: url("/media/images/social/grey/facebook.png");
     background-size: contain;
@@ -289,7 +348,6 @@ footer {
     background: url("/media/images/social/colour/facebook.png");
     background-size: contain;
 }
-
 .twitter {
     background: url("/media/images/social/grey/twitter.png");
     background-size: contain;
@@ -298,7 +356,6 @@ footer {
     background: url("/media/images/social/colour/twitter.png");
     background-size: contain;
 }
-
 .instagram {
     background: url("/media/images/social/grey/instagram.png");
     background-size: contain;
@@ -307,7 +364,6 @@ footer {
     background: url("/media/images/social/colour/instagram.png");
     background-size: contain;
 }
-
 .youtube {
     background: url("/media/images/social/grey/youtube.png");
     background-size: contain;
@@ -317,6 +373,7 @@ footer {
     background-size: contain;
 }
 
+/* Styles for generic team headers */
 .team-tag {
     border-radius: 10px;
     padding: 1px 10px;
@@ -326,47 +383,33 @@ footer {
 .team-tag:hover {
     text-decoration: underline;
 }
-
-.dublin-tag {
-    background-color: rgb(0,128,0);
-    color: rgb(255,128,39);
+.team-header {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 10px;
+}
+#team-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+.colour-box {
+    border-radius: 10px;
+    padding: 2px;
+    clear: both;
+    margin: 10px;
+    text-align: center;
+}
+.league-box {
+    background-color: #10253f;
+    color: #ffffff;
+    border: 2px solid #10253f;
+    box-shadow: 0 0 2px 2px #4f81bd;
+}
+.game-box {
+    text-align: center;
 }
 
-.glasgow-tag {
-    background-color: rgb(221,208,0);
-    color: rgb(0,0,0);
-}
-
-.liverpool-tag {
-    background-color: rgb(255,0,0);
-    color: rgb(0,0,157);
-}
-
-.manchester-tag {
-    background-color: rgb(0,0,0);
-    color: rgb(204,204,204);
-}
-
-.birmingham-tag {
-    background-color: rgb(150,130,104);
-    color: rgb(255,255,255);
-}
-
-.bristol-tag {
-    background-color: rgb(123,72,4);
-    color: rgb(255,255,0);
-}
-
-.cardiff-tag {
-    background-color: rgb(191,0,0);
-    color: rgb(255,255,255);
-}
-
-.london-tag {
-    background-color: rgb(229,179,2);
-    color: rgb(128,0,128);
-}
-
+/* Styles for news articles */
 #news-headline {
     font-size: 1.25em;
     margin: 10px auto;
@@ -376,107 +419,94 @@ footer {
     font-size: 0.75em;
     font-weight: normal;
 }
-
 #item-content {
     margin: 10px auto;
 }
-
 #item-content p {
     text-align: justify;
 }
-
 .arrow {
     color: #10253f;
 }
-
-.colour-box {
-    border-radius: 10px;
-    padding: 2px;
-    clear: both;
-    margin: 10px;
+.news-image {
     text-align: center;
+    margin: 10px auto;
+    font-size: 0.9em;
 }
-
-.league-box {
-    background-color: #10253f;
-    color: #ffffff;
+.news-image img {
     border: 2px solid #10253f;
     box-shadow: 0 0 2px 2px #4f81bd;
+    width: 150px;
 }
 
-.dublin-box {
-    background-color: rgb(0,128,0);
-    color: rgb(255,128,39);
-    border: 2px solid rgb(0,128,0);
-    box-shadow: 0 0 2px 2px rgb(243,116,27);
+/*Styles for fan blogs */
+.blog-author {
+    float: left;
+    height: 70px;
+    width: 70px;
+    z-index: 2;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: 2px solid #10253f;
 }
-
-.glasgow-box {
-    background-color: rgb(221,208,0);
-    color: rgb(0,0,0);
-    border: 2px solid rgb(221,208,0);
-    box-shadow: 0 0 2px 2px rgb(0,0,0);
+.blog-content {
+    margin-left: 80px;
+    text-align: justify;
 }
-
-.liverpool-box {
-    background-color: rgb(255,0,0);
-    color: rgb(0,0,157);
-    border: 2px solid rgb(255,0,0);
-    box-shadow: 0 0 2px 2px rgb(0,0,157);
-}
-
-.manchester-box {
-    background-color: rgb(0,0,0);
-    color: rgb(204,204,204);
-    border: 2px solid rgb(0,0,0);
-    box-shadow: 0 0 2px 2px rgb(204,204,204);
-}
-
-.birmingham-box {
-    background-color: rgb(150,130,104);
-    color: rgb(255,255,255);
-    border: 2px solid rgb(150,130,104);
-    box-shadow: 0 0 2px 2px rgb(191,191,191);
-}
-
-.bristol-box {
-    background-color: rgb(123,72,4);
-    color: rgb(255,255,0);
-    border: 2px solid rgb(123,72,4);
-    box-shadow: 0 0 2px 2px rgb(255,255,0);
-}
-
-.cardiff-box {
-    background-color: rgb(191,0,0);
-    color: rgb(255,255,255);
-    border: 2px solid rgb(191,0,0);
-    box-shadow: 0 0 2px 2px rgb(0,127,63);
-}
-
-.london-box {
-    background-color: rgb(229,179,2);
-    color: rgb(128,0,128);
-    border: 2px solid rgb(229,179,2);
-    box-shadow: 0 0 2px 2px rgb(128,0,128);
-}
-
-.team-header {
-    font-size: 1.5em;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.desktop-cell {
-    display: none;
-}
-
-#full-details {
-    font-size: 0.75em;
-    display: block;
-    text-align: center;
+.blog-post {
     clear: both;
+    padding-top: 10px;
+}
+.blog-title {
+    font-size: 1.5em;
+    text-align: left;
+}
+.blog-details {
+    font-size: 0.75em;
+}
+.blog-author-title {
+    font-size: 1.5em;
+}
+.blogger-details {
+    clear: both;
+    padding: 10px;
 }
 
+/* Styles for comments */
+.comment-body {
+    border-bottom: 1px solid #10253f;
+    padding: 5px;
+}
+.comment-body:first-of-type {
+    border-top: 1px solid #10253f;
+}
+.comment-body:nth-of-type(odd) {
+    background-color: #ccddee;
+}
+.comment-user {
+    font-size: 1.25em;
+}
+.comment-text p {
+    margin: 5px 0 0 0;
+}
+.comment-detail, .cart-controls {
+    font-size: 0.75em;
+}
+.comment-controls {
+    text-align: right;
+    margin-top: 5px;
+}
+#show-hide {
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-size: 0.75em;
+}
+#not-logged-in {
+    margin: 10px 0 0 0;
+    font-size: 0.75em;
+}
+
+/* Styling additional navigating links */
 .full-details {
     font-size: 0.75em;
     display: block;
@@ -484,31 +514,23 @@ footer {
     clear: both;
 }
 
+/* Styling for statistics tables */
+/* Hide cells which should only be shown on larger devices */
+.desktop-cell {
+    display: none;
+}
 .table-details {
     font-size: 0.75em;
     display: block;
 }
-
-.sub-header {
-    margin: 10px auto;
-    text-align: center;
-}
-
-.close-header {
-    margin: 0;
-    text-align: center;
-}
-
 .stat-intro {
     text-align: left;
     padding-left: 5px;
 }
-
 .header-row {
     background-color: #10253f;
     color: white;
 }
-
 .stat-table {
     border-collapse: collapse;
     width: 100%;
@@ -516,186 +538,195 @@ footer {
     margin: 5px auto;
     text-align: center;
 }
-
 .stat-table td {
     margin: 0 5px;
 }
-
 .score-column {
     width: 30px;
 }
-
 .standings-column {
     width: 30px;
 }
-
 .standings-column-wide {
     width: 40px;
 }
-
 .standings-column-wider {
     width: 50px;
 }
-
 .stat-header {
     text-align: left;
     padding-left: 2px;
 }
-
 .stat-team {
     text-align: center;
     width: 40%;
 }
-
 .stat-detail {
     background-color: #4f81bd;
 }
-
 .stat-win {
     background-color: #00cc00;
     color: white;
 }
-
 .stat-loss {
     background-color: #cc0000;
     color: white;
     padding: 0 5px;
 }
-
 .stat-detail-faint {
     background-color: #6fa1dd;
 }
-
 .stat-detail-fainter {
     background-color: #afc1fd;
 }
-
 .stat-detail-highlight {
     background-color: #ffcc00;
 }
-
 .stat-detail-highfaint {
     background-color: #ffdd99;
 }
+.alternating-rows tr:nth-child(2n+2) {
+    background-color: #ccddee;
+}
+.alternating-no-header tr:nth-child(2n+1) {
+    background-color: #ccddee;
+}
+.table-link {
+    text-decoration: none;
+    color: black;
+}
+.table-link:hover {
+    text-decoration: underline;
+}
 
+/* Flexbox styles for pagination */
 .last-next, .pagination-links {
     display: flex;
 }
+.double-box, .pagination-section {
+    flex: 1;
+}
+.team-abbreviation {
+    width: 35%;
+}
+.page-detail {
+    text-align: center;
+}
+.right-align {
+    text-align: right;
+}
+.left-align {
+    text-align: left;
+}
 
+/* Styles for pagination buttons */
+.pagination-menu {
+    margin: 10px auto;
+    text-align: center;
+    display: flex;
+}
+.pagination-menu div:first-child {
+    border-radius: 10px 0 0 10px;
+}
+.pagination-menu div:last-child {
+    border-radius: 0 10px 10px 0;
+}
+.pagination-button {
+    padding: 5px;
+    margin: 0;
+    background-color: #10253f;
+    display: inline;
+    flex: 1;
+    border-right: 1px solid #4f81bd;
+}
+.pagination-button:hover {
+    background-color: #32586f;
+}
+.pagination-button:last-of-type {
+    border-right: none;
+}
+.pagination-button a {
+    color: white;
+    text-decoration: none;
+}
+.pagination-button a:hover {
+    text-decoration: underline;
+}
+.pagination-current {
+    padding: 5px;
+    margin: 0;
+    background-color: #4f81bd;
+    display: inline;
+    flex: 1;
+    border-right: 1px solid #4f81bd;
+    color: white;
+}
+.pagination-current:last-of-type {
+    border-right: none;
+}
+.pagination-current a {
+    color: white;
+    text-decoration: none;
+}
+.pagination-current a:hover {
+    text-decoration: underline;
+}
+
+/* Differentiate single and multiple column layouts */
 .single-column {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
-
 .multi-column {
     flex: 1;
-    /*margin: 0 10px;*/
     min-width: 300px;
 }
 
-.team-abbreviation {
-    width: 35%;
-}
-
-.double-box, .pagination-section {
-    flex: 1;
-}
-
-.game-box {
-    text-align: center;
-}
-
-.alternating-rows tr:nth-child(2n+2) {
-    background-color: #ccddee;
-}
-
-.alternating-no-header tr:nth-child(2n+1) {
-    background-color: #ccddee;
-}
-
-.table-link {
-    text-decoration: none;
-    color: black;
-}
-
-.table-link:hover {
-    text-decoration: underline;
-}
-
-.plain-link {
-    text-decoration: none;
-}
-
-.plain-link:hover {
-    text-decoration: underline;
-}
-
-.link-list {
-    margin: 5px auto;
-}
-
-.previous-page {
-    text-align: left;
-}
-
-.page-detail {
-    text-align: center;
-}
-
-.next-page {
-    text-align: right;
-}
-
+/* Styling for forms */
 .default-button {
     display: block;
     margin: 10px auto;
 }
-
 #default-form {
     margin: auto;
 }
-
 #default-form p {
     text-align: center;
 }
-
 #default-form input {
     width: 75%;
 }
-
 #default-form input[type=checkbox] {
     width: auto;
 }
-
 #default-form label {
     display: block;
 }
-
 #default-form a {
     display: block;
 }
-
 #default-form label[for=profile_picture-clear_id] {
     display: inline;
 }
-
 #id_profile_picture {
     display: block;
     margin: auto;
 }
-
 #default-form select {
     width: 75%;
 }
-
 .helptext {
     font-size: 0.75em;
     display: block;
     margin: 5px;
     text-align: center;
 }
+#inline-form p {
+    text-align: center;
+}
 
+/* Styling for link buttons */
 .content-link {
     margin: 10px auto 10px 0;
     color: white;
@@ -705,7 +736,6 @@ footer {
     padding: 5px;
     width: fit-content;
 }
-
 .content-link-light {
     margin: 10px auto 10px 0;
     color: #4f81bd;
@@ -716,163 +746,92 @@ footer {
     width: fit-content;
     display: inline-block;
 }
-
 .content-link a {
     color: white;
     text-decoration: none;
 }
-
 .content-link a:hover {
     text-decoration: underline;
 }
-
 .content-link-light a {
     color: #4f81bd;
     text-decoration: none;
 }
-
 .content-link-light a:hover {
+    text-decoration: underline;
 }
-
-.comment-logo {
-    float: left;
-    height: 30px;
-    width: 30px;
-    z-index: 2;
-    margin-right: 5px;
-    border-radius: 50%;
+.button-link {
+    margin: 10px auto 10px 0;
+    color: white;
+    background-color: #4f81bd;
     border: 1px solid #10253f;
-}
-
-.news-image {
-    text-align: center;
-    margin: 10px auto;
-    font-size: 0.9em;
-}
-
-.news-image img {
-    border: 2px solid #10253f;
-    box-shadow: 0 0 2px 2px #4f81bd;
-    width: 150px;
-}
-
-.blog-author {
-    float: left;
-    height: 70px;
-    width: 70px;
-    z-index: 2;
-    margin-right: 10px;
-    border-radius: 50%;
-    border: 2px solid #10253f;
-}
-
-.comment-body {
-    border-bottom: 1px solid #10253f;
+    border-radius: 10px;
     padding: 5px;
 }
-
-.comment-body:first-of-type {
-    border-top: 1px solid #10253f;
+a.button-link {
+    color: white;
+    text-decoration: none;
+}
+a.button-link:hover {
+    text-decoration: underline;
 }
 
-.comment-body:nth-of-type(odd) {
-    background-color: #ccddee;
-}
-
-.comment-user {
-    font-size: 1.25em;
-}
-
-.comment-text p {
-    margin: 5px 0 0 0;
-}
-
-.comment-detail, .cart-controls {
-    font-size: 0.75em;
-}
-
-.comment-controls {
-    text-align: right;
-    margin-top: 5px;
-}
-
-#show-hide {
-    cursor: pointer;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    font-size: 0.75em;
-}
-
-#not-logged-in {
-    margin: 10px 0 0 0;
-    font-size: 0.75em;
-}
-
+/* Styles for message forum */
 .forum-header {
     background-color: #10253f;
     color: white;
     padding: 5px;
 }
-
 .forum-section {
     margin: 10px auto;
     border-left: 1px solid #10253f;
     border-right: 1px solid #10253f;
     width: 100%;
 }
-
 .board-header {
     background-color: #4f81bd;
     padding: 5px;
     font-weight: bold;
 }
-
 .board-description {
     padding: 10px;
 }
-
 .board-description p {
     margin: 0;
 }
-
 .board-counter {
     background-color: #ccddee;
     width: 100%;
     padding: 0 5px;border-bottom: 1px solid #10253f;
 }
-
 .counter-amount {
     padding: 0 0 0 10px;
     width: 50%;
 }
-
 .forum-sub-header {
     font-size: 1.5em;
     text-align: center;
 }
-
 .forum-table, .store-table {
     border-collapse: collapse;
     width: 100%;
     margin: 5px auto;
 }
-
 .forum-table td, .store-table td {
     padding: 2px 5px;
 }
-
 .forum-count {
     text-align: center;
 }
-
 #posts {
     margin: 10px auto;
 }
 
+/* Styles for message alerts */
 .alert-link {
     cursor: pointer;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-
 .popup-wrapper {
 	width: 100%;
 	height: 100%;
@@ -881,7 +840,6 @@ footer {
 	top: 0;
 	left: 0;
 }
-
 .alert-message {
 	position: absolute;
 	top: 0;
@@ -899,15 +857,9 @@ footer {
     border-radius: 10px;
     box-shadow: 0 0 10px 1px #10253f;
 }
-
 .alert-message p{
     margin: 0;
 }
-
-#comments {
-    margin-bottom: 10px;
-}
-
 .success {
     background-color: #ccffcc;
     border: 1px solid #339933;
@@ -918,7 +870,6 @@ footer {
     text-align: center;
     width: fit-content;
 }
-
 .error {
     background-color: #ffcccc;
     border: 1px solid #993333;
@@ -929,61 +880,16 @@ footer {
     text-align: center;
     width: fit-content;
 }
-
-.product-sizes {
-    min-width: 150px;
-}
-
-.button-link {
-    margin: 10px auto 10px 0;
-    color: white;
-    background-color: #4f81bd;
-    border: 1px solid #10253f;
-    border-radius: 10px;
+ul.errorlist li {
+    list-style-type: none;
     padding: 5px;
-    width: fit-content;
+    background-color: #ffcccc;
+    border: 1px solid #993333;
+    color: #993333;
+    border-radius: 10px;
 }
 
-a.button-link {
-    color: white;
-    text-decoration: none;
-}
-
-a.button-link:hover {
-    text-decoration: underline;
-}
-
-.right-align {
-    text-align: right;
-}
-
-.left-align {
-    text-align: left;
-}
-
-.blog-content {
-    margin-left: 80px;
-    text-align: justify;
-}
-
-.blog-post {
-    clear: both;
-    padding-top: 10px;
-}
-
-.blog-title {
-    font-size: 1.5em;
-    text-align: left;
-}
-
-.blog-details {
-    font-size: 0.75em;
-}
-
-.blog-author-title {
-    font-size: 1.5em;
-}
-
+/* Styles for league sponsors bar */
 .company-logo {
     height: 75px;
     width: 75px;
@@ -992,7 +898,6 @@ a.button-link:hover {
     background-color: white;
     margin: auto;
 }
-
 .partner-logos {
     width: 100px;
     margin: 5px 10px 10px 10px;
@@ -1000,7 +905,6 @@ a.button-link:hover {
 	box-shadow: 0 0 2px 2px #4f81bd;
     display: inline-block;
 }
-
 #partners {
     white-space: nowrap;
     overflow: hidden;
@@ -1010,33 +914,27 @@ a.button-link:hover {
     margin: 20px auto;
     text-align: center;
 }
-
 .white-title {
     text-align: center;
     padding: 5px;
     color: white;
     margin: auto;
+    cursor: pointer;
 }
-
 #logo-wrapper {
     position: relative;
     left: 3px;
 }
 
-#inline-form p {
-    text-align: center;
-}
-
+/* Styles for store products */
 #store-products {
     display: flex;
     flex-wrap: wrap;
 }
-
 #product-details {
     text-align: center;
     margin: auto;
 }
-
 .product-details {
     flex: 1;
     text-align: center;
@@ -1047,302 +945,205 @@ a.button-link:hover {
     background-color: #eeeeff;
     min-width: 200px;
 }
-
+.product-sizes {
+    min-width: 150px;
+}
 .product-border {
     border: 2px solid #4f81bd;
     box-shadow: 0 0 2px 2px #10253f;
     background-color: white;
 }
-
-#team-list {
-    display: flex;
-    flex-wrap: wrap;
+#submit_order {
+    margin: 0 auto;
+    display: block;
+}
+.product-list {
+    text-align: left;
+    margin-right: 10px;
 }
 
+/* Styles for store and premium content */
 .store-team {
     flex: 1;
     margin: 10px;
 }
-
 .store-team img {
     width: 50px;
     height: 50px;
     margin: auto;
     display: block;
 }
-
-.banner-story {
-    margin: 0 20px 5px 20px;
-    border: 2px solid #10253f;
-}
-
-.banner-headline {
-    background-color: #4f81bd;
-    color: #10253f;
-    text-align: center;
-    padding: 5px;
-    border-top: 2px solid #10253f;
-    min-height: 40px;
-    margin: auto;
-}
-
-.cover-image {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-#news-navigation {
-    text-align: center;
-    margin: 10px auto;
-    height: 20px;
-    width: fit-content;
-}
-
-.news-blob {
-    float: left;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    margin: 0 5px;
-}
-
-.default-blob {
-    background-color: #ccddee;
-}
-
-.active-blob {
-    background-color: #10253f;
-}
-
-.news-link {
-    margin: 10px;
-}
-
-.banner-link {
-    color: #10253f;
+.header-link {
+    color: white;
     text-decoration: none;
 }
-
-.banner-link:hover {
+.header-link:hover {
     text-decoration: underline;
 }
-
-.fade-in {
-	animation-name: fade-transition;
-	animation-duration: 1s;
+.lined-row {
+    border-bottom: 1px solid #10253f;
 }
 
-@keyframes fade-transition {
-	from {
-		opacity: 0.5;
-        filter: brightness(50%);
-	}
-	to {
-		opacity: 1;
-        filter: brightness(100%);
-	}
-}
-
+/* Styles for page sections */
 #standings, #scores {
     margin: 5px
 }
-
 .spaced-column {
     flex: 1;
     margin: 0 5px;
 }
-
 #news {
     margin: auto 20px;
 }
 
-.pagination-menu {
-    margin: 10px auto;
-    text-align: center;
-    display: flex;
-}
-
-.pagination-menu div:first-child {
-    border-radius: 10px 0 0 10px;
-}
-
-.pagination-menu div:last-child {
-    border-radius: 0 10px 10px 0;
-}
-
-.pagination-button {
-    padding: 5px;
-    margin: 0;
-    background-color: #10253f;
-    display: inline;
-    flex: 1;
-    border-right: 1px solid #4f81bd;
-}
-
-.pagination-button:hover {
-    background-color: #32586f;
-}
-
-.pagination-button:last-of-type {
-    border-right: none;
-}
-
-.pagination-button a {
-    color: white;
-    text-decoration: none;
-}
-
-.pagination-button a:hover {
-    text-decoration: underline;
-}
-
-.pagination-current {
-    padding: 5px;
-    margin: 0;
-    background-color: #4f81bd;
-    display: inline;
-    flex: 1;
-    border-right: 1px solid #4f81bd;
-    color: white;
-}
-
-.pagination-current:last-of-type {
-    border-right: none;
-}
-
-.pagination-current a {
-    color: white;
-    text-decoration: none;
-}
-
-.pagination-current a:hover {
-    text-decoration: underline;
-}
-
-td.full-header {
-    column-span: all;
-}
-
+/* Styles for navigation boxes */
 .navigation {
     text-align: center;
     margin: 5px auto;
 }
-
 .nav-head {
     background-color: #10253f;
     color: white;
 }
-
 .nav-box {
     color: #10253f;
     border: 1px solid #10253f;
 }
 
-ul.errorlist li {
-    list-style-type: none;
-    padding: 5px;
-    background-color: #ffcccc;
-    border: 1px solid #993333;
-    color: #993333;
-    border-radius: 10px;
+/* Styling for team specific headers and links */
+.dublin-box {
+    background-color: rgb(0,128,0);
+    color: rgb(255,128,39);
+    border: 2px solid rgb(0,128,0);
+    box-shadow: 0 0 2px 2px rgb(243,116,27);
 }
-
-.uniform {
-    display: inline-block;
-    text-align: center;
+.glasgow-box {
+    background-color: rgb(221,208,0);
+    color: rgb(0,0,0);
+    border: 2px solid rgb(221,208,0);
+    box-shadow: 0 0 2px 2px rgb(0,0,0);
 }
-
-.uniform img {
-    display: block;
-    width: 75px;
-    height: 75px;
+.liverpool-box {
+    background-color: rgb(255,0,0);
+    color: rgb(0,0,157);
+    border: 2px solid rgb(255,0,0);
+    box-shadow: 0 0 2px 2px rgb(0,0,157);
 }
-
-#submit_order {
-    margin: 0 auto;
-    display: block;
+.manchester-box {
+    background-color: rgb(0,0,0);
+    color: rgb(204,204,204);
+    border: 2px solid rgb(0,0,0);
+    box-shadow: 0 0 2px 2px rgb(204,204,204);
 }
-
-.blogger-details {
-    clear: both;
-    padding: 10px;
+.birmingham-box {
+    background-color: rgb(150,130,104);
+    color: rgb(255,255,255);
+    border: 2px solid rgb(150,130,104);
+    box-shadow: 0 0 2px 2px rgb(191,191,191);
 }
-
-.header-link {
-    color: white;
-    text-decoration: none;
+.bristol-box {
+    background-color: rgb(123,72,4);
+    color: rgb(255,255,0);
+    border: 2px solid rgb(123,72,4);
+    box-shadow: 0 0 2px 2px rgb(255,255,0);
 }
-
-.header-link:hover {
-    text-decoration: underline;
+.cardiff-box {
+    background-color: rgb(191,0,0);
+    color: rgb(255,255,255);
+    border: 2px solid rgb(191,0,0);
+    box-shadow: 0 0 2px 2px rgb(0,127,63);
 }
-
+.london-box {
+    background-color: rgb(229,179,2);
+    color: rgb(128,0,128);
+    border: 2px solid rgb(229,179,2);
+    box-shadow: 0 0 2px 2px rgb(128,0,128);
+}
+.dublin-tag {
+    background-color: rgb(0,128,0);
+    color: rgb(255,128,39);
+}
+.glasgow-tag {
+    background-color: rgb(221,208,0);
+    color: rgb(0,0,0);
+}
+.liverpool-tag {
+    background-color: rgb(255,0,0);
+    color: rgb(0,0,157);
+}
+.manchester-tag {
+    background-color: rgb(0,0,0);
+    color: rgb(204,204,204);
+}
+.birmingham-tag {
+    background-color: rgb(150,130,104);
+    color: rgb(255,255,255);
+}
+.bristol-tag {
+    background-color: rgb(123,72,4);
+    color: rgb(255,255,0);
+}
+.cardiff-tag {
+    background-color: rgb(191,0,0);
+    color: rgb(255,255,255);
+}
+.london-tag {
+    background-color: rgb(229,179,2);
+    color: rgb(128,0,128);
+}
+.dublin-text {
+    color: rgb(0,128,0);
+    text-shadow: 1px 1px rgb(243,116,27);
+}
+.glasgow-text {
+    color: rgb(221,208,0);
+    text-shadow: 1px 1px rgb(0,0,0);
+}
+.liverpool-text {
+    color: rgb(255,0,0);
+    text-shadow: 1px 1px rgb(0,0,157);
+}
+.manchester-text {
+    color: rgb(0,0,0);
+    text-shadow: 1px 1px rgb(204,204,204);
+}
+.birmingham-text {
+    color: rgb(150,130,104);
+    text-shadow: 1px 1px rgb(191,191,191);
+}
+.bristol-text {
+    color: rgb(123,72,4);
+    text-shadow: 1px 1px rgb(255,255,0);
+}
+.cardiff-text {
+    color: rgb(191,0,0);
+    text-shadow: 1px 1px rgb(0,127,63);
+}
+.london-text {
+    color: rgb(229,179,2);
+    text-shadow: 1px 1px rgb(128,0,128);
+}
 .dublin-link {
     color: rgb(255,128,39);
 }
-
 .glasgow-link {
     color: rgb(0,0,0);
 }
-
 .liverpool-link {
     color: rgb(0,0,157);
 }
-
 .manchester-link {
     color: rgb(204,204,204);
 }
-
 .birmingham-link {
     color: rgb(255,255,255);
 }
-
 .bristol-link {
     color: rgb(255,255,0);
 }
-
 .cardiff-link {
     color: rgb(255,255,255);
 }
-
 .london-link {
     color: rgb(128,0,128);
-}
-
-.team-link {
-    text-decoration: none;
-}
-
-.team-link:hover {
-    text-decoration: underline;
-}
-
-#extra-news {
-    margin: 20px;
-}
-
-.user-news {
-    padding: 10px;
-    font-size: 1.2em;
-}
-
-.user-news-logo {
-    height: 30px;
-    width: 30px;
-    vertical-align: middle;
-}
-
-.league-news {
-    background-color: #10253f;
-    color: white;
-}
-
-.product-list {
-    text-align: left;
-    margin-right: 10px;
-}
-
-.lined-row {
-    border-bottom: 1px solid #10253f;
 }

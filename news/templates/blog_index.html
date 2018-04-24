@@ -68,7 +68,7 @@
 
                 <div class="pagination-links">
 
-                    <div class="pagination-section previous-page">
+                    <div class="pagination-section left-align">
                         {% if posts.has_previous %}
                             <a class="standard-link" href="?page={{ posts.previous_page_number }}">
                                 &lt;&lt; Earlier Posts
@@ -76,7 +76,7 @@
                         {% endif %}
                     </div>
 
-                    <div class="pagination-section next-page">
+                    <div class="pagination-section right-align">
                         {% if posts.has_next %}
                             <a class="standard-link" href="?page={{ posts.next_page_number }}">
                                 Later Posts &gt;&gt;

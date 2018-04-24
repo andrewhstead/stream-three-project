@@ -33,7 +33,7 @@
 
                 <div class="pagination-links">
 
-                    <div class="pagination-section previous-page">
+                    <div class="pagination-section left-align">
                         {% if dates.has_previous %}
                             <a class="standard-link" href="?page={{ dates.previous_page_number }}">
                                 &lt;&lt; Earlier Fixtures
@@ -41,7 +41,7 @@
                         {% endif %}
                     </div>
 
-                    <div class="pagination-section next-page">
+                    <div class="pagination-section right-align">
                         {% if dates.has_next %}
                             <a class="standard-link" href="?page={{ dates.next_page_number }}">
                                 Later Fixtures &gt;&gt;

@@ -1,40 +1,37 @@
-
+/* Limit the width of the main content to 1200 pixels */
 main {
     max-width: 1200px;
     padding: 0 10px;
 }
 
+/* Show content which was hidden in smaller displays */
 .for-desktop {
     display: block;
 }
 
-#teams-header {
-    /*display: none;*/
-}
-
+/* Multiple columns view for larger devices */
 .column-wrapper {
-    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     clear: both;
 }
-
 #details-column {
     flex: 3;
     margin: 10px;
 }
-
 #stats-column {
     flex: 1;
     margin-left: 10px;
     min-width: 260px;
 }
 
+/* Logo is larger on larger devices */
 .home-logo {
     height: 120px;
     width: 120px;
 }
 
+/* Images are larger on larger devices, team profile logos displayed on left not right */
 .profile-logo {
     float: left;
     margin-bottom: 20px;
@@ -42,29 +39,28 @@ main {
     width: 100px;
     margin-right: 20px;
 }
-
 .user-profile {
     height: 100px;
     width: 100px;
 }
 
+/* Header stylings */
 #league-header {
     text-align: center;
 	box-shadow: none;
     height: 120px;
     max-width: 1200px;
 }
-
 #league-name {
     font-size: 2em;
     padding: 5px;
     margin: auto;
 }
 
+/* Menu always visible, toggle button not required */
 #menu-button {
     display: none;
 }
-
 #main-menu {
     display: block;
 	box-shadow: 0 2px 2px 2px #10253f;
@@ -73,6 +69,7 @@ main {
     text-align: center;
 }
 
+/* Menu links display inline on larger devices */
 .menu-link {
     display: inline-block;
     border-bottom: none;
@@ -80,51 +77,45 @@ main {
     width: fit-content;
 }
 
+/* Not needed without drop-down menu */
 .menu-link:last-of-type {
 	box-shadow: none;
 }
 
+/* Headers and titles larger on larger devices */
 .team-title {
     font-size: 2.5em;
     word-spacing: normal;
     padding-top: 20px;
 }
-
 .team-header {
     font-size: 2.5em;
 }
 
+/* Images are larger on larger devices */
 .uniform img {
     display: block;
     width: 125px;
     height: 125px;
 }
-
 .company-logo {
     height: 150px;
     width: 150px;
 }
-
 .partner-logos {
     width: 200px;
 }
-
-.desktop-cell {
-    display: table-cell;
-}
-
 .store-team img {
     width: 100px;
     height: 100px;
 }
 
-.recent-activity {
-    margin: 10px 0 10px 10px;
-    border-left: 5px solid #10253f;
-    border-bottom: 1px solid #10253f;
-    padding-left: 5px;
+/* Additional cells only visible on larger devices */
+.desktop-cell {
+    display: table-cell;
 }
 
+/* Image floats to left of text rather than sitting above it */
 .news-image {
     float: left;
     margin: 0 20px 20px 0;

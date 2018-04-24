@@ -13,7 +13,7 @@
 
                 {% if result.home_team == user.favourite_team %}
                     <td class="team-abbreviation {{ user.favourite_team.geographic_name|lower }}-tag">
-                        <a class="{{ user.favourite_team.geographic_name|lower }}-link team-link" href=
+                        <a class="{{ user.favourite_team.geographic_name|lower }}-link plain-link" href=
                                 "{% url 'team_page' result.home_team.geographic_name|lower %}">
                             {{ result.home_team.abbreviation }}
                         </a>
@@ -34,7 +34,7 @@
 
                 {% if result.away_team == user.favourite_team %}
                     <td class="team-abbreviation {{ user.favourite_team.geographic_name|lower }}-tag">
-                        <a class="{{ user.favourite_team.geographic_name|lower }}-link team-link" href=
+                        <a class="{{ user.favourite_team.geographic_name|lower }}-link plain-link" href=
                                 "{% url 'team_page' result.home_team.geographic_name|lower %}">
                             {{ result.away_team.abbreviation }}
                         </a>
@@ -68,7 +68,7 @@
 
                 {% if fixture.home_team == user.favourite_team %}
                     <td class="team-abbreviation {{ user.favourite_team.geographic_name|lower }}-tag">
-                        <a class="{{ user.favourite_team.geographic_name|lower }}-link team-link" href=
+                        <a class="{{ user.favourite_team.geographic_name|lower }}-link plain-link" href=
                                 "{% url 'team_page' fixture.home_team.geographic_name|lower %}">
                             {{ fixture.home_team.abbreviation }}
                         </a>
@@ -87,7 +87,7 @@
 
                 {% if fixture.away_team == user.favourite_team %}
                     <td class="team-abbreviation {{ user.favourite_team.geographic_name|lower }}-tag">
-                        <a class="{{ user.favourite_team.geographic_name|lower }}-link team-link" href=
+                        <a class="{{ user.favourite_team.geographic_name|lower }}-link plain-link" href=
                                 "{% url 'team_page' fixture.away_team.geographic_name|lower %}">
                             {{ fixture.away_team.abbreviation }}
                         </a>
