@@ -318,6 +318,9 @@ A GitHub repository was created for the project right at the beginning of develo
  GitHub was deployed to Heroku, the Heroku app was updated regularly when significant new functionality or design was
  added in order to facilitate continued manual testing.
 
+For serving static and media files, a bucket was created on Amazon Web Services to enable the use of S3. All static and
+media files were transferred to this bucket so that they would not have to be called from the project server.
+
 ## Testing
 
 Much of the site development was done on a Windows PC using the Chrome browser, and making use of the developer tools to
