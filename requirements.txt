@@ -8,3 +8,4 @@ stripe
 arrow==0.7.0
 django-storages
 boto3
+env
