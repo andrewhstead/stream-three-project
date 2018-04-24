@@ -14,16 +14,12 @@
 
         <div id="details-column" class="column">
 
-            <!-- Only the author of the comment can view the form. -->
-
-            {% if user == comment.user %}
+            <!-- If a comment exists, only the author of the comment or the superuser can view the form.
+            This is to prevent a user being able to edit someone else's comment. -->
+            {% if comment and user == comment.user or user.is_superuser %}
 
                 <div id="page-header">
-                    {% if comment %}
-                        EDIT COMMENT
-                    {% else %}
-                        POST A COMMENT
-                    {% endif %}
+                    EDIT COMMENT
                 </div>
 
                 <form id="default-form" method="post" action="{{ form_action }}">
@@ -32,7 +28,8 @@
                     <button class="default-button" type="submit">{{ button_text }}</button>
                 </form>
 
-            {% else %}
+            <!-- Any other user will see an error message. -->
+            {% elif comment %}
 
                 <div id="page-header">
                     ERROR
@@ -41,6 +38,19 @@
                 <p>
                     Sorry, you are not authorised to view this page.
                 </p>
+
+            <!-- If no comment exists, a new one can be created. -->
+            {% else %}
+
+                <div id="page-header">
+                    POST A COMMENT
+                </div>
+
+                <form id="default-form" method="post" action="{{ form_action }}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="default-button" type="submit">{{ button_text }}</button>
+                </form>
 
             {% endif %}
 

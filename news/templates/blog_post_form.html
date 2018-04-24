@@ -15,8 +15,9 @@
 
         <div id="details-column" class="column">
 
-            <!-- When editing a post, only the author of the post can view the form. -->
-            {% if post and user == post.author %}
+            <!-- When editing a post, only the author of the post or the superuser can view the form.
+            This is to prevent a user being able to edit someone else's post. -->
+            {% if post and user == post.author or user.is_superuser %}
 
                 <div id="page-header">
                     EDIT BLOG POST
