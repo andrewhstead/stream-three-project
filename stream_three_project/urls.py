@@ -22,8 +22,6 @@ from teams import views as team_views
 from store import views as store_views
 from forum import views as forum_views
 from users import views as users_views
-from django.views.static import serve
-from .settings import MEDIA_ROOT
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -49,7 +47,7 @@ urlpatterns = [
     url(r'^info/', include('django.contrib.flatpages.urls')),
     url(r'^login/$', users_views.login, name="login"),
     url(r'^logout/$', users_views.logout, name="logout"),
-    url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
+    # url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
     url(r'^news/$', news_views.news_index, name='news_index'),
     url(r'^news/(?P<news_id>\d+)/$', news_views.news_item, name='news'),
     url(r'^news/(?P<team_name>.*)/$', news_views.news_team, name='team_news'),

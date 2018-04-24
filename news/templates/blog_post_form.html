@@ -15,7 +15,7 @@
         <div id="details-column" class="column">
 
             <!-- Only the author of the post can view the form. -->
-            {% if user == item.author %}
+            {% if user == post.author %}
 
                 <div id="page-header">
                     NEW BLOG POST
@@ -29,9 +29,13 @@
 
             {% else %}
 
-                <div class="sub-header">
-                    Sorry, you are not authorised to view this page.
+                <div id="page-header">
+                    ERROR
                 </div>
+
+                <p>
+                    Sorry, you are not authorised to view this page.
+                </p>
 
             {% endif %}
 

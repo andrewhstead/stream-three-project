@@ -10,8 +10,8 @@
     <title>British and Irish Baseball League</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
-    <link rel="stylesheet" href="{% static "css/default.css" %}">
-	<link rel="stylesheet" media="screen and (min-width: 801px)" href="{% static "css/801.css" %}" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/default.css">
+	<link rel="stylesheet" media="screen and (min-width: 801px)" href="{{ STATIC_URL }}css/801.css" />
     {% block head_js %}{% endblock %}
 </head>
 <body>
@@ -22,7 +22,7 @@
             {% for team in teams %}
                 <div class="header-logos">
                     <a href="{% url 'team_page' team.geographic_name|lower %}">
-                        <img class="header-logo" src="/media/{{ team.large_logo }}" alt=
+                        <img class="header-logo" src="{{ MEDIA_URL }}{{ team.large_logo }}" alt=
                                 "{{ team.geographic_name }}" />
                     </a>
                 </div>
@@ -31,7 +31,7 @@
 
         <div id="league-header">
             <div id="league-logo">
-                <a href="{% url 'home' %}"><img class="home-logo" src="/media/images/league/bibl_logo.png" /></a>
+                <a href="{% url 'home' %}"><img class="home-logo" src="{{ MEDIA_URL }}{{ league.logo }}" /></a>
             </div>
             <div id="league-name">
                 BRITISH AND IRISH BASEBALL LEAGUE
@@ -100,7 +100,7 @@
 
     </footer>
 
-	<script src="{% static "js/custom.js" %}"></script>
+	<script src="{{ STATIC_URL }}js/custom.js"></script>
 
 </body>
 </html>

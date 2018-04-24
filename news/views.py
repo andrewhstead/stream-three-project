@@ -193,6 +193,7 @@ def edit_blog(request, post_id):
 
     args = {
         'form': form,
+        'post': post,
         'form_action': reverse('edit_blog', kwargs={'post_id': post.id}),
         'button_text': 'Submit Post',
         'bloggers': bloggers

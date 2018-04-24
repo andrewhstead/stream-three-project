@@ -5,6 +5,16 @@ from django.db import models
 
 
 # Create your models here.
+# Sets the basic information about the league.
+class League(models.Model):
+    name = models.CharField(max_length=100)
+    abbreviation = models.CharField(max_length=5)
+    logo = models.ImageField(upload_to="images/league", blank=True, null=True)
+
+    def __unicode__(self):
+        return self.name
+
+
 # Sets the league structure by defining the conferences.
 class Conference(models.Model):
     name = models.CharField(max_length=100)

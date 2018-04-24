@@ -13,6 +13,8 @@
                 {% for article in news_headlines %}
                     <div class="banner-story">
                         <a class="banner-link" href="{% url 'news' article.id %}">
+                            <!-- Show the article's cover image if one is set. Otherwise, show the default cover
+                            image for the relevant category. -->
                             {% if article.cover_image %}
                                 <img class="cover-image fade-in" src="/media/{{ article.cover_image }}" />
                             {% else %}

@@ -21,12 +21,14 @@
                     {% if current_page == 1 %}
                         <div class="banner-story">
                             <a class="banner-link" href="{% url 'news' item.id %}">
-                                    {% if item.cover_image %}
-                                        <img class="cover-image" src="/media/{{ item.cover_image }}" />
-                                    {% else %}
-                                        <img class="cover-image" src="/media/{{ item.category.default_image }}" />
-                                    {% endif %}
-                                </a>
+                                <!-- Show the article's cover image if one is set. Otherwise, show the default cover
+                                image for the relevant category. -->
+                                {% if item.cover_image %}
+                                    <img class="cover-image" src="/media/{{ item.cover_image }}" />
+                                {% else %}
+                                    <img class="cover-image" src="/media/{{ item.category.default_image }}" />
+                                {% endif %}
+                            </a>
                             <div class="banner-headline">
                                 <a class="banner-link" href="{% url 'news' item.id %}">{{ item.title }}</a>
                             </div>
