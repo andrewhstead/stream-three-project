@@ -16,7 +16,7 @@
 
             <!-- Form for setting a user's account details, user either to register a new user or change the details
             of an existing user. -->
-            {<form id="default-form" enctype="multipart/form-data" role="form" method="post">
+            <form id="default-form" enctype="multipart/form-data" role="form" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button class="default-button" type="submit">{{ button_text }}</button>

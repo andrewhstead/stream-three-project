@@ -5,6 +5,7 @@ from django.db import models
 
 
 # Create your models here.
+# Sets the league structure by defining the conferences.
 class Conference(models.Model):
     name = models.CharField(max_length=100)
     short_name = models.CharField(max_length=10)
@@ -14,6 +15,7 @@ class Conference(models.Model):
         return self.name
 
 
+# Sets up a team and their associated images.
 class Team(models.Model):
     geographic_name = models.CharField(max_length=100)
     nickname = models.CharField(max_length=100)

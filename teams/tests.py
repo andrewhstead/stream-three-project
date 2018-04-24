@@ -5,7 +5,7 @@ from .views import team_index, team_page
 from django.core.urlresolvers import resolve
 from django.shortcuts import render_to_response
 
-
+# Test the team index page.
 class TeamIndexTest(TestCase):
     def test_team_index_resolves(self):
         teams_home = resolve('/teams/')
@@ -20,6 +20,7 @@ class TeamIndexTest(TestCase):
         self.assertTemplateUsed(teams_home, 'teams.html')
 
 
+# Test the team profile page.
 class TeamPageTest(TestCase):
 
     fixtures = ['teams', 'forum', 'users']
