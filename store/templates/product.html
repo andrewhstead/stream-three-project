@@ -22,6 +22,7 @@
                         {{ product.description }}<br />
                         £{{ product.price }}<br />
 
+                        <!-- If any sizes are out of stock, show the user a list of them. -->
                         {% if out_of_stock %}
                             <p class="full-details">
                                 NB: Size(s)
@@ -34,6 +35,7 @@
                             </p>
                         {% endif %}
 
+                        <!-- Form to choose size and quantity. -->
                         <form id="inline-form" method="post" action="{{ form_action }}">
                             {% csrf_token %}
                             {{ form.as_p }}
@@ -42,6 +44,7 @@
                             {% endif %}
                         </form>
 
+                        <!-- Users must be logged in to add items. -->
                         {% if not user.is_authenticated %}
                             <div class="sub-header">
                                 Please <a class="standard-link"

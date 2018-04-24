@@ -1,3 +1,4 @@
+/* Function to submit payment details to Stripe. */
 $(function() {
   $("#default-form").submit(function() {
       var form = this;

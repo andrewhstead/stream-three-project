@@ -15,6 +15,7 @@
                 Current quantity: {{ item.quantity }}<br />
             </div>
 
+            <!-- Form to change the quantity of an item. -->
             <form id="inline-form" method="post" action="{{ form_action }}">
                 {% csrf_token %}
                 {{ form.as_p }}

@@ -12,6 +12,7 @@ $('#show-hide').click(function(){
 var leftOffset = parseInt($('#logo-wrapper').css('left'));
 var rightOffset = parseInt($('#logo-wrapper').css('right'));
 
+// Scroll to view logos on the right by moving the logos to the left.
 $('#right-scroll').click(function(){
     if (leftOffset >= -500) {
         $("#logo-wrapper").animate({
@@ -20,11 +21,10 @@ $('#right-scroll').click(function(){
         });
         leftOffset -= 50;
         rightOffset += 50;
-        console.log(leftOffset);
-        console.log(rightOffset);
     }
 });
 
+// Scroll to view logos on the left by moving the logos to the right.
 $('#left-scroll').click(function(){
     if (leftOffset < 0) {
         $("#logo-wrapper").animate({
@@ -33,8 +33,6 @@ $('#left-scroll').click(function(){
         });
         leftOffset += 50;
         rightOffset -= 50;
-        console.log(leftOffset);
-        console.log(rightOffset);
     }
 });
 

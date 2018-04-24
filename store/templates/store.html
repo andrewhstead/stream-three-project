@@ -11,6 +11,13 @@
                 BIBL STORE
             </div>
 
+            {% if user == cart.user %}
+                <div class="page-detail">
+                    <a class="standard-link" href="{% url 'shopping_cart' %}">[View Cart]</a><br />
+                    <strong>{{ cart.items.count }}</strong> Item(s)
+                </div>
+            {% endif %}
+
             <div class="sub-header">
                 BROWSE ALL PRODUCTS
             </div>
@@ -35,6 +42,7 @@
 
             </div>
 
+            <!-- Pagination links. -->
             <div class="pagination-menu">
 
                 {% for page in products.paginator.page_range %}

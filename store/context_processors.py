@@ -1,6 +1,8 @@
 from django.utils import timezone
 
 
+# Checks whether a user is subscribed and returns True or False.
+# Used to display relevant text to the user on the  premium content page and also on their profile page.
 def user_is_subscribed(request):
     user = request.user
     now = timezone.now()

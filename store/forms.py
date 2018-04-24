@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 from django import forms
 
+# Sets the options for a user to choose the quantity of an item they wish to order.
 QUANTITY_OPTIONS = (
     (1, 1),
     (2, 2),
@@ -15,8 +16,10 @@ QUANTITY_OPTIONS = (
 )
 
 
+# Adds a product to a shopping cart.
 class AddToCartForm(forms.Form):
 
+    # Size choices must be set dynamically so only those available for the selected product are shown.
     def __init__(self, *args, **kwargs):
         choices = kwargs.pop('item_options')
         super(AddToCartForm, self).__init__(*args, **kwargs)
@@ -25,10 +28,12 @@ class AddToCartForm(forms.Form):
     quantity = forms.ChoiceField(choices=QUANTITY_OPTIONS)
 
 
+# Changes the quantity of an individual item in the user's shopping cart.
 class ChangeQuantityForm(forms.Form):
     quantity = forms.ChoiceField(choices=QUANTITY_OPTIONS, label="New Quantity")
 
 
+# Submits the user's order, with payment information being sent to Stripe.
 class SubmitOrderForm(forms.Form):
     MONTH_OPTIONS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
@@ -43,6 +48,7 @@ class SubmitOrderForm(forms.Form):
     stripe_id = forms.CharField(widget=forms.HiddenInput)
 
 
+# Extends the order form with a field for billing period, to be used when a user is purchasing a subscription.
 class SubscriptionForm(SubmitOrderForm):
     CYCLE_OPTIONS = (
         ('BIBL_MONTHLY', '£9.99 Every Month'),
@@ -57,6 +63,8 @@ class SubscriptionForm(SubmitOrderForm):
         fields = ['billing_cycle', 'card_number', 'cvv', 'expiry_month', 'expiry_year', 'stripe_id']
 
 
+# Sets the delivery address to be used after a user makes a purchase.
+# The user can set this as their default address if they wish.
 class AddressForm(forms.Form):
 
     name = forms.CharField(max_length=50)

@@ -17,12 +17,14 @@
 
         <div id="details-column" class="column">
 
+            <!-- Access to a checkout is only possible for the owner of the relevant shopping cart. -->
             {% if user == order.user %}
 
                 <div id="page-header">
                     CHECKOUT
                 </div>
 
+                <!-- Forms to submit an order. -->
                 <form role="form" method="post" id="default-form" action="{% url 'checkout' order_id %}">
                     <div id="credit-card-errors" style="display:none">
                         <div class="alert-message block-message error" id="stripe-error-message"></div>
@@ -31,12 +33,14 @@
 
                     <div class="column-wrapper">
                         <div class="column">
+                            <!-- Address form for shipping details. -->
                             <div class="sub-header">
                                 <strong>Shipping Details</strong>
                             </div>
                             {{ address_form.as_p }}
                         </div>
                         <div class="column">
+                            <!-- Payment form for billing details. -->
                             <div class="sub-header">
                                 <strong>Billing Details</strong>
                             </div>
@@ -47,6 +51,7 @@
                     <input id="submit_order" name="commit" type="submit" value="Complete Order">
                 </form>
 
+            <!-- Show an error if a user tries to view another person's checkout. -->
             {% else %}
 
                 <div id="page-header">

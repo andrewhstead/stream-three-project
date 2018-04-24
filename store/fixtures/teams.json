@@ -1,0 +1,148 @@
+[
+{
+    "model": "teams.conference",
+    "pk": 1,
+    "fields": {
+        "name": "Northern Conference",
+        "short_name": "North",
+        "abbreviation": "NC"
+    }
+},
+{
+    "model": "teams.conference",
+    "pk": 2,
+    "fields": {
+        "name": "Southern Conference",
+        "short_name": "South",
+        "abbreviation": "SC"
+    }
+},
+{
+    "model": "teams.team",
+    "pk": 1,
+    "fields": {
+        "geographic_name": "Dublin",
+        "nickname": "Harps",
+        "abbreviation": "DUB",
+        "conference": 1,
+        "ballpark": "Tolka Baseball Field",
+        "large_logo": "images/teams/logos/dublin_large_v4HZReF.png",
+        "small_logo": "images/teams/logos/dublin_small_3Yrx8LT.png",
+        "home_uniform": "images/teams/uniforms/dublin_home.png",
+        "away_uniform": "images/teams/uniforms/dublin_away.png",
+        "alternate_uniform": "images/teams/uniforms/dublin_alternate.png"
+    }
+},
+{
+    "model": "teams.team",
+    "pk": 2,
+    "fields": {
+        "geographic_name": "Glasgow",
+        "nickname": "Leopards",
+        "abbreviation": "GLA",
+        "conference": 1,
+        "ballpark": "Cowlairs Park",
+        "large_logo": "images/teams/logos/glasgow_large.png",
+        "small_logo": "images/teams/logos/glasgow_small.png",
+        "home_uniform": "images/teams/uniforms/glasgow_home.png",
+        "away_uniform": "images/teams/uniforms/glasgow_away.png",
+        "alternate_uniform": "images/teams/uniforms/glasgow_alternate.png"
+    }
+},
+{
+    "model": "teams.team",
+    "pk": 3,
+    "fields": {
+        "geographic_name": "Liverpool",
+        "nickname": "Dockers",
+        "abbreviation": "LIV",
+        "conference": 1,
+        "ballpark": "Mersey Field",
+        "large_logo": "images/teams/logos/liverpool_large.png",
+        "small_logo": "images/teams/logos/liverpool_small.png",
+        "home_uniform": "images/teams/uniforms/liverpool_home.png",
+        "away_uniform": "images/teams/uniforms/liverpool_away.png",
+        "alternate_uniform": "images/teams/uniforms/liverpool_alternate.png"
+    }
+},
+{
+    "model": "teams.team",
+    "pk": 4,
+    "fields": {
+        "geographic_name": "Manchester",
+        "nickname": "Comets",
+        "abbreviation": "MAN",
+        "conference": 1,
+        "ballpark": "The Meadow",
+        "large_logo": "images/teams/logos/manchester_large.png",
+        "small_logo": "images/teams/logos/manchester_small.png",
+        "home_uniform": "images/teams/uniforms/manchester_home.png",
+        "away_uniform": "images/teams/uniforms/manchester_away.png",
+        "alternate_uniform": "images/teams/uniforms/manchester_alternate.png"
+    }
+},
+{
+    "model": "teams.team",
+    "pk": 5,
+    "fields": {
+        "geographic_name": "Birmingham",
+        "nickname": "Rhinos",
+        "abbreviation": "BIR",
+        "conference": 2,
+        "ballpark": "Edgbaston Field",
+        "large_logo": "images/teams/logos/birmingham_large.png",
+        "small_logo": "images/teams/logos/birmingham_small.png",
+        "home_uniform": "images/teams/uniforms/birmingham_home.png",
+        "away_uniform": "images/teams/uniforms/birmingham_away.png",
+        "alternate_uniform": "images/teams/uniforms/birmingham_alternate.png"
+    }
+},
+{
+    "model": "teams.team",
+    "pk": 6,
+    "fields": {
+        "geographic_name": "Bristol",
+        "nickname": "Bulls",
+        "abbreviation": "BRI",
+        "conference": 2,
+        "ballpark": "Netham Park",
+        "large_logo": "images/teams/logos/bristol_large.png",
+        "small_logo": "images/teams/logos/bristol_small.png",
+        "home_uniform": "images/teams/uniforms/bristol_home.png",
+        "away_uniform": "images/teams/uniforms/bristol_away.png",
+        "alternate_uniform": "images/teams/uniforms/bristol_alternate.png"
+    }
+},
+{
+    "model": "teams.team",
+    "pk": 7,
+    "fields": {
+        "geographic_name": "Cardiff",
+        "nickname": "Dragons",
+        "abbreviation": "CAR",
+        "conference": 2,
+        "ballpark": "Llandaff Fields",
+        "large_logo": "images/teams/logos/cardiff_large.png",
+        "small_logo": "images/teams/logos/cardiff_small.png",
+        "home_uniform": "images/teams/uniforms/cardiff_home.png",
+        "away_uniform": "images/teams/uniforms/cardiff_away.png",
+        "alternate_uniform": "images/teams/uniforms/cardiff_alternate.png"
+    }
+},
+{
+    "model": "teams.team",
+    "pk": 8,
+    "fields": {
+        "geographic_name": "London",
+        "nickname": "Kings",
+        "abbreviation": "LON",
+        "conference": 2,
+        "ballpark": "Primrose Hill Park",
+        "large_logo": "images/teams/logos/london_large.png",
+        "small_logo": "images/teams/logos/london_small.png",
+        "home_uniform": "images/teams/uniforms/london_home.png",
+        "away_uniform": "images/teams/uniforms/london_away.png",
+        "alternate_uniform": "images/teams/uniforms/london_alternate.png"
+    }
+}
+]

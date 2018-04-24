@@ -12,6 +12,8 @@
                 BIBL PREMIUM
             </div>
 
+            <!-- If the user is subscribed or is the superuser, explain their current access to premium content. For
+            standard users, show an upgrade message. For anonymous users, show a registration message. -->
             {% if user_is_subscribed %}
                 <p class="sub-header">
                     Your Premium subscription is paid up until {{ user.subscription_ends|date:'d F Y' }}.<br />
@@ -50,11 +52,15 @@
 
                 <table class="stat-table">
 
+                    <!-- If a premium game is currently in progress, show the details and give premium users the
+                    option to view the stream. -->
                     {% for live_game in live_games %}
                         <tr class="header-row">
                             <th class="stat-intro">
                                 In progress... ({{ live_game.innings|ordinal }})
-                                <a class="header-link" href="/">...WATCH NOW...</a>
+                                {% if user_is_subscribed or user.is_superuser %}
+                                    <a class="header-link" href="/">...WATCH NOW...</a>
+                                {% endif %}
                             </th>
                             <th class="score-column">R</th>
                             <th class="score-column">H</th>
@@ -105,6 +111,7 @@
                 LIVE STREAMING SCHEDULE
             </div>
 
+            <!-- List all future scheduled premium games. -->
             <table class="stat-table alternating-rows">
                 <tr class="header-row">
                     <th>Away</th>
