@@ -84,7 +84,7 @@ def new_thread(request, board_id):
             post.save()
 
             if board.team_id:
-                team = get_object_or_404(Team, pk=board.team_id)
+                team = Team.objects.get(pk=board.team_id)
                 messages.success(request, "Your thread was created!")
                 return redirect(reverse('forum_team', args={team.geographic_name}))
 
@@ -110,7 +110,7 @@ def new_thread(request, board_id):
 
 def view_thread(request, thread_id):
     thread = get_object_or_404(Thread, pk=thread_id)
-    board = get_object_or_404(Board, pk=thread.board_id)
+    board = Board.objects.get(pk=thread.board_id)
     recent_posts = Post.objects.all().order_by('-created_date')[:10]
 
     # URL used to ensure thread.views is only incremented once if a user browses a paginated thread.

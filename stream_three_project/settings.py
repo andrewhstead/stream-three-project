@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import env
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0@y1kx&b2_kovr(tb#_zuzl6+67!r9(8_h!&ebfz6v61f0!#zb'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -137,8 +138,8 @@ AWS_S3_OBJECT_PARAMETERS = {
 
 AWS_STORAGE_BUCKET_NAME = 'bibl-project'
 AWS_S3_REGION_NAME = 'eu-west-2'
-AWS_ACCESS_KEY_ID = 'AKIAID62BP5QTKTAFDAQ'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 
 # Tell django-storages the domain to use to refer to static files.
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
@@ -164,5 +165,5 @@ TINYMCE_JS_ROOT = os.path.join(BASE_DIR, "static", 'js', 'tinymce', 'tinymce.min
 TINYMCE_DEFAULT_CONFIG = {'theme': "advanced", "theme_advanced_resizing": "true"}
 
 # Stripe environment variables
-STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE', 'pk_test_MqkEKmeAamO8IWBasqpxuJNO')
-STRIPE_SECRET = os.getenv('STRIPE_SECRET', 'sk_test_kLGpsYB2d5Ho77Rdi8x6Ol50')
+STRIPE_PUBLISHABLE = os.environ.get("STRIPE_PUBLISHABLE")
+STRIPE_SECRET = os.environ.get("STRIPE_SECRET")
