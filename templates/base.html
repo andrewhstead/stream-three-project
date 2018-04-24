@@ -1,4 +1,7 @@
 {% load staticfiles %}
+{% load flatpages %}
+{% get_flatpages as flatpages %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,9 +91,10 @@
         </div>
 
         <div id="footer-content">
-            <a class="footer-link" href="{% url 'contact' %}">Contact Us</a> |
-            <a class="footer-link" href="/info/privacy/">Privacy Policy</a> |
-            <a class="footer-link" href="/info/terms/">Terms and Conditions</a>
+            <a class="footer-link" href="{% url 'contact' %}">Contact Us</a>
+            {% for page in flatpages %}
+                | <a class="footer-link" href="{{ page.url }}">{{ page.title }}</a>
+            {% endfor %}
             <div id="copyright">&#169; {% now 'Y' %} British and Irish Baseball League</div>
         </div>
 
