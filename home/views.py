@@ -11,11 +11,14 @@ from django.shortcuts import redirect
 
 
 # Create your views here.
+# The default home page view.
 def home_page(request):
 
     user = request.user
     news_headlines = Item.objects.exclude(category_id=6).order_by('-created_date')[:7]
 
+    # If a user is logged in and has a favourite team set, show additional news relevant to that team.
+    # Otherwise, just show more general news stories instead.
     if user.is_authenticated:
         favourite_team = user.favourite_team
         if favourite_team:
@@ -34,6 +37,7 @@ def home_page(request):
         return render(request, "home.html", {"news_headlines": news_headlines, "extra_news": extra_news})
 
 
+# The contact form view.
 def contact(request):
 
     if request.method == 'POST':

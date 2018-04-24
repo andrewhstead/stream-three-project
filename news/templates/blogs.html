@@ -12,6 +12,9 @@
 
             {% for post in posts %}
 
+                <!-- If the blogger has a profile picture, show it at the top of their blog. If they don't, show their
+                favourite team's logo. They should have a favourite team as a blogger, but if not show they default icon.
+                 -->
                 <div class="blog-image">
                     {% if post.author.profile_picture %}
                         <img class="blog-author" src="/media/{{ post.author.profile_picture }}" />
@@ -41,12 +44,14 @@
 
                 </div>
 
+                <!-- Show a preview of the first 50 words of the post. -->
                 <div class="blog-content">
                     {{ post.content|safe|truncatewords:50 }}
                 </div>
 
             {% endfor %}
 
+            <!-- Pagination links. -->
             <div class="pagination-menu">
 
                 {% if posts.has_previous %}

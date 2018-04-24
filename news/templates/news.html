@@ -33,6 +33,7 @@
                 {% endif %}
             {% endfor %}
 
+            <!-- For all other news stories, just display the headline link. -->
             {% for item in items|slice:'1:' %}
 
                 <div class="news-link">
@@ -42,6 +43,7 @@
 
             {%  endfor %}
 
+            <!-- Pagination buttons. -->
             <div class="pagination-menu">
 
                 {% if items.has_previous %}

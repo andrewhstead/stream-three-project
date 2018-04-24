@@ -6,6 +6,7 @@ from tinymce.models import HTMLField
 
 
 # Create your models here.
+# Creates the messages which can be view by administrators through the admin panel.
 class Message(models.Model):
     sender = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)

@@ -15,10 +15,12 @@ from django.contrib.auth.models import Group
 
 
 # Create your views here.
+# Display a full list of all news items, with the exception of blog posts.
 def news_index(request):
     # Remove blog posts from the news view, as they will be displayed separately.
     all_items = Item.objects.exclude(category_id=6).order_by('-created_date')
 
+    # Use pagination to display 20 headlines at a time.
     page_items = Paginator(all_items, 20)
 
     page = request.GET.get('page')
@@ -41,6 +43,7 @@ def news_index(request):
                                          "page_count": page_count})
 
 
+# Display an individual news story, incrementing its post count each time it is loaded.
 def news_item(request, news_id):
     item = get_object_or_404(Item, pk=news_id)
     item.views += 1
@@ -48,10 +51,12 @@ def news_item(request, news_id):
     return render(request, "news_item.html", {"item": item})
 
 
+# Display a team news page, with just stories in which the chosen team is tagged.
 def news_team(request, team_name):
     team = get_object_or_404(Team, geographic_name=team_name.capitalize())
     all_items = Item.objects.filter(teams=team.id).order_by('-created_date')
 
+    # Use pagination to display 20 headlines at a time.
     page_items = Paginator(all_items, 20)
 
     page = request.GET.get('page')
@@ -74,11 +79,15 @@ def news_team(request, team_name):
                                               'current_page': current_page})
 
 
+# Display the home page of the fan blogs section.
 def blog_home(request):
+    # Use the category_id for blog posts to select the news items in that catgory.
     blog_posts = Item.objects.filter(category_id=6).order_by('-created_date')
 
+    # Obtain the list of bloggers.
     bloggers = list_bloggers()
 
+    # Pagination to show five posts at a time.
     posts_for = Paginator(blog_posts, 5)
 
     page = request.GET.get('page')
@@ -97,12 +106,15 @@ def blog_home(request):
     return render(request, "blogs.html", {'posts': posts, 'bloggers': bloggers, 'current_page': current_page})
 
 
+# The home page for an individual blog.
 def blog_index(request, author_name):
+    # Get the user and filter out only those posts they have made.
     author = User.objects.get(username__iexact=author_name)
     all_posts = Item.objects.filter(author=author).order_by('-created_date')
 
     bloggers = list_bloggers()
 
+    # Show 10 posts at a time using pagination.
     posts_for = Paginator(all_posts, 10)
 
     page = request.GET.get('page')
@@ -117,6 +129,7 @@ def blog_index(request, author_name):
                                                'author': author, 'bloggers': bloggers})
 
 
+# Show an individual blog post, incrementing its view count by one for each view.
 def blog_post(request, post_id):
     item = Item.objects.get(pk=post_id)
     posts = Item.objects.filter(author=item.author).order_by('-created_date')
@@ -128,6 +141,7 @@ def blog_post(request, post_id):
     return render(request, "blog_post.html", {'item': item, 'posts': posts, 'bloggers': bloggers})
 
 
+# The form that allows an authorised blogger to create a new post.
 @login_required(login_url='/login/')
 def new_blog_post(request):
     user = request.user
@@ -135,6 +149,7 @@ def new_blog_post(request):
     if request.method == 'POST':
         form = BlogPostForm(request.POST)
         if form.is_valid():
+            # Do not save the post until it has been allocated to the user and given the right category for a blog post.
             new_post = form.save(False)
             new_post.author = user
             new_post.category_id = 6
@@ -158,6 +173,7 @@ def new_blog_post(request):
     return render(request, 'blog_post_form.html', args)
 
 
+# Edit an existing blog post.
 @login_required(login_url='/login/')
 def edit_blog(request, post_id):
     post = get_object_or_404(Item, pk=post_id)
@@ -185,6 +201,7 @@ def edit_blog(request, post_id):
     return render(request, 'blog_post_form.html', args)
 
 
+# Delete an unwanted blog post.
 @login_required(login_url='/login/')
 def delete_blog(request, post_id):
     post = get_object_or_404(Item, pk=post_id)
@@ -196,6 +213,7 @@ def delete_blog(request, post_id):
     return redirect(reverse('blog_home'))
 
 
+# Add a new comment to a news story or a blog post.
 @login_required(login_url='/login/')
 def new_comment(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
@@ -203,6 +221,7 @@ def new_comment(request, item_id):
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
+            # Don't save until the comment has been allocated to the right user and the right news story.
             comment = form.save(False)
             comment.user = request.user
             comment.item = item
@@ -229,6 +248,7 @@ def new_comment(request, item_id):
     return render(request, 'comment_form.html', args)
 
 
+# Edit an existing comment.
 @login_required(login_url='/login/')
 def edit_comment(request, item_id, comment_id):
     item = get_object_or_404(Item, pk=item_id)
@@ -261,6 +281,7 @@ def edit_comment(request, item_id, comment_id):
     return render(request, 'comment_form.html', args)
 
 
+# Delete a comment.
 @login_required(login_url='/login/')
 def delete_comment(request, item_id, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)

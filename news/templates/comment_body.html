@@ -1,5 +1,7 @@
 <div class="comment-body">
 
+    <!-- If the commenter has a profile picture, show it at the top of their blog. If they don't, show their favourite
+    team's logo. If they have neither, show the default icon. -->
     {% if not comment.user.profile_picture %}
         {% if not comment.user.favourite_team %}
             <img class="comment-logo" src="/media/images/users/default.png" />
@@ -11,6 +13,8 @@
     {% endif %}
 
     <div class="comment-user">
+        <!-- Link to the commenter's profile if the user is logged in. Choose the URL depending on whether it is their
+        own profile. -->
         {% if user.is_authenticated %}
             {% if user == comment.user %}
                 <a class="table-link" href="{% url 'user_profile' %}">
@@ -32,6 +36,7 @@
         {{ comment.comment|safe }}
     </div>
 
+    <!-- The user who posted the comment can edit or delete, as can anyone authorised as site staff. -->
     {% if user == comment.user or user.is_staff %}
         <div class="comment-detail comment-controls">
             <a class="table-link" href="{% url 'edit_comment' item.id comment.id %}">[Edit]</a>
@@ -39,6 +44,7 @@
         </div>
     {% endif %}
 
+    <!-- JavaScript confirmation before a comment is deleted. -->
     <div id="wrapper-{{ comment.id }}" class="popup-wrapper hidden">
         <div id="alert-{{ comment.id }}" class="alert-message hidden">
             <p>Confirmation:</p>

@@ -10,6 +10,7 @@ from tinymce.models import HTMLField
 from django.contrib.auth.models import Group
 
 
+# Function which defines a list of bloggers. Used to show a list of such users in the blog pages.
 def list_bloggers():
 
     blogger = Group.objects.get(name='Blogger')
@@ -24,6 +25,7 @@ def list_bloggers():
 
 
 # Create your models here.
+# Creates categories for news stories.
 class Category(models.Model):
     name = models.CharField(max_length=50)
     default_image = models.ImageField(upload_to="images/news/categories")
@@ -32,6 +34,7 @@ class Category(models.Model):
         return self.name
 
 
+# Creates news stories and blog posts. Optional photos can be added, both to appear in the article or in the news index.
 class Item(models.Model):
     author = models.ForeignKey(User, related_name='news', default='Admin')
     title = models.CharField(max_length=200)
@@ -48,6 +51,7 @@ class Item(models.Model):
         return self.title
 
 
+# Creates the comments on articles and blog posts.
 class Comment(models.Model):
     user = models.ForeignKey(User, related_name='comments')
     item = models.ForeignKey(Item, related_name='comments')

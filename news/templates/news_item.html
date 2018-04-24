@@ -12,16 +12,17 @@
                     BIBL NEWS
                 </div>
 
+                <!-- The details of the news item. -->
                 <div id="news-headline">
                     {{ item.title }}
                 </div>
-
                 <div class="item-details">
                     {{ item.created_date|date:'j F Y, g:i a' }}<br />Written by: {{ item.author }}
                 </div>
 
 
                 <div id="item-content">
+                    <!-- If an image has been set to show in the article, place it here. -->
                     {% if item.content_image %}
                         <div class="news-image">
                             <img src="/media/{{ item.content_image }}" />
@@ -33,6 +34,7 @@
                     {{ item.content|safe }}
                 </div>
 
+                <!-- Show the category, view total and any teams which have been tagged in the story. -->
                 <div class="item-details">
                     Category: {{ item.category }} | {{ item.views }} views<br />
                     {% if item.teams.count > 0 %}
@@ -48,6 +50,7 @@
 
             </section>
 
+            <!-- Only logged in users are allowed to comment. -->
             {% if user.is_authenticated %}
                 <div class="content-link">
                     <a href="{% url 'new_comment' item.id %}">Add a Comment</a>
@@ -59,10 +62,12 @@
                 </div>
             {% endif %}
 
+            <!-- Comments can be shown or hidden depending on user preference. -->
             <div class="left-header">
                 Comments <span id="show-hide">(Hide/Show)</span>
             </div>
 
+            <!-- Show the comments. -->
             <section id="comments">
 
                 {% for comment in item.comments.all %}

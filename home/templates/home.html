@@ -9,6 +9,7 @@
 
             <section id="banner-news">
 
+                <!-- Show the latest news stories on a ten second rotation. -->
                 {% for article in news_headlines %}
                     <div class="banner-story">
                         <a class="banner-link" href="{% url 'news' article.id %}">
@@ -24,6 +25,8 @@
                     </div>
                 {% endfor %}
 
+                <!-- Markers to display which story is currently being shown and allow the user to switch between them.
+                 -->
                 <div id="news-navigation">
                     {% for article in news_headlines %}
                         <div class="news-blob" onclick="newsFader({{ forloop.counter }})"></div>
@@ -38,6 +41,7 @@
 
             <section id="extra-news">
 
+                <!-- Team news if the user has a favourite team, more news if not. -->
                 {% if favourite_team %}
 
                     <div class="user-news {{ favourite_team.geographic_name|lower }}-tag">
@@ -78,15 +82,16 @@
 
 {% block below %}
 
+    <!-- Banner for logos of sponsoring companies. -->
     <section id="partners">
 
         <div class="white-title">
             <span id="left-scroll">
-                <<
+                &lt;&lt;
             </span>
                 LEAGUE SPONSORS
             <span id="right-scroll">
-                >>
+                &gt;&gt;
             </span>
         </div>
 

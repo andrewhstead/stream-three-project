@@ -7,7 +7,8 @@ from django.core.urlresolvers import resolve
 from .forms import CommentForm, BlogPostForm
 
 
-class LastNextTest(TestCase):
+# Tests the main news index.
+class NewsIndexTest(TestCase):
     def test_news_index_resolves(self):
         news_home = resolve('/news/')
         self.assertEqual(news_home.func, news_index)
@@ -21,26 +22,32 @@ class LastNextTest(TestCase):
         self.assertTemplateUsed(news_home, 'news.html')
 
 
+# Tests an individual news story.
 class NewsItemTest(TestCase):
+
+    fixtures = ['news', 'users', 'teams']
+
     def test_news_item_resolves(self):
         article = resolve('/news/1/')
         self.assertEqual(article.func, news_item)
 
-    # def test_news_item_code(self):
-    #     article = self.client.get('/news/1/')
-    #     self.assertEqual(article.status_code, 200)
-    #
-    # def test_news_item_content(self):
-    #     article = self.client.get('/news/1/')
-    #     self.assertTemplateUsed(article, 'news_item.html')
+    def test_news_item_code(self):
+        article = self.client.get('/news/1/')
+        self.assertEqual(article.status_code, 200)
+
+    def test_news_item_content(self):
+        article = self.client.get('/news/1/')
+        self.assertTemplateUsed(article, 'news_item.html')
 
 
+# Tests an team news page.
 class NewsTeamTest(TestCase):
     def test_news_team_resolves(self):
         team_news = resolve('/news/manchester/')
         self.assertEqual(team_news.func, news_team)
 
 
+# Test the fan blogs home page.
 class BlogHomeTest(TestCase):
 
     fixtures = ['auth']
@@ -58,54 +65,49 @@ class BlogHomeTest(TestCase):
         self.assertTemplateUsed(blogs_home, 'blogs.html')
 
 
+# Test an individual user's blog.
 class BlogIndexTest(TestCase):
     def test_blog_index_resolves(self):
         user_blog = resolve('/blogs/user/admin/')
         self.assertEqual(user_blog.func, blog_index)
 
 
+# Test an individual blog post.
 class BlogPostTest(TestCase):
     def test_blog_post_resolves(self):
         individual_blog = resolve('/blogs/post/1/')
         self.assertEqual(individual_blog.func, blog_post)
 
 
+# Test the new blog post view.
 class NewBlogTest(TestCase):
     def test_new_blog_post_resolves(self):
         new_blog = resolve('/blogs/post/new/')
         self.assertEqual(new_blog.func, new_blog_post)
 
 
-# class EditBlogTest(TestCase):
-#     def test_edit_blog_resolves(self):
-#         edit_blog = resolve('/blogs/post/edit/152/')
-#         self.assertEqual(edit_blog.func, edit_blog)
-#
-#
-# class DeleteBlogTest(TestCase):
-#     def test_delete_blog_resolves(self):
-#         delete_blog = resolve('/blogs/post/delete/152/')
-#         self.assertEqual(delete_blog.func, delete_blog)
-
-
+# Test the view that adds a new comment.
 class NewCommentTest(TestCase):
     def test_new_comment_resolves(self):
         add_comment = resolve('/comment/new/1/')
         self.assertEqual(add_comment.func, new_comment)
 
 
+# Test the view that edits a comment.
 class EditCommentTest(TestCase):
     def test_edit_comment_resolves(self):
         change_comment = resolve('/comment/edit/1/1/')
         self.assertEqual(change_comment.func, edit_comment)
 
 
+# Test the view that deletes a comment.
 class DeleteCommentTest(TestCase):
     def test_delete_comment_resolves(self):
         remove_comment = resolve('/comment/delete/1/1/')
         self.assertEqual(remove_comment.func, delete_comment)
 
 
+# Test the new comment form.
 class CommentFormTest(TestCase):
 
     def test_comment_form(self):
@@ -115,6 +117,7 @@ class CommentFormTest(TestCase):
         self.assertTrue(form.is_valid())
 
 
+# Test the blog post form.
 class BlogPostFormTest(TestCase):
     def test_blog_post_form(self):
         form = BlogPostForm({

@@ -10,6 +10,9 @@
                 FAN BLOG
             </div>
 
+            <!-- If the blogger has a profile picture, show it at the top of their blog. If they don't, show their
+            favourite team's logo. They should have a favourite team as a blogger, but if not show they default icon.
+             -->
             {% if item.author.profile_picture %}
                 <img class="blog-author" src="/media/{{ item.author.profile_picture }}" />
             {% elif item.author.favourite_team %}
@@ -18,9 +21,10 @@
                 <img class="blog-author" src="/media/images/users/default.png" />
             {% endif %}
 
+            <!-- Show the blogger's username, shortening it if it happens to be very long. -->
             <div class="blog-author-title">
                 <a class="standard-link" href="{% url 'other_profile' item.author.id %}">
-                    {{ item.author.username|truncatechars:15 }}
+                    {{ item.author.username|truncatechars:25 }}
                 </a>
             </div>
 
@@ -29,6 +33,7 @@
             </a>
             <br />
 
+            <!-- Count the number of posts by the blogger. -->
             {{ posts.count }}
             {% if posts.count == 1 %}
                 post
@@ -36,6 +41,7 @@
                 posts
             {% endif %}
 
+            <!-- Only the blogger can add a new post. -->
             {% if user == item.author %}
                 <div class="content-link">
                     <a href="{% url 'new_blog_post' %}">New Post</a>
@@ -48,12 +54,16 @@
                     {{ item.title }}
                 </div>
 
+                <!-- Details of the post, with edit and delete links available only to the blogger. -->
                 <div class="blog-details">
                     {{ item.created_date|date:'j F Y, H:i' }}, {{ item.views }} views<br />
-                    <a class="table-link" href="{% url 'edit_blog' item.id %}">[Edit]</a>
-                    <span class="alert-link" onclick="confirmationAlert({{ item.id }})">[Delete]</span>
+                    {% if user == item.author %}
+                        <a class="table-link" href="{% url 'edit_blog' item.id %}">[Edit]</a>
+                        <span class="alert-link" onclick="confirmationAlert({{ item.id }})">[Delete]</span>
+                    {% endif %}
                 </div>
 
+                <!-- JavaScript confirmation before the post is deleted. -->
                 <div id="wrapper-{{ item.id }}" class="popup-wrapper hidden">
                     <div id="alert-{{ item.id }}" class="alert-message hidden">
                         <p>Confirmation:</p>
@@ -73,6 +83,7 @@
 
             </section>
 
+            <!-- Only logged in users are able to comment. -->
             {% if user.is_authenticated %}
                 <div class="content-link">
                     <a href="{% url 'new_comment' item.id %}">Add a Comment</a>
@@ -84,10 +95,12 @@
                 </div>
             {% endif %}
 
+            <!-- JavaScript to hide or show comments depending on the user's preference. -->
             <div class="left-header">
                 Comments <span id="show-hide">(Hide/Show)</span>
             </div>
 
+            <!-- Show the comments. -->
             <section id="comments">
 
                 {% for comment in item.comments.all %}

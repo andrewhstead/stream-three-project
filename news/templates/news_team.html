@@ -39,6 +39,7 @@
                     {% endif %}
                 {% endfor %}
 
+                <!-- For all other news stories, just display the headline link. -->
                 {% for item in items|slice:'1:' %}
                         <div class="news-link">
                             <span class="arrow">&#9658;</span>
@@ -50,6 +51,7 @@
 
             </div>
 
+            <!-- Pagination buttons. -->
             <div class="pagination-menu">
 
                 {% for page in items.paginator.page_range %}

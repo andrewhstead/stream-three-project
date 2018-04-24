@@ -14,15 +14,26 @@
 
         <div id="details-column" class="column">
 
-            <div id="page-header">
-                NEW BLOG POST
-            </div>
+            <!-- Only the author of the post can view the form. -->
+            {% if user == item.author %}
 
-            <form id="default-form" method="post" action="{{ form_action }}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button class="default-button" type="submit">{{ button_text }}</button>
-            </form>
+                <div id="page-header">
+                    NEW BLOG POST
+                </div>
+
+                <form id="default-form" method="post" action="{{ form_action }}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="default-button" type="submit">{{ button_text }}</button>
+                </form>
+
+            {% else %}
+
+                <div class="sub-header">
+                    Sorry, you are not authorised to view this page.
+                </div>
+
+            {% endif %}
 
         </div>
 

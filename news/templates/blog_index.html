@@ -10,6 +10,9 @@
                 FAN BLOG
             </div>
 
+            <!-- If the blogger has a profile picture, show it at the top of their blog. If they don't, show their
+            favourite team's logo. They should have a favourite team as a blogger, but if not show they default icon.
+             -->
             {% if author.profile_picture %}
                 <img class="blog-author" src="/media/{{ author.profile_picture }}" />
             {% elif author.favourite_team %}
@@ -18,9 +21,10 @@
                 <img class="blog-author" src="/media/images/users/default.png" />
             {% endif %}
 
+            <!-- Show the blogger's username, shortening it if it happens to be very long. -->
             <div class="blog-author-title">
                 <a class="standard-link" href="{% url 'other_profile' author.id %}">
-                    {{ author.username|truncatechars:15 }}
+                    {{ author.username|truncatechars:25 }}
                 </a>
             </div>
 
@@ -29,6 +33,7 @@
             </a>
             <br />
 
+            <!-- Count the number of posts by the blogger. -->
             {{ all_posts.count }}
             {% if all_posts.count == 1 %}
                 post
@@ -36,13 +41,14 @@
                 posts
             {% endif %}
 
+            <!-- Only the blogger can add a new post. -->
             {% if user == author %}
                 <div class="content-link">
                     <a href="{% url 'new_blog_post' %}">New Post</a>
                 </div>
             {% endif %}
 
-            {% for post in posts|slice:':5' %}
+            {% for post in posts %}
 
                 <div class="blog-post">
 
@@ -66,6 +72,7 @@
 
             <div class="full-details">
 
+                <!-- Pagination links. -->
                 <div class="pagination-links">
 
                     <div class="pagination-section left-align">

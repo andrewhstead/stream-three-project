@@ -14,19 +14,31 @@
 
         <div id="details-column" class="column">
 
-            <div id="page-header">
-                {% if comment %}
-                    EDIT COMMENT
-                {% else %}
-                    POST A COMMENT
-                {% endif %}
-            </div>
+            <!-- Only the author of the comment can view the form. -->
 
-            <form id="default-form" method="post" action="{{ form_action }}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button class="default-button" type="submit">{{ button_text }}</button>
-            </form>
+            {% if user == comment.user %}
+
+                <div id="page-header">
+                    {% if comment %}
+                        EDIT COMMENT
+                    {% else %}
+                        POST A COMMENT
+                    {% endif %}
+                </div>
+
+                <form id="default-form" method="post" action="{{ form_action }}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="default-button" type="submit">{{ button_text }}</button>
+                </form>
+
+            {% else %}
+
+                <div class="sub-header">
+                    Sorry, you are not authorised to view this page.
+                </div>
+
+            {% endif %}
 
         </div>
 

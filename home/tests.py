@@ -8,6 +8,7 @@ from django.shortcuts import render_to_response
 from .forms import MessageForm
 
 
+# Test the home page view.
 class HomePageTest(TestCase):
 
     def test_home_page_resolves(self):
@@ -25,6 +26,7 @@ class HomePageTest(TestCase):
         self.assertEqual(site_home.content, site_home_template_output)
 
 
+# Test the contact form.
 class ContactFormTest(TestCase):
     def test_message_form(self):
         form = MessageForm({
