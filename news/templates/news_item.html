@@ -25,7 +25,7 @@
                     <!-- If an image has been set to show in the article, place it here. -->
                     {% if item.content_image %}
                         <div class="news-image">
-                            <img src="/media/{{ item.content_image }}" />
+                            <img src="{{ MEDIA_URL }}{{ item.content_image }}" />
                             <div class="image-caption">
                                 {{ item.image_caption }}
                             </div>

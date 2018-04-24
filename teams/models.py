@@ -10,6 +10,7 @@ class League(models.Model):
     name = models.CharField(max_length=100)
     abbreviation = models.CharField(max_length=5)
     logo = models.ImageField(upload_to="images/league", blank=True, null=True)
+    default_image = models.ImageField(upload_to="images/users", blank=True, null=True)
 
     def __unicode__(self):
         return self.name

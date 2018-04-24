@@ -10,8 +10,8 @@
     <title>British and Irish Baseball League</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/default.css">
-	<link rel="stylesheet" media="screen and (min-width: 801px)" href="{{ STATIC_URL }}css/801.css" />
+    <link rel="stylesheet" href="{% static 'css/default.css' %}">
+	<link rel="stylesheet" media="screen and (min-width: 801px)" href="{% static 'css/801.css' %}" />
     {% block head_js %}{% endblock %}
 </head>
 <body>
@@ -100,7 +100,7 @@
 
     </footer>
 
-	<script src="{{ STATIC_URL }}js/custom.js"></script>
+	<script src="{% static 'js/custom.js' %}"></script>
 
 </body>
 </html>

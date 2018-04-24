@@ -16,9 +16,9 @@
                             <!-- Show the article's cover image if one is set. Otherwise, show the default cover
                             image for the relevant category. -->
                             {% if article.cover_image %}
-                                <img class="cover-image fade-in" src="/media/{{ article.cover_image }}" />
+                                <img class="cover-image fade-in" src="{{ MEDIA_URL }}{{ article.cover_image }}" />
                             {% else %}
-                                <img class="cover-image fade-in" src="/media/{{ article.category.default_image }}" />
+                                <img class="cover-image fade-in" src="{{ MEDIA_URL }}{{ article.category.default_image }}" />
                             {% endif %}
                         </a>
                         <div class="banner-headline">
@@ -47,7 +47,7 @@
                 {% if favourite_team %}
 
                     <div class="user-news {{ favourite_team.geographic_name|lower }}-tag">
-                        <img class="user-news-logo" src="/media/{{ favourite_team.small_logo }}" />
+                        <img class="user-news-logo" src="{{ MEDIA_URL }}{{ favourite_team.small_logo }}" />
                         CLUB NEWS
                     </div>
 
@@ -98,31 +98,15 @@
         </div>
 
         <div id="logo-wrapper">
-            <div class="partner-logos">
-                <img class ="company-logo" src="/media/images/sponsors/purple.png" />
-            </div>
-            <div class="partner-logos">
-                <img class ="company-logo" src="/media/images/sponsors/alpha.png" />
-            </div>
-            <div class="partner-logos">
-                <img class ="company-logo" src="/media/images/sponsors/owl.png" />
-            </div>
-            <div class="partner-logos">
-                <img class ="company-logo" src="/media/images/sponsors/jet.png" />
-            </div>
-            <div class="partner-logos">
-                <img class ="company-logo" src="/media/images/sponsors/root.png" />
-            </div>
-            <div class="partner-logos">
-                <img class ="company-logo" src="/media/images/sponsors/ace.png" />
-            </div>
-            <div class="partner-logos">
-                <img class ="company-logo" src="/media/images/sponsors/dragon.png" />
-            </div>
+            {% for sponsor in sponsors %}
+                <div class="partner-logos">
+                    <img class ="company-logo" src="{{ MEDIA_URL }}{{ sponsor.logo }}" />
+                </div>
+            {% endfor %}
         </div>
 
     </section>
 
-    <script src="{% static "js/news_fader.js" %}"></script>
+    <script src="{% static 'js/news_fader.js' %}"></script>
 
 {% endblock %}

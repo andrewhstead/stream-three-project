@@ -17,7 +17,7 @@
 
                     <div class="multi-column">
 
-                        <img class="product-border" src="/media/{{ product.picture }}"/><br />
+                        <img class="product-border" src="{{ MEDIA_URL }}{{ product.picture }}"/><br />
                         {{ product.team }}<br />
                         {{ product.description }}<br />
                         £{{ product.price }}<br />

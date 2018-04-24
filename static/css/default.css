@@ -346,35 +346,35 @@ footer {
     margin: auto;
 }
 .facebook {
-    background: url("/media/images/social/grey/facebook.png");
+    background: url("https://s3.eu-west-2.amazonaws.com/bibl-project/media/images/social/grey/facebook.png");
     background-size: contain;
 }
 .facebook:hover {
-    background: url("/media/images/social/colour/facebook.png");
+    background: url("https://s3.eu-west-2.amazonaws.com/bibl-project/media/images/social/colour/facebook.png");
     background-size: contain;
 }
 .twitter {
-    background: url("/media/images/social/grey/twitter.png");
+    background: url("https://s3.eu-west-2.amazonaws.com/bibl-project/media/images/social/grey/twitter.png");
     background-size: contain;
 }
 .twitter:hover {
-    background: url("/media/images/social/colour/twitter.png");
+    background: url("https://s3.eu-west-2.amazonaws.com/bibl-project/media/images/social/colour/twitter.png");
     background-size: contain;
 }
 .instagram {
-    background: url("/media/images/social/grey/instagram.png");
+    background: url("https://s3.eu-west-2.amazonaws.com/bibl-project/media/images/social/grey/instagram.png");
     background-size: contain;
 }
 .instagram:hover {
-    background: url("/media/images/social/colour/instagram.png");
+    background: url("https://s3.eu-west-2.amazonaws.com/bibl-project/media/images/social/colour/instagram.png");
     background-size: contain;
 }
 .youtube {
-    background: url("/media/images/social/grey/youtube.png");
+    background: url("https://s3.eu-west-2.amazonaws.com/bibl-project/media/images/social/grey/youtube.png");
     background-size: contain;
 }
 .youtube:hover {
-    background: url("/media/images/social/colour/youtube.png");
+    background: url("https://s3.eu-west-2.amazonaws.com/bibl-project/media/images/social/colour/youtube.png");
     background-size: contain;
 }
 

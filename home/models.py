@@ -16,3 +16,12 @@ class Message(models.Model):
 
     def __unicode__(self):
         return self.sender + " | " + self.subject + " - " + unicode(self.date_sent)
+
+
+# Creates a list of league sponsors.
+class Sponsor(models.Model):
+    name = models.CharField(max_length=100)
+    logo = models.ImageField(upload_to="images/sponsors", blank=True, null=True)
+
+    def __unicode__(self):
+        return self.name

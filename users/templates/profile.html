@@ -20,12 +20,12 @@
                 they have set one. If neither is possible, use a default image. -->
                 {% if not profile_user.profile_picture %}
                     {% if not profile_user.favourite_team %}
-                        <img class="user-profile" src="/media/images/users/default.png" />
+                        <img class="user-profile" src="{{ MEDIA_URL }}{{ league.default_image }}" />
                     {% else %}
-                        <img class="user-profile" src="/media/{{ profile_user.favourite_team.large_logo }}" />
+                        <img class="user-profile" src="{{ MEDIA_URL }}{{ profile_user.favourite_team.large_logo }}" />
                     {% endif %}
                 {% else %}
-                    <img class="user-profile" src="/media/{{ profile_user.profile_picture }}" />
+                    <img class="user-profile" src="{{ MEDIA_URL }}{{ profile_user.profile_picture }}" />
                 {% endif %}
 
                 <div class="left-header">
@@ -127,7 +127,7 @@
                         {% if not profile_user.favourite_team %}
                             Not Set
                         {% else %}
-                            <img class="small-logo" src="/media/{{ profile_user.favourite_team.small_logo }}" />
+                            <img class="small-logo" src="{{ MEDIA_URL }}{{ profile_user.favourite_team.small_logo }}" />
                             <a class="standard-link" href=
                                     "{% url 'team_page' profile_user.favourite_team.geographic_name|lower %}">
                                 {{ profile_user.favourite_team }}

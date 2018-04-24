@@ -17,11 +17,11 @@
                  -->
                 <div class="blog-image">
                     {% if post.author.profile_picture %}
-                        <img class="blog-author" src="/media/{{ post.author.profile_picture }}" />
+                        <img class="blog-author" src="{{ MEDIA_URL }}{{ post.author.profile_picture }}" />
                     {% elif post.author.favourite_team %}
-                        <img class="blog-author" src="/media/{{ post.author.favourite_team.large_logo }}" />
+                        <img class="blog-author" src="{{ MEDIA_URL }}{{ post.author.favourite_team.large_logo }}" />
                     {% else %}
-                        <img class="blog-author" src="/media/images/users/default.png" />
+                        <img class="blog-author" src="{{ MEDIA_URL }}{{ league.default_image }}" />
                     {% endif %}
                 </div>
 

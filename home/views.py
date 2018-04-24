@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
+from .models import Sponsor
 from news.models import Item
 from .forms import MessageForm
 from django.template.context_processors import csrf
@@ -16,6 +17,7 @@ def home_page(request):
 
     user = request.user
     news_headlines = Item.objects.exclude(category_id=6).order_by('-created_date')[:7]
+    sponsors = Sponsor.objects.all()
 
     # If a user is logged in and has a favourite team set, show additional news relevant to that team.
     # Otherwise, just show more general news stories instead.
@@ -25,16 +27,18 @@ def home_page(request):
             extra_news = Item.objects.filter(teams=favourite_team.id).order_by('-created_date')[:5]
 
             return render(request, "home.html", {"news_headlines": news_headlines, "favourite_team": favourite_team,
-                                                 "extra_news": extra_news})
+                                                 "extra_news": extra_news, "sponsors": sponsors})
         else:
             extra_news = Item.objects.exclude(category_id=6).order_by('-created_date')[7:12]
 
-            return render(request, "home.html", {"news_headlines": news_headlines, "extra_news": extra_news})
+            return render(request, "home.html", {"news_headlines": news_headlines, "extra_news": extra_news,
+                                                 "sponsors": sponsors})
 
     else:
         extra_news = Item.objects.exclude(category_id=6).order_by('-created_date')[7:12]
 
-        return render(request, "home.html", {"news_headlines": news_headlines, "extra_news": extra_news})
+        return render(request, "home.html", {"news_headlines": news_headlines, "extra_news": extra_news,
+                                             "sponsors": sponsors})
 
 
 # The contact form view.

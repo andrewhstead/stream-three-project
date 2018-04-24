@@ -29,7 +29,7 @@
                     <div class="product-details">
 
                         <a class="standard-link" href="{% url 'store_product' product.id %}">
-                            <img class="product-border" src="/media/{{ product.picture }}"/>
+                            <img class="product-border" src="{{ MEDIA_URL }}{{ product.picture }}"/>
                         </a><br />
                         {{ product.team }}<br />
                         {{ product.description }}<br />

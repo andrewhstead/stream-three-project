@@ -14,11 +14,11 @@
             favourite team's logo. They should have a favourite team as a blogger, but if not show they default icon.
              -->
             {% if item.author.profile_picture %}
-                <img class="blog-author" src="/media/{{ item.author.profile_picture }}" />
+                <img class="blog-author" src="{{ MEDIA_URL }}{{ item.author.profile_picture }}" />
             {% elif item.author.favourite_team %}
-                <img class="blog-author" src="/media/{{ item.author.favourite_team.large_logo }}" />
+                <img class="blog-author" src="{{ MEDIA_URL }}{{ item.author.favourite_team.large_logo }}" />
             {% else %}
-                <img class="blog-author" src="/media/images/users/default.png" />
+                <img class="blog-author" src="{{ MEDIA_URL }}{{ league.default_image }}" />
             {% endif %}
 
             <!-- Show the blogger's username, shortening it if it happens to be very long. -->

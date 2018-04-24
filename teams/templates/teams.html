@@ -20,7 +20,7 @@
 
                     <div class="team-details">
                         <div class="team-name">
-                            <img class="small-logo" src="/media/{{ team.small_logo }}" /> {{ team.geographic_name }} {{ team.nickname }}
+                            <img class="small-logo" src="{{ MEDIA_URL }}{{ team.small_logo }}" /> {{ team.geographic_name }} {{ team.nickname }}
                         </div>
 
                         <div class="profile-links">
@@ -50,15 +50,15 @@
                                 <strong>Uniforms:</strong>
                             </div>
                             <div class="uniform">
-                                <img src="/media/images/teams/uniforms/{{ team.geographic_name|lower }}_home.png" />
+                                <img src="{{ MEDIA_URL }}{{ team.home_uniform }}" />
                                 Home
                             </div>
                             <div class="uniform">
-                                <img src="/media/images/teams/uniforms/{{ team.geographic_name|lower }}_away.png" />
+                                <img src="{{ MEDIA_URL }}{{ team.away_uniform }}" />
                                 Away
                             </div>
                             <div class="uniform">
-                                <img src="/media/images/teams/uniforms/{{ team.geographic_name|lower }}_alternate.png" />
+                                <img src="{{ MEDIA_URL }}{{ team.alternate_uniform }}" />
                                 Alt
                             </div>
                         </div>

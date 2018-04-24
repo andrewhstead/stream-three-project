@@ -7,11 +7,11 @@
             {% for blogger in bloggers %}
                 <div class="blogger-details">
                     {% if blogger.profile_picture %}
-                        <img class="blog-author" src="/media/{{ blogger.profile_picture }}" />
+                        <img class="blog-author" src="{{ MEDIA_URL }}{{ blogger.profile_picture }}" />
                     {% elif blogger.favourite_team %}
-                        <img class="blog-author" src="/media/{{ blogger.favourite_team.large_logo }}" />
+                        <img class="blog-author" src="{{ MEDIA_URL }}{{ blogger.favourite_team.large_logo }}" />
                     {% else %}
-                        <img class="blog-author" src="/media/images/users/default.png" />
+                        <img class="blog-author" src="{{ MEDIA_URL }}{{ league.default_image }}" />
                     {% endif %}
                     <a class="standard-link" href="{% url 'blog_index' blogger.username|lower %}">
                         {{ blogger.username }}

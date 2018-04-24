@@ -24,9 +24,9 @@
                                 <!-- Show the article's cover image if one is set. Otherwise, show the default cover
                                 image for the relevant category. -->
                                 {% if item.cover_image %}
-                                    <img class="cover-image" src="/media/{{ item.cover_image }}" />
+                                    <img class="cover-image" src="{{ MEDIA_URL }}{{ item.cover_image }}" />
                                 {% else %}
-                                    <img class="cover-image" src="/media/{{ item.category.default_image }}" />
+                                    <img class="cover-image" src="{{ MEDIA_URL }}{{ item.category.default_image }}" />
                                 {% endif %}
                             </a>
                             <div class="banner-headline">

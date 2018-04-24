@@ -20,7 +20,7 @@
 
                         {% if club.name == team.geographic_name %}
                             <td class="stat-header {{ team.geographic_name|lower }}-tag">
-                                <img class="small-logo" src="/media/{{ club.small_logo }}" />
+                                <img class="small-logo" src="{{ MEDIA_URL }}{{ club.small_logo }}" />
                                 <a class="{{ club.geographic_name|lower }}-link plain-link" href=
                                         "{% url 'team_page' club.name|lower %}">
                                     {{ club.name }}
@@ -29,7 +29,7 @@
 
                         {% elif not team and club.name == user.favourite_team.geographic_name %}
                             <td class="stat-header {{ user.favourite_team.geographic_name|lower }}-tag">
-                                <img class="small-logo" src="/media/{{ club.small_logo }}" />
+                                <img class="small-logo" src="{{ MEDIA_URL }}{{ club.small_logo }}" />
                                 <a class="{{ user.favourite_team.geographic_name|lower }}-link plain-link" href=
                                         "{% url 'team_page' club.name|lower %}">
                                     {{ club.name }}
@@ -39,7 +39,7 @@
                         {% else %}
 
                             <td class="stat-header">
-                                <img class="small-logo" src="/media/{{ club.small_logo }}" />
+                                <img class="small-logo" src="{{ MEDIA_URL }}{{ club.small_logo }}" />
                                     {% if archive %}
                                         <a class="table-link" href="{% url 'season_team' season club.name|lower %}">
                                     {% else %}

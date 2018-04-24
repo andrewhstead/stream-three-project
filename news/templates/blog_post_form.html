@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load user_tags %}
 
 {% block head_js %}
     <script src="{% static 'js/tinymce/tinymce.min.js' %}"></script>
@@ -14,8 +15,21 @@
 
         <div id="details-column" class="column">
 
-            <!-- Only the author of the post can view the form. -->
-            {% if user == post.author %}
+            <!-- When editing a post, only the author of the post can view the form. -->
+            {% if post and user == post.author %}
+
+                <div id="page-header">
+                    EDIT BLOG POST
+                </div>
+
+                <form id="default-form" method="post" action="{{ form_action }}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="default-button" type="submit">{{ button_text }}</button>
+                </form>
+
+            <!-- For a new post, only a user who is an authorised blogger can view the form. -->
+            {% elif not post and user|in_group:'Blogger' %}
 
                 <div id="page-header">
                     NEW BLOG POST

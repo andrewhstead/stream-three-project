@@ -4,12 +4,12 @@
 
     {% if not post.user.profile_picture %}
         {% if not post.user.favourite_team %}
-            <img class="comment-logo" src="/media/images/users/default.png" />
+            <img class="comment-logo" src="{{ MEDIA_URL }}{{ league.default_image }}" />
         {% else %}
-            <img class="comment-logo" src="/media/{{ post.user.favourite_team.large_logo }}" />
+            <img class="comment-logo" src="{{ MEDIA_URL }}{{ post.user.favourite_team.large_logo }}" />
         {% endif %}
     {% else %}
-        <img class="comment-logo" src="/media/{{ post.user.profile_picture }}" />
+        <img class="comment-logo" src="{{ MEDIA_URL }}{{ post.user.profile_picture }}" />
     {% endif %}
 
     <div class="comment-user">

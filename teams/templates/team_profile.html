@@ -4,7 +4,7 @@
 
     <div id="team-profile-header">
 
-        <img class="profile-logo" src="/media/{{ team.large_logo }}" />
+        <img class="profile-logo" src="{{ MEDIA_URL }}{{ team.large_logo }}" />
         <div class="{{ team.geographic_name|lower }}-text team-title">
             {{ team.geographic_name }} {{ team.nickname }}
         </div>
@@ -19,9 +19,9 @@
                 <div class="banner-story">
                     <a class="banner-link" href="{% url 'news' item.id %}">
                         {% if item.cover_image %}
-                            <img class="cover-image" src="/media/{{ item.cover_image }}" />
+                            <img class="cover-image" src="{{ MEDIA_URL }}{{ item.cover_image }}" />
                         {% else %}
-                            <img class="cover-image" src="/media/{{ item.category.default_image }}" />
+                            <img class="cover-image" src="{{ MEDIA_URL }}{{ item.category.default_image }}" />
                         {% endif %}
                     </a>
                     <div class="banner-headline">
@@ -108,7 +108,7 @@
                         {{ last_game.game_date|date:"d F Y" }}<br />
 
                         {% if team == last_game.home_team %}
-                            v <img class="small-logo" src="/media/{{ last_game.away_team.small_logo }}" />
+                            v <img class="small-logo" src="{{ MEDIA_URL }}{{ last_game.away_team.small_logo }}" />
                             <a class="standard-link" href=
                                     "{% url 'team_page' last_game.away_team.geographic_name|lower %}">
                                 {{ last_game.away_team.geographic_name }}</a><br />
@@ -119,7 +119,7 @@
                             {% endif %}
                             {{ last_game.home_team_runs }}-{{ last_game.away_team_runs }}
                         {% else %}
-                            @ <img class="small-logo" src="/media/{{ last_game.home_team.small_logo }}" />
+                            @ <img class="small-logo" src="{{ MEDIA_URL }}{{ last_game.home_team.small_logo }}" />
                             <a class="standard-link" href=
                                     "{% url 'team_page' last_game.home_team.geographic_name|lower %}">
                                 {{ last_game.home_team.geographic_name }}</a><br />
@@ -149,12 +149,12 @@
                         {{ next_game.game_date|date:"d F Y" }}<br />
 
                         {% if team == next_game.home_team %}
-                            v <img class="small-logo" src="/media/{{ next_game.away_team.small_logo }}" />
+                            v <img class="small-logo" src="{{ MEDIA_URL }}{{ next_game.away_team.small_logo }}" />
                             <a class="standard-link" href=
                                     "{% url 'team_page' next_game.away_team.geographic_name|lower %}">
                                 {{ next_game.away_team.geographic_name }}</a>
                         {% else %}
-                            @ <img class="small-logo" src="/media/{{ next_game.home_team.small_logo }}" />
+                            @ <img class="small-logo" src="{{ MEDIA_URL }}{{ next_game.home_team.small_logo }}" />
                             <a class="standard-link" href=
                                     "{% url 'team_page' next_game.home_team.geographic_name|lower %}">
                                 {{ next_game.home_team.geographic_name }}</a>
@@ -199,7 +199,7 @@
                 <div class="product-details">
 
                     <a class="standard-link" href="{% url 'store_product' product.id %}">
-                        <img class="product-border" src="/media/{{ product.picture }}"/>
+                        <img class="product-border" src="{{ MEDIA_URL }}{{ product.picture }}"/>
                     </a><br />
                     {{ product.team }}<br />
                     {{ product.description }}<br />
