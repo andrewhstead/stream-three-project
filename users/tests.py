@@ -10,6 +10,7 @@ from .models import User
 from .forms import EditProfileForm, DeletionForm, ChangePasswordForm, LoginForm, RegistrationForm
 
 
+# Test the registration view.
 class RegisterTest(TestCase):
     def test_register_resolves(self):
         registration = resolve('/register/')
@@ -24,6 +25,7 @@ class RegisterTest(TestCase):
         self.assertTemplateUsed(registration, 'user_details.html')
 
 
+# Test the login view.
 class LoginTest(TestCase):
     def test_login_resolves(self):
         user_login = resolve('/login/')
@@ -38,6 +40,7 @@ class LoginTest(TestCase):
         self.assertTemplateUsed(user_login, 'login.html')
 
 
+# Test the logout view.
 class LogoutTest(TestCase):
     def test_logout_resolves(self):
         user_logout = resolve('/logout/')
@@ -48,6 +51,7 @@ class LogoutTest(TestCase):
         self.assertEqual(user_logout.status_code, 302)
 
 
+# Test the user's own profile view.
 class UserProfileTest(TestCase):
     fixtures = ['users', 'teams', 'auth', 'store']
 
@@ -72,6 +76,7 @@ class UserProfileTest(TestCase):
         self.assertTemplateUsed(profile, 'profile.html')
 
 
+# Test the view for another user's profile.
 class OtherProfileTest(TestCase):
     fixtures = ['users', 'teams', 'auth', 'store']
 
@@ -85,17 +90,18 @@ class OtherProfileTest(TestCase):
         other_user = resolve('/profile/2/')
         self.assertEqual(other_user.func, other_profile)
 
-    # def test_other_profile_status_code(self):
-    #     self.client.login(username='username', password='password')
-    #     other_user = self.client.get('/profile/2/')
-    #     self.assertEqual(other_user.status_code, 200)
-    #
-    # def test_other_profile_content(self):
-    #     self.client.login(username='username', password='password')
-    #     other_user = self.client.get('/profile/2/')
-    #     self.assertTemplateUsed(other_user, 'profile.html')
+    def test_other_profile_status_code(self):
+        self.client.login(username='username', password='password')
+        other_user = self.client.get('/profile/2/')
+        self.assertEqual(other_user.status_code, 200)
+
+    def test_other_profile_content(self):
+        self.client.login(username='username', password='password')
+        other_user = self.client.get('/profile/2/')
+        self.assertTemplateUsed(other_user, 'profile.html')
 
 
+# Test the profile editing view.
 class EditProfileTest(TestCase):
 
     def setUp(self):
@@ -119,6 +125,7 @@ class EditProfileTest(TestCase):
         self.assertTemplateUsed(profile_change, 'user_details.html')
 
 
+# Test the profile deletion view.
 class DeleteProfileTest(TestCase):
 
     def setUp(self):
@@ -142,6 +149,7 @@ class DeleteProfileTest(TestCase):
         self.assertTemplateUsed(account_delete, 'delete_profile.html')
 
 
+# Test the password change view.
 class ChangePasswordTest(TestCase):
 
     def setUp(self):
@@ -165,6 +173,7 @@ class ChangePasswordTest(TestCase):
         self.assertTemplateUsed(new_password, 'change_password.html')
 
 
+# Test the login form.
 class LoginFormTest(TestCase):
     def test_login_form(self):
         form = LoginForm({
@@ -178,6 +187,7 @@ class LoginFormTest(TestCase):
         self.assertFalse(form.is_valid())
 
 
+# Test the user registration form.
 class RegistrationFormTest(TestCase):
     def test_registration_form(self):
         form = RegistrationForm({
@@ -188,6 +198,7 @@ class RegistrationFormTest(TestCase):
         })
         self.assertTrue(form.is_valid())
 
+    # Test for failure if passwords do not match.
     def test_registration_form_fails_different_passwords(self):
         form = RegistrationForm({
             'username': 'username',
@@ -201,6 +212,7 @@ class RegistrationFormTest(TestCase):
                                  form.full_clean())
 
 
+# Test the form to change a password.
 class ChangePasswordFormTest(TestCase):
     def test_change_password_form(self):
         form = ChangePasswordForm({
@@ -210,6 +222,7 @@ class ChangePasswordFormTest(TestCase):
         })
         self.assertTrue(form.is_valid())
 
+    # Test for failure if passwords do not match.
     def test_change_password_form_fails_different_passwords(self):
         form = ChangePasswordForm({
             'password': 'password',
@@ -222,6 +235,7 @@ class ChangePasswordFormTest(TestCase):
                                  form.full_clean())
 
 
+# Test the form to edit a profile.
 class EditProfileFormTest(TestCase):
     def test_edit_profile_form(self):
         form = EditProfileForm({
@@ -233,6 +247,7 @@ class EditProfileFormTest(TestCase):
         self.assertTrue(form.is_valid())
 
 
+# Test the form to delete a profile.
 class DeleteProfileFormTest(TestCase):
     def test_delete_profile_form(self):
         form = DeletionForm({

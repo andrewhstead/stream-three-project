@@ -6,6 +6,7 @@ from teams.models import Team
 
 
 # Create your models here.
+# Additional fields are added to the AbstractUser model.
 class User(AbstractUser):
     objects = UserManager()
     stripe_id = models.CharField(max_length=40, default='', blank=True, null=True)

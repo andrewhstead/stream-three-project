@@ -4,11 +4,13 @@ from users.models import User
 from django.core.exceptions import ValidationError
 
 
+# Simple username and password login.
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
 
+# Favourite team and profile picture options are available alongside default fields when a user registers.
 class RegistrationForm(UserCreationForm):
     password1 = forms.CharField(
         label='Choose a Password',
@@ -44,6 +46,7 @@ class RegistrationForm(UserCreationForm):
         return instance
 
 
+# Password is not required for editing a profile, so leave that field out from the Registration form.
 class EditProfileForm(forms.ModelForm):
 
     class Meta:
@@ -59,6 +62,7 @@ class EditProfileForm(forms.ModelForm):
         }
 
 
+# Password is required to delete a user's account.
 class DeletionForm(forms.ModelForm):
 
     password = forms.CharField(
@@ -75,6 +79,7 @@ class DeletionForm(forms.ModelForm):
         return password
 
 
+# Old password is needed to make a change, new password must then be entered and confirmed.
 class ChangePasswordForm(forms.ModelForm):
     password1 = forms.CharField(
         label='Choose New Password',

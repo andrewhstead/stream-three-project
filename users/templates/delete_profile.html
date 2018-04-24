@@ -14,6 +14,7 @@
                 Please confirm your password to complete the deletion of your account.
             </p>
 
+            <!-- Form for deleting the user's account. -->
             <form id="default-form" role="form" method="post" action="{% url 'delete_profile' %}">
                 {% csrf_token %}
                 {{ form.as_p }}

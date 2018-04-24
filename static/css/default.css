@@ -213,7 +213,7 @@ main {
     width: fit-content;
 }
 .news-blob {
-    float: left;
+    display: inline-block;
     height: 20px;
     width: 20px;
     border-radius: 50%;
@@ -925,6 +925,7 @@ ul.errorlist li {
     color: white;
     margin: auto;
     cursor: pointer;
+    user-select: none;
 }
 #logo-wrapper {
     position: relative;

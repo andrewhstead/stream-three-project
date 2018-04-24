@@ -14,6 +14,7 @@ from .models import User
 
 
 # Create your views here.
+# Register a new user.
 def register(request):
 
     if request.method == 'POST':
@@ -41,6 +42,7 @@ def register(request):
     return render(request, 'user_details.html', args)
 
 
+# Log a user in to the site.
 def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -63,6 +65,7 @@ def login(request):
     return render(request, 'login.html', args)
 
 
+# Log a user out from the site.
 def logout(request):
     auth.logout(request)
     messages.success(request, 'You have successfully logged out.')
@@ -70,6 +73,7 @@ def logout(request):
     return redirect(reverse('login'))
 
 
+# Logged in users can view their own profile.
 @login_required(login_url='/login/')
 def user_profile(request):
     user = request.user
@@ -93,6 +97,7 @@ def user_profile(request):
                                             'subscription_plan': subscription_plan})
 
 
+# Logged in users can also view the profiles of others.
 @login_required(login_url='/login/')
 def other_profile(request, user_id):
     user = request.user
@@ -108,6 +113,8 @@ def other_profile(request, user_id):
     for post in posts:
         contributions.append(post)
 
+    # If a user enters the url with their own profile_id,
+    # redirect to the user_profile view as different data will be shown.
     if user == profile_user:
         return redirect(reverse('user_profile'))
 
@@ -117,6 +124,7 @@ def other_profile(request, user_id):
                                                 'profile_user': profile_user})
 
 
+# Logged in users can edit their own profile.
 @login_required(login_url='/login/')
 def edit_profile(request):
     user = request.user
@@ -141,6 +149,7 @@ def edit_profile(request):
     return render(request, 'user_details.html', args)
 
 
+# Logged in users can also delete their own profile.
 @login_required(login_url='/login/')
 def delete_profile(request):
     user = request.user
@@ -168,6 +177,7 @@ def delete_profile(request):
     return render(request, 'delete_profile.html', args)
 
 
+# Once logged in, a user can change their password.
 @login_required(login_url='/login/')
 def change_password(request):
     user = request.user

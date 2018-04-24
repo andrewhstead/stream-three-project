@@ -16,6 +16,8 @@
             </div>
 
             <div>
+                <!-- Show a profile picture if the user has one, otherwise show the logo of their favourite team if
+                they have set one. If neither is possible, use a default image. -->
                 {% if not profile_user.profile_picture %}
                     {% if not profile_user.favourite_team %}
                         <img class="user-profile" src="/media/images/users/default.png" />
@@ -30,6 +32,7 @@
                     <strong>Username:</strong><br /> {{ profile_user.username }}
                 </div>
 
+                <!-- On a private profile only the username and profile picture are shown. -->
                 {% if profile_user.is_private and user != profile_user %}
 
                     <p>
@@ -38,6 +41,7 @@
 
                 {% else %}
 
+                    <!-- User does not need to be shown their own full name. -->
                     {% if user != profile_user %}
                         <p>
                             <strong>Full name:</strong><br />
@@ -55,6 +59,8 @@
                         {{ profile_user.last_login|date:'d F Y, H:i' }}
                     </p>
 
+                    <!-- E-mail, account type and purchase history are hidden from other users even if the profile is
+                     set to public. -->
                     {% if user == profile_user %}
                         <p>
                             <strong>Registered email address:</strong><br />
@@ -102,6 +108,7 @@
                         </p>
                     {% endif %}
 
+                    <!-- JavaScript confirmation for a user to cancel their subscription. -->
                     <div id="wrapper" class="popup-wrapper hidden">
                         <div id="alert" class="alert-message hidden">
                             <p>Confirmation:</p>
@@ -128,6 +135,7 @@
                         {% endif %}
                     </p>
 
+                    <!-- Only show blog details if the user is in the 'Blogger' group. -->
                     <p>
                         {% if profile_user|in_group:'Blogger' %}
                             {% if user == profile_user %}
@@ -151,6 +159,7 @@
                         Comments: {{ profile_user.comments.count }}
                     </p>
 
+                    <!-- List the user's most recent contributions to the site. -->
                     <p>
                         <strong>Recent Activity:</strong><br />
 
@@ -181,6 +190,7 @@
 
                 </div>
 
+                <!-- Editing links only available on a user's own profile. -->
                 {% if user == profile_user %}
                     <div class="full-details">
                         <a class="standard-link" href="{% url 'edit_profile' %}">[Edit Profile]</a>
