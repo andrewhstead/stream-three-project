@@ -25,13 +25,16 @@
     <tr>
         <td class="stat-header">
             <img class="small-logo" src="{{ MEDIA_URL }}{{ result.away_team.small_logo }}" />
-            <a class="table-link" href="{% url 'team_games' result.away_team.geographic_name|lower %}">
-                {% if result.game_status == "Completed" and result.away_team_runs > result.home_team_runs %}
-                    <strong>{{ result.away_team }}</strong>
+                {% if archive %}
+                    <a class="table-link" href="{% url 'season_team' season result.away_team.geographic_name|lower %}">
                 {% else %}
-                    {{ result.away_team }}
+                    <a class="table-link" href="{% url 'team_games' result.away_team.geographic_name|lower %}">
                 {% endif %}
-            </a>
+                {% if result.game_status == "Completed" and result.away_team_runs > result.home_team_runs %}
+                    <strong>{{ result.away_team }}</strong></a>
+                {% else %}
+                    {{ result.away_team }}</a>
+                {% endif %}
         </td>
         {% if result.game_status == "Postponed" %}
             <td></td>
@@ -47,14 +50,16 @@
     <tr>
         <td class="stat-header">
             <img class="small-logo" src="{{ MEDIA_URL }}{{ result.home_team.small_logo }}" />
-            <a class="table-link" href=
-                    "{% url 'team_games' result.home_team.geographic_name|lower %}">
-                {% if result.game_status == "Completed" and result.home_team_runs > result.away_team_runs %}
-                    <strong>{{ result.home_team }}</strong>
+                {% if archive %}
+                    <a class="table-link" href="{% url 'season_team' season result.home_team.geographic_name|lower %}">
                 {% else %}
-                    {{ result.home_team }}
+                    <a class="table-link" href="{% url 'team_games' result.home_team.geographic_name|lower %}">
                 {% endif %}
-            </a>
+                {% if result.game_status == "Completed" and result.home_team_runs > result.away_team_runs %}
+                    <strong>{{ result.home_team }}</strong></a>
+                {% else %}
+                    {{ result.home_team }}</a>
+                {% endif %}
         </td>
         {% if result.game_status == "Postponed" %}
             <td></td>
