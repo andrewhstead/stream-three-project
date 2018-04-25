@@ -334,48 +334,26 @@ footer {
 
 /* Styles for social media icons */
 #social-media {
-    padding: 10px;
     background-color: #4f81bd;
-    height: 35px;
     text-align: center;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+}
+#icons {
+    max-width: 400px;
+    display: flex;
+    margin: 10px auto 0 auto;
 }
 .social {
+    margin: auto;
+    flex: 1;
+}
+.social-icon {
     height: 35px;
     width: 35px;
-    display: inline-block;
-    margin: auto;
-}
-.facebook {
-    background: url("https://s3.eu-west-2.amazonaws.com/bibl-project/media/images/social/grey/facebook.png");
-    background-size: contain;
-}
-.facebook:hover {
-    background: url("https://s3.eu-west-2.amazonaws.com/bibl-project/media/images/social/colour/facebook.png");
-    background-size: contain;
-}
-.twitter {
-    background: url("https://s3.eu-west-2.amazonaws.com/bibl-project/media/images/social/grey/twitter.png");
-    background-size: contain;
-}
-.twitter:hover {
-    background: url("https://s3.eu-west-2.amazonaws.com/bibl-project/media/images/social/colour/twitter.png");
-    background-size: contain;
-}
-.instagram {
-    background: url("https://s3.eu-west-2.amazonaws.com/bibl-project/media/images/social/grey/instagram.png");
-    background-size: contain;
-}
-.instagram:hover {
-    background: url("https://s3.eu-west-2.amazonaws.com/bibl-project/media/images/social/colour/instagram.png");
-    background-size: contain;
-}
-.youtube {
-    background: url("https://s3.eu-west-2.amazonaws.com/bibl-project/media/images/social/grey/youtube.png");
-    background-size: contain;
-}
-.youtube:hover {
-    background: url("https://s3.eu-west-2.amazonaws.com/bibl-project/media/images/social/colour/youtube.png");
-    background-size: contain;
+    display: block;
+    margin: 0 auto;
 }
 
 /* Styles for generic team headers */
