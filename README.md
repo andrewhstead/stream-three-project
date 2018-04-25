@@ -15,6 +15,7 @@ the site.
 ## Contents
 1. [Planning](#planning)
 2. [Front End Development](#front-end-development)
+    * [Templates](#templates)
 	* [Responsive Design](#responsive-design)
 	* [Use of Custom JavaScript](#use-of-custom-javascript)
 	* [External JavaScript Libraries](#external-javascript-libraries)
@@ -40,6 +41,16 @@ database to enable me to include the content that I wanted, as well as how this 
 within the Django project.
 
 ## Front End Development
+
+### Templates
+
+All templates on the site extend from the base.html file in the project's main templates directory. This sets up the
+header, main navigation menu, social media icons and site footer. It should be noted that as the social media accounts
+do not actually exist, the icons link to the home pages of the respective sites.
+
+Most of the other templates use a single file within one of the apps, although in the case of league standings, tables
+which display game information and the sidebars which are shown on larger devices there are additional files which are
+included. This is done to prevent unnecessary repetition of code.
 
 ### Responsive Design
 
@@ -331,8 +342,8 @@ Much of the site development was done on a Windows PC using the Chrome browser, 
  view at different screen sizes and troubleshoot any problems which may occur. Testing the project was done by a mixture
   of automatic and manual methods. Automatic tests were written within the Django project to test the URLs and views, as
    well as testing validation for all the forms which are included on the site. In total, this testing covers 67% of all
-    the lines of code in the project. Further testing was done manually, using different browsers such as Firefox and
-    difference operating systems in terms of using Android devices. The project was tested by navigating the links
-    on the site and entering a variety of data into the forms, ensuring that the site navigation worked as intended and
-    that the forms were accepted with correct inputs and rejected when wrong entries were made, such as passwords which did not match
-    on registration.
+    the lines of code in the project and runs 152 automated tests. Further testing was done manually, using different
+    browsers such as Firefox and difference operating systems in terms of using Android devices. The project was
+    tested by navigating the links on the site and entering a variety of data into the forms, ensuring that the site
+    navigation worked as intended and that the forms were accepted with correct inputs and rejected when wrong entries
+    were made, such as passwords which did not match on registration.

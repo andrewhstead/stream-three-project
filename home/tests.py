@@ -11,6 +11,8 @@ from .forms import MessageForm
 # Test the home page view.
 class HomePageTest(TestCase):
 
+    fixtures = ['teams']
+
     def test_home_page_resolves(self):
         site_home = resolve('/')
         self.assertEqual(site_home.func, home_page)
@@ -22,8 +24,6 @@ class HomePageTest(TestCase):
     def test_check_content_is_correct(self):
         site_home = self.client.get('/')
         self.assertTemplateUsed(site_home, "home.html")
-        site_home_template_output = render_to_response("home.html").content
-        self.assertEqual(site_home.content, site_home_template_output)
 
 
 # Test the contact form.

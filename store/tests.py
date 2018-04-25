@@ -7,10 +7,13 @@ from .views import store_front, store_team, store_product, shopping_cart, change
 from django.core.urlresolvers import resolve
 from django.conf import settings
 from .forms import ChangeQuantityForm, SubmitOrderForm, SubscriptionForm, AddToCartForm
-
+from users.models import User
 
 # Test the front page of the merchandise store.
 class StoreFrontTest(TestCase):
+
+    fixtures = ['teams']
+
     def test_store_front_resolves(self):
         store_home = resolve('/store/')
         self.assertEqual(store_home.func, store_front)
@@ -44,9 +47,20 @@ class StoreTeamTest(TestCase):
 
 # Test the individual product view.
 class StoreProductTest(TestCase):
+
+    fixtures = ['teams', 'store', 'users']
+
     def test_store_product_resolves(self):
         product = resolve('/store/product/4/')
         self.assertEqual(product.func, store_product)
+
+    def test_store_product_code(self):
+        product = self.client.get('/store/product/4/')
+        self.assertEqual(product.status_code, 200)
+
+    def test_store_product_content(self):
+        product = self.client.get('/store/product/4/')
+        self.assertTemplateUsed(product, 'product.html')
 
 
 # Test the shopping cart view.
@@ -100,16 +114,46 @@ class OrderDetailsTest(TestCase):
 
 # Test the premium content page.
 class PremiumHomeTest(TestCase):
+
+    fixtures = ['teams']
+
     def test_premium_home_resolves(self):
         premium = resolve('/premium/')
         self.assertEqual(premium.func, premium_home)
 
+    def test_premium_home_code(self):
+        premium = self.client.get('/premium/')
+        self.assertEqual(premium.status_code, 200)
+
+    def test_premium_home_content(self):
+        premium = self.client.get('/premium/')
+        self.assertTemplateUsed(premium, 'premium.html')
+
 
 # Test the view for upgrading a user's account.
 class UpgradeAccountTest(TestCase):
+
+    fixtures = ['teams']
+
+    def setUp(self):
+        super(UpgradeAccountTest, self).setUp()
+        self.user = User.objects.create(username='username')
+        self.user.set_password('password')
+        self.user.save()
+
     def test_upgrade_account_resolves(self):
         upgrade = resolve('/premium/upgrade/')
         self.assertEqual(upgrade.func, upgrade_account)
+
+    def test_upgrade_account_code(self):
+        self.client.login(username='username', password='password')
+        upgrade = self.client.get('/premium/upgrade/')
+        self.assertEqual(upgrade.status_code, 200)
+
+    def test_upgrade_account_content(self):
+        self.client.login(username='username', password='password')
+        upgrade = self.client.get('/premium/upgrade/')
+        self.assertTemplateUsed(upgrade, 'upgrade.html')
 
 
 # Test the view for cancelling a user's subscription.
@@ -128,9 +172,20 @@ class SubscriptionRenewalTest(TestCase):
 
 # Test the view registering a new user with a premium account.
 class RegisterPremiumTest(TestCase):
+
+    fixtures = ['teams']
+
     def test_register_premium_resolves(self):
         premium_account = resolve('/register/premium/')
         self.assertEqual(premium_account.func, register_premium)
+
+    def test_register_premium_code(self):
+        premium_account = self.client.get('/register/premium/')
+        self.assertEqual(premium_account.status_code, 200)
+
+    def test_register_premium_content(self):
+        premium_account = self.client.get('/register/premium/')
+        self.assertTemplateUsed(premium_account, 'register_premium.html')
 
 
 # Test the form which adds a product to a user's cart.

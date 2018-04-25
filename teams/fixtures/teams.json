@@ -1,5 +1,15 @@
 [
 {
+    "model": "teams.league",
+    "pk": 1,
+    "fields": {
+        "name": "British and Irish Baseball League",
+        "abbreviation": "BIBL",
+        "logo": "images/league/BIBL.png",
+        "default_image": "images/users/default.png"
+    }
+},
+{
     "model": "teams.conference",
     "pk": 1,
     "fields": {
@@ -26,8 +36,8 @@
         "abbreviation": "DUB",
         "conference": 1,
         "ballpark": "Tolka Baseball Field",
-        "large_logo": "images/teams/logos/dublin_large_v4HZReF.png",
-        "small_logo": "images/teams/logos/dublin_small_3Yrx8LT.png",
+        "large_logo": "images/teams/logos/dublin_large.png",
+        "small_logo": "images/teams/logos/dublin_small.png",
         "home_uniform": "images/teams/uniforms/dublin_home.png",
         "away_uniform": "images/teams/uniforms/dublin_away.png",
         "alternate_uniform": "images/teams/uniforms/dublin_alternate.png"

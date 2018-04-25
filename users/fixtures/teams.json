@@ -1,5 +1,15 @@
 [
 {
+    "model": "teams.league",
+    "pk": 1,
+    "fields": {
+        "name": "British and Irish Baseball League",
+        "abbreviation": "BIBL",
+        "logo": "images/league/BIBL.png",
+        "default_image": "images/users/default.png"
+    }
+},
+{
     "model": "teams.conference",
     "pk": 1,
     "fields": {
@@ -26,10 +36,11 @@
         "abbreviation": "DUB",
         "conference": 1,
         "ballpark": "Tolka Baseball Field",
-        "large_logo": "images/teams/logos/dublin_large_v4HZReF.png",
-        "small_logo": "images/teams/logos/dublin_small_3Yrx8LT.png",
-        "home_uniform": "",
-        "away_uniform": ""
+        "large_logo": "images/teams/logos/dublin_large.png",
+        "small_logo": "images/teams/logos/dublin_small.png",
+        "home_uniform": "images/teams/uniforms/dublin_home.png",
+        "away_uniform": "images/teams/uniforms/dublin_away.png",
+        "alternate_uniform": "images/teams/uniforms/dublin_alternate.png"
     }
 },
 {
@@ -43,8 +54,9 @@
         "ballpark": "Cowlairs Park",
         "large_logo": "images/teams/logos/glasgow_large.png",
         "small_logo": "images/teams/logos/glasgow_small.png",
-        "home_uniform": "",
-        "away_uniform": ""
+        "home_uniform": "images/teams/uniforms/glasgow_home.png",
+        "away_uniform": "images/teams/uniforms/glasgow_away.png",
+        "alternate_uniform": "images/teams/uniforms/glasgow_alternate.png"
     }
 },
 {
@@ -58,8 +70,9 @@
         "ballpark": "Mersey Field",
         "large_logo": "images/teams/logos/liverpool_large.png",
         "small_logo": "images/teams/logos/liverpool_small.png",
-        "home_uniform": "",
-        "away_uniform": ""
+        "home_uniform": "images/teams/uniforms/liverpool_home.png",
+        "away_uniform": "images/teams/uniforms/liverpool_away.png",
+        "alternate_uniform": "images/teams/uniforms/liverpool_alternate.png"
     }
 },
 {
@@ -73,8 +86,9 @@
         "ballpark": "The Meadow",
         "large_logo": "images/teams/logos/manchester_large.png",
         "small_logo": "images/teams/logos/manchester_small.png",
-        "home_uniform": "",
-        "away_uniform": ""
+        "home_uniform": "images/teams/uniforms/manchester_home.png",
+        "away_uniform": "images/teams/uniforms/manchester_away.png",
+        "alternate_uniform": "images/teams/uniforms/manchester_alternate.png"
     }
 },
 {
@@ -88,8 +102,9 @@
         "ballpark": "Edgbaston Field",
         "large_logo": "images/teams/logos/birmingham_large.png",
         "small_logo": "images/teams/logos/birmingham_small.png",
-        "home_uniform": "",
-        "away_uniform": ""
+        "home_uniform": "images/teams/uniforms/birmingham_home.png",
+        "away_uniform": "images/teams/uniforms/birmingham_away.png",
+        "alternate_uniform": "images/teams/uniforms/birmingham_alternate.png"
     }
 },
 {
@@ -103,8 +118,9 @@
         "ballpark": "Netham Park",
         "large_logo": "images/teams/logos/bristol_large.png",
         "small_logo": "images/teams/logos/bristol_small.png",
-        "home_uniform": "",
-        "away_uniform": ""
+        "home_uniform": "images/teams/uniforms/bristol_home.png",
+        "away_uniform": "images/teams/uniforms/bristol_away.png",
+        "alternate_uniform": "images/teams/uniforms/bristol_alternate.png"
     }
 },
 {
@@ -118,8 +134,9 @@
         "ballpark": "Llandaff Fields",
         "large_logo": "images/teams/logos/cardiff_large.png",
         "small_logo": "images/teams/logos/cardiff_small.png",
-        "home_uniform": "",
-        "away_uniform": ""
+        "home_uniform": "images/teams/uniforms/cardiff_home.png",
+        "away_uniform": "images/teams/uniforms/cardiff_away.png",
+        "alternate_uniform": "images/teams/uniforms/cardiff_alternate.png"
     }
 },
 {
@@ -133,8 +150,9 @@
         "ballpark": "Primrose Hill Park",
         "large_logo": "images/teams/logos/london_large.png",
         "small_logo": "images/teams/logos/london_small.png",
-        "home_uniform": "",
-        "away_uniform": ""
+        "home_uniform": "images/teams/uniforms/london_home.png",
+        "away_uniform": "images/teams/uniforms/london_away.png",
+        "alternate_uniform": "images/teams/uniforms/london_alternate.png"
     }
 }
 ]

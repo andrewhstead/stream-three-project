@@ -4,7 +4,6 @@ from django.test import TestCase
 from .views import register, login, logout, user_profile, other_profile,\
     edit_profile, delete_profile, change_password
 from django.core.urlresolvers import resolve
-from django.contrib.auth.models import Group
 from django import forms
 from .models import User
 from .forms import EditProfileForm, DeletionForm, ChangePasswordForm, LoginForm, RegistrationForm
@@ -12,6 +11,9 @@ from .forms import EditProfileForm, DeletionForm, ChangePasswordForm, LoginForm,
 
 # Test the registration view.
 class RegisterTest(TestCase):
+
+    fixtures = ['teams']
+
     def test_register_resolves(self):
         registration = resolve('/register/')
         self.assertEqual(registration.func, register)
@@ -27,6 +29,9 @@ class RegisterTest(TestCase):
 
 # Test the login view.
 class LoginTest(TestCase):
+
+    fixtures = ['teams']
+
     def test_login_resolves(self):
         user_login = resolve('/login/')
         self.assertEqual(user_login.func, login)
@@ -104,6 +109,8 @@ class OtherProfileTest(TestCase):
 # Test the profile editing view.
 class EditProfileTest(TestCase):
 
+    fixtures = ['teams']
+
     def setUp(self):
         super(EditProfileTest, self).setUp()
         self.user = User.objects.create(username='username')
@@ -128,6 +135,8 @@ class EditProfileTest(TestCase):
 # Test the profile deletion view.
 class DeleteProfileTest(TestCase):
 
+    fixtures = ['teams']
+
     def setUp(self):
         super(DeleteProfileTest, self).setUp()
         self.user = User.objects.create(username='username')
@@ -151,6 +160,8 @@ class DeleteProfileTest(TestCase):
 
 # Test the password change view.
 class ChangePasswordTest(TestCase):
+
+    fixtures = ['teams']
 
     def setUp(self):
         super(ChangePasswordTest, self).setUp()
