@@ -9,8 +9,8 @@ teams, and the ability for fans to interact and purchase premium content or merc
 Out of the Park Baseball was used to create a league consisting of eight teams split into two 'Conferences' of four
 teams each, playing a 60-game league season each year with the winner of each Conference meeting in a best-of-seven
 game series to decide the overall champions. The league was created for a 2000 season, thus enabling archive data to be
-included and a league history added to
-the site.
+included and a league history added to the site. The project is presented as the site would have looked on 25 April
+2018, the end of development, which is portrayed as midway through the 2018 season.
 
 ## Contents
 1. [Planning](#planning)
@@ -304,9 +304,10 @@ The user model also contains fields for a default address, which can be used whe
  subscription is due to end is set here. There is also a setting for whether or not the user's subscription will renew
  automatically, which it may not if the user has chosen to cancel.
 
-Another important field is the ability to set a profile to private, as logged in users can view each other's profiles. A profile is public by default, but a user can choose to hid all but their user name. It is
- important to note that even in a public profile, information such as the user's e-mail address, order history and
- subscription status will remain private. These are visible to the user themselves, but not to other users.
+Another important field is the ability to set a profile to private, as logged in users can view each other's profiles. A
+ profile is public by default, but a user can choose to hid all but their user name. It is important to note that even
+ in a public profile, information such as the user's e-mail address, order history and subscription status will remain
+ private. These are visible to the user themselves, but not to other users.
 
 The registration and profile editing forms are both model forms based on the user model. Separate forms are required
 because additional authentication is not required to edit a profile once the user has logged in. Another form is used to

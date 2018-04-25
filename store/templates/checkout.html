@@ -20,9 +20,9 @@
             <!-- Access to a checkout is only possible for the owner of the relevant shopping cart. -->
             {% if user == order.user %}
 
-                <div id="page-header">
+                <h1>
                     CHECKOUT
-                </div>
+                </h1>
 
                 <!-- Forms to submit an order. -->
                 <form role="form" method="post" id="default-form" action="{% url 'checkout' order_id %}">
@@ -54,9 +54,9 @@
             <!-- Show an error if a user tries to view another person's checkout. -->
             {% else %}
 
-                <div id="page-header">
+                <h1>
                     ERROR
-                </div>
+                </h1>
 
                 <p>
                     Sorry, you are not authorised to view this page.

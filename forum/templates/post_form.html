@@ -18,9 +18,9 @@
                This is to prevent a user being able to edit someone else's post. -->
             {% if post and user == post.user or user.is_superuser %}
 
-                <div id="page-header">
+                <h1>
                     EDIT POST
-                </div>
+                </h1>
 
                 <div class="sub-header">
                     Post in: {{ thread.title }}
@@ -35,9 +35,9 @@
             <!-- Any other user will see an error message. -->
             {% elif post %}
 
-                <div id="page-header">
+                <h1>
                     ERROR
-                </div>
+                </h1>
 
                 <p>
                     Sorry, you are not authorised to view this page.
@@ -46,9 +46,9 @@
             <!-- If no post exists, a new one can be created. -->
             {% else %}
 
-                <div id="page-header">
+                <h1>
                     ADD NEW POST
-                </div>
+                </h1>
 
                 <div class="sub-header">
                     Post in: {{ thread.title }}

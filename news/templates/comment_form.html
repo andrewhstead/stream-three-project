@@ -18,9 +18,9 @@
             This is to prevent a user being able to edit someone else's comment. -->
             {% if comment and user == comment.user or user.is_superuser %}
 
-                <div id="page-header">
+                <h1>
                     EDIT COMMENT
-                </div>
+                </h1>
 
                 <form id="default-form" method="post" action="{{ form_action }}">
                     {% csrf_token %}
@@ -31,9 +31,9 @@
             <!-- Any other user will see an error message. -->
             {% elif comment %}
 
-                <div id="page-header">
+                <h1>
                     ERROR
-                </div>
+                </h1>
 
                 <p>
                     Sorry, you are not authorised to view this page.
@@ -42,9 +42,9 @@
             <!-- If no comment exists, a new one can be created. -->
             {% else %}
 
-                <div id="page-header">
+                <h1>
                     POST A COMMENT
-                </div>
+                </h1>
 
                 <form id="default-form" method="post" action="{{ form_action }}">
                     {% csrf_token %}

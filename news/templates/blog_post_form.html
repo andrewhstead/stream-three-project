@@ -19,9 +19,9 @@
             This is to prevent a user being able to edit someone else's post. -->
             {% if post and user == post.author or user.is_superuser %}
 
-                <div id="page-header">
+                <h1>
                     EDIT BLOG POST
-                </div>
+                </h1>
 
                 <form id="default-form" method="post" action="{{ form_action }}">
                     {% csrf_token %}
@@ -32,9 +32,9 @@
             <!-- For a new post, only a user who is an authorised blogger can view the form. -->
             {% elif not post and user|in_group:'Blogger' %}
 
-                <div id="page-header">
+                <h1>
                     NEW BLOG POST
-                </div>
+                </h1>
 
                 <form id="default-form" method="post" action="{{ form_action }}">
                     {% csrf_token %}
@@ -44,9 +44,9 @@
 
             {% else %}
 
-                <div id="page-header">
+                <h1>
                     ERROR
-                </div>
+                </h1>
 
                 <p>
                     Sorry, you are not authorised to view this page.
