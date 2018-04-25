@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'tinymce',
     'storages',
-    'debug_toolbar',
     'home',
     'news',
     'games',
