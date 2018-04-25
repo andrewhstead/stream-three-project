@@ -16,13 +16,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='conference',
             name='abbreviation',
-            field=models.CharField(default=django.utils.timezone.now, max_length=3),
+            field=models.CharField(default='CO', max_length=3),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='conference',
             name='short_name',
-            field=models.CharField(default=django.utils.timezone.now, max_length=10),
+            field=models.CharField(default='Conf', max_length=10),
             preserve_default=False,
         ),
     ]
