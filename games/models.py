@@ -30,6 +30,9 @@ def get_standings(year):
     # Empty list to contain the standings
     standings = []
 
+    games = Game.objects.filter(game_status='Completed', game_type='Regular Season', game_date__year=year)\
+        .values('home_team', 'away_team', 'home_team_runs', 'away_team_runs')
+
     for team in teams:
         # For each team, create a dictionary with statistics set to 0. Use float rather than integer to facilitate
         # later calculations and number formatting.
@@ -41,32 +44,30 @@ def get_standings(year):
                        "runs_for": 0.0, "runs_against": 0.0}
 
         # Next get the team's completed home games and away games for the current year.
-        home_games = Game.objects.filter(game_date__year=year).filter(home_team=team)\
-            .filter(game_status='Completed').filter(game_type='Regular Season')
-        away_games = Game.objects.filter(game_date__year=year).filter(away_team=team)\
-            .filter(game_status='Completed').filter(game_type='Regular Season')
+        home_games = [game for game in games if game['home_team'] == team.id]
+        away_games = [game for game in games if game['away_team'] == team.id]
 
         # For each home game, add the game result and score to their record.
         for game in home_games:
             team_record["played"] += 1
-            team_record["runs_for"] += game.home_team_runs
-            team_record["runs_against"] += game.away_team_runs
-            if game.home_team_runs > game.away_team_runs:
+            team_record["runs_for"] += game['home_team_runs']
+            team_record["runs_against"] += game['away_team_runs']
+            if game['home_team_runs'] > game['away_team_runs']:
                 team_record["home_won"] += 1
                 team_record["won"] += 1
-            if game.home_team_runs < game.away_team_runs:
+            if game['home_team_runs'] < game['away_team_runs']:
                 team_record["home_lost"] += 1
                 team_record["lost"] += 1
 
         # For each away game, add the game result and score to their record.
         for game in away_games:
             team_record["played"] += 1
-            team_record["runs_for"] += game.away_team_runs
-            team_record["runs_against"] += game.home_team_runs
-            if game.away_team_runs > game.home_team_runs:
+            team_record["runs_for"] += game['away_team_runs']
+            team_record["runs_against"] += game['home_team_runs']
+            if game['away_team_runs'] > game['home_team_runs']:
                 team_record["away_won"] += 1
                 team_record["won"] += 1
-            if game.away_team_runs < game.home_team_runs:
+            if game['away_team_runs'] < game['home_team_runs']:
                 team_record["away_lost"] += 1
                 team_record["lost"] += 1
 
