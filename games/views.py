@@ -9,6 +9,7 @@ from teams.models import Team, Conference
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import datetime
 from django.template.context_processors import csrf
+from django.db.models import Q
 
 
 # Create your views here.
@@ -86,29 +87,30 @@ def games_team(request, team_name):
     current_season = datetime.now().year
 
     # Get the games for the current season.
-    games = Game.objects.filter(game_date__year=current_season) \
-        .filter(game_type='Regular Season').order_by('game_date')
+    # games = Game.objects.filter(game_date__year=current_season) \
+    #     .filter(game_type='Regular Season').order_by('game_date')
     team = get_object_or_404(Team, geographic_name=team_name.capitalize())
     # Empty list to define the team's schedule.
     team_schedule = []
+
+    # Get all the regular season games that the team is involved in during the current year.
+    games = Game.objects.filter(game_date__year=current_season) \
+        .filter(game_type='Regular Season').filter(Q(home_team=team) | Q(away_team=team)).order_by('game_date')
 
     # For each game in the season:
     for game in games:
         # If the chosen team was at home, allocate the home team's result to them and set the away team as their
         # opponent.
         if game.home_team == team:
-            game.team = game.home_team
-            game.opponent = game.away_team
-            game.team_runs = game.home_team_runs
-            game.opponent_runs = game.away_team_runs
-            team_schedule.append(game)
+            details = {"venue": "H", "team": game.home_team, "opponent": game.away_team,
+                       "team_runs": game.home_team_runs, "opponent_runs": game.away_team_runs, "date": game.game_date,
+                       "status": game.game_status}
         # If the chosen team was away, allocate the away team's result to them and set the home team as their opponent.
-        elif game.away_team == team:
-            game.team = game.away_team
-            game.opponent = game.home_team
-            game.team_runs = game.away_team_runs
-            game.opponent_runs = game.home_team_runs
-            team_schedule.append(game)
+        else:
+            details = {"venue": "A", "team": game.away_team, "opponent": game.home_team,
+                       "team_runs": game.away_team_runs, "opponent_runs": game.home_team_runs,
+                       "date": game.game_date, "status": game.game_status}
+        team_schedule.append(details)
 
     return render(request, "games_team.html", {"team": team, "team_games": team_schedule})
 

@@ -9,8 +9,8 @@ teams, and the ability for fans to interact and purchase premium content or merc
 Out of the Park Baseball was used to create a league consisting of eight teams split into two 'Conferences' of four
 teams each, playing a 60-game league season each year with the winner of each Conference meeting in a best-of-seven
 game series to decide the overall champions. The league was created for a 2000 season, thus enabling archive data to be
-included and a league history added to the site. The project is presented as the site would have looked on 25 April
-2018, the end of development, which is portrayed as midway through the 2018 season.
+included and a league history added to the site. The project is presented as the site would have looked in April
+2018, the end of the main period of development, which is portrayed as midway through the 2018 season.
 
 ## Contents
 1. [Planning](#planning)
@@ -165,10 +165,10 @@ the two teams involved. Calculation of the playing record involves adding to the
 or losses, depending on the result of the game. The game score is added to the team's 'runs for' or 'runs against'
 totals, while separate records are also created for home games and away games.
 
-The standings function is used to create three different templates - one for the simple standings view used in the sidebar on many pages, another for more
-detailed statistics on the main standings page and a third for archive standings of past seasons. A separate template
-was created for this in order to ensure that the archive standings did not interfere with the current standings in the
-sidebar on larger screens.
+The standings function is used to create three different templates - one for the simple standings view used in the
+sidebar on many pages, another for more detailed statistics on the main standings page and a third for archive standings
+ of past seasons. A separate template was created for this in order to ensure that the archive standings did not
+ interfere with the current standings in the sidebar on larger screens.
 
 Templates in the games app allow a information to be presented in a variety of ways. The default scores page as linked
 from the main menu shows the scores on the most recent game date, and the fixtures on the next scheduled game date. It
@@ -225,7 +225,8 @@ to be used alongside the subscription form. The subscription form is derived fro
 merchandise store, with an extra field included to allow the user to choose their preferred payment plan before
 endering card details to complete the upgrade. The payments are handled by Stripe and the user has the ability to
   cancel their plan at any time to prevent another payment from being taken. If this is done, then access is retained
-  until the end of the current billing period.
+  until the end of the current billing period. A webhook is used to handle the renewal information. A shell file was
+  generated to test this functionality during the development period.
 
 All the models in the store app relate to ordering merchandise. There is a model which defines each product which a user
  might wish to purchase, for example a replica home jersey for a given team. Another model then allows for a number of
@@ -243,8 +244,8 @@ pending cart, a new one is set up for them. The user has the opportunity to chan
 As items are added and deleted or quantities changed, the stock level of the specific size option is altered
  accordingly. This is done to ensure that items are  allocated as soon as they go into a cart and cannot be bought by
  any other user unless they are first removed. The running total of the user's order is calculated each time an item is
- added or deleted, with a calculation being made to check whether the new total exceeds £50. This is done to allow postage charges to be removed for orders above that
- amount.
+ added or deleted, with a calculation being made to check whether the new total exceeds £50. This is done to allow
+ postage charges to be removed for orders above that amount.
 
 Payment works in much the same was as the subscription for premium content. The user is however also required to enter a
  delivery address. In the users app the user may have already set a default address, although this is not compulsory. If
@@ -335,7 +336,9 @@ A GitHub repository was created for the project right at the beginning of develo
  the site was in place the project was then further deployed to Heroku. This was done to enable easy testing on
  different devices, particularly mobile devices running the Android operating system. Although not every commit to
  GitHub was deployed to Heroku, the Heroku app was updated regularly when significant new functionality or design was
- added in order to facilitate continued manual testing.
+ added in order to facilitate continued manual testing. The settings of the project were separated into development and
+ staging files in order to keep those environments separate. Amazon Web Services was used in order to host both static
+ and media files on S3, while the database was deployed to ClearDB for use with the Heroku app.
 
 ## Testing
 

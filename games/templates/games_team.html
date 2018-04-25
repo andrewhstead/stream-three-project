@@ -29,12 +29,12 @@
 
                         <tr>
                             <td class="stat-header">
-                                {{ game.game_date|date:"d/m/y" }}
+                                {{ game.date|date:"d/m/y" }}
                             </td>
                             <td class="stat-header">
-                                {% if game.team == game.home_team %}
+                                {% if game.venue == "H" %}
                                     v
-                                {% elif game.team == game.away_team %}
+                                {% elif game.venue == "A" %}
                                     @
                                 {% endif %}
                                 <a class="table-link" href="{% url 'team_games' game.opponent.geographic_name|lower %}">
@@ -42,7 +42,7 @@
                                 </a>
                             </td>
                             <!-- W or L only used if the game is completed. -->
-                            {% if game.game_status == "Completed" %}
+                            {% if game.status == "Completed" %}
                                 {% if game.team_runs > game.opponent_runs %}
                                     <td class="stat-win">
                                         W
@@ -57,17 +57,17 @@
                                 </td>
                             <!-- Indicate postponed games with P-P, suspended games with S or games in progress with P.
                              -->
-                            {% elif game.game_status == "Postponed" %}
+                            {% elif game.status == "Postponed" %}
                                 <td></td>
                                 <td>P-P</td>
-                            {% elif game.game_status == "Suspended" %}
+                            {% elif game.status == "Suspended" %}
                                 <td class="stat-detail-faint">
                                     S
                                 </td>
                                 <td class="stat-detail-faint">
                                     {{ game.team_runs }}-{{ game.opponent_runs }}
                                 </td>
-                            {% elif game.game_status == "In Progress" %}
+                            {% elif game.status == "In Progress" %}
                                 <td class="stat-detail-highlight">
                                     P
                                 </td>

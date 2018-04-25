@@ -27,9 +27,6 @@ def get_standings(year):
 
     teams = Team.objects.all().order_by('geographic_name')
 
-    # Choose the completed games for the chosen year only.
-    games = Game.objects.filter(game_date__year=year)\
-        .filter(game_type="Regular Season").filter(game_status="Completed")
     # Empty list to contain the standings
     standings = []
 
@@ -42,36 +39,44 @@ def get_standings(year):
                        "home_won": 0.0, "home_lost": 0.0,
                        "away_won": 0.0, "away_lost": 0.0,
                        "runs_for": 0.0, "runs_against": 0.0}
-        # For each game~
-        for game in games:
-            # If the current team was the home team, add the game result and score to their record.
-            if game.home_team == team:
-                team_record["played"] += 1
-                team_record["runs_for"] += game.home_team_runs
-                team_record["runs_against"] += game.away_team_runs
-                if game.home_team_runs > game.away_team_runs:
-                    team_record["home_won"] += 1
-                    team_record["won"] += 1
-                if game.home_team_runs < game.away_team_runs:
-                    team_record["home_lost"] += 1
-                    team_record["lost"] += 1
-            # If the current team was the away team, add the game result and score to their record.
-            elif game.away_team == team:
-                team_record["played"] += 1
-                team_record["runs_for"] += game.away_team_runs
-                team_record["runs_against"] += game.home_team_runs
-                if game.away_team_runs > game.home_team_runs:
-                    team_record["away_won"] += 1
-                    team_record["won"] += 1
-                if game.away_team_runs < game.home_team_runs:
-                    team_record["away_lost"] += 1
-                    team_record["lost"] += 1
+
+        # Next get the team's completed home games and away games for the current year.
+        home_games = Game.objects.filter(game_date__year=year).filter(home_team=team)\
+            .filter(game_status='Completed').filter(game_type='Regular Season')
+        away_games = Game.objects.filter(game_date__year=year).filter(away_team=team)\
+            .filter(game_status='Completed').filter(game_type='Regular Season')
+
+        # For each home game, add the game result and score to their record.
+        for game in home_games:
+            team_record["played"] += 1
+            team_record["runs_for"] += game.home_team_runs
+            team_record["runs_against"] += game.away_team_runs
+            if game.home_team_runs > game.away_team_runs:
+                team_record["home_won"] += 1
+                team_record["won"] += 1
+            if game.home_team_runs < game.away_team_runs:
+                team_record["home_lost"] += 1
+                team_record["lost"] += 1
+
+        # For each away game, add the game result and score to their record.
+        for game in away_games:
+            team_record["played"] += 1
+            team_record["runs_for"] += game.away_team_runs
+            team_record["runs_against"] += game.home_team_runs
+            if game.away_team_runs > game.home_team_runs:
+                team_record["away_won"] += 1
+                team_record["won"] += 1
+            if game.away_team_runs < game.home_team_runs:
+                team_record["away_lost"] += 1
+                team_record["lost"] += 1
+
         # To prevent zero-division error when no games played, set the team's winning percentage to 0.
         if team_record["played"] == 0:
             team_record["pct"] = 0
         # When games have been played, calculate the winning percentage from the win-loss record.
         else:
             team_record["pct"] = team_record["won"] / team_record["played"]
+
         # Calculate the difference between the runs scored and allowed by the team.
         team_record["net_runs"] = team_record["runs_for"] - team_record["runs_against"]
         # Add the team's updated record to the standings.

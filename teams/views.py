@@ -8,6 +8,7 @@ from store.models import Product
 from games.models import Game, get_standings
 from forum.views import Board
 from datetime import datetime
+from django.db.models import Q
 
 
 # Create your views here.
@@ -32,20 +33,23 @@ def team_page(request, team_name):
     board = Board.objects.get(team=team)
 
     # Find the last game played by the team and the next one they have scheduled.
-    games = Game.objects.filter(game_date__year=current_season).order_by('game_date')
     team_results = []
     team_fixtures = []
-    for game in games:
-        if game.home_team == team or game.away_team == team:
-            if game.game_status == "Completed":
-                team_results.append(game)
-            if game.game_status == "Scheduled":
-                team_fixtures.append(game)
+
+    results = Game.objects.filter(game_date__year=current_season).filter(Q(home_team=team) | Q(away_team=team)).filter(
+        game_status='Completed').order_by('game_date')
+    fixtures = Game.objects.filter(game_date__year=current_season).filter(Q(home_team=team) | Q(away_team=team)).filter(
+        game_status='Scheduled').order_by('game_date')
+
+    for game in results:
+        team_results.append(game)
+    for game in fixtures:
+        team_fixtures.append(game)
 
     # Only extract the last and next games if there are games arranged for the current season. This is done to
     # prevent errors in the close season when new fixtures may not yet have been added.
 
-    if games:
+    if results and fixtures:
         last_game = team_results[-1]
         next_game = team_fixtures[0]
 
