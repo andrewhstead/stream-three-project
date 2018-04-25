@@ -8,6 +8,7 @@ from teams.models import Team
 
 
 # Create your models here.
+# A section within the forum - used to categorise the boards.
 class Section(models.Model):
     title = models.CharField(max_length=50)
 
@@ -15,6 +16,7 @@ class Section(models.Model):
         return self.title
 
 
+# The individual boards within the forum. Can be linked to a specific team or be general league-wide boards.
 class Board(models.Model):
     title = models.CharField(max_length=50)
     section = models.ForeignKey(Section, related_name='boards')
@@ -25,6 +27,8 @@ class Board(models.Model):
         return self.title
 
 
+# A thread in the forum. Attributed to the user who created the thread and allocated to the relevant board. The
+# 'last_post' field will be updated every time a post is added or deleted.
 class Thread(models.Model):
     title = models.CharField(max_length=50)
     user = models.ForeignKey(User, related_name='threads')
@@ -37,6 +41,7 @@ class Thread(models.Model):
         return self.title
 
 
+# An individual forum post, attributed to a user an allocated to the relevant thread.
 class Post(models.Model):
     user = models.ForeignKey(User, related_name='posts')
     thread = models.ForeignKey(Thread, related_name='posts')

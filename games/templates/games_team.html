@@ -24,6 +24,7 @@
                         <th class="stat-column-wide">Sc.</th>
                     </tr>
 
+                    <!-- As long as the schedule is available, show the result or scheduled date of each game. -->
                     {% for game in team_games %}
 
                         <tr>
@@ -40,6 +41,7 @@
                                     {{ game.opponent.geographic_name }}
                                 </a>
                             </td>
+                            <!-- W or L only used if the game is completed. -->
                             {% if game.game_status == "Completed" %}
                                 {% if game.team_runs > game.opponent_runs %}
                                     <td class="stat-win">
@@ -53,6 +55,8 @@
                                 <td class="stat-detail">
                                     {{ game.team_runs }}-{{ game.opponent_runs }}
                                 </td>
+                            <!-- Indicate postponed games with P-P, suspended games with S or games in progress with P.
+                             -->
                             {% elif game.game_status == "Postponed" %}
                                 <td></td>
                                 <td>P-P</td>

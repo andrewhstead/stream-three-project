@@ -34,7 +34,7 @@
                 <a href="{% url 'home' %}"><img class="home-logo" src="{{ MEDIA_URL }}{{ league.logo }}" /></a>
             </div>
             <div id="league-name">
-                BRITISH AND IRISH BASEBALL LEAGUE
+                {{ league.name|upper }}
             </div>
             <div id="menu-button">
                 &#8801;

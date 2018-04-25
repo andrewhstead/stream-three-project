@@ -12,6 +12,7 @@
                 BIBL DISCUSSION FORUM
             </div>
 
+            <!-- If the board is team specific, it should have the team name specially styled as its heading. -->
             {% if team %}
                 <div class="{{ team.geographic_name|lower }}-text team-header">
                     {{ team.geographic_name }} {{ team.nickname }}
@@ -22,6 +23,8 @@
                 </div>
             {% endif %}
 
+            <!-- If the user is logged in, they can create a new thread. If they are not logged, they will be
+            prompted to do so. -->
             {% if user.is_authenticated %}
                 <div class="content-link">
                     <a href="{% url 'new_thread' board.id %}">New Thread</a>
@@ -40,10 +43,13 @@
                 </div>
             {% endif %}
 
+            <!-- Message to indicate an empty board. -->
             {% if board.threads.count == 0 %}
                 No threads in this forum yet.
             {% endif %}
 
+            <!-- Show the threads in a table, indicating who started the thread and when the last post was. Also show
+             the number of posts and the number of times the thread has been viewed. -->
             <table class="forum-table alternating-rows">
                 <tr class="header-row">
                     <td>Thread</td>
@@ -72,6 +78,7 @@
                 {% endfor %}
             </table>
 
+            <!-- Pagination links. -->
             <div class="full-details">
 
                 <div class="pagination-links">

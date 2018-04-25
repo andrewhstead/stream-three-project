@@ -13,23 +13,54 @@
     <div class="column-wrapper">
 
         <div id="details-column" class="column">
-            <div id="page-header">
-                {% if comment %}
+
+            <!-- If a post exists, only the author of the post or the superuser can view the form.
+               This is to prevent a user being able to edit someone else's post. -->
+            {% if post and user == post.user or user.is_superuser %}
+
+                <div id="page-header">
                     EDIT POST
-                {% else %}
-                    ADD A POST
-                {% endif %}
-            </div>
+                </div>
 
-            <div class="sub-header">
-                Post in: {{ thread.title }}
-            </div>
+                <div class="sub-header">
+                    Post in: {{ thread.title }}
+                </div>
 
-            <form id="default-form" method="post" action="{{ form_action }}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button class="default-button" type="submit">{{ button_text }}</button>
-            </form>
+                <form id="default-form" method="post" action="{{ form_action }}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="default-button" type="submit">{{ button_text }}</button>
+                </form>
+
+            <!-- Any other user will see an error message. -->
+            {% elif post %}
+
+                <div id="page-header">
+                    ERROR
+                </div>
+
+                <p>
+                    Sorry, you are not authorised to view this page.
+                </p>
+
+            <!-- If no post exists, a new one can be created. -->
+            {% else %}
+
+                <div id="page-header">
+                    ADD NEW POST
+                </div>
+
+                <div class="sub-header">
+                    Post in: {{ thread.title }}
+                </div>
+
+                <form id="default-form" method="post" action="{{ form_action }}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="default-button" type="submit">{{ button_text }}</button>
+                </form>
+
+            {% endif %}
 
         </div>
 

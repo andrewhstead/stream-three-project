@@ -13,6 +13,7 @@
 
             {% if results %}
 
+                <!-- For each date, show a list of fixtures for that date. -->
                 {% for date in dates %}
 
                     <div class="sub-header">
@@ -31,9 +32,9 @@
 
                 {% endfor %}
 
-                <!–– In pagination for results, next page is placed in previous page section and vice-versa.
-                Although this appears counter-intuitive, it is done in order to facilitate default display
-                with most recent results appearing first overall, as well as on each page. --!>
+                <!-- Pagination links. In pagination for results, next page is placed in previous page section and
+                vice-versa. Although this appears counter-intuitive, it is done in order to facilitate default display
+                with most recent results appearing first overall, as well as on each page. -->
 
                 <div class="pagination-links">
 
@@ -67,6 +68,7 @@
 
             <section id="standings">
 
+                <!-- Only include the standings, not the whole statistics sidebar. -->
                 <div class="league-box colour-box">
                     STANDINGS
                 </div>

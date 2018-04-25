@@ -10,12 +10,15 @@
                 LEAGUE STANDINGS
             </div>
 
+            <!-- Select box to choose which year's standings to show. The form submits whenever the user makes a
+            selection. -->
             <form id="inline-form" role="form" onchange="submit();"
                       method="post" action="{% url 'standings' %}">
                 {% csrf_token %}
                 {{ form.as_p }}
             </form>
 
+            <!-- For each conference, show the full standings. -->
             {% for conference in conferences %}
 
                 <div class="sub-header">
@@ -26,6 +29,7 @@
 
             {% endfor %}
 
+            <!-- Explanatory notes regarding the standings. -->
             <div id="item-content">
                 <p>
                     NB:<br />

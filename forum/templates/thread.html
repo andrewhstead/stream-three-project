@@ -12,6 +12,7 @@
 
             <div id="left-header">
 
+            <!-- Indicate at the top of the thread which board it belongs to. -->
             {% if board.team_id %}
                 <a class="table-link" href="{% url 'forum_team' board.team.geographic_name|lower %}">
                     {{ board.title }}
@@ -22,12 +23,13 @@
                 </a>
             {% endif %}
 
-                > {{ thread.title }}
+                &gt; {{ thread.title }}
 
             </div>
 
             <section id="posts">
 
+                <!-- List all the posts in turn. -->
                 {% for post in posts %}
 
                     {% include 'post.html' %}
@@ -36,6 +38,7 @@
 
             </section>
 
+            <!-- Show a logged in user the button to add a new post, otherwise prompt the user to log in. -->
             {% if user.is_authenticated %}
                 <div class="content-link">
                     <a href="{% url 'new_post' thread.id %}?next={% url 'view_thread' thread.id %}?page={{ pages }}">
@@ -49,6 +52,7 @@
                 </div>
             {% endif %}
 
+            <!-- Pagination links. -->
             <div class="full-details">
 
                 <div class="pagination-links">

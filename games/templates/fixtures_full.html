@@ -13,6 +13,7 @@
 
             {% if fixtures %}
 
+                <!-- For each date, show a list of fixtures for that date. -->
                 {% for date in dates %}
 
                     <div class="sub-header">
@@ -31,6 +32,7 @@
 
                 {% endfor %}
 
+                <!-- Pagination links. -->
                 <div class="pagination-links">
 
                     <div class="pagination-section left-align">
@@ -63,6 +65,7 @@
 
             <section id="standings">
 
+                <!-- Only include the standings, not the whole statistics sidebar. -->
                 <div class="league-box colour-box">
                     STANDINGS
                 </div>

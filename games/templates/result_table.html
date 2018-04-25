@@ -1,8 +1,12 @@
 {% load humanize %}
 
+<!-- Default display for a game which is either completed, suspended or postponed. -->
+
 <table class="stat-table">
     <tr class="header-row">
         <th class="stat-intro">
+            <!-- If a game is not complete, show its status. If it is complete, show that it is a final score. If
+            a number of innings other than the standard 9 were played, indicate the number. -->
             {% if result.game_status != "Completed" %}
                 {% if result.game_status == "Postponed" %}
                     POSTPONED
@@ -10,13 +14,14 @@
                     SUSPENDED ({{ result.innings|ordinal }})
                 {% endif %}
             {% else %}
-                FINAL {% if result.innings > 9 %}({{ result.innings }}){% endif %}
+                FINAL {% if result.innings != 9 %}({{ result.innings }}){% endif %}
             {% endif %}
         </th>
         <th class="score-column">R</th>
         <th class="score-column">H</th>
         <th class="score-column">E</th>
     </tr>
+    <!-- Show the name of the away team, and their score information if the game was not postponed. -->
     <tr>
         <td class="stat-header">
             <img class="small-logo" src="{{ MEDIA_URL }}{{ result.away_team.small_logo }}" />
@@ -38,6 +43,7 @@
             <td class="stat-detail-faint">{{ result.away_team_errors }}</td>
         {% endif %}
     </tr>
+    <!-- Show the name of the home team, and their score information if the game was not postponed. -->
     <tr>
         <td class="stat-header">
             <img class="small-logo" src="{{ MEDIA_URL }}{{ result.home_team.small_logo }}" />

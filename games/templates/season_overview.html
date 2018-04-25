@@ -14,6 +14,7 @@
                 STANDINGS
             </div>
 
+            <!-- Show the standings for each conference in the chosen season. -->
             {% for conference in conferences %}
 
                 <div class="sub-header">
@@ -24,6 +25,7 @@
 
             {% endfor %}
 
+            <!-- If the Championship Series has been played, show the result of each game. -->
             {% if championship_series %}
 
             <a name="championship"></a>
@@ -32,59 +34,20 @@
                     CHAMPIONSHIP SERIES
                 </div>
 
-                {% for game in championship_series %}
+                {% for result in championship_series %}
 
-                    <table class="stat-table">
-                        <tr class="header-row">
-                            <th class="stat-intro">
-                                GAME {{ forloop.counter }}
-                            </th>
-                            <th class="score-column">R</th>
-                            <th class="score-column">H</th>
-                            <th class="score-column">E</th>
-                        </tr>
-                        <tr>
-                            <td class="stat-header">
-                                <img class="small-logo" src="{{ MEDIA_URL }}{{ game.away_team.small_logo }}" />
-                                <a class="table-link" href=
-                                        "{% url 'season_team' season game.away_team.geographic_name|lower %}">
-                                    {% if game.away_team_runs > game.home_team_runs %}
-                                        <strong>{{ game.away_team }}</strong>
-                                    {% else %}
-                                        {{ game.away_team }}
-                                    {% endif %}
-                                </a>
-                            </td>
-                            <td class="stat-detail"><strong>{{ game.away_team_runs }}</strong></td>
-                            <td class="stat-detail-faint">{{ game.away_team_hits }}</td>
-                            <td class="stat-detail-faint">{{ game.away_team_errors }}</td>
-                        </tr>
-                        <tr>
-                            <td class="stat-header">
-                                <img class="small-logo" src="{{ MEDIA_URL }}{{ game.home_team.small_logo }}" />
-                                <a class="table-link" href=
-                                        "{% url 'season_team' season game.home_team.geographic_name|lower %}">
-                                    {% if game.home_team_runs > game.away_team_runs %}
-                                        <strong>{{ game.home_team }}</strong>
-                                    {% else %}
-                                        {{ game.home_team }}
-                                    {% endif %}
-                                </a>
-                            </td>
-                            <td class="stat-detail"><strong>{{ game.home_team_runs }}</strong></td>
-                            <td class="stat-detail-faint">{{ game.home_team_hits }}</td>
-                            <td class="stat-detail-faint">{{ game.home_team_errors }}</td>
-                        </tr>
-                    </table>
+                    {% include 'result_table.html' %}
 
                 {% endfor %}
 
+                <!-- Show the result of the series. -->
                 <div class="sub-header">
                     {{ season.champion.geographic_name }} win series, {{ season.series_score }}.
                 </div>
 
             {% endif %}
 
+            <!-- Show the navigation box for the current season. -->
             <nav id="teams" class="navigation">
 
                 <div class="nav-head">
@@ -101,6 +64,7 @@
 
             </nav>
 
+            <!-- Show the navigation box for all seasons. -->
             <nav id="seasons" class="navigation">
 
                 <div class="nav-head">
@@ -129,6 +93,7 @@
 
         <div id="stats-column" class="column for-desktop">
 
+            <!-- Show the current season in the sidebar. -->
             <div class="sub-header">
                 CURRENT SEASON
             </div>

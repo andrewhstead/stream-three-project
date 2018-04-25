@@ -15,6 +15,7 @@
                 LATEST RESULTS
             </div>
 
+            <!-- If there is at least one date with results in the current year, show the results for that day. -->
             {% if results %}
 
                 <div class="sub-header">
@@ -42,6 +43,7 @@
                 UPCOMING FIXTURES
             </div>
 
+            <!-- If there is at least one date with fixtures in the current year, show the fixtures for that day. -->
             {% if fixtures %}
 
                 <div class="sub-header">
@@ -71,6 +73,7 @@
 
             <section id="standings">
 
+                <!-- Only include the standings, not the whole statistics sidebar. -->
                 <div class="league-box colour-box">
                     STANDINGS
                 </div>

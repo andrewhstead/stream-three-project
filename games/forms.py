@@ -2,6 +2,7 @@ from django import forms
 from datetime import datetime
 
 
+# Form to select a season when viewing the league standings. Just a simple select field to choose a year.
 class SeasonSelectForm(forms.Form):
 
     SEASON_OPTIONS = (

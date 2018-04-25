@@ -15,6 +15,8 @@ from django.utils import timezone
 
 
 # Create your views here.
+# Show the list of boards in the forum, divided into sections.
+# The ten most recent posts are included in the sidebar on forum pages.
 def forum_home(request):
     sections = Section.objects.all()
     boards = Board.objects.all()
@@ -23,12 +25,14 @@ def forum_home(request):
     return render(request, 'forum.html', {'sections': sections, 'boards': boards, 'recent_posts': recent_posts})
 
 
+# A forum specific to an individual team. The team name is needed along with all the threads on the board.
 def forum_team(request, team_name):
     team = get_object_or_404(Team, geographic_name=team_name.capitalize())
     board = Board.objects.get(team=team)
     all_threads = board.threads.all().order_by('-last_post')
     recent_posts = Post.objects.all().order_by('-created_date')[:10]
 
+    # Pagination is used to show only ten threads at a time.
     page_threads = Paginator(all_threads, 10)
 
     page = request.GET.get('page')
@@ -44,11 +48,13 @@ def forum_team(request, team_name):
                                           'threads': threads, 'recent_posts': recent_posts})
 
 
+# A league-wide board, which is identified by its primary key.
 def forum_league(request, board_id):
     board = Board.objects.get(pk=board_id)
     all_threads = board.threads.all().order_by('-last_post')
     recent_posts = Post.objects.all().order_by('-created_date')[:10]
 
+    # Only ten threads are shown at a time using pagination.
     page_threads = Paginator(all_threads, 10)
 
     page = request.GET.get('page')
@@ -64,6 +70,7 @@ def forum_league(request, board_id):
                                           'threads': threads, 'recent_posts': recent_posts})
 
 
+# Create a new thread, using both the new thread form and the new post form to create the first post.
 @login_required(login_url='/login/')
 def new_thread(request, board_id):
     board = get_object_or_404(Board, pk=board_id)
@@ -73,11 +80,13 @@ def new_thread(request, board_id):
         thread_form = ThreadForm(request.POST)
         post_form = PostForm(request.POST)
         if thread_form.is_valid() and post_form.is_valid():
+            # Before saving the thread, allocate it to the user and to the selected board.
             thread = thread_form.save(False)
             thread.user = request.user
             thread.board = board
             thread.save()
 
+            # Before saving the post, allocate it to the user and to the new thread.
             post = post_form.save(False)
             post.user = request.user
             post.thread = thread
@@ -108,17 +117,20 @@ def new_thread(request, board_id):
     return render(request, 'thread_form.html', args)
 
 
+# Show the user an individual thread.
 def view_thread(request, thread_id):
     thread = get_object_or_404(Thread, pk=thread_id)
     board = Board.objects.get(pk=thread.board_id)
     recent_posts = Post.objects.all().order_by('-created_date')[:10]
 
     # URL used to ensure thread.views is only incremented once if a user browses a paginated thread.
+    # Otherwise a view would be counted for each page in the thread.
     url = request.get_full_path()
     if url == "/thread/" + unicode(thread.id) + '/':
         thread.views += 1
         thread.save()
 
+    # Pagination shows ten threads at a time.
     all_posts = thread.posts.all().order_by('created_date')
 
     posts_per_page = 10
@@ -127,11 +139,12 @@ def view_thread(request, thread_id):
 
     page = request.GET.get('page')
 
+    # Calculation of the number of posts before the currently viewed page. This is done to ensure the correct number
+    # appears in the post count, i.e. with 10 posts per page, the first post on page 2 should be Post 11.
     if page:
         page_number = int(page)
     else:
         page_number = 1
-
     previous = posts_per_page * (page_number - 1)
 
     try:
@@ -152,6 +165,7 @@ def view_thread(request, thread_id):
                                                'page': page, 'previous': previous, 'recent_posts': recent_posts})
 
 
+# Add a new post to an existing thread, or create the first post in a new thread.
 @login_required(login_url='/login/')
 def new_post(request, thread_id):
     thread = get_object_or_404(Thread, pk=thread_id)
@@ -161,16 +175,18 @@ def new_post(request, thread_id):
         form = PostForm(request.POST)
         if form.is_valid():
 
+            # Don't save the post until it has been allocated to the user and to the relevant thread.
             post = form.save(False)
             post.user = request.user
             post.thread = thread
             post.save()
+            # Update the thread's last_post field with the current time.
             thread.last_post = timezone.now()
             thread.save()
 
             messages.success(request, "Your post was successful!")
 
-        return redirect(request.GET.get('next') or reverse('user_profile'), args={thread.pk})
+        return redirect(reverse('view_thread', args={thread.pk}))
 
     else:
         form = PostForm()
@@ -186,6 +202,7 @@ def new_post(request, thread_id):
     return render(request, 'post_form.html', args)
 
 
+# Edit an existing forum post.
 @login_required(login_url='/login/')
 def edit_post(request, thread_id, post_id):
     thread = get_object_or_404(Thread, pk=thread_id)
@@ -216,11 +233,15 @@ def edit_post(request, thread_id, post_id):
     return render(request, 'post_form.html', args)
 
 
+# Delete a currently existing post.
 @login_required(login_url='/login/')
 def delete_post(request, thread_id, post_id):
     post = get_object_or_404(Post, pk=post_id)
     thread = get_object_or_404(Thread, pk=thread_id)
 
+    # When the post is deleted, update the thread's last_post field. It should be set the the created_date of the
+    # last post which remains in the thread. This is to ensure that if the deleted post was the last one,
+    # the previous post is now considered to be the last one and its date and time should be used.
     post.delete()
     thread.last_post = thread.posts.last().created_date
     thread.save()

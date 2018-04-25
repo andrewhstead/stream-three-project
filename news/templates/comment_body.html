@@ -1,6 +1,6 @@
 <div class="comment-body">
 
-    <!-- If the commenter has a profile picture, show it at the top of their blog. If they don't, show their favourite
+    <!-- If the commenter has a profile picture, show it next to their comment. If they don't, show their favourite
     team's logo. If they have neither, show the default icon. -->
     {% if not comment.user.profile_picture %}
         {% if not comment.user.favourite_team %}

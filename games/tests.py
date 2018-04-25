@@ -4,11 +4,9 @@ from django.test import TestCase
 from .views import last_and_next, league_standings, games_team, results_list, fixture_list,\
     full_results, full_fixtures, season_archive, season_overview, season_team
 from django.core.urlresolvers import resolve
-from django.shortcuts import render_to_response
-from .models import Game
-from teams.models import Team
 
 
+# Test the display of the most recent results and next scheduled fixtures.
 class LastNextTest(TestCase):
 
     fixtures = ['games', 'teams']
@@ -21,16 +19,16 @@ class LastNextTest(TestCase):
         results_latest = self.client.get('/scores/')
         self.assertEqual(results_latest.status_code, 200)
 
-    # def test_last_and_next_content(self):
-    #     results_latest = self.client.get('/scores/')
-    #     self.assertTemplateUsed(results_latest, 'games_latest.html')
-    #     results_latest_template_output = render_to_response("games_latest.html",
-    #                                                         {'games': Game.objects.all(),
-    #                                                          'teams': Team.objects.all()}).content
-    #     self.assertEqual(results_latest.content, results_latest_template_output)
+    def test_last_and_next_content(self):
+        results_latest = self.client.get('/scores/')
+        self.assertTemplateUsed(results_latest, 'games_latest.html')
 
 
+# Test the display of the league standings.
 class LeagueStandingsTest(TestCase):
+
+    fixtures = ['teams']
+
     def test_league_standings_resolves(self):
         standings = resolve('/standings/')
         self.assertEqual(standings.func, league_standings)
@@ -44,6 +42,7 @@ class LeagueStandingsTest(TestCase):
         self.assertTemplateUsed(standings, 'season_standings.html')
 
 
+# Test the display of individual team's schedule of games.
 class GamesTeamTest(TestCase):
 
     fixtures = ['games', 'teams']
@@ -61,7 +60,11 @@ class GamesTeamTest(TestCase):
         self.assertTemplateUsed(scores_team, 'games_team.html')
 
 
+# Test the view which shows details of all past games in paginated format.
 class FullResultsTest(TestCase):
+
+    fixtures = ['teams']
+
     def test_full_results_resolves(self):
         more_results = resolve('/scores/results/')
         self.assertEqual(more_results.func, full_results)
@@ -75,7 +78,11 @@ class FullResultsTest(TestCase):
         self.assertTemplateUsed(more_results, 'results_full.html')
 
 
+# Test the view which shows details of future past games in paginated format.
 class FullFixturesTest(TestCase):
+
+    fixtures = ['teams']
+
     def test_full_fixtures_resolves(self):
         more_fixtures = resolve('/scores/fixtures/')
         self.assertEqual(more_fixtures.func, full_fixtures)
@@ -89,7 +96,11 @@ class FullFixturesTest(TestCase):
         self.assertTemplateUsed(more_fixtures, 'fixtures_full.html')
 
 
+# Test the display of a full list of past games on single page.
 class ResultsListTest(TestCase):
+
+    fixtures = ['teams']
+
     def test_results_list_resolves(self):
         all_results = resolve('/scores/results/all/')
         self.assertEqual(all_results.func, results_list)
@@ -103,7 +114,11 @@ class ResultsListTest(TestCase):
         self.assertTemplateUsed(all_results, 'results_list.html')
 
 
+# Test the display of a full list of future games on single page.
 class FixtureListTest(TestCase):
+
+    fixtures = ['teams']
+
     def test_fixture_list_resolves(self):
         all_fixtures = resolve('/scores/fixtures/all/')
         self.assertEqual(all_fixtures.func, fixture_list)
@@ -117,7 +132,11 @@ class FixtureListTest(TestCase):
         self.assertTemplateUsed(all_fixtures, 'fixture_list.html')
 
 
+# Test the archive home page.
 class SeasonArchiveTest(TestCase):
+
+    fixtures = ['teams']
+
     def test_season_archive_resolves(self):
         archive_index = resolve('/archive/')
         self.assertEqual(archive_index.func, season_archive)
@@ -131,6 +150,7 @@ class SeasonArchiveTest(TestCase):
         self.assertTemplateUsed(archive_index, 'season_archive.html')
 
 
+# Test the single season archive pages.
 class SeasonOverviewTest(TestCase):
 
     fixtures = ['games', 'teams']
@@ -148,6 +168,7 @@ class SeasonOverviewTest(TestCase):
         self.assertTemplateUsed(past_season, 'season_overview.html')
 
 
+# Test the team season archive pages.
 class SeasonTeamTest(TestCase):
 
     fixtures = ['games', 'teams']

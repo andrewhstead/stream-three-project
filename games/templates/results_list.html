@@ -12,6 +12,7 @@
 
             {% if results %}
 
+                <!-- For each date when there are results, show the date followed by a list of games. -->
                 {% for date in dates %}
 
                     <div class="sub-header">
@@ -33,12 +34,16 @@
                                     <td class="stat-team">
                                         <a class="table-link" href=
                                                 "{% url 'team_games' result.away_team.geographic_name|lower %}">
+                                            <!-- If the game is complete and the away team won, highlight their name.
+                                             -->
                                             {% if result.game_status == "Completed" and result.away_team_runs > result.home_team_runs %}
                                                 <strong>{{ result.away_team.geographic_name }}</strong>
                                             {% else %}
                                                 {{ result.away_team.geographic_name }}
                                             {% endif %}
                                         </a></td>
+                                    <!-- Give a fainter background if the game is not completed. For postponed games,
+                                     show 'P-P' instead of the score. -->
                                     {% if result.game_status != "Completed" %}
                                         <td class="stat-detail-faint">
                                             {% if result.game_status == "Postponed" %}
@@ -47,6 +52,7 @@
                                                 {{ result.away_team_runs }} - {{ result.home_team_runs }}
                                             {% endif %}
                                         </td>
+                                    <!-- Show the score for a completed game. -->
                                     {% else %}
                                         <td class="stat-detail">
                                             <strong>{{ result.away_team_runs }}</strong>
@@ -57,6 +63,8 @@
                                     <td class="stat-team">
                                         <a class="table-link" href=
                                                 "{% url 'team_games' result.home_team.geographic_name|lower %}">
+                                            <!-- If the game is complete and the home team won, highlight their name.
+                                             -->
                                             {% if result.game_status == "Completed" and result.home_team_runs > result.away_team_runs %}
                                                 <strong>{{ result.home_team.geographic_name }}</strong>
                                             {% else %}
@@ -86,6 +94,7 @@
 
             <section id="standings">
 
+                <!-- Only include the standings, not the whole statistics sidebar. -->
                 <div class="league-box colour-box">
                     STANDINGS
                 </div>

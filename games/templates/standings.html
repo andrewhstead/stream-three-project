@@ -1,3 +1,7 @@
+<!-- Show the standings for the current season. These are the basic standings for the statistics sidebar, which
+should never show the additional data used in other templates. Only a single conference is shown, this is because
+some views require just the conference in which a particular team plays, while others require both conferences. This
+is determined in the main templates for each view. -->
 
         <table class="stat-table alternating-rows">
             <tr class="header-row">
@@ -12,6 +16,7 @@
                 {% if club.conference == conference %}
 
                     <tr>
+                        <!-- If this team's season is being viewed, highlight their name. -->
                         {% if club.name == team.geographic_name %}
                             <td class="stat-header {{ team.geographic_name|lower }}-tag">
                                 <img class="small-logo" src="{{ MEDIA_URL }}{{ club.small_logo }}" />
@@ -20,6 +25,8 @@
                                     {{ club.name }}
                                 </a>
                             </td>
+                        <!-- If no specific team is being viewed but this is the user's favourite team, highlight their
+                        name. -->
                         {% elif not team and club.name == user.favourite_team.geographic_name %}
                             <td class="stat-header {{ user.favourite_team.geographic_name|lower }}-tag">
                                 <img class="small-logo" src="{{ MEDIA_URL }}{{ club.small_logo }}" />
@@ -30,6 +37,7 @@
                             </td>
                         {% else %}
 
+                            <!-- Otherwise, list all thea teams with no highlighting. -->
                             <td class="stat-header">
                                 <img class="small-logo" src="{{ MEDIA_URL }}{{ club.small_logo }}" />
                                     {% if archive %}
@@ -42,6 +50,7 @@
                             </td>
                         {% endif %}
 
+                        <!-- Show the win, loss and percentage statistics. -->
                         <td class="stat-detail">
                             {{ club.won|floatformat:0 }}
                         </td>

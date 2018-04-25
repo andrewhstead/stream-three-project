@@ -2,6 +2,7 @@ from django import forms
 from .models import Thread, Post
 
 
+# Form to create a new thread in the forum.
 class ThreadForm(forms.ModelForm):
     class Meta:
         model = Thread
@@ -11,6 +12,7 @@ class ThreadForm(forms.ModelForm):
         }
 
 
+# Form to create a new post within a thread.
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post

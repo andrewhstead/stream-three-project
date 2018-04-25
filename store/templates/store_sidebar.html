@@ -11,7 +11,7 @@
 
             <div class="store-team">
                 <a href="{% url 'store_team' team.geographic_name|lower %}">
-                    <img src="{{ MEDIA_URL }}{{ team.large_logo }}/" alt="{{ team.geographic_name }} {{ team.nickname }}" />
+                    <img src="{{ MEDIA_URL }}{{ team.large_logo }}" alt="{{ team.geographic_name }} {{ team.nickname }}" />
                 </a>
             </div>
 

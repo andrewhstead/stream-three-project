@@ -12,6 +12,7 @@
                 BIBL DISCUSSION FORUM
             </div>
 
+            <!-- A logged in user is shown their username. Otherwise, the user is prompted to log in. -->
             {% if user.is_authenticated %}
                 <div class="sub-header">
                     Logged in as: <a class="standard-link" href="{% url 'user_profile' %}">{{ user.username }}</a>
@@ -24,6 +25,7 @@
 
             <div class="column-wrapper">
 
+                <!-- Each section of the forum is shown in turn. -->
                 {% for section in sections %}
 
                     <div class="single-column">
@@ -34,6 +36,7 @@
                                 {{ section.title }}
                             </div>
 
+                            <!-- Each board in the section is listed, with its thread and post totals. -->
                             {% for board in section.boards.all %}
 
                                 <div class="forum-board">

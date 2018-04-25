@@ -1,8 +1,11 @@
 {% load humanize %}
 
+<!-- Default display for a game which is either scheduled or in progress. -->
 
 <table class="stat-table">
     <tr class="header-row">
+        <!-- If the game is in progress and being updated by an administrator, show which inning is currently being
+        played. -->
         {% if fixture.game_status == "In Progress" %}
             <th class="stat-intro">
                 In progress... ({{ fixture.innings|ordinal }})
@@ -10,6 +13,7 @@
             <th class="score-column">R</th>
             <th class="score-column">H</th>
             <th class="score-column">E</th>
+        <!-- If the game has not yet started, just show the scheduled start time. -->
         {% else %}
             <th class="stat-intro">
                 {{ fixture.game_time }}
@@ -19,6 +23,7 @@
             <th></th>
         {% endif %}
     </tr>
+    <!-- Show the name of the away team, and their score information if the game is in progress. -->
     <tr>
         <td class="stat-header">
             <img class="small-logo" src="{{ MEDIA_URL }}{{ fixture.away_team.small_logo }}" />
@@ -34,6 +39,7 @@
             <td></td>
         {% endif %}
     </tr>
+    <!-- Show the name of the home team, and their score information if the game is in progress. -->
     <tr>
         <td class="stat-header">
             <img class="small-logo" src="{{ MEDIA_URL }}{{ fixture.home_team.small_logo }}" />

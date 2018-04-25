@@ -22,6 +22,7 @@
                 {{ conference }}
             </div>
 
+            <!-- Show the standings for the team's conference in the chosen season. -->
             {% include 'archive_standings.html' %}
 
             {% if not team_games %}
@@ -42,6 +43,7 @@
                         <th class="stat-column-wide">Sc.</th>
                     </tr>
 
+                    <!-- Show the result of each game. -->
                     {% for game in team_games %}
 
                         <tr>
@@ -85,55 +87,20 @@
                     CHAMPIONSHIP SERIES
                 </div>
 
-                <table class="stat-table alternating-rows">
-                    <tr class="header-row">
-                        <th class="stat-intro">Date</th>
-                        <th class="stat-intro">Opponent</th>
-                        <th class="stat-column">Res</th>
-                        <th class="stat-column-wide">Sc.</th>
-                    </tr>
+                {% for result in championship_series %}
 
-                    {% for game in championship_series %}
+                    {% include 'result_table.html' %}
 
-                        <tr>
-                            <td class="stat-header">
-                                {{ game.game_date|date:"d/m/y" }}
-                            </td>
-                            <td class="stat-header">
-                                {% if game.team == game.home_team %}
-                                    v
-                                {% elif game.team == game.away_team %}
-                                    @
-                                {% endif %}
-                                <a class="table-link" href=
-                                        "{% url 'season_team' season.year game.opponent.geographic_name|lower %}">
-                                    {{ game.opponent.geographic_name }}</a>
-                            </td>
-                            {% if game.team_runs > game.opponent_runs %}
-                                <td class="stat-win">
-                                    W
-                                </td>
-                            {% else %}
-                                <td class="stat-loss">
-                                    L
-                                </td>
-                            {% endif %}
-                            <td class="stat-detail">
-                                {{ game.team_runs }}-{{ game.opponent_runs }}
-                            </td>
+                {% endfor %}
 
-                        </tr>
-
-                    {% endfor %}
-
-                </table>
-
+                <!-- Show the result of the series. -->
                 <div class="sub-header">
                     {{ season.champion.geographic_name }} win series, {{ season.series_score }}.
                 </div>
 
             {% endif %}
 
+            <!-- Show the navigation box for the current season. -->
             <nav id="teams" class="navigation">
 
                 <div class="nav-head">
@@ -158,6 +125,7 @@
 
             </nav>
 
+            <!-- Show the navigation box for the current team. -->
             <nav id="seasons" class="navigation">
 
                 <div class="nav-head">
@@ -187,6 +155,7 @@
 
         <div id="stats-column" class="column for-desktop">
 
+            <!-- Show the current season in the sidebar. -->
             <div class="sub-header">
                 CURRENT SEASON
             </div>

@@ -8,30 +8,12 @@
     </div>
 
     <table class="stat-table alternating-no-header">
+
+        <!-- For each game on the most recent game date, show the result. -->
         {% for result in results %}
             <tr>
 
-                {% if result.home_team == user.favourite_team %}
-                    <td class="team-abbreviation {{ user.favourite_team.geographic_name|lower }}-tag">
-                        <a class="{{ user.favourite_team.geographic_name|lower }}-link plain-link" href=
-                                "{% url 'team_page' result.home_team.geographic_name|lower %}">
-                            {{ result.home_team.abbreviation }}
-                        </a>
-                    </td>
-                {% else %}
-                    <td class="team-abbreviation">
-                        <a class="table-link" href="{% url 'team_page' result.home_team.geographic_name|lower %}">
-                            {{ result.home_team.abbreviation }}
-                        </a>
-                    </td>
-                {% endif %}
-
-                <td class="stat-detail">
-                    {{ result.home_team_runs }}
-                    -
-                    {{ result.away_team_runs }}
-                </td>
-
+                <!-- If the away team is the user's favourite, highlight their name. -->
                 {% if result.away_team == user.favourite_team %}
                     <td class="team-abbreviation {{ user.favourite_team.geographic_name|lower }}-tag">
                         <a class="{{ user.favourite_team.geographic_name|lower }}-link plain-link" href=
@@ -43,6 +25,28 @@
                     <td class="team-abbreviation">
                         <a class="table-link" href="{% url 'team_page' result.away_team.geographic_name|lower %}">
                             {{ result.away_team.abbreviation }}
+                        </a>
+                    </td>
+                {% endif %}
+
+                <td class="stat-detail">
+                    {{ result.away_team_runs }}
+                    -
+                    {{ result.home_team_runs }}
+                </td>
+
+                <!-- If the home team is the user's favourite, highlight their name. -->
+                {% if result.home_team == user.favourite_team %}
+                    <td class="team-abbreviation {{ user.favourite_team.geographic_name|lower }}-tag">
+                        <a class="{{ user.favourite_team.geographic_name|lower }}-link plain-link" href=
+                                "{% url 'team_page' result.home_team.geographic_name|lower %}">
+                            {{ result.home_team.abbreviation }}
+                        </a>
+                    </td>
+                {% else %}
+                    <td class="team-abbreviation">
+                        <a class="table-link" href="{% url 'team_page' result.home_team.geographic_name|lower %}">
+                            {{ result.home_team.abbreviation }}
                         </a>
                     </td>
                 {% endif %}
@@ -63,28 +67,12 @@
     </div>
 
     <table class="stat-table alternating-no-header">
+
+        <!-- For each game on the most next game date, show the fixture. -->
         {% for fixture in fixtures %}
             <tr>
 
-                {% if fixture.home_team == user.favourite_team %}
-                    <td class="team-abbreviation {{ user.favourite_team.geographic_name|lower }}-tag">
-                        <a class="{{ user.favourite_team.geographic_name|lower }}-link plain-link" href=
-                                "{% url 'team_page' fixture.home_team.geographic_name|lower %}">
-                            {{ fixture.home_team.abbreviation }}
-                        </a>
-                    </td>
-                {% else %}
-                    <td class="team-abbreviation">
-                        <a class="table-link" href="{% url 'team_page' fixture.home_team.geographic_name|lower %}">
-                            {{ fixture.home_team.abbreviation }}
-                        </a>
-                    </td>
-                {% endif %}
-
-                <td class="stat-detail">
-                    {{ fixture.game_time|time:'G:i' }}
-                </td>
-
+                <!-- If the away team is the user's favourite, highlight their name. -->
                 {% if fixture.away_team == user.favourite_team %}
                     <td class="team-abbreviation {{ user.favourite_team.geographic_name|lower }}-tag">
                         <a class="{{ user.favourite_team.geographic_name|lower }}-link plain-link" href=
@@ -96,6 +84,26 @@
                     <td class="team-abbreviation">
                         <a class="table-link" href="{% url 'team_page' fixture.away_team.geographic_name|lower %}">
                             {{ fixture.away_team.abbreviation }}
+                        </a>
+                    </td>
+                {% endif %}
+
+                <td class="stat-detail">
+                    {{ fixture.game_time|time:'G:i' }}
+                </td>
+
+                <!-- If the home team is the user's favourite, highlight their name. -->
+                {% if fixture.home_team == user.favourite_team %}
+                    <td class="team-abbreviation {{ user.favourite_team.geographic_name|lower }}-tag">
+                        <a class="{{ user.favourite_team.geographic_name|lower }}-link plain-link" href=
+                                "{% url 'team_page' fixture.home_team.geographic_name|lower %}">
+                            {{ fixture.home_team.abbreviation }}
+                        </a>
+                    </td>
+                {% else %}
+                    <td class="team-abbreviation">
+                        <a class="table-link" href="{% url 'team_page' fixture.home_team.geographic_name|lower %}">
+                            {{ fixture.home_team.abbreviation }}
                         </a>
                     </td>
                 {% endif %}

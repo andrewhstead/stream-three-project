@@ -1,4 +1,9 @@
+<!-- Show the standings for a past season. A separate template file is used so that archive standings and current
+standings can be shown on the same page. Only a single conference is shown, this is because some views require just
+the conference in which a particular team plays, while others require both conferences. This is determined in the
+main templates for each view. -->
 
+        <!-- Some table cells should only be shown on larger devices -->
         <table class="stat-table alternating-rows">
             <tr class="header-row">
                 <th class="stat-intro">Team</th>
@@ -8,10 +13,8 @@
                 <th class="standings-column-wide desktop-cell">RF</th>
                 <th class="standings-column-wide desktop-cell">RA</th>
                 <th class="standings-column-wide desktop-cell">+/-</th>
-                <th class="standings-column desktop-cell right-align">Ho</th>
-                <th class="standings-column desktop-cell left-align">me</th>
-                <th class="standings-column desktop-cell right-align">Aw</th>
-                <th class="standings-column desktop-cell left-align">ay</th>
+                <th class="standings-column-wider desktop-cell">H</th>
+                <th class="standings-column-wider desktop-cell">A</th>
             </tr>
 
             {% for club in archive_standings|dictsort:"name"|dictsortreversed:"pct" %}
@@ -20,12 +23,15 @@
 
                     <tr>
 
+                        <!-- If this team's season is being viewed, highlight their name. -->
                         {% if club.name == team.geographic_name %}
                             <td class="stat-header {{ team.geographic_name|lower }}-tag">
                                 <img class="small-logo" src="{{ MEDIA_URL }}{{ club.small_logo }}" />
                                 {{ club.name }}
                             </td>
 
+                        <!-- If no specific team is being viewed but this is the user's favourite team, highlight their
+                        name. -->
                         {% elif not team and club.name == user.favourite_team.geographic_name %}
                             <td class="stat-header {{ user.favourite_team.geographic_name|lower }}-tag">
                                 <img class="small-logo" src="{{ MEDIA_URL }}{{ club.small_logo }}" />
@@ -37,6 +43,7 @@
 
                         {% else %}
 
+                            <!-- Otherwise, list all the teams with no highlighting. -->
                             <td class="stat-header">
                                 <img class="small-logo" src="{{ MEDIA_URL }}{{ club.small_logo }}" />
                                     {% if archive %}
@@ -49,13 +56,13 @@
                             </td>
                         {% endif %}
 
+                        <!-- Show the win, loss and percentage statistics. -->
                         <td class="stat-detail">
                             {{ club.won|floatformat:0 }}
                         </td>
                         <td class="stat-detail">
                             {{ club.lost|floatformat:0 }}
                         </td>
-
                         <td class="stat-detail-faint">
                             {% if club.pct < 1 %}
                                 {{ club.pct|floatformat:3|slice:"1:" }}
@@ -64,6 +71,7 @@
                             {% endif %}
                         </td>
 
+                        <!-- On larger devices, show more detailed statistics. -->
                         <td class="stat-detail-fainter desktop-cell">
                             {{ club.runs_for|floatformat:0 }}
                         </td>
@@ -73,18 +81,11 @@
                         <td class="stat-detail-fainter desktop-cell">
                             {{ club.net_runs|floatformat:0 }}
                         </td>
-
                         <td class="stat-detail-faint desktop-cell">
-                            {{ club.home_won|floatformat:0 }}
-                        </td>
-                        <td class="stat-detail-faint desktop-cell">
-                            {{ club.home_lost|floatformat:0 }}
+                            {{ club.home_won|floatformat:0 }}-{{ club.home_lost|floatformat:0 }}
                         </td>
                         <td class="stat-detail-fainter desktop-cell">
-                            {{ club.away_won|floatformat:0 }}
-                        </td>
-                        <td class="stat-detail-fainter desktop-cell">
-                            {{ club.away_lost|floatformat:0 }}
+                            {{ club.away_won|floatformat:0 }}-{{ club.away_lost|floatformat:0 }}
                         </td>
 
                     </tr>

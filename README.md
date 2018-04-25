@@ -6,8 +6,10 @@ generated using the game "Out of the Park Baseball 18". The site is built using 
 elements which are common to sports league websites, such as news stories, game results and fixtures, information about
 teams, and the ability for fans to interact and purchase premium content or merchandise.
 
-Out of the Park Baseball was used to create a league consisting of eight teams, playing a 60-game league season each
-year. The league was created for a 2000 season, thus enabling archive data to be included and a league history added to
+Out of the Park Baseball was used to create a league consisting of eight teams split into two 'Conferences' of four
+teams each, playing a 60-game league season each year with the winner of each Conference meeting in a best-of-seven
+game series to decide the overall champions. The league was created for a 2000 season, thus enabling archive data to be
+included and a league history added to
 the site.
 
 ## Contents
@@ -99,7 +101,9 @@ documents and links to them were placed in the site footer to be available from 
 
 The simple 'Home' app contains the template for the site's Home Page, as well as a model which enables site users,
 whether registered or not, to send messages to the site administrators. This is done by means of a form which saves the
-message, along with the user's name and email address, to the database.
+message, along with the user's name and email address, to the database. The other model in the Home app is one which
+allows the site administrators to define information about the league's sponsors, listing their names and linking to
+company logos. These are then included in the home page template.
 
 ### News App
 
@@ -174,9 +178,11 @@ amounts of code.
 ### Teams App
 
 The teams app creates both the information about the teams in the league and also the details of the league's overall
-structure. Two models exist, the first of which defines the 'Conferences' within the league. This splits the teams into
-two sections (North and South) and is required both for listing the teams in some templates and also for generating the
-standings in the correct way. Each team is allocated to one conference by use of a foreign key.
+structure. Three models exist, the first of which defines the league itself, its name and logo. This is utilised
+through a context processor which makes the league details available in any template on the site. The second model
+defines 'Conferences' within the league. This splits the teams into two sections (North and South) and is required
+ both for listing the teams in some templates and also for generating the standings in the correct way. Each team is
+ allocated to one conference by use of a foreign key.
 
 The main teams model gives each team a geographic name (i.e. the city in which they are based) and a nickname - put
 together, these two fields create the team's full name. Each team also has an abbreviated name for use in templates

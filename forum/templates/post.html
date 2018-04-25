@@ -2,6 +2,8 @@
 
 <div class="comment-body">
 
+    <!-- If the poster has a profile picture, show it next to their post. If they don't, show their favourite
+    team's logo. If they have neither, show the default icon. -->
     {% if not post.user.profile_picture %}
         {% if not post.user.favourite_team %}
             <img class="comment-logo" src="{{ MEDIA_URL }}{{ league.default_image }}" />
@@ -12,6 +14,8 @@
         <img class="comment-logo" src="{{ MEDIA_URL }}{{ post.user.profile_picture }}" />
     {% endif %}
 
+    <!-- Link to the commenter's profile if the user is logged in. Choose the URL depending on whether it is their
+        own profile. -->
     <div class="comment-user">
         {% if user.is_authenticated %}
             {% if user == post.user %}
@@ -34,15 +38,18 @@
         {{ post.content|safe }}
     </div>
 
+    <!-- Show the position of the post in the thread. -->
     <div class="comment-detail comment-controls">
         Post {{ forloop.counter|add:previous }} of {{ thread.posts.count }}
 
+        <!-- The creator of the post or a staff member can edit or delete the post. -->
         {% if user == post.user or user.is_staff %}
             <a class="table-link" href="{% url 'edit_post' thread.id post.id %}">[Edit]</a>
             <span class="alert-link" onclick="confirmationAlert({{ post.id }})">[Delete]</span>
         {% endif %}
     </div>
 
+    <!-- JavaScript confirmation before a post is deleted. -->
     <div id="wrapper-{{ post.id }}" class="popup-wrapper hidden">
         <div id="alert-{{ post.id }}" class="alert-message hidden">
             <p>Confirmation:</p>
