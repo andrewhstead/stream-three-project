@@ -132,3 +132,11 @@ main {
     float: left;
     margin: 0 20px 20px 0;
 }
+
+ /* Recent post activity in forum sidebar */
+.recent-activity {
+    margin: 10px 0 10px 10px;
+    border-left: 5px solid #10253f;
+    border-bottom: 1px solid #10253f;
+    padding-left: 5px;
+}
