@@ -19,7 +19,7 @@ main templates for each view. -->
 
             {% for club in archive_standings|dictsort:"name"|dictsortreversed:"pct" %}
 
-                {% if club.conference == conference %}
+                {% if club.conference == conference.id %}
 
                     <tr>
 

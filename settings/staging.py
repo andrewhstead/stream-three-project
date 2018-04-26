@@ -18,6 +18,16 @@ STRIPE_SECRET = os.getenv("STRIPE_SECRET")
 SITE_URL = 'https://bibl.herokuapp.com'
 ALLOWED_HOSTS.append('bibl.herokuapp.com')
 
+# Tell the staticfiles app to use S3Boto3 storage when writing the collected static files (when
+# you run `collectstatic`).
+STATICFILES_LOCATION = '%s/static' % AWS_STORAGE_BUCKET_NAME
+STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+STATIC_URL = 'https://%s/%s/static/' % (AWS_S3_CUSTOM_DOMAIN, AWS_STORAGE_BUCKET_NAME)
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
 # Log DEBUG information to the console
 LOGGING = {
     'version': 1,

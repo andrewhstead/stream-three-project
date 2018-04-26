@@ -13,7 +13,7 @@ is determined in the main templates for each view. -->
 
             {% for club in standings|dictsort:"name"|dictsortreversed:"pct" %}
 
-                {% if club.conference == conference %}
+                {% if club.conference == conference.id %}
 
                     <tr>
                         <!-- If this team's season is being viewed, highlight their name. -->
@@ -37,11 +37,12 @@ is determined in the main templates for each view. -->
                             </td>
                         {% else %}
 
-                            <!-- Otherwise, list all thea teams with no highlighting. -->
+                            <!-- Otherwise, list all the teams with no highlighting. -->
                             <td class="stat-header">
                                 <img class="small-logo" src="{{ MEDIA_URL }}{{ club.small_logo }}" />
                                     {% if archive %}
-                                        <a class="table-link" href="{% url 'season_team' season club.name|lower %}">
+                                        <a class="table-link"
+                                           href="{% url 'season_team' season club.name|lower %}">
                                     {% else %}
                                         <a class="table-link" href="{% url 'team_page' club.name|lower %}">
                                     {% endif %}

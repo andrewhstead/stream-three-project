@@ -25,7 +25,7 @@ TYPE_OPTIONS = (
 # The function which creates the league standings.
 def get_standings(year):
 
-    teams = Team.objects.all().order_by('geographic_name')
+    teams = Team.objects.all().order_by('geographic_name').values('id', 'geographic_name', 'abbreviation', 'conference', 'small_logo')
 
     # Empty list to contain the standings
     standings = []
@@ -37,16 +37,16 @@ def get_standings(year):
     for team in teams:
         # For each team, create a dictionary with statistics set to 0. Use float rather than integer to facilitate
         # later calculations and number formatting.
-        team_record = {"name": team.geographic_name, "abbreviation": team.abbreviation,
-                       "conference": team.conference, "small_logo": team.small_logo,
+        team_record = {"name": team['geographic_name'], "abbreviation": team['abbreviation'],
+                       "conference": team['conference'], "small_logo": team['small_logo'],
                        "played": 0.0, "won": 0.0, "lost": 0.0,
                        "home_won": 0.0, "home_lost": 0.0,
                        "away_won": 0.0, "away_lost": 0.0,
                        "runs_for": 0.0, "runs_against": 0.0}
 
         # Next get the team's completed home games and away games for the current year.
-        home_games = [game for game in games if game['home_team'] == team.id]
-        away_games = [game for game in games if game['away_team'] == team.id]
+        home_games = [game for game in games if game['home_team'] == team['id']]
+        away_games = [game for game in games if game['away_team'] == team['id']]
 
         # For each home game, add the game result and score to their record.
         for game in home_games:
