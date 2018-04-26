@@ -16,28 +16,27 @@ from django.shortcuts import redirect
 def home_page(request):
 
     user = request.user
-    news_headlines = Item.objects.exclude(category_id=6).order_by('-created_date')[:7]
+    news = Item.objects.exclude(category_id=6).order_by('-created_date')
     sponsors = Sponsor.objects.all()
+    extra_news = news[7:12]
 
     # If a user is logged in and has a favourite team set, show additional news relevant to that team.
     # Otherwise, just show more general news stories instead.
     if user.is_authenticated:
         favourite_team = user.favourite_team
         if favourite_team:
-            extra_news = Item.objects.filter(teams=favourite_team.id).order_by('-created_date')[:5]
-
-            return render(request, "home.html", {"news_headlines": news_headlines, "favourite_team": favourite_team,
-                                                 "extra_news": extra_news, "sponsors": sponsors})
+            headlines = news[:7]
+            team_news = Item.objects.filter(teams=user.favourite_team.id).order_by('-created_date')[:5]
+            return render(request, "home.html", {"news_headlines": headlines, "favourite_team": favourite_team,
+                                                 "extra_news": team_news, "sponsors": sponsors})
         else:
-            extra_news = Item.objects.exclude(category_id=6).order_by('-created_date')[7:12]
-
-            return render(request, "home.html", {"news_headlines": news_headlines, "extra_news": extra_news,
+            headlines = news[:7]
+            return render(request, "home.html", {"news_headlines": headlines, "extra_news": extra_news,
                                                  "sponsors": sponsors})
 
     else:
-        extra_news = Item.objects.exclude(category_id=6).order_by('-created_date')[7:12]
-
-        return render(request, "home.html", {"news_headlines": news_headlines, "extra_news": extra_news,
+        headlines = news[:7]
+        return render(request, "home.html", {"news_headlines": headlines, "extra_news": extra_news,
                                              "sponsors": sponsors})
 
 

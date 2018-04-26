@@ -276,49 +276,62 @@ def season_team(request, year, team_name):
     season = Season.objects.get(year=year)
     seasons = Season.objects.all()
 
-    # Get the result details for the chosen season only.
-    games = Game.objects.filter(game_date__year=year) \
-        .filter(game_type__in=['Regular Season', 'Postseason']).order_by('game_date')
-
     teams = Team.objects.all().order_by('geographic_name')
     team = get_object_or_404(Team, geographic_name=team_name.capitalize())
     conference = team.conference
-
-    # Empty lists for the team's results and for the championship series if the team was involved.
-    team_schedule = []
-    championship_series = []
 
     # Archive settings needed to allow chosen year's standings alongside current standings in sidebar.
     archive_standings = get_standings(year)
     archive = True
 
-    # For each game in the season:
-    for game in games:
+    # Empty lists for the team's results and for the championship series if the team was involved.
+    team_schedule = []
+    championship_series = []
+
+    # Get all the regular season games that the team is involved in during the current year.
+    regular_season_games = Game.objects.filter(game_date__year=year) \
+        .filter(game_type='Regular Season').filter(Q(home_team=team) | Q(away_team=team)).order_by(
+        'game_date')
+
+    # Get all the postseason games that the team is involved in during the current year.
+    postseason_games = Game.objects.filter(game_date__year=year) \
+        .filter(game_type='Postseason').filter(Q(home_team=team) | Q(away_team=team)).order_by(
+        'game_date')
+
+    # For each game in the regular season:
+    for game in regular_season_games:
         # If the chosen team was at home, allocate the home team's result to them and set the away team as their
         # opponent.
         if game.home_team == team:
-            game.team = game.home_team
-            game.opponent = game.away_team
-            game.team_runs = game.home_team_runs
-            game.opponent_runs = game.away_team_runs
-            # If the game was in the play-offs, add it to the championship_series list. Otherwise add it to the
-            # schedule.
-            if game.game_type == 'Postseason':
-                championship_series.append(game)
-            else:
-                team_schedule.append(game)
+            details = {"venue": "H", "team": game.home_team, "opponent": game.away_team,
+                       "team_runs": game.home_team_runs, "opponent_runs": game.away_team_runs,
+                       "date": game.game_date, "innings": game.innings}
         # If the chosen team was away, allocate the away team's result to them and set the home team as their opponent.
-        elif game.away_team == team:
-            game.team = game.away_team
-            game.opponent = game.home_team
-            game.team_runs = game.away_team_runs
-            game.opponent_runs = game.home_team_runs
-            # If the game was in the play-offs, add it to the championship_series list. Otherwise add it to the
-            # schedule.
-            if game.game_type == 'Postseason':
-                championship_series.append(game)
-            else:
-                team_schedule.append(game)
+        else:
+            details = {"venue": "A", "team": game.away_team, "opponent": game.home_team,
+                       "team_runs": game.away_team_runs, "opponent_runs": game.home_team_runs,
+                       "date": game.game_date, "innings": game.innings}
+        team_schedule.append(details)
+
+    # For each game in the postseason:
+    for game in postseason_games:
+        # If the chosen team was at home, allocate the home team's result to them and set the away team as their
+        # opponent.
+        if game.home_team == team:
+            details = {"venue": "A", "home_team": game.away_team, "away_team": game.home_team,
+                       "home_team_runs": game.away_team_runs, "away_team_runs": game.home_team_runs,
+                       "home_team_hits": game.away_team_hits, "away_team_hits": game.home_team_hits,
+                       "home_team_errors": game.away_team_errors, "away_team_errors": game.home_team_errors,
+                       "date": game.game_date, "innings": game.innings}
+        # If the chosen team was away, allocate the away team's result to them and set the home team as their
+        # opponent.
+        else:
+            details = {"venue": "A", "home_team": game.away_team, "away_team": game.home_team,
+                       "home_team_runs": game.away_team_runs, "away_team_runs": game.home_team_runs,
+                       "home_team_hits": game.away_team_hits, "away_team_hits": game.home_team_hits,
+                       "home_team_errors": game.away_team_errors, "away_team_errors": game.home_team_errors,
+                       "date": game.game_date, "innings": game.innings}
+        championship_series.append(details)
 
     # If the season has a champion set, i.e. if the season is over, show the archive details.
     if season.champion:

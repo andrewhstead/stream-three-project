@@ -30,6 +30,7 @@ def get_standings(year):
     # Empty list to contain the standings
     standings = []
 
+    # Get the relevant game data from all the completed games in the current season.
     games = Game.objects.filter(game_status='Completed', game_type='Regular Season', game_date__year=year)\
         .values('home_team', 'away_team', 'home_team_runs', 'away_team_runs')
 

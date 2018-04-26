@@ -48,12 +48,12 @@
 
                         <tr>
                             <td class="stat-header">
-                                {{ game.game_date|date:"d/m/y" }}
+                                {{ game.date|date:"d/m/y" }}
                             </td>
                             <td class="stat-header">
-                                {% if game.team == game.home_team %}
+                                {% if game.venue == 'H' %}
                                     v
-                                {% elif game.team == game.away_team %}
+                                {% elif game.venue == 'A' %}
                                     @
                                 {% endif %}
                                 <a class="table-link" href=
@@ -89,7 +89,66 @@
 
                 {% for result in championship_series %}
 
-                    {% include 'result_table.html' %}
+                    <table class="stat-table">
+                        <tr class="header-row">
+                            <th class="stat-intro">
+                                FINAL {% if result.innings != 9 %}({{ result.innings }}){% endif %}
+                            </th>
+                            <th class="score-column">R</th>
+                            <th class="score-column">H</th>
+                            <th class="score-column">E</th>
+                        </tr>
+                        <!-- Show the name of the away team, and their score information if the game was not postponed. -->
+                        <tr>
+                            <td class="stat-header">
+                                <img class="small-logo" src="{{ MEDIA_URL }}{{ result.away_team.small_logo }}" />
+                                    {% if archive %}
+                                        <a class="table-link" href="{% url 'season_team' season result.away_team.geographic_name|lower %}">
+                                    {% else %}
+                                        <a class="table-link" href="{% url 'team_games' result.away_team.geographic_name|lower %}">
+                                    {% endif %}
+                                    {% if result.away_team_runs > result.home_team_runs %}
+                                        <strong>{{ result.away_team }}</strong></a>
+                                    {% else %}
+                                        {{ result.away_team }}</a>
+                                    {% endif %}
+                            </td>
+                            {% if result.game_status == "Postponed" %}
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            {% else %}
+                                <td class="stat-detail"><strong>{{ result.away_team_runs }}</strong></td>
+                                <td class="stat-detail-faint">{{ result.away_team_hits }}</td>
+                                <td class="stat-detail-faint">{{ result.away_team_errors }}</td>
+                            {% endif %}
+                        </tr>
+                        <!-- Show the name of the home team, and their score information if the game was not postponed. -->
+                        <tr>
+                            <td class="stat-header">
+                                <img class="small-logo" src="{{ MEDIA_URL }}{{ result.home_team.small_logo }}" />
+                                    {% if archive %}
+                                        <a class="table-link" href="{% url 'season_team' season result.home_team.geographic_name|lower %}">
+                                    {% else %}
+                                        <a class="table-link" href="{% url 'team_games' result.home_team.geographic_name|lower %}">
+                                    {% endif %}
+                                    {% if result.home_team_runs > result.away_team_runs %}
+                                        <strong>{{ result.home_team }}</strong></a>
+                                    {% else %}
+                                        {{ result.home_team }}</a>
+                                    {% endif %}
+                            </td>
+                            {% if result.game_status == "Postponed" %}
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            {% else %}
+                                <td class="stat-detail"><strong>{{ result.home_team_runs }}</strong></td>
+                                <td class="stat-detail-faint">{{ result.home_team_hits }}</td>
+                                <td class="stat-detail-faint">{{ result.home_team_errors }}</td>
+                            {% endif %}
+                        </tr>
+                    </table>
 
                 {% endfor %}
 
