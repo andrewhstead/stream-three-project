@@ -48,30 +48,52 @@
 
                         <tr>
                             <td class="stat-header">
-                                {{ game.date|date:"d/m/y" }}
+                                {{ game.game_date|date:"d/m/y" }}
                             </td>
-                            <td class="stat-header">
-                                {% if game.venue == 'H' %}
+
+                            {% if team == game.home_team %}
+
+                                <td class="stat-header">
                                     v
-                                {% elif game.venue == 'A' %}
-                                    @
+                                    <a class="table-link" href=
+                                            "{% url 'season_team' season.year game.away_team.geographic_name|lower %}">
+                                        {{ game.away_team.geographic_name }}</a>
+                                </td>
+                                {% if game.home_team_runs > game.away_team_runs %}
+                                    <td class="stat-win">
+                                        W
+                                    </td>
+                                {% else %}
+                                    <td class="stat-loss">
+                                        L
+                                    </td>
                                 {% endif %}
-                                <a class="table-link" href=
-                                        "{% url 'season_team' season.year game.opponent.geographic_name|lower %}">
-                                    {{ game.opponent.geographic_name }}</a>
-                            </td>
-                            {% if game.team_runs > game.opponent_runs %}
-                                <td class="stat-win">
-                                    W
+                                <td class="stat-detail">
+                                    {{ game.home_team_runs }}-{{ game.away_team_runs }}
                                 </td>
+
                             {% else %}
-                                <td class="stat-loss">
-                                    L
+
+                                <td class="stat-header">
+                                    @
+                                    <a class="table-link" href=
+                                            "{% url 'season_team' season.year game.home_team.geographic_name|lower %}">
+                                        {{ game.home_team.geographic_name }}</a>
                                 </td>
+                                {% if game.away_team_runs > game.home_team_runs %}
+                                    <td class="stat-win">
+                                        W
+                                    </td>
+                                {% else %}
+                                    <td class="stat-loss">
+                                        L
+                                    </td>
+                                {% endif %}
+                                <td class="stat-detail">
+                                    {{ game.away_team_runs }}-{{ game.home_team_runs }}
+                                </td>
+
                             {% endif %}
-                            <td class="stat-detail">
-                                {{ game.team_runs }}-{{ game.opponent_runs }}
-                            </td>
 
                         </tr>
 
@@ -98,55 +120,39 @@
                             <th class="score-column">H</th>
                             <th class="score-column">E</th>
                         </tr>
-                        <!-- Show the name of the away team, and their score information if the game was not postponed. -->
+                        <!-- Show the name of the away team, and their score information. -->
                         <tr>
                             <td class="stat-header">
                                 <img class="small-logo" src="{{ MEDIA_URL }}{{ result.away_team.small_logo }}" />
-                                    {% if archive %}
-                                        <a class="table-link" href="{% url 'season_team' season result.away_team.geographic_name|lower %}">
-                                    {% else %}
-                                        <a class="table-link" href="{% url 'team_games' result.away_team.geographic_name|lower %}">
-                                    {% endif %}
+                                <a class="table-link"
+                                   href="{% url 'season_team' season result.away_team.geographic_name|lower %}">
                                     {% if result.away_team_runs > result.home_team_runs %}
-                                        <strong>{{ result.away_team }}</strong></a>
+                                        <strong>{{ result.away_team }}</strong>
                                     {% else %}
-                                        {{ result.away_team }}</a>
+                                        {{ result.away_team }}
                                     {% endif %}
+                                </a>
                             </td>
-                            {% if result.game_status == "Postponed" %}
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            {% else %}
-                                <td class="stat-detail"><strong>{{ result.away_team_runs }}</strong></td>
-                                <td class="stat-detail-faint">{{ result.away_team_hits }}</td>
-                                <td class="stat-detail-faint">{{ result.away_team_errors }}</td>
-                            {% endif %}
+                            <td class="stat-detail"><strong>{{ result.away_team_runs }}</strong></td>
+                            <td class="stat-detail-faint">{{ result.away_team_hits }}</td>
+                            <td class="stat-detail-faint">{{ result.away_team_errors }}</td>
                         </tr>
-                        <!-- Show the name of the home team, and their score information if the game was not postponed. -->
+                        <!-- Show the name of the home team, and their score information. -->
                         <tr>
                             <td class="stat-header">
                                 <img class="small-logo" src="{{ MEDIA_URL }}{{ result.home_team.small_logo }}" />
-                                    {% if archive %}
-                                        <a class="table-link" href="{% url 'season_team' season result.home_team.geographic_name|lower %}">
-                                    {% else %}
-                                        <a class="table-link" href="{% url 'team_games' result.home_team.geographic_name|lower %}">
-                                    {% endif %}
+                                <a class="table-link"
+                                   href="{% url 'season_team' season result.home_team.geographic_name|lower %}">
                                     {% if result.home_team_runs > result.away_team_runs %}
-                                        <strong>{{ result.home_team }}</strong></a>
+                                        <strong>{{ result.home_team }}</strong>
                                     {% else %}
-                                        {{ result.home_team }}</a>
+                                        {{ result.home_team }}
                                     {% endif %}
+                                </a>
                             </td>
-                            {% if result.game_status == "Postponed" %}
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            {% else %}
-                                <td class="stat-detail"><strong>{{ result.home_team_runs }}</strong></td>
-                                <td class="stat-detail-faint">{{ result.home_team_hits }}</td>
-                                <td class="stat-detail-faint">{{ result.home_team_errors }}</td>
-                            {% endif %}
+                            <td class="stat-detail"><strong>{{ result.home_team_runs }}</strong></td>
+                            <td class="stat-detail-faint">{{ result.home_team_hits }}</td>
+                            <td class="stat-detail-faint">{{ result.home_team_errors }}</td>
                         </tr>
                     </table>
 
