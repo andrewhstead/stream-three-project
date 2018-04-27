@@ -35,9 +35,9 @@ is determined in the main templates for each view. -->
                                     {{ club.name }}
                                 </a>
                             </td>
-                        {% else %}
 
-                            <!-- Otherwise, list all the teams with no highlighting. -->
+                        <!-- Otherwise, list all the teams with no highlighting. -->
+                        {% else %}
                             <td class="stat-header">
                                 <img class="small-logo" src="{{ MEDIA_URL }}{{ club.small_logo }}" />
                                     {% if archive %}
