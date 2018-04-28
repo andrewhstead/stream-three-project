@@ -179,6 +179,7 @@ def new_post(request, thread_id):
             post = form.save(False)
             post.user = request.user
             post.thread = thread
+            post.board = thread.board
             post.save()
             # Update the thread's last_post field with the current time.
             thread.last_post = timezone.now()

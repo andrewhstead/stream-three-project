@@ -45,6 +45,7 @@ class Thread(models.Model):
 class Post(models.Model):
     user = models.ForeignKey(User, related_name='posts')
     thread = models.ForeignKey(Thread, related_name='posts')
+    board = models.ForeignKey(Board, related_name='posts')
     content = HTMLField(blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
 
