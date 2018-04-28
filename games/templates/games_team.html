@@ -37,8 +37,14 @@
                                 {% elif game.venue == "A" %}
                                     @
                                 {% endif %}
-                                <a class="table-link" href="{% url 'team_games' game.opponent.geographic_name|lower %}">
-                                    {{ game.opponent.geographic_name }}
+                                <a class="table-link" href="{% url 'team_games' game.opponent %}">
+                                    <!-- Check which team matches the opponent, to show the name rather than ID.
+                                    IDs are used in the view to reduce database queries. -->
+                                    {% for team in teams %}
+                                        {% if team.id == game.opponent %}
+                                            {{ team.geographic_name }}
+                                        {% endif %}
+                                    {% endfor %}
                                 </a>
                             </td>
                             <!-- W or L only used if the game is completed. -->

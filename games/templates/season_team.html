@@ -48,53 +48,36 @@
 
                         <tr>
                             <td class="stat-header">
-                                {{ game.game_date|date:"d/m/y" }}
+                                {{ game.date|date:"d/m/y" }}
                             </td>
-
-                            {% if team == game.home_team %}
-
-                                <td class="stat-header">
+                            <td class="stat-header">
+                                {% if game.venue == "H" %}
                                     v
-                                    <a class="table-link" href=
-                                            "{% url 'season_team' season.year game.away_team.geographic_name|lower %}">
-                                        {{ game.away_team.geographic_name }}</a>
-                                </td>
-                                {% if game.home_team_runs > game.away_team_runs %}
-                                    <td class="stat-win">
-                                        W
-                                    </td>
-                                {% else %}
-                                    <td class="stat-loss">
-                                        L
-                                    </td>
-                                {% endif %}
-                                <td class="stat-detail">
-                                    {{ game.home_team_runs }}-{{ game.away_team_runs }}
-                                </td>
-
-                            {% else %}
-
-                                <td class="stat-header">
+                                {% elif game.venue == "A" %}
                                     @
-                                    <a class="table-link" href=
-                                            "{% url 'season_team' season.year game.home_team.geographic_name|lower %}">
-                                        {{ game.home_team.geographic_name }}</a>
-                                </td>
-                                {% if game.away_team_runs > game.home_team_runs %}
-                                    <td class="stat-win">
-                                        W
-                                    </td>
-                                {% else %}
-                                    <td class="stat-loss">
-                                        L
-                                    </td>
                                 {% endif %}
-                                <td class="stat-detail">
-                                    {{ game.away_team_runs }}-{{ game.home_team_runs }}
+                                <a class="table-link" href="{% url 'team_games' game.opponent %}">
+                                    <!-- Check which team matches the opponent, to show the name rather than ID.
+                                    IDs are used in the view to reduce database queries. -->
+                                    {% for team in teams %}
+                                        {% if team.id == game.opponent %}
+                                            {{ team.geographic_name }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </a>
+                            </td>
+                            {% if game.team_runs > game.opponent_runs %}
+                                <td class="stat-win">
+                                    W
                                 </td>
-
+                            {% else %}
+                                <td class="stat-loss">
+                                    L
+                                </td>
                             {% endif %}
-
+                            <td class="stat-detail">
+                                {{ game.team_runs }}-{{ game.opponent_runs }}
+                            </td>
                         </tr>
 
                     {% endfor %}
@@ -123,15 +106,21 @@
                         <!-- Show the name of the away team, and their score information. -->
                         <tr>
                             <td class="stat-header">
-                                <img class="small-logo" src="{{ MEDIA_URL }}{{ result.away_team.small_logo }}" />
-                                <a class="table-link"
-                                   href="{% url 'season_team' season result.away_team.geographic_name|lower %}">
-                                    {% if result.away_team_runs > result.home_team_runs %}
-                                        <strong>{{ result.away_team }}</strong>
-                                    {% else %}
-                                        {{ result.away_team }}
+                                <!-- Check which team matches the away team, to show the name rather than ID.
+                                IDs are used in the view to reduce database queries. -->
+                                {% for team in teams %}
+                                    {% if team.id == result.away_team %}
+                                        <img class="small-logo" src="{{ MEDIA_URL }}{{ team.small_logo }}" />
+                                        <a class="table-link"
+                                           href="{% url 'season_team' season team.geographic_name|lower %}">
+                                            {% if result.away_team_runs > result.home_team_runs %}
+                                                <strong>{{ team }}</strong>
+                                            {% else %}
+                                                {{ team }}
+                                            {% endif %}
+                                        </a>
                                     {% endif %}
-                                </a>
+                                {% endfor %}
                             </td>
                             <td class="stat-detail"><strong>{{ result.away_team_runs }}</strong></td>
                             <td class="stat-detail-faint">{{ result.away_team_hits }}</td>
@@ -140,15 +129,21 @@
                         <!-- Show the name of the home team, and their score information. -->
                         <tr>
                             <td class="stat-header">
-                                <img class="small-logo" src="{{ MEDIA_URL }}{{ result.home_team.small_logo }}" />
-                                <a class="table-link"
-                                   href="{% url 'season_team' season result.home_team.geographic_name|lower %}">
-                                    {% if result.home_team_runs > result.away_team_runs %}
-                                        <strong>{{ result.home_team }}</strong>
-                                    {% else %}
-                                        {{ result.home_team }}
+                                <!-- Check which team matches the home team, to show the name rather than ID.
+                                IDs are used in the view to reduce database queries. -->
+                                {% for team in teams %}
+                                    {% if team.id == result.home_team %}
+                                        <img class="small-logo" src="{{ MEDIA_URL }}{{ team.small_logo }}" />
+                                        <a class="table-link"
+                                           href="{% url 'season_team' season team.geographic_name|lower %}">
+                                            {% if result.home_team_runs > result.away_team_runs %}
+                                                <strong>{{ team }}</strong>
+                                            {% else %}
+                                                {{ team }}
+                                            {% endif %}
+                                        </a>
                                     {% endif %}
-                                </a>
+                                {% endfor %}
                             </td>
                             <td class="stat-detail"><strong>{{ result.home_team_runs }}</strong></td>
                             <td class="stat-detail-faint">{{ result.home_team_hits }}</td>
