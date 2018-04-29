@@ -32,10 +32,16 @@
                             {% if fixture.game_date == date %}
                                 <tr>
                                     <td class="stat-team">
-                                        <a class="table-link"
-                                           href="{% url 'team_games' fixture.away_team.geographic_name|lower %}">
-                                            {{ fixture.away_team.geographic_name }}
-                                        </a>
+                                        <!-- Check which team matches the opponent, to show the name rather than ID.
+                                        IDs are used in the view to reduce database queries. -->
+                                        {% for team in teams %}
+                                            {% if team.id == fixture.away_team %}
+                                                <a class="table-link" href=
+                                                        "{% url 'team_games' team.geographic_name|lower %}">
+                                                    {{ team.geographic_name }}
+                                                </a>
+                                            {% endif %}
+                                        {% endfor %}
                                     </td>
                                     {% if fixture.game_status == "In Progress" %}
                                         <td class="stat-detail-highlight">
@@ -47,10 +53,16 @@
                                         </td>
                                     {% endif %}
                                     <td class="stat-team">
-                                        <a class="table-link" href=
-                                                "{% url 'team_games' fixture.home_team.geographic_name|lower %}">
-                                            {{ fixture.home_team.geographic_name }}
-                                        </a>
+                                        <!-- Check which team matches the opponent, to show the name rather than ID.
+                                        IDs are used in the view to reduce database queries. -->
+                                        {% for team in teams %}
+                                            {% if team.id == fixture.home_team %}
+                                                <a class="table-link" href=
+                                                        "{% url 'team_games' team.geographic_name|lower %}">
+                                                    {{ team.geographic_name }}
+                                                </a>
+                                            {% endif %}
+                                        {% endfor %}
                                     </td>
                                 </tr>
 

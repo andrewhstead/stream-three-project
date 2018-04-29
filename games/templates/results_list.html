@@ -32,16 +32,23 @@
                             {% if result.game_date == date %}
                                 <tr>
                                     <td class="stat-team">
-                                        <a class="table-link" href=
-                                                "{% url 'team_games' result.away_team.geographic_name|lower %}">
-                                            <!-- If the game is complete and the away team won, highlight their name.
-                                             -->
-                                            {% if result.game_status == "Completed" and result.away_team_runs > result.home_team_runs %}
-                                                <strong>{{ result.away_team.geographic_name }}</strong>
-                                            {% else %}
-                                                {{ result.away_team.geographic_name }}
+                                        <!-- Check which team matches the opponent, to show the name rather than ID.
+                                        IDs are used in the view to reduce database queries. -->
+                                        {% for team in teams %}
+                                            {% if team.id == result.away_team %}
+                                                <a class="table-link" href=
+                                                        "{% url 'team_games' team.geographic_name|lower %}">
+                                                    <!-- If the game is complete and the away team won,
+                                                    highlight their name. -->
+                                                    {% if result.game_status == "Completed" and result.away_team_runs > result.home_team_runs %}
+                                                        <strong>{{ team.geographic_name }}</strong>
+                                                    {% else %}
+                                                        {{ team.geographic_name }}
+                                                    {% endif %}
+                                                </a>
                                             {% endif %}
-                                        </a></td>
+                                        {% endfor %}
+                                    </td>
                                     <!-- Give a fainter background if the game is not completed. For postponed games,
                                      show 'P-P' instead of the score. -->
                                     {% if result.game_status != "Completed" %}
@@ -61,16 +68,22 @@
                                         </td>
                                     {% endif %}
                                     <td class="stat-team">
-                                        <a class="table-link" href=
-                                                "{% url 'team_games' result.home_team.geographic_name|lower %}">
-                                            <!-- If the game is complete and the home team won, highlight their name.
-                                             -->
-                                            {% if result.game_status == "Completed" and result.home_team_runs > result.away_team_runs %}
-                                                <strong>{{ result.home_team.geographic_name }}</strong>
-                                            {% else %}
-                                                {{ result.home_team.geographic_name }}
+                                        <!-- Check which team matches the opponent, to show the name rather than ID.
+                                        IDs are used in the view to reduce database queries. -->
+                                        {% for team in teams %}
+                                            {% if team.id == result.home_team %}
+                                                <a class="table-link" href=
+                                                        "{% url 'team_games' team.geographic_name|lower %}">
+                                                    <!-- If the game is complete and the away team won,
+                                                    highlight their name. -->
+                                                    {% if result.game_status == "Completed"and result.home_team_runs > result.away_team_runs %}
+                                                        <strong>{{ team.geographic_name }}</strong>
+                                                    {% else %}
+                                                        {{ team.geographic_name }}
+                                                    {% endif %}
+                                                </a>
                                             {% endif %}
-                                        </a>
+                                        {% endfor %}
                                     </td>
                                 </tr>
 
