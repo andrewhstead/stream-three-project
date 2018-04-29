@@ -21,6 +21,8 @@ class Board(models.Model):
     title = models.CharField(max_length=50)
     section = models.ForeignKey(Section, related_name='boards')
     team = models.ForeignKey(Team, related_name='board', blank=True, null=True)
+    thread_count = models.IntegerField(default=0)
+    post_count = models.IntegerField(default=0)
     description = HTMLField(blank=True)
 
     def __unicode__(self):
@@ -34,6 +36,7 @@ class Thread(models.Model):
     user = models.ForeignKey(User, related_name='threads')
     board = models.ForeignKey(Board, related_name='threads')
     created_date = models.DateTimeField(auto_now_add=True)
+    post_count = models.IntegerField(default=0)
     last_post = models.DateTimeField(auto_now_add=True)
     views = models.IntegerField(default=0)
 

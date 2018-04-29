@@ -80,16 +80,22 @@ def new_thread(request, board_id):
         thread_form = ThreadForm(request.POST)
         post_form = PostForm(request.POST)
         if thread_form.is_valid() and post_form.is_valid():
-            # Before saving the thread, allocate it to the user and to the selected board.
+            # Before saving the thread, allocate it to the user and to the selected board and increment the post count.
             thread = thread_form.save(False)
             thread.user = request.user
             thread.board = board
+            thread.post_count += 1
             thread.save()
+            # Increment the thread and post count for the relevant board.
+            board.post_count += 1
+            board.thread_count += 1
+            board.save()
 
             # Before saving the post, allocate it to the user and to the new thread.
             post = post_form.save(False)
             post.user = request.user
             post.thread = thread
+            post.board = board
             post.save()
 
             if board.team_id:
@@ -181,9 +187,12 @@ def new_post(request, thread_id):
             post.thread = thread
             post.board = thread.board
             post.save()
-            # Update the thread's last_post field with the current time.
+            # Update the thread's last_post field with the current time, and increment the post count by one.
             thread.last_post = timezone.now()
+            thread.post_count += 1
             thread.save()
+            post.board.post_count += 1
+            post.board.save()
 
             messages.success(request, "Your post was successful!")
 
@@ -239,14 +248,30 @@ def edit_post(request, thread_id, post_id):
 def delete_post(request, thread_id, post_id):
     post = get_object_or_404(Post, pk=post_id)
     thread = get_object_or_404(Thread, pk=thread_id)
+    board = post.board
 
-    # When the post is deleted, update the thread's last_post field. It should be set the the created_date of the
-    # last post which remains in the thread. This is to ensure that if the deleted post was the last one,
-    # the previous post is now considered to be the last one and its date and time should be used.
+    # When the post is deleted, reduce the thread's post count by one.
     post.delete()
-    thread.last_post = thread.posts.last().created_date
-    thread.save()
+    thread.post_count -= 1
 
-    messages.success(request, "Your post has been deleted.")
+    # If no posts remain, delete the thread, and reduce the relevant board's thread and post counts by one.
+    if thread.post_count == 0:
+        thread.delete()
+        board.thread_count -= 1
+        board.post_count -= 1
+        board.save()
 
-    return redirect(reverse('view_thread', args={thread.pk}))
+        messages.success(request, "No posts remaining, thread has been deleted.")
+        return redirect(reverse('forum'))
+
+    # If there are posts remaining, recalculate the thread's last_post field to the created_date of the last
+    # remaining post. This is done in case the deleted post is the last one, to ensure that the last_post field
+    # relates to the last remaining post. Also, reduce the relevant board's post count by one.
+    else:
+        thread.last_post = thread.posts.last().created_date
+        thread.save()
+        board.post_count -= 1
+        board.save()
+
+        messages.success(request, "Your post has been deleted.")
+        return redirect(reverse('view_thread', args={thread.pk}))
