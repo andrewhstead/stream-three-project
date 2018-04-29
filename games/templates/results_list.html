@@ -76,7 +76,7 @@
                                                         "{% url 'team_games' team.geographic_name|lower %}">
                                                     <!-- If the game is complete and the away team won,
                                                     highlight their name. -->
-                                                    {% if result.game_status == "Completed"and result.home_team_runs > result.away_team_runs %}
+                                                    {% if result.game_status == "Completed" and result.home_team_runs > result.away_team_runs %}
                                                         <strong>{{ team.geographic_name }}</strong>
                                                     {% else %}
                                                         {{ team.geographic_name }}
