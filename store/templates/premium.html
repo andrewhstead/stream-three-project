@@ -122,18 +122,32 @@
                 {% for game in schedule %}
                     <tr class="lined-row">
                         <td>
-                            <a class="table-link" href="{% url 'team_page' game.away_team.geographic_name|lower %}">
-                                {{ game.away_team.geographic_name }}
-                            </a>
+                            <!-- Check which team matches the away team, to show the name rather than ID.
+                            IDs are used in the view to reduce database queries. -->
+                            {% for team in teams %}
+                                {% if team.id == game.away_team %}
+                                    <a class="table-link" href=
+                                            "{% url 'team_page' team.geographic_name|lower %}">
+                                        {{ team.geographic_name }}
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
                         </td>
                         <td class="stat-detail">
                             <strong>{{ game.game_date|date:'d/m/y' }}</strong><br />
                             {{ game.game_time|time:'G:i' }}
                         </td>
                         <td>
-                            <a class="table-link" href="{% url 'team_page' game.home_team.geographic_name|lower %}">
-                                {{ game.home_team.geographic_name }}
-                            </a>
+                            <!-- Check which team matches the home team, to show the name rather than ID.
+                            IDs are used in the view to reduce database queries. -->
+                            {% for team in teams %}
+                                {% if team.id == game.home_team %}
+                                    <a class="table-link" href=
+                                            "{% url 'team_page' team.geographic_name|lower %}">
+                                        {{ team.geographic_name }}
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
                         </td>
                     </tr>
                 {% endfor %}

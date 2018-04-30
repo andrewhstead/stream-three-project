@@ -353,7 +353,8 @@ def order_details(request, order_id):
 
 # Show the premium content page.
 def premium_home(request):
-    schedule = Game.objects.filter(game_status='Scheduled').filter(is_premium=True)
+    schedule = Game.objects.filter(game_status='Scheduled').filter(is_premium=True)\
+        .values('game_date', 'game_time', 'home_team', 'away_team')
     live_games = Game.objects.filter(game_status='In Progress').filter(is_premium=True)
     return render(request, 'premium.html', {'schedule': schedule, 'live_games': live_games})
 

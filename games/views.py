@@ -238,7 +238,7 @@ def full_fixtures(request):
 
 # Show a list of all season in the league's history, with overview information.
 def season_archive(request):
-    seasons = Season.objects.all().order_by('year')
+    seasons = Season.objects.all().order_by('year').values('year', 'champion', 'series_score', 'finalist')
     standings = get_standings(datetime.now().year)
 
     return render(request, "season_archive.html", {'seasons': seasons, 'standings': standings})
@@ -252,7 +252,6 @@ def season_overview(request, year):
     seasons = Season.objects.all()
 
     conferences = Conference.objects.all()
-    teams = Team.objects.all().order_by('geographic_name')
 
     # Get the results from the play-offs in the chosen season.
     championship_series = Game.objects.filter(game_date__year=year, game_type='Postseason')
@@ -265,7 +264,7 @@ def season_overview(request, year):
     if season.champion:
         return render(request, "season_overview.html", {'year': year, 'season': season,
                                                         'seasons': seasons, 'archive_standings': archive_standings,
-                                                        'conferences': conferences, 'teams': teams,
+                                                        'conferences': conferences,
                                                         'championship_series': championship_series,
                                                         'archive': archive})
 

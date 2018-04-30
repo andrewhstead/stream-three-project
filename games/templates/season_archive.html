@@ -35,10 +35,16 @@
                         </td>
                         <td>
                             <strong>
-                                <a class="table-link" href=
-                                        "{% url 'season_team' season.year season.champion.geographic_name|lower %}">
-                                    {{ season.champion.geographic_name }}
-                                </a>
+                                <!-- Check which team matches the champion, to show the name rather than ID.
+                                IDs are used in the view to reduce database queries. -->
+                                {% for team in teams %}
+                                    {% if team.id == season.champion %}
+                                        <a class="table-link" href=
+                                                "{% url 'season_team' season.year team.geographic_name|lower %}">
+                                            {{ team.geographic_name }}
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
                             </strong>
                         </td>
                         <td>
@@ -49,10 +55,16 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a class="table-link" href=
-                                    "{% url 'season_team' season.year season.finalist.geographic_name|lower %}">
-                                {{ season.finalist.geographic_name }}
-                            </a>
+                            <!-- Check which team matches the finalist, to show the name rather than ID.
+                            IDs are used in the view to reduce database queries. -->
+                            {% for team in teams %}
+                                {% if team.id == season.finalist %}
+                                    <a class="table-link" href=
+                                            "{% url 'season_team' season.year team.geographic_name|lower %}">
+                                        {{ team.geographic_name }}
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
                         </td>
                     </tr>
                 {% endfor %}
