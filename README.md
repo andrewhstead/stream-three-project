@@ -30,6 +30,7 @@ included and a league history added to the site. The project is presented as the
 	* [Users App](#users-app)
 4. [Deployment](#deployment)
 5. [Testing](#testing)
+6. [Issues](#issues)
 
 ## Planning
 
@@ -351,3 +352,16 @@ Much of the site development was done on a Windows PC using the Chrome browser, 
     tested by navigating the links on the site and entering a variety of data into the forms, ensuring that the site
     navigation worked as intended and that the forms were accepted with correct inputs and rejected when wrong entries
     were made, such as passwords which did not match on registration.
+
+## Issues
+
+When the project was initially deployed to Heroku and the database uploaded to ClearDB, the code in some of the views
+was causing a significant amount of repeated queries to the database to be made. This presented an issue with usage
+limits allowed by ClearDB so I had to rewrite parts of the code in these views to reduce the number of queries being
+made. Even when this had been done to an extent that there would no longer have been a problem on ClearDB, I was aware
+of the fact that this could present problems in the future if the code were to be reused for another project.
+
+For example, where numerous repeated calls were being made for each thread in the forum, the problem would have
+increased exponentially as the number of threads increased, which it inevitably would quite quickly on a busy and active
+ site. I therefore endeavoured to make sure that where possible, this was avoided in the code.
+.
