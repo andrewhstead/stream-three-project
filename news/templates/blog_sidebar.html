@@ -19,11 +19,6 @@
                     <a class="standard-link" href="{% url 'team_page' blogger.favourite_team.geographic_name|lower %}">
                         {{ blogger.favourite_team }}
                     </a><br />
-                    {{ blogger.news.count }}
-                    {% if blogger.news.count == 1 %}
-                        post
-                    {% else %}
-                        posts
-                    {% endif %}
+                    <strong>Posts:</strong> {{ blogger.news.count }}
                 </div>
             {% endfor %}
