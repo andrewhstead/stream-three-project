@@ -58,11 +58,7 @@ header {
 .normal-header {
     text-align: center;
 	box-shadow: none;
-    transition: 0.5s;
-    font-size: 2.5em;
-}
-.normal-header img {
-    transition: 0.5s;
+    font-size: 2.8em;
 }
 #league-name {
     padding: 5px;

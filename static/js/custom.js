@@ -58,14 +58,13 @@ function confirmationAlert(item) {
 }
 
 var header = document.getElementById('league-header');
-var headerPosition = header.offsetTop;
 
-function fixedHeader() {
-    if (window.pageYOffset >= 35) {
+function addFixedHeader() {
+    if (window.pageYOffset > 0) {
         header.classList.add('fixed-header')
     } else {
         header.classList.remove('fixed-header')
     }
 }
 
-window.onscroll = function() {fixedHeader()};
+window.onscroll = function() {addFixedHeader()};
