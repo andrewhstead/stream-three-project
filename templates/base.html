@@ -17,20 +17,22 @@
 </head>
 <body>
 
+    <!-- ID teams-header is not inside the header tag as it should not be included in the sticky effect on larger
+    devices. -->
+    <div id="teams-header">
+        {% for team in teams %}
+            <div class="header-logos">
+                <a href="{% url 'team_page' team.geographic_name|lower %}">
+                    <img class="header-logo" src="{{ MEDIA_URL }}{{ team.large_logo }}" alt=
+                            "{{ team.geographic_name }}" />
+                </a>
+            </div>
+        {%  endfor %}
+    </div>
+
     <header>
 
-        <div id="teams-header">
-            {% for team in teams %}
-                <div class="header-logos">
-                    <a href="{% url 'team_page' team.geographic_name|lower %}">
-                        <img class="header-logo" src="{{ MEDIA_URL }}{{ team.large_logo }}" alt=
-                                "{{ team.geographic_name }}" />
-                    </a>
-                </div>
-            {%  endfor %}
-        </div>
-
-        <div id="league-header">
+        <div id="league-header" class="normal-header">
             <div id="league-logo">
                 <a href="{% url 'home' %}"><img class="home-logo" src="{{ MEDIA_URL }}{{ league.logo }}" /></a>
             </div>
@@ -41,8 +43,6 @@
                 &#8801;
             </div>
         </div>
-
-    </header>
 
 	    <nav id="main-menu">
 		    <a class="menu-link" href="{% url 'home' %}">Home</a>
@@ -63,6 +63,8 @@
                 <a class="menu-link" href="{% url 'login' %}">Log In</a>
             {% endif %}
         </nav>
+
+    </header>
 
     <main>
 

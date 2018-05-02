@@ -45,7 +45,7 @@ main {
     padding: 5px;
     background-color: #4f81bd;
 }
-#league-header {
+.normal-header {
     display: flex;
     padding: 5px;
     background-color: #10253f;
@@ -90,8 +90,8 @@ main {
 }
 /* Larger league name for devices between 400 and 800 pixels */
 @media screen and (min-width: 401px) {
-    #league-name {
-        font-size: 1.2em;
+    .normal-header {
+        font-size: 1.6em;
     }
 }
 

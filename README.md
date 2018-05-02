@@ -364,4 +364,3 @@ of the fact that this could present problems in the future if the code were to b
 For example, where numerous repeated calls were being made for each thread in the forum, the problem would have
 increased exponentially as the number of threads increased, which it inevitably would quite quickly on a busy and active
  site. I therefore endeavoured to make sure that where possible, this was avoided in the code.
-.

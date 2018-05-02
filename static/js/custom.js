@@ -45,7 +45,8 @@ function messageRemove() {
 }
 messageRemove();
 
-// Pop-up function to ask for confirmation or give information.
+// Pop-up function to ask for confirmation or give information. Item is passed in to ensure that where there is more
+// than one confirmation link on the page, the correct one is activated. Otherwise, the wrong item may be deleted.
 function confirmationAlert(item) {
     if (item !== undefined) {
         document.getElementById('wrapper-' + item).classList.toggle('activate');
@@ -55,3 +56,16 @@ function confirmationAlert(item) {
         document.getElementById('alert').classList.toggle('activate');
     }
 }
+
+var header = document.getElementById('league-header');
+var headerPosition = header.offsetTop;
+
+function fixedHeader() {
+    if (window.pageYOffset >= 35) {
+        header.classList.add('fixed-header')
+    } else {
+        header.classList.remove('fixed-header')
+    }
+}
+
+window.onscroll = function() {fixedHeader()};
