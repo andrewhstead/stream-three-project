@@ -31,7 +31,7 @@ class Category(models.Model):
 
 # Creates news stories and blog posts. Optional photos can be added, both to appear in the article or in the news index.
 class Item(models.Model):
-    author = models.ForeignKey(User, related_name='news', default='Admin')
+    author = models.ForeignKey(User, related_name='news', default=1)
     title = models.CharField(max_length=200)
     cover_image = models.ImageField(upload_to="images/news/covers", blank=True, null=True)
     content = HTMLField()

@@ -33,10 +33,10 @@
 },
 {
     "model": "sessions.session",
-    "pk": "8u2yxftmdpmqyf9jg13twjdq8e3vvs8m",
+    "pk": "6cf9kuybhwwb1nu41nghwbaxi34n7py7",
     "fields": {
-        "session_data": "M2U0MTliMzYyZmI0NTFiMmEyMGRhZmM2YTk4ZWU3YzU2MDk3MTMzYjp7Il9hdXRoX3VzZXJfaGFzaCI6IjM0YjY0OWE5OWU1M2VhZTc1OGM0ZTA0OGMxNGFlM2QxM2IxOTc4MTYiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=",
-        "expire_date": "2018-05-09T12:52:39.010Z"
+        "session_data": "ZGM3ZGM1YWYzNDEzOGNmYTZjMTBkNGZlNDUyYmEzNjNkOWI1OTJiYjp7Il9hdXRoX3VzZXJfaGFzaCI6IjA5NGQ5YmE3YTJkM2Q5MDk1YTUwZjkzZmZkOWVkNjM2ZWM3NWEwNmEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyMCJ9",
+        "expire_date": "2018-05-10T22:12:32.410Z"
     }
 },
 {
@@ -125508,6 +125508,8 @@
         "title": "General Discussion",
         "section": 1,
         "team": null,
+        "thread_count": 5,
+        "post_count": 34,
         "description": "<p>The latest news around the British and Irish Baseball League.</p>"
     }
 },
@@ -125518,6 +125520,8 @@
         "title": "Game Threads",
         "section": 1,
         "team": null,
+        "thread_count": 11,
+        "post_count": 135,
         "description": "<p>Discuss a particular game before, while or after it is played.</p>"
     }
 },
@@ -125528,6 +125532,8 @@
         "title": "Transactions",
         "section": 1,
         "team": null,
+        "thread_count": 3,
+        "post_count": 12,
         "description": "<p>Discuss the latest trade rumours, deals and free agency signings.</p>"
     }
 },
@@ -125538,6 +125544,8 @@
         "title": "Birmingham Rhinos",
         "section": 3,
         "team": 5,
+        "thread_count": 3,
+        "post_count": 17,
         "description": "<p>Team board for discussion of the Birmingham Rhinos.</p>"
     }
 },
@@ -125548,6 +125556,8 @@
         "title": "Bristol Bulls",
         "section": 3,
         "team": 6,
+        "thread_count": 2,
+        "post_count": 7,
         "description": "<p>Team board for discussion of the Bristol Bulls.</p>"
     }
 },
@@ -125558,6 +125568,8 @@
         "title": "Cardiff Dragons",
         "section": 3,
         "team": 7,
+        "thread_count": 1,
+        "post_count": 3,
         "description": "<p>Team board for discussion of the Cardiff Dragons.</p>"
     }
 },
@@ -125568,6 +125580,8 @@
         "title": "Dublin Harps",
         "section": 2,
         "team": 1,
+        "thread_count": 2,
+        "post_count": 10,
         "description": "<p>Team board for discussion of the Dublin Harps.</p>"
     }
 },
@@ -125578,6 +125592,8 @@
         "title": "Glasgow Leopards",
         "section": 2,
         "team": 2,
+        "thread_count": 3,
+        "post_count": 13,
         "description": "<p>Team board for discussion of the Glasgow Leopards.</p>"
     }
 },
@@ -125588,6 +125604,8 @@
         "title": "Liverpool Dockers",
         "section": 2,
         "team": 3,
+        "thread_count": 2,
+        "post_count": 7,
         "description": "<p>Team board for discussion of the Liverpool Dockers.</p>"
     }
 },
@@ -125598,6 +125616,8 @@
         "title": "London Kings",
         "section": 3,
         "team": 8,
+        "thread_count": 2,
+        "post_count": 11,
         "description": "<p>Team board for discussion of the London Kings.</p>"
     }
 },
@@ -125608,6 +125628,8 @@
         "title": "Manchester Comets",
         "section": 2,
         "team": 4,
+        "thread_count": 2,
+        "post_count": 11,
         "description": "<p>Team board for discussion of the Manchester Comets.</p>"
     }
 },
@@ -126214,7 +126236,7 @@
     "pk": 20,
     "fields": {
         "password": "pbkdf2_sha256$36000$3sInZZoPnhbI$DcCUMo4FzuvbgzoDjUeGmKEZOL8o+mFTCrVYQA8pMkI=",
-        "last_login": "2018-04-25T09:11:41.921Z",
+        "last_login": "2018-04-26T22:12:32.302Z",
         "is_superuser": false,
         "username": "Raging_Bull",
         "first_name": "Callum",
@@ -126251,6 +126273,7 @@
             "Drakewingle"
         ],
         "thread": 9,
+        "board": 1,
         "content": "<p>The league's official pre-season predictions are out today - what does everyone think?</p>\r\n<p>North - Liverpool 39-21, Manchester 31-29, Glasgow 28-32, Dublin 28-32<br />South - Birmingham 37-23, Bristol 29-31, London 28-32, Cardiff 22-38</p>\r\n<p>I think they are underestimating Manchester and London on those!</p>",
         "created_date": "2018-02-07T11:15:27.617Z"
     }
@@ -126263,6 +126286,7 @@
             "Resplendent"
         ],
         "thread": 9,
+        "board": 1,
         "content": "<p>Manchester will definitely be stronger than that, and I don't think Liverpool will be that good. The North will be a lot closer than they are saying.</p>",
         "created_date": "2018-02-07T12:22:02.562Z"
     }
@@ -126275,6 +126299,7 @@
             "Baublestar83"
         ],
         "thread": 9,
+        "board": 1,
         "content": "<p>London's prediction might be a bit under what they end up with, but I don't see them challenging Birmingham like they did last year - their hitting isn't good enough.</p>",
         "created_date": "2018-02-07T14:57:49.802Z"
     }
@@ -126287,6 +126312,7 @@
             "Spinalver1998"
         ],
         "thread": 9,
+        "board": 1,
         "content": "<p>Could be optimistic for the Leopards too. Either that, or the Harps will be better than predicted - either way, Glasgow will finish last in the North by a few games.</p>",
         "created_date": "2018-02-07T16:39:25.231Z"
     }
@@ -126299,6 +126325,7 @@
             "Nemesiswas"
         ],
         "thread": 9,
+        "board": 1,
         "content": "<p>I'm hoping we can challenge Dublin for third, but it will be Manchester or Liverpool to win it.</p>",
         "created_date": "2018-02-07T17:11:51.947Z"
     }
@@ -126311,6 +126338,7 @@
             "MerseyBoy"
         ],
         "thread": 9,
+        "board": 1,
         "content": "<p>Looks about right to me - another title for the Dockers this year!</p>",
         "created_date": "2018-02-07T19:31:07.817Z"
     }
@@ -126323,6 +126351,7 @@
             "Heliotrope"
         ],
         "thread": 9,
+        "board": 1,
         "content": "<p>Would be surprised if the South was as easy at that for the Rhinos. Think we'll win it again, but not by eight games.</p>",
         "created_date": "2018-02-07T20:12:34.211Z"
     }
@@ -126335,6 +126364,7 @@
             "Raging_Bull"
         ],
         "thread": 9,
+        "board": 1,
         "content": "<p>I would be very disappointed if the Bulls ended with a losing record this year. Our team is much better than that.</p>",
         "created_date": "2018-02-07T23:13:33.498Z"
     }
@@ -126347,6 +126377,7 @@
             "Hayley_Comets"
         ],
         "thread": 9,
+        "board": 1,
         "content": "<p>The Comets should win several more than 31 games. Maybe 35 or 36, and win the North by a game or two.</p>",
         "created_date": "2018-02-08T08:14:10.279Z"
     }
@@ -126359,6 +126390,7 @@
             "Breathing_Fire"
         ],
         "thread": 9,
+        "board": 1,
         "content": "<p>Sadly I think it's right for Cardiff - hopefully a few more wins but 25 is realistically the best we can expect.</p>",
         "created_date": "2018-02-08T14:21:49.802Z"
     }
@@ -126371,6 +126403,7 @@
             "Sylphn0sx025"
         ],
         "thread": 9,
+        "board": 1,
         "content": "<p>Why predict the Kings so low?</p>",
         "created_date": "2018-02-08T16:08:02.562Z"
     }
@@ -126383,6 +126416,7 @@
             "ChokedHelix"
         ],
         "thread": 9,
+        "board": 1,
         "content": "<p>Bad hitting!</p>",
         "created_date": "2018-02-08T19:39:27.617Z"
     }
@@ -126395,6 +126429,7 @@
             "Hayley_Comets"
         ],
         "thread": 10,
+        "board": 1,
         "content": "<p>Can't wait for the action to get underway this afternoon! Hopefully a winning start for the Comets.</p>",
         "created_date": "2018-02-09T11:22:23.966Z"
     }
@@ -126407,6 +126442,7 @@
             "ChokedHelix"
         ],
         "thread": 10,
+        "board": 1,
         "content": "<p>You're only playing Glasgow - should be a sweep to start the season!</p>",
         "created_date": "2018-02-09T15:31:30.483Z"
     }
@@ -126419,6 +126455,7 @@
             "Resplendent"
         ],
         "thread": 10,
+        "board": 1,
         "content": "<p>Harsh - we're good enough to grab a game at least.</p>",
         "created_date": "2018-02-09T16:09:48.069Z"
     }
@@ -126431,6 +126468,7 @@
             "Teampop12345"
         ],
         "thread": 11,
+        "board": 1,
         "content": "<p>So now we've all played each of our Conference opponents, how is everyone's season going? I'm reasonably happy with the Harps so far, OK we've got a losing record but we're not playing badly and if we can start scoring more runs, we could have a decent season.</p>",
         "created_date": "2018-02-26T11:28:00.118Z"
     }
@@ -126443,6 +126481,7 @@
             "MerseyBoy"
         ],
         "thread": 11,
+        "board": 1,
         "content": "<p>Disappointed to be a game behind Manchester, but nothing to worry about. Still make us the favourites in the North.</p>",
         "created_date": "2018-02-26T13:41:35.681Z"
     }
@@ -126455,6 +126494,7 @@
             "Resplendent"
         ],
         "thread": 11,
+        "board": 1,
         "content": "<p>2-7 is harsh on the Leopards, we've played better than that.</p>",
         "created_date": "2018-02-26T17:46:56.430Z"
     }
@@ -126467,6 +126507,7 @@
             "Colporteur"
         ],
         "thread": 11,
+        "board": 1,
         "content": "<p>Shambles for the Kings! Knew we might not be as good as last year but 3-6 is a very poor return from the first nine games.</p>",
         "created_date": "2018-02-26T22:01:22.767Z"
     }
@@ -126479,6 +126520,7 @@
             "LowbrowBlimp"
         ],
         "thread": 11,
+        "board": 1,
         "content": "<p>Rhinos are flying! 7-2 flatters the rest of the conference, we could easily have been 8-1 or even 9-0.</p>",
         "created_date": "2018-02-27T08:31:50.083Z"
     }
@@ -126491,6 +126533,7 @@
             "Breathing_Fire"
         ],
         "thread": 11,
+        "board": 1,
         "content": "<p>Quite pleased with the Dragons actually, to be up close to an even record when predictions had us well adrift in the South is a good start.</p>",
         "created_date": "2018-02-27T17:11:41.805Z"
     }
@@ -126503,6 +126546,7 @@
             "Sylphn0sx025"
         ],
         "thread": 12,
+        "board": 1,
         "content": "<p>Think the league are being a bit harsh banning players 2 games for a brawl. Nothing too serious there.</p>",
         "created_date": "2018-04-07T22:33:50.008Z"
     }
@@ -126515,6 +126559,7 @@
             "Crown_Jewel"
         ],
         "thread": 12,
+        "board": 1,
         "content": "<p>Disagree. I really don't want to see that sort of behaviour at a game.</p>",
         "created_date": "2018-04-08T07:34:07.395Z"
     }
@@ -126527,6 +126572,7 @@
             "Heliotrope"
         ],
         "thread": 12,
+        "board": 1,
         "content": "<p>I'd say they didn't quite go far enough actually. As we play three game series each weekend, a three game ban to take players out of the next series for their team would be a good idea.</p>",
         "created_date": "2018-04-08T10:22:39.180Z"
     }
@@ -126539,6 +126585,7 @@
             "Belladonna"
         ],
         "thread": 12,
+        "board": 1,
         "content": "<p>That actually makes a lot of sense!</p>",
         "created_date": "2018-04-08T13:34:52.976Z"
     }
@@ -126551,6 +126598,7 @@
             "Heliotrope"
         ],
         "thread": 12,
+        "board": 1,
         "content": "<p>Well I do from time to time...</p>",
         "created_date": "2018-04-08T16:55:02.907Z"
     }
@@ -126563,6 +126611,7 @@
             "Breathing_Fire"
         ],
         "thread": 13,
+        "board": 1,
         "content": "<p>Draft Day today - everyone saying the Dragons should take Douglas Hardman first, but I'm not convinced by him. We do need a pitcher, but I'd take Pringle rather than Hardman. Mind you we need hitters as well!</p>",
         "created_date": "2018-04-21T08:41:13.361Z"
     }
@@ -126575,6 +126624,7 @@
             "Heliotrope"
         ],
         "thread": 13,
+        "board": 1,
         "content": "<p>Going to be mostly pitchers going in the first round. Pringle looks a better prospect but several years away from being ready for the league - I'd take Hardman if I were the Dragons.</p>",
         "created_date": "2018-04-21T10:22:58.540Z"
     }
@@ -126587,6 +126637,7 @@
             "ChokedHelix"
         ],
         "thread": 13,
+        "board": 1,
         "content": "<p>After all they didn't take a pitcher first! Sammy Renwick going with the first pick.</p>",
         "created_date": "2018-04-21T21:09:24.792Z"
     }
@@ -126599,6 +126650,7 @@
             "Breathing_Fire"
         ],
         "thread": 13,
+        "board": 1,
         "content": "<p>Actually not a bad choice - got a really good hitting prospect and we were still able to take a pitcher lower down. Quite happy with our day to be honest.</p>",
         "created_date": "2018-04-21T22:42:58.636Z"
     }
@@ -126611,6 +126663,7 @@
             "Dan111203Harps"
         ],
         "thread": 13,
+        "board": 1,
         "content": "<p>Good business for the Harps too - made the most of having an extra pick in the first round.</p>",
         "created_date": "2018-04-22T00:09:16.687Z"
     }
@@ -126623,6 +126676,7 @@
             "Colporteur"
         ],
         "thread": 13,
+        "board": 1,
         "content": "<p>Not good for the Kings - always going to be tough with less picks than others but only took an underwhelming back-up catcher in the first 30 or so picks!</p>",
         "created_date": "2018-04-22T11:13:57.458Z"
     }
@@ -126635,6 +126689,7 @@
             "Hayley_Comets"
         ],
         "thread": 13,
+        "board": 1,
         "content": "<p>It was a strange call from London. I'm happy with Pringle to the Comets, even if we have to wait a few years to see the best from him.</p>",
         "created_date": "2018-04-22T13:31:40.989Z"
     }
@@ -126647,6 +126702,7 @@
             "Nemesiswas"
         ],
         "thread": 13,
+        "board": 1,
         "content": "<p>With any luck all those people saying Hardman is overrated will be proved wrong. Leopards had to take him - pressure will be on to be in the team in a year or so, has to work hard.</p>",
         "created_date": "2018-04-22T15:15:18.178Z"
     }
@@ -126659,6 +126715,7 @@
             "MerseyBoy"
         ],
         "thread": 14,
+        "board": 3,
         "content": "<p>Not convinced by the Dockers trading for Kirk&nbsp;Beacan. He's not a bad pitcher, but we've given up a couple of good prospects to bring in a player in a position where we were reasonably strong anyway. Seems a bit like trading for the sake of it.</p>",
         "created_date": "2018-03-03T11:54:18.650Z"
     }
@@ -126671,6 +126728,7 @@
             "Raging_Bull"
         ],
         "thread": 14,
+        "board": 3,
         "content": "<p>I'm inclined to agree. Don't really think it's strengthened Liverpool much, and taken a couple of prospects out of their reserve roster.</p>",
         "created_date": "2018-03-03T19:33:55.492Z"
     }
@@ -126683,6 +126741,7 @@
             "Breathing_Fire"
         ],
         "thread": 14,
+        "board": 3,
         "content": "<p>From a Cardiff viewpoint - we're quite pleased! We are rebuilding and to get a veteran player off the books in exchange for a couple of youngsters with potential, it might not help us this year but it certainly will in the next few seasons.</p>",
         "created_date": "2018-03-04T08:55:42.852Z"
     }
@@ -126695,6 +126754,7 @@
             "Hayley_Comets"
         ],
         "thread": 15,
+        "board": 3,
         "content": "<p>Ashley Carruthers and Oscar Marchant for Sam Morrison - I'm quite pleased with that. Carruthers is a good hitter and will help our batting line-up. Morrison is a decent pitcher but well into his 30s now.</p>",
         "created_date": "2018-03-31T18:58:57.940Z"
     }
@@ -126707,6 +126767,7 @@
             "Raging_Bull"
         ],
         "thread": 15,
+        "board": 3,
         "content": "<p>Not convinced by bringing in Morrison. Don't think he adds much to what we've already got.</p>",
         "created_date": "2018-03-31T21:11:21.355Z"
     }
@@ -126719,6 +126780,7 @@
             "Drakewingle"
         ],
         "thread": 15,
+        "board": 3,
         "content": "<p>Bulls need better pitching - seems like a good deal all round as far as I can tell.</p>",
         "created_date": "2018-04-01T09:59:52.687Z"
     }
@@ -126731,6 +126793,7 @@
             "Spinalver1998"
         ],
         "thread": 15,
+        "board": 3,
         "content": "<p>Don't forget about Marchant in this deal - could be a useful bench player for us.</p>",
         "created_date": "2018-04-01T11:44:23.129Z"
     }
@@ -126743,6 +126806,7 @@
             "Breathing_Fire"
         ],
         "thread": 16,
+        "board": 3,
         "content": "<p>Can't understand why we've traded away Dean O'Merry. One of our more dangerous hitters, and though&nbsp;Shorland isn't a bad player he's no improvement. Can only think it's to get O'Merry's wages off the bill.</p>",
         "created_date": "2018-04-05T09:03:42.411Z"
     }
@@ -126755,6 +126819,7 @@
             "ChokedHelix"
         ],
         "thread": 16,
+        "board": 3,
         "content": "<p>Seems like a crazy decision to me.</p>",
         "created_date": "2018-04-05T11:29:42.411Z"
     }
@@ -126767,6 +126832,7 @@
             "Colporteur"
         ],
         "thread": 16,
+        "board": 3,
         "content": "<p>Pleased to have O'Merry at the Kings.</p>",
         "created_date": "2018-04-05T14:41:42.411Z"
     }
@@ -126779,6 +126845,7 @@
             "LowbrowBlimp"
         ],
         "thread": 16,
+        "board": 3,
         "content": "<p>If it's about money it makes sense. Gives Cardiff more room to rebuild their team in the winter.</p>",
         "created_date": "2018-04-05T18:56:42.411Z"
     }
@@ -126791,6 +126858,7 @@
             "Breathing_Fire"
         ],
         "thread": 16,
+        "board": 3,
         "content": "<p>I hope that's the thinking behind it!</p>",
         "created_date": "2018-04-05T20:20:42.411Z"
     }
@@ -126803,6 +126871,7 @@
             "Spinalver1998"
         ],
         "thread": 17,
+        "board": 7,
         "content": "<p>Really surprised by how good Dublin looked in Spring Training. Might be able to surprise a few people this year.</p>",
         "created_date": "2018-02-07T09:12:05.502Z"
     }
@@ -126815,6 +126884,7 @@
             "Dan111203Harps"
         ],
         "thread": 17,
+        "board": 7,
         "content": "<p>It was a good run - our problem will be scoring enough runs, sort that out and we might be able to challenge.</p>",
         "created_date": "2018-02-07T09:12:05.502Z"
     }
@@ -126827,6 +126897,7 @@
             "Crown_Jewel"
         ],
         "thread": 17,
+        "board": 7,
         "content": "<p>I don't see the Harps pushing Manchester and Liverpool, but they should have a winning record and maybe could challenge next year.</p>",
         "created_date": "2018-02-07T09:12:05.502Z"
     }
@@ -126839,6 +126910,7 @@
             "Sylphn0sx025"
         ],
         "thread": 17,
+        "board": 7,
         "content": "<p>Dublin got no chance but will be miles ahead of Glasgow.</p>",
         "created_date": "2018-02-07T09:12:05.502Z"
     }
@@ -126851,6 +126923,7 @@
             "Resplendent"
         ],
         "thread": 17,
+        "board": 7,
         "content": "<p>Have to say the Harps pre-season makes me increasingly think we will finish last!</p>",
         "created_date": "2018-02-07T09:12:05.502Z"
     }
@@ -126863,6 +126936,7 @@
             "Teampop12345"
         ],
         "thread": 17,
+        "board": 7,
         "content": "<p>Feeling a lot more confident about the season now!</p>",
         "created_date": "2018-02-07T09:12:05.502Z"
     }
@@ -126875,6 +126949,7 @@
             "Dan111203Harps"
         ],
         "thread": 18,
+        "board": 7,
         "content": "<p>The Harps are looking great at the moment - seven wins out of eight, scoring more runs and pitching really well. Playing ourselves into contention.</p>",
         "created_date": "2018-04-03T14:16:25.050Z"
     }
@@ -126887,6 +126962,7 @@
             "ChokedHelix"
         ],
         "thread": 18,
+        "board": 7,
         "content": "<p>Don't get too carried away, only been beating Glasgow and Cardiff!</p>",
         "created_date": "2018-04-03T16:22:25.050Z"
     }
@@ -126899,6 +126975,7 @@
             "Teampop12345"
         ],
         "thread": 18,
+        "board": 7,
         "content": "<p>We still have to win the games though and looked really good against the Leopards.</p>",
         "created_date": "2018-04-03T21:31:25.050Z"
     }
@@ -126911,6 +126988,7 @@
             "Nemesiswas"
         ],
         "thread": 18,
+        "board": 7,
         "content": "<p>Have to say Dublin looked every bit as strong as Liverpool and Manchester last weekend. Couple of vital weeks coming up before the break.</p>",
         "created_date": "2018-04-04T09:12:25.050Z"
     }
@@ -126923,6 +127001,7 @@
             "Colporteur"
         ],
         "thread": 19,
+        "board": 6,
         "content": "<p>A few weeks ago Cardiff were doing OK - awful run to end the first half though and that 23-6 game! On current form might not even get to 20 wins this year.</p>",
         "created_date": "2018-04-19T16:21:29Z"
     }
@@ -126935,6 +127014,7 @@
             "Breathing_Fire"
         ],
         "thread": 19,
+        "board": 6,
         "content": "<p>I don't think we're that bad, but June was a pretty poor month for us and we have three more games against Birmingham next! It's disappointing, but we knew the club was rebuilding coming into this season.</p>",
         "created_date": "2018-04-19T23:21:29Z"
     }
@@ -126947,6 +127027,7 @@
             "Heliotrope"
         ],
         "thread": 19,
+        "board": 6,
         "content": "<p>Cardiff will get about 22 or 23 wins. Not great, but they won't be losing 23-6 every week.</p>",
         "created_date": "2018-04-20T11:09:29Z"
     }
@@ -126959,6 +127040,7 @@
             "Drakewingle"
         ],
         "thread": 20,
+        "board": 4,
         "content": "<p>Is there anything to stop Birmingham winning the title this year? Came so close last season, just a few one run games in the play-offs away, and made a fantastic start this time. The rest of the Southern Conference looks so poor too.</p>",
         "created_date": "2018-03-01T21:36:57.467Z"
     }
@@ -126971,6 +127053,7 @@
             "Breathing_Fire"
         ],
         "thread": 20,
+        "board": 4,
         "content": "<p>Nothing to stop them winning the South, I'm expecting a margin of at least eight games, maybe ten or more. The title is another matter - Manchester or Liverpool could easily take four out of seven against them.</p>",
         "created_date": "2018-03-01T16:09:57.467Z"
     }
@@ -126983,6 +127066,7 @@
             "LowbrowBlimp"
         ],
         "thread": 20,
+        "board": 4,
         "content": "<p>They could take four games from us, but I can't see it happening. We are so consistent that winning four from seven will be tough for anyone else.</p>",
         "created_date": "2018-03-01T14:52:57.467Z"
     }
@@ -126995,6 +127079,7 @@
             "ChokedHelix"
         ],
         "thread": 20,
+        "board": 4,
         "content": "<p>Easy for Birmingham this year.</p>",
         "created_date": "2018-03-01T11:18:57.467Z"
     }
@@ -127007,6 +127092,7 @@
             "Dan111203Harps"
         ],
         "thread": 20,
+        "board": 4,
         "content": "<p>At the moment it's hard to see anyone stopping Birmingham in the South over the next four or five year. Could really dominate for a while to come.</p>",
         "created_date": "2018-03-01T09:51:57.467Z"
     }
@@ -127019,6 +127105,7 @@
             "Colporteur"
         ],
         "thread": 20,
+        "board": 4,
         "content": "<p>Is everyone forgetting that Birmingham only won the South by one game last year?</p>",
         "created_date": "2018-02-28T23:41:57.467Z"
     }
@@ -127031,6 +127118,7 @@
             "MerseyBoy"
         ],
         "thread": 20,
+        "board": 4,
         "content": "<p>No, but London don't look like repeating the run they had in 2017.</p>",
         "created_date": "2018-02-28T21:12:57.467Z"
     }
@@ -127043,6 +127131,7 @@
             "Sylphn0sx025"
         ],
         "thread": 20,
+        "board": 4,
         "content": "<p>Kings gone backwards, Rhinos improved. Birmingham champions for sure this year.</p>",
         "created_date": "2018-02-28T19:51:57.467Z"
     }
@@ -127055,6 +127144,7 @@
             "Spinalver1998"
         ],
         "thread": 21,
+        "board": 4,
         "content": "<p>How come Birmingham lost all three games this weekend?! Bad play or were the Kings that good?</p>",
         "created_date": "2018-04-10T11:58:35.902Z"
     }
@@ -127067,6 +127157,7 @@
             "Crown_Jewel"
         ],
         "thread": 21,
+        "board": 4,
         "content": "<p>Birmingham didn't play badly, we played really well. A bit careless from the Rhinos perhaps, but nothing more than that.</p>",
         "created_date": "2018-04-10T16:18:06.897Z"
     }
@@ -127079,6 +127170,7 @@
             "Baublestar83"
         ],
         "thread": 21,
+        "board": 4,
         "content": "<p>Just a blip I think - they will be back on track.</p>",
         "created_date": "2018-04-10T21:44:21.731Z"
     }
@@ -127091,6 +127183,7 @@
             "LowbrowBlimp"
         ],
         "thread": 21,
+        "board": 4,
         "content": "<p>We got a bit careless for sure - we need to be on our guard against complacency at the moment.</p>",
         "created_date": "2018-04-10T09:12:48.561Z"
     }
@@ -127103,6 +127196,7 @@
             "Belladonna"
         ],
         "thread": 22,
+        "board": 4,
         "content": "<p>Birmingham only have 8 defeats at the midway point - admittedly they're a few games down because of postponements, but could they be on track to break Liverpool's record of 44-16 for a season? Or match their own record of 43-17 in the South?</p>",
         "created_date": "2018-04-21T15:12:26.035Z"
     }
@@ -127115,6 +127209,7 @@
             "ChokedHelix"
         ],
         "thread": 22,
+        "board": 4,
         "content": "<p>Not a chance. Too many games to catch up due to rain and nothing to play for at the end of the season.</p>",
         "created_date": "2018-04-21T19:08:26.035Z"
     }
@@ -127127,6 +127222,7 @@
             "Heliotrope"
         ],
         "thread": 22,
+        "board": 4,
         "content": "<p>There's a chance, but I don't think we will. We should get to 40 wins, but 43/44/45 is asking an awful lot. It's true that the lack of competition in September might not help.</p>",
         "created_date": "2018-04-21T21:43:26.035Z"
     }
@@ -127139,6 +127235,7 @@
             "MerseyBoy"
         ],
         "thread": 22,
+        "board": 4,
         "content": "<p>The record of 44 wins is going to last for a long time!</p>",
         "created_date": "2018-04-22T11:09:26.035Z"
     }
@@ -127151,6 +127248,7 @@
             "Dan111203Harps"
         ],
         "thread": 22,
+        "board": 4,
         "content": "<p>I can't see anyone breaking that record, it's so tough to win more than 40 games, never mind 45.</p>",
         "created_date": "2018-04-22T12:12:26.035Z"
     }
@@ -127163,6 +127261,7 @@
             "Hayley_Comets"
         ],
         "thread": 23,
+        "board": 11,
         "content": "<p>After finishing last a year ago, I think the Comets are going to take back the title this year! I back us to finish two games clear of Liverpool and beat Birmingham in 6 games for the title.</p>",
         "created_date": "2018-02-13T13:08:30.259Z"
     }
@@ -127175,6 +127274,7 @@
             "LowbrowBlimp"
         ],
         "thread": 23,
+        "board": 11,
         "content": "<p>Comets will be better than last year, but getting back to the top of the North in one year will be tough!</p>",
         "created_date": "2018-02-13T15:11:30.259Z"
     }
@@ -127187,6 +127287,7 @@
             "Raging_Bull"
         ],
         "thread": 23,
+        "board": 11,
         "content": "<p>Manchester will finish second. Liverpool will win more than 35 games this year, Comets can't match that.</p>",
         "created_date": "2018-02-13T17:42:30.259Z"
     }
@@ -127199,6 +127300,7 @@
             "Nemesiswas"
         ],
         "thread": 23,
+        "board": 11,
         "content": "<p>I've got a feeling Liverpool might drop back below that - I fancy the Comets to snatch the North but lose the Championship Series to Birmingham.</p>",
         "created_date": "2018-02-13T21:31:30.259Z"
     }
@@ -127211,6 +127313,7 @@
             "MerseyBoy"
         ],
         "thread": 23,
+        "board": 11,
         "content": "<p>Dockers will be champions again!</p>",
         "created_date": "2018-02-13T23:44:30.259Z"
     }
@@ -127223,6 +127326,7 @@
             "Spinalver1998"
         ],
         "thread": 23,
+        "board": 11,
         "content": "<p>I can see us beating Liverpool in extra innings in a tiebreaker game.</p>",
         "created_date": "2018-02-14T09:08:30.259Z"
     }
@@ -127235,6 +127339,7 @@
             "Hayley_Comets"
         ],
         "thread": 23,
+        "board": 11,
         "content": "<p>My nerves couldn't stand that!</p>",
         "created_date": "2018-02-14T10:14:30.259Z"
     }
@@ -127247,6 +127352,7 @@
             "Spinalver1998"
         ],
         "thread": 24,
+        "board": 11,
         "content": "<p>Today was a massive win for us. After sharing the two games yesterday, taking the third one to move three games clear is vital. If we can extend that to four or five by mid-season, Liverpool won't catch us.</p>",
         "created_date": "2018-04-01T23:09:56.292Z"
     }
@@ -127259,6 +127365,7 @@
             "Resplendent"
         ],
         "thread": 24,
+        "board": 11,
         "content": "<p>Don't get carried away - you've got Dublin next and they're playing really well right now.</p>",
         "created_date": "2018-04-02T08:44:56.292Z"
     }
@@ -127271,6 +127378,7 @@
             "MerseyBoy"
         ],
         "thread": 24,
+        "board": 11,
         "content": "<p>Manchester's over-confidence could cost them!</p>",
         "created_date": "2018-04-02T11:58:56.292Z"
     }
@@ -127283,6 +127391,7 @@
             "Baublestar83"
         ],
         "thread": 24,
+        "board": 11,
         "content": "<p>The North is shaping up to be a great race this year - I think Manchester will just take it.</p>",
         "created_date": "2018-04-02T20:16:45.745Z"
     }
@@ -127295,6 +127404,7 @@
             "Hayley_Comets"
         ],
         "thread": 25,
+        "board": 8,
         "content": "<p>I think Glasgow were really unlucky to finish 3-9 in Spring Training. They played well in all four of their games against us and could have won two or three of them. With Dublin looking good, the Leopards might finish last this year but they are going to give teams a tough time I think.</p>",
         "created_date": "2018-02-07T09:41:24.061Z"
     }
@@ -127307,6 +127417,7 @@
             "Nemesiswas"
         ],
         "thread": 25,
+        "board": 8,
         "content": "<p>We'll struggle for wins because we can't convert good opportunities into good results. I wouldn't be surprised if what happened in pre-season is an indication of things to come. We're not a bad team, but we're certainly not a good one either.</p>",
         "created_date": "2018-02-07T14:21:12.918Z"
     }
@@ -127319,6 +127430,7 @@
             "Nemesiswas"
         ],
         "thread": 26,
+        "board": 8,
         "content": "<p>I can't believe we are 2-7. The team is playing so well in short spells but somehow seem to find a way to lose game after game from winning positions. Yesterday was a classic example - Liverpool should never have won that.</p>",
         "created_date": "2018-02-26T18:23:51.636Z"
     }
@@ -127331,6 +127443,7 @@
             "Belladonna"
         ],
         "thread": 26,
+        "board": 8,
         "content": "<p>We got lucky, that's for sure.</p>",
         "created_date": "2018-02-26T21:41:51.636Z"
     }
@@ -127343,6 +127456,7 @@
             "ChokedHelix"
         ],
         "thread": 26,
+        "board": 8,
         "content": "<p>People keep saying Glasgow aren't a bad team, just keep losing lots of close games. If losing lots of games doesn't make you a bad team, what does?</p>",
         "created_date": "2018-02-26T23:09:51.636Z"
     }
@@ -127355,6 +127469,7 @@
             "Resplendent"
         ],
         "thread": 26,
+        "board": 8,
         "content": "<p>Point is we are contending in games, not getting outclassed. We're just one or two players away from having a decent team.</p>",
         "created_date": "2018-02-27T00:42:51.636Z"
     }
@@ -127367,6 +127482,7 @@
             "ChokedHelix"
         ],
         "thread": 26,
+        "board": 8,
         "content": "<p>If you're a couple short of a decent team, you must be a bad team!</p>",
         "created_date": "2018-02-27T07:38:51.636Z"
     }
@@ -127379,6 +127495,7 @@
             "Spinalver1998"
         ],
         "thread": 27,
+        "board": 8,
         "content": "<p>Glasgow were great today - totally outplayed us and deserved to win both games.</p>",
         "created_date": "2018-04-14T23:28:03.340Z"
     }
@@ -127391,6 +127508,7 @@
             "Resplendent"
         ],
         "thread": 27,
+        "board": 8,
         "content": "<p>Our best day of the season without a doubt!</p>",
         "created_date": "2018-04-15T08:41:47.092Z"
     }
@@ -127403,6 +127521,7 @@
             "Drakewingle"
         ],
         "thread": 27,
+        "board": 8,
         "content": "<p>Could be a costly day for the Comets! Can't afford to lose two in a row to the last placed team.</p>",
         "created_date": "2018-04-15T10:33:03.340Z"
     }
@@ -127415,6 +127534,7 @@
             "MerseyBoy"
         ],
         "thread": 27,
+        "board": 8,
         "content": "<p>We'll bounce back in today's game.</p>",
         "created_date": "2018-04-15T12:09:47.092Z"
     }
@@ -127427,6 +127547,7 @@
             "Nemesiswas"
         ],
         "thread": 27,
+        "board": 8,
         "content": "<p>Hoped for the sweep, but I'll still settle for two out of three. Better signs for us.</p>",
         "created_date": "2018-04-15T19:28:47.092Z"
     }
@@ -127439,6 +127560,7 @@
             "Sylphn0sx025"
         ],
         "thread": 27,
+        "board": 8,
         "content": "<p>Glasgow certainly looking a better team at the moment.</p>",
         "created_date": "2018-04-15T21:49:47.092Z"
     }
@@ -127451,6 +127573,7 @@
             "Raging_Bull"
         ],
         "thread": 28,
+        "board": 5,
         "content": "<p>The past weekend was an embarrassment for us. Can't excuse it because Birmingham are a good team - we can't be crumbling like that every time we play a strong team. Our pitching is just awful.</p>",
         "created_date": "2018-02-19T13:33:17.089Z"
     }
@@ -127463,6 +127586,7 @@
             "Teampop12345"
         ],
         "thread": 28,
+        "board": 5,
         "content": "<p>Birmingham will have big wins against plenty of teams this year!</p>",
         "created_date": "2018-02-19T15:51:17.089Z"
     }
@@ -127475,6 +127599,7 @@
             "Raging_Bull"
         ],
         "thread": 28,
+        "board": 5,
         "content": "<p>Can't just accept that and give up though, which is what we did.</p>",
         "created_date": "2018-02-19T18:12:17.089Z"
     }
@@ -127487,6 +127612,7 @@
             "Sylphn0sx025"
         ],
         "thread": 28,
+        "board": 5,
         "content": "<p>Bulls really poor this week.</p>",
         "created_date": "2018-02-19T21:28:17.089Z"
     }
@@ -127499,6 +127625,7 @@
             "Raging_Bull"
         ],
         "thread": 29,
+        "board": 5,
         "content": "<p>Yesterday I thought we might have found a way to compete with Birmingham, even for just the odd game. Today it was back to what we were doing early in the season, another pathetic capitulation.</p>",
         "created_date": "2018-03-31T23:36:25.349Z"
     }
@@ -127511,6 +127638,7 @@
             "Baublestar83"
         ],
         "thread": 29,
+        "board": 5,
         "content": "<p>Very harsh - Birmingham are a fantastic team.</p>",
         "created_date": "2018-04-01T09:11:25.349Z"
     }
@@ -127523,6 +127651,7 @@
             "MerseyBoy"
         ],
         "thread": 29,
+        "board": 5,
         "content": "<p>Can't expect to beat the Rhinos and then not get a reaction the next day.</p>",
         "created_date": "2018-04-01T11:48:25.349Z"
     }
@@ -127535,6 +127664,7 @@
             "Belladonna"
         ],
         "thread": 30,
+        "board": 9,
         "content": "<p>It's disappointing to see the Dockers only at 5-5 after losing twice to Birmingham - the games were close but we can't let Manchester get too far ahead of us!</p>",
         "created_date": "2018-03-04T10:43:36.627Z"
     }
@@ -127547,6 +127677,7 @@
             "Heliotrope"
         ],
         "thread": 30,
+        "board": 9,
         "content": "<p>The Northern Conference should be close all year - Manchester have had a good start but I expect Liverpool to be right up there with them.</p>",
         "created_date": "2018-03-04T15:21:36.627Z"
     }
@@ -127559,6 +127690,7 @@
             "Dan111203Harps"
         ],
         "thread": 30,
+        "board": 9,
         "content": "<p>Time to worry is if you're losing to Cardiff next weekend!</p>",
         "created_date": "2018-03-04T17:49:36.627Z"
     }
@@ -127571,6 +127703,7 @@
             "Belladonna"
         ],
         "thread": 30,
+        "board": 9,
         "content": "<p>Well... I guess it's time to worry now! Losing two out of three to Cardiff was really disappointing.</p>",
         "created_date": "2018-03-12T00:12:36.627Z"
     }
@@ -127583,6 +127716,7 @@
             "MerseyBoy"
         ],
         "thread": 31,
+        "board": 9,
         "content": "<p>We're just holding on to the Comets at the moment, but if we want to catch them we need a weekend where we win all three games. This weekend could have been the one, taking the first two against Glasgow, but we fell apart yesterday.</p>",
         "created_date": "2018-04-09T14:51:01.783Z"
     }
@@ -127595,6 +127729,7 @@
             "Belladonna"
         ],
         "thread": 31,
+        "board": 9,
         "content": "<p>Glasgow have looked better of late. I wasn't too upset with two out of three, but yes we do need a sweep somewhere.</p>",
         "created_date": "2018-04-09T19:22:01.783Z"
     }
@@ -127607,6 +127742,7 @@
             "Dan111203Harps"
         ],
         "thread": 31,
+        "board": 9,
         "content": "<p>Won't be next weekend against the Harps!</p>",
         "created_date": "2018-04-09T22:14:01.783Z"
     }
@@ -127619,6 +127755,7 @@
             "Drakewingle"
         ],
         "thread": 32,
+        "board": 10,
         "content": "<p>What's wrong with the Kings this year? I haven't seen them play much but only a game behind Birmingham last year, now starting out 3-6. Where does the problem lie?</p>",
         "created_date": "2018-02-28T15:50:57.159Z"
     }
@@ -127631,6 +127768,7 @@
             "Colporteur"
         ],
         "thread": 32,
+        "board": 10,
         "content": "<p>Very simple - we can't score runs! Our pitching could compete with Birmingham's again, but our hitters are all struggling and it's making winning any game a real struggle.</p>",
         "created_date": "2018-02-28T17:02:57.159Z"
     }
@@ -127643,6 +127781,7 @@
             "Spinalver1998"
         ],
         "thread": 32,
+        "board": 10,
         "content": "<p>Kings should improve as the season goes on but will struggle to finish with a winning record this year.</p>",
         "created_date": "2018-02-28T18:55:57.159Z"
     }
@@ -127655,6 +127794,7 @@
             "Crown_Jewel"
         ],
         "thread": 32,
+        "board": 10,
         "content": "<p>I'm still hoping we might just sneak up to a winning record, but we need to bring in somebody who is going to produce the big hits when it matters.</p>",
         "created_date": "2018-02-28T21:34:57.159Z"
     }
@@ -127667,6 +127807,7 @@
             "Raging_Bull"
         ],
         "thread": 32,
+        "board": 10,
         "content": "<p>The way we have been pitching you should still finish in second place!</p>",
         "created_date": "2018-02-28T23:09:57.159Z"
     }
@@ -127679,6 +127820,7 @@
             "Dan111203Harps"
         ],
         "thread": 32,
+        "board": 10,
         "content": "<p>Real shame that it doesn't look like anyone will challenge the Rhinos - the South looking a bit uncompetitive this season.</p>",
         "created_date": "2018-03-01T10:12:57.159Z"
     }
@@ -127691,6 +127833,7 @@
             "Crown_Jewel"
         ],
         "thread": 33,
+        "board": 10,
         "content": "<p>What a weekend for the Kings. After our performances against Glasgow and Cardiff I feared the worst against the Rhinos, but we thoroughly deserved all three wins.</p>",
         "created_date": "2018-04-09T08:41:53.661Z"
     }
@@ -127703,6 +127846,7 @@
             "Heliotrope"
         ],
         "thread": 33,
+        "board": 10,
         "content": "<p>You played very well. We were sloppy and careless, but take nothing away from the Kings.</p>",
         "created_date": "2018-04-09T11:02:53.661Z"
     }
@@ -127715,6 +127859,7 @@
             "Colporteur"
         ],
         "thread": 33,
+        "board": 10,
         "content": "<p>Raises a bit of hope of a winning season, and maybe second place.</p>",
         "created_date": "2018-04-09T13:53:53.661Z"
     }
@@ -127727,6 +127872,7 @@
             "Raging_Bull"
         ],
         "thread": 33,
+        "board": 10,
         "content": "<p>On this evidence London are clearly second best in the South.</p>",
         "created_date": "2018-04-09T16:28:53.661Z"
     }
@@ -127739,6 +127885,7 @@
             "Crown_Jewel"
         ],
         "thread": 33,
+        "board": 10,
         "content": "<p>We need to produce these performances against the other sides as well now!</p>",
         "created_date": "2018-04-09T19:09:53.661Z"
     }
@@ -127751,6 +127898,7 @@
             "MerseyBoy"
         ],
         "thread": 34,
+        "board": 2,
         "content": "<p>Can't wait to get our title defence up and running this evening, get a winning start to the season.</p>",
         "created_date": "2018-02-09T12:31:43.526Z"
     }
@@ -127763,6 +127911,7 @@
             "LowbrowBlimp"
         ],
         "thread": 34,
+        "board": 2,
         "content": "<p>How's that working out so far...</p>",
         "created_date": "2018-02-09T13:22:43.526Z"
     }
@@ -127775,6 +127924,7 @@
             "MerseyBoy"
         ],
         "thread": 34,
+        "board": 2,
         "content": "<p>Shocking start for us! 4-0 down in the first inning. Still loads of time to come back though.</p>",
         "created_date": "2018-02-09T13:29:43.526Z"
     }
@@ -127787,6 +127937,7 @@
             "Belladonna"
         ],
         "thread": 34,
+        "board": 2,
         "content": "<p>Needed that home run. On the board now and can start chipping the lead away.</p>",
         "created_date": "2018-02-09T13:36:43.526Z"
     }
@@ -127799,6 +127950,7 @@
             "Dan111203Harps"
         ],
         "thread": 34,
+        "board": 2,
         "content": "<p>4-2 now, we got away with it a bit in that inning - could have been worse than just giving up one run.</p>",
         "created_date": "2018-02-09T13:57:43.526Z"
     }
@@ -127811,6 +127963,7 @@
             "MerseyBoy"
         ],
         "thread": 34,
+        "board": 2,
         "content": "<p>Missed a great chance to tie the game there - only one in it now though.</p>",
         "created_date": "2018-02-09T14:54:43.526Z"
     }
@@ -127823,6 +127976,7 @@
             "Drakewingle"
         ],
         "thread": 34,
+        "board": 2,
         "content": "<p>Luca Addems ties the game! Brilliant recovery from the Dockers.</p>",
         "created_date": "2018-02-09T15:37:43.526Z"
     }
@@ -127835,6 +127989,7 @@
             "Teampop12345"
         ],
         "thread": 34,
+        "board": 2,
         "content": "<p>Can't believe the Harps have thrown this lead away. It was looking like being the perfect start for us.</p>",
         "created_date": "2018-02-09T15:42:43.526Z"
     }
@@ -127847,6 +128002,7 @@
             "Dan111203Harps"
         ],
         "thread": 34,
+        "board": 2,
         "content": "<p>Harps back in front! What a response to throwing away the lead.</p>",
         "created_date": "2018-02-09T15:49:43.526Z"
     }
@@ -127859,6 +128015,7 @@
             "Belladonna"
         ],
         "thread": 34,
+        "board": 2,
         "content": "<p>All that work thrown away! Really careless inning from the Dockers.</p>",
         "created_date": "2018-02-09T15:23:43.526Z"
     }
@@ -127871,6 +128028,7 @@
             "ChokedHelix"
         ],
         "thread": 34,
+        "board": 2,
         "content": "<p>Last chance coming up...</p>",
         "created_date": "2018-02-09T16:14:43.526Z"
     }
@@ -127883,6 +128041,7 @@
             "MerseyBoy"
         ],
         "thread": 34,
+        "board": 2,
         "content": "<p>Never got a look in. Great pitching from Achurch to be fair.</p>",
         "created_date": "2018-02-09T16:28:43.526Z"
     }
@@ -127895,6 +128054,7 @@
             "Teampop12345"
         ],
         "thread": 34,
+        "board": 2,
         "content": "<p>Really happy with that win!</p>",
         "created_date": "2018-02-09T16:44:43.526Z"
     }
@@ -127907,6 +128067,7 @@
             "MerseyBoy"
         ],
         "thread": 34,
+        "board": 2,
         "content": "<p>Disappointing start for us. Only one game, but it's one we really should have won having got back to 4-4.</p>",
         "created_date": "2018-02-09T17:09:43.526Z"
     }
@@ -127919,6 +128080,7 @@
             "Raging_Bull"
         ],
         "thread": 35,
+        "board": 2,
         "content": "<p>One each after the first two games of the series - all to play for this evening!</p>",
         "created_date": "2018-02-11T11:24:29.672Z"
     }
@@ -127931,6 +128093,7 @@
             "Chirpyyfish70"
         ],
         "thread": 35,
+        "board": 2,
         "content": "<p>Great start for Bristol.</p>",
         "created_date": "2018-02-11T13:21:09.870Z"
     }
@@ -127943,6 +128106,7 @@
             "Raging_Bull"
         ],
         "thread": 35,
+        "board": 2,
         "content": "<p>2-1 London. Terrible pitch, deserved to go for a home run.</p>",
         "created_date": "2018-02-11T13:44:09.870Z"
     }
@@ -127955,6 +128119,7 @@
             "Raging_Bull"
         ],
         "thread": 35,
+        "board": 2,
         "content": "<p>And again. Any time Embree seems to be pitching well he throws in a bad one.</p>",
         "created_date": "2018-02-11T14:44:09.870Z"
     }
@@ -127967,6 +128132,7 @@
             "Chirpyyfish70"
         ],
         "thread": 35,
+        "board": 2,
         "content": "<p>Bulls back to 3-3!</p>",
         "created_date": "2018-02-11T15:59:09.870Z"
     }
@@ -127979,6 +128145,7 @@
             "Raging_Bull"
         ],
         "thread": 35,
+        "board": 2,
         "content": "<p>Wasted a real chance to take the lead there.</p>",
         "created_date": "2018-02-11T16:13:09.870Z"
     }
@@ -127991,6 +128158,7 @@
             "Chirpyyfish70"
         ],
         "thread": 35,
+        "board": 2,
         "content": "<p>4-3! Could do with adding another one here though.</p>",
         "created_date": "2018-02-11T16:58:09.870Z"
     }
@@ -128003,6 +128171,7 @@
             "Raging_Bull"
         ],
         "thread": 35,
+        "board": 2,
         "content": "<p>Don't like the look of this...</p>",
         "created_date": "2018-02-11T17:25:09.870Z"
     }
@@ -128015,6 +128184,7 @@
             "Crown_Jewel"
         ],
         "thread": 35,
+        "board": 2,
         "content": "<p>The Kings might get something out of this game yet!</p>",
         "created_date": "2018-02-11T17:39:09.870Z"
     }
@@ -128027,6 +128197,7 @@
             "Raging_Bull"
         ],
         "thread": 35,
+        "board": 2,
         "content": "<p>Good win, hate the way we always make it so difficult though.</p>",
         "created_date": "2018-02-11T17:53:09.870Z"
     }
@@ -128039,6 +128210,7 @@
             "Colporteur"
         ],
         "thread": 35,
+        "board": 2,
         "content": "<p>What a blast from Kenton!</p>",
         "created_date": "2018-02-11T14:48:09.870Z"
     }
@@ -128051,6 +128223,7 @@
             "Crown_Jewel"
         ],
         "thread": 35,
+        "board": 2,
         "content": "<p>We would be delighted to start with two wins out of three at Bristol.</p>",
         "created_date": "2018-02-11T12:55:29.672Z"
     }
@@ -128063,6 +128236,7 @@
             "Crown_Jewel"
         ],
         "thread": 36,
+        "board": 2,
         "content": "<p>The Kings really need a win today, get the season off and running.</p>",
         "created_date": "2018-02-17T13:04:07.622Z"
     }
@@ -128075,6 +128249,7 @@
             "Sylphn0sx025"
         ],
         "thread": 36,
+        "board": 2,
         "content": "<p>Cardiff better than expected so far.</p>",
         "created_date": "2018-02-17T13:11:07.622Z"
     }
@@ -128087,6 +128262,7 @@
             "Crown_Jewel"
         ],
         "thread": 36,
+        "board": 2,
         "content": "<p>Another home run for Hurry! Our best hitter so far this season.</p>",
         "created_date": "2018-02-17T13:42:07.622Z"
     }
@@ -128099,6 +128275,7 @@
             "Colporteur"
         ],
         "thread": 36,
+        "board": 2,
         "content": "<p>Uncharacteristically bad pitch from McGregor, gifted them those two runs.</p>",
         "created_date": "2018-02-17T14:19:07.622Z"
     }
@@ -128111,6 +128288,7 @@
             "Admin"
         ],
         "thread": 36,
+        "board": 2,
         "content": "<p>The Dragons frustrating as ever - take the lead, then hand it right back.</p>",
         "created_date": "2018-02-17T14:38:07.622Z"
     }
@@ -128123,6 +128301,7 @@
             "Breathing_Fire"
         ],
         "thread": 36,
+        "board": 2,
         "content": "<p>Oh what a missed opportunity!</p>",
         "created_date": "2018-02-17T15:02:07.622Z"
     }
@@ -128135,6 +128314,7 @@
             "Colporteur"
         ],
         "thread": 36,
+        "board": 2,
         "content": "<p>Could be a big run added on there.</p>",
         "created_date": "2018-02-17T15:19:07.622Z"
     }
@@ -128147,6 +128327,7 @@
             "Crown_Jewel"
         ],
         "thread": 36,
+        "board": 2,
         "content": "<p>Oh no - think McGregor's had it for today, looks to be really struggling.</p>",
         "created_date": "2018-02-17T15:42:07.622Z"
     }
@@ -128159,6 +128340,7 @@
             "Breathing_Fire"
         ],
         "thread": 36,
+        "board": 2,
         "content": "<p>We're actually looking pretty good here.</p>",
         "created_date": "2018-02-17T16:04:07.622Z"
     }
@@ -128171,6 +128353,7 @@
             "Colporteur"
         ],
         "thread": 36,
+        "board": 2,
         "content": "<p>Don't like the look of the clouds - need to get back into this before the rain finishes us off.</p>",
         "created_date": "2018-02-17T16:18:07.622Z"
     }
@@ -128183,6 +128366,7 @@
             "Baublestar83"
         ],
         "thread": 36,
+        "board": 2,
         "content": "<p>Here comes the rain - is this game going to get finished?</p>",
         "created_date": "2018-02-17T16:28:07.622Z"
     }
@@ -128195,6 +128379,7 @@
             "ChokedHelix"
         ],
         "thread": 36,
+        "board": 2,
         "content": "<p>Dragons win if the rain keeps coming - would settle for that.</p>",
         "created_date": "2018-02-17T16:30:07.622Z"
     }
@@ -128207,6 +128392,7 @@
             "Crown_Jewel"
         ],
         "thread": 36,
+        "board": 2,
         "content": "<p>That's it - they've called it off. Really disappointing, we looked to be in control of that one.</p>",
         "created_date": "2018-02-17T16:51:07.622Z"
     }
@@ -128219,6 +128405,7 @@
             "Hayley_Comets"
         ],
         "thread": 37,
+        "board": 2,
         "content": "<p>Comets looking to bounce back today after a disappointing day yesterday!</p>",
         "created_date": "2018-02-25T12:06:00.525Z"
     }
@@ -128231,6 +128418,7 @@
             "Teampop12345"
         ],
         "thread": 37,
+        "board": 2,
         "content": "<p>Brilliant start for the Harps!</p>",
         "created_date": "2018-02-25T13:31:00.525Z"
     }
@@ -128243,6 +128431,7 @@
             "Spinalver1998"
         ],
         "thread": 37,
+        "board": 2,
         "content": "<p>We're hanging on here to be honest, haven't really got started.</p>",
         "created_date": "2018-02-25T13:55:00.525Z"
     }
@@ -128255,6 +128444,7 @@
             "Dan111203Harps"
         ],
         "thread": 37,
+        "board": 2,
         "content": "<p>Oh wasted half the lead - gifted Manchester a way back in.</p>",
         "created_date": "2018-02-25T14:29:00.525Z"
     }
@@ -128267,6 +128457,7 @@
             "Dan111203Harps"
         ],
         "thread": 37,
+        "board": 2,
         "content": "<p>How many runners do we want to leave on base today?!</p>",
         "created_date": "2018-02-25T14:48:00.525Z"
     }
@@ -128279,6 +128470,7 @@
             "ChokedHelix"
         ],
         "thread": 37,
+        "board": 2,
         "content": "<p>Dublin paying for missed chances there.</p>",
         "created_date": "2018-02-25T15:22:00.525Z"
     }
@@ -128291,6 +128483,7 @@
             "Spinalver1998"
         ],
         "thread": 37,
+        "board": 2,
         "content": "<p>We need to take this chance - could win us the game.</p>",
         "created_date": "2018-02-25T15:44:00.525Z"
     }
@@ -128303,6 +128496,7 @@
             "Hayley_Comets"
         ],
         "thread": 37,
+        "board": 2,
         "content": "<p>Vega! Comets take the lead!</p>",
         "created_date": "2018-02-25T15:49:00.525Z"
     }
@@ -128315,6 +128509,7 @@
             "Drakewingle"
         ],
         "thread": 37,
+        "board": 2,
         "content": "<p>Harps rallying in the ninth!</p>",
         "created_date": "2018-02-25T16:02:00.525Z"
     }
@@ -128327,6 +128522,7 @@
             "Dan111203Harps"
         ],
         "thread": 37,
+        "board": 2,
         "content": "<p>We could snatch this one...</p>",
         "created_date": "2018-02-25T16:15:00.525Z"
     }
@@ -128339,6 +128535,7 @@
             "Teampop12345"
         ],
         "thread": 37,
+        "board": 2,
         "content": "<p>Oh so close!&nbsp;</p>",
         "created_date": "2018-02-25T16:27:00.525Z"
     }
@@ -128351,6 +128548,7 @@
             "Hayley_Comets"
         ],
         "thread": 37,
+        "board": 2,
         "content": "<p>Delighted with the win, but we almost threw that game away!</p>",
         "created_date": "2018-02-25T16:54:00.525Z"
     }
@@ -128363,6 +128561,7 @@
             "Breathing_Fire"
         ],
         "thread": 38,
+        "board": 2,
         "content": "<p>Good chance for the Dragons to keep our decent start going, Leopards struggling so far.</p>",
         "created_date": "2018-03-02T13:00:01.233Z"
     }
@@ -128375,6 +128574,7 @@
             "Nemesiswas"
         ],
         "thread": 38,
+        "board": 2,
         "content": "<p>Pitching duel so far! Vinter looking sharp.</p>",
         "created_date": "2018-03-02T13:38:01.233Z"
     }
@@ -128387,6 +128587,7 @@
             "Breathing_Fire"
         ],
         "thread": 38,
+        "board": 2,
         "content": "<p>We've had some chances, can't get the crucial hit.</p>",
         "created_date": "2018-03-02T14:02:01.233Z"
     }
@@ -128399,6 +128600,7 @@
             "Resplendent"
         ],
         "thread": 38,
+        "board": 2,
         "content": "<p>Leopards strike first! That's the difference McAndrew's speed makes.</p>",
         "created_date": "2018-03-02T14:31:01.233Z"
     }
@@ -128411,6 +128613,7 @@
             "Breathing_Fire"
         ],
         "thread": 38,
+        "board": 2,
         "content": "<p>More runners stranded!</p>",
         "created_date": "2018-03-02T14:59:01.233Z"
     }
@@ -128423,6 +128626,7 @@
             "Drakewingle"
         ],
         "thread": 38,
+        "board": 2,
         "content": "<p>Think the Dragons left Stobert in the game too long.</p>",
         "created_date": "2018-03-02T15:34:01.233Z"
     }
@@ -128435,6 +128639,7 @@
             "Nemesiswas"
         ],
         "thread": 38,
+        "board": 2,
         "content": "<p>That could be the run that makes the win safe.</p>",
         "created_date": "2018-03-02T15:51:01.233Z"
     }
@@ -128447,6 +128652,7 @@
             "Breathing_Fire"
         ],
         "thread": 38,
+        "board": 2,
         "content": "<p>We've had it today, can't get anything against Vinter.</p>",
         "created_date": "2018-03-02T16:02:01.233Z"
     }
@@ -128459,6 +128665,7 @@
             "Resplendent"
         ],
         "thread": 38,
+        "board": 2,
         "content": "<p>OK getting a bit nervous all of a sudden...</p>",
         "created_date": "2018-03-02T16:09:01.233Z"
     }
@@ -128471,6 +128678,7 @@
             "Nemesiswas"
         ],
         "thread": 38,
+        "board": 2,
         "content": "<p>That's a great win. Took some scoring chances and shut them down completely.</p>",
         "created_date": "2018-03-02T16:19:01.233Z"
     }
@@ -128483,6 +128691,7 @@
             "Raging_Bull"
         ],
         "thread": 39,
+        "board": 2,
         "content": "<p>Should be winning today, but not convinced after some of our recent displays.</p>",
         "created_date": "2018-03-10T18:51:19.195Z"
     }
@@ -128495,6 +128704,7 @@
             "Chirpyyfish70"
         ],
         "thread": 39,
+        "board": 2,
         "content": "<p>This inning isn't going well.</p>",
         "created_date": "2018-03-10T19:29:19.195Z"
     }
@@ -128507,6 +128717,7 @@
             "Raging_Bull"
         ],
         "thread": 39,
+        "board": 2,
         "content": "<p>Seriously? Giving up runs like that?</p>",
         "created_date": "2018-03-10T19:57:19.195Z"
     }
@@ -128519,6 +128730,7 @@
             "Resplendent"
         ],
         "thread": 39,
+        "board": 2,
         "content": "<p>Good hitting from the Leopards but they gifted us a couple of those runs.</p>",
         "created_date": "2018-03-10T20:09:19.195Z"
     }
@@ -128531,6 +128743,7 @@
             "Raging_Bull"
         ],
         "thread": 39,
+        "board": 2,
         "content": "<p>Oh get Common out of the game now. Awful pitching.</p>",
         "created_date": "2018-03-10T20:44:19.195Z"
     }
@@ -128543,6 +128756,7 @@
             "Chirpyyfish70"
         ],
         "thread": 39,
+        "board": 2,
         "content": "<p>Don't think we're going to get anything out of this game.</p>",
         "created_date": "2018-03-10T21:29:19.195Z"
     }
@@ -128555,6 +128769,7 @@
             "Raging_Bull"
         ],
         "thread": 39,
+        "board": 2,
         "content": "<p>Great pitching change. Bring on a reliever and he gives up three more runs. Shocking.</p>",
         "created_date": "2018-03-10T21:48:19.195Z"
     }
@@ -128567,6 +128782,7 @@
             "Raging_Bull"
         ],
         "thread": 39,
+        "board": 2,
         "content": "<p>Can't take much more of this, this is embarrassing.</p>",
         "created_date": "2018-03-10T22:13:19.195Z"
     }
@@ -128579,6 +128795,7 @@
             "Nemesiswas"
         ],
         "thread": 39,
+        "board": 2,
         "content": "<p>We haven't had many days like this lately! Some mistakes from Bristol but we're hitting the ball really well.</p>",
         "created_date": "2018-03-10T22:31:19.195Z"
     }
@@ -128591,6 +128808,7 @@
             "Chirpyyfish70"
         ],
         "thread": 39,
+        "board": 2,
         "content": "<p>Looks like we might get the last word...</p>",
         "created_date": "2018-03-10T22:48:19.195Z"
     }
@@ -128603,6 +128821,7 @@
             "Raging_Bull"
         ],
         "thread": 39,
+        "board": 2,
         "content": "<p>Couldn't even do that. 13-3. Against Glasgow. Shocking.</p>",
         "created_date": "2018-03-10T23:00:19.195Z"
     }
@@ -128615,6 +128834,7 @@
             "Resplendent"
         ],
         "thread": 39,
+        "board": 2,
         "content": "<p>That's a great all round performance. Bristol weren't great, but we looked much better this evening.</p>",
         "created_date": "2018-03-10T23:29:19.195Z"
     }
@@ -128627,6 +128847,7 @@
             "MerseyBoy"
         ],
         "thread": 40,
+        "board": 2,
         "content": "<p>We need a win today! End this weekend at 7-9 and our title challenge will already be in big trouble.</p>",
         "created_date": "2018-03-18T18:30:08.444Z"
     }
@@ -128639,6 +128860,7 @@
             "Belladonna"
         ],
         "thread": 40,
+        "board": 2,
         "content": "<p>Great start! Big two out hit in the first!</p>",
         "created_date": "2018-03-18T18:30:08.444Z"
     }
@@ -128651,6 +128873,7 @@
             "Crown_Jewel"
         ],
         "thread": 40,
+        "board": 2,
         "content": "<p>This is going to be a really tight game by the looks of it! Both pitchers started really well.</p>",
         "created_date": "2018-03-18T18:30:08.444Z"
     }
@@ -128663,6 +128886,7 @@
             "ChokedHelix"
         ],
         "thread": 40,
+        "board": 2,
         "content": "<p>Spoke too soon!</p>",
         "created_date": "2018-03-18T18:30:08.444Z"
     }
@@ -128675,6 +128899,7 @@
             "Crown_Jewel"
         ],
         "thread": 40,
+        "board": 2,
         "content": "<p>Yes, that was a bad pitch from Lawley.</p>",
         "created_date": "2018-03-18T18:30:08.444Z"
     }
@@ -128687,6 +128912,7 @@
             "MerseyBoy"
         ],
         "thread": 40,
+        "board": 2,
         "content": "<p>Massive inning! That should clinch the win for us. They're not going to get seven runs back.</p>",
         "created_date": "2018-03-18T18:30:08.444Z"
     }
@@ -128699,6 +128925,7 @@
             "Colporteur"
         ],
         "thread": 40,
+        "board": 2,
         "content": "<p>Poor performance from Lawley today.</p>",
         "created_date": "2018-03-18T18:30:08.444Z"
     }
@@ -128711,6 +128938,7 @@
             "Baublestar83"
         ],
         "thread": 40,
+        "board": 2,
         "content": "<p>Haigh is pitching really well for Liverpool today.</p>",
         "created_date": "2018-03-18T18:30:08.444Z"
     }
@@ -128723,6 +128951,7 @@
             "MerseyBoy"
         ],
         "thread": 40,
+        "board": 2,
         "content": "<p>Fantastic job from Haigh to get out of that inning! Deserves a shutout today.</p>",
         "created_date": "2018-03-18T18:30:08.444Z"
     }
@@ -128735,6 +128964,7 @@
             "Colporteur"
         ],
         "thread": 40,
+        "board": 2,
         "content": "<p>Shutout gone!</p>",
         "created_date": "2018-03-18T18:30:08.444Z"
     }
@@ -128747,6 +128977,7 @@
             "MerseyBoy"
         ],
         "thread": 40,
+        "board": 2,
         "content": "<p>Disappointing, but still a brilliant display.</p>",
         "created_date": "2018-03-18T18:30:08.444Z"
     }
@@ -128759,6 +128990,7 @@
             "Drakewingle"
         ],
         "thread": 40,
+        "board": 2,
         "content": "<p>Kings were never in that game. Totally outplayed.</p>",
         "created_date": "2018-03-18T18:30:08.444Z"
     }
@@ -128771,6 +129003,7 @@
             "Teampop12345"
         ],
         "thread": 40,
+        "board": 2,
         "content": "<p>That was probably the best Liverpool have played this season.</p>",
         "created_date": "2018-03-18T18:30:08.444Z"
     }
@@ -128783,6 +129016,7 @@
             "MerseyBoy"
         ],
         "thread": 40,
+        "board": 2,
         "content": "<p>Definitely was!</p>",
         "created_date": "2018-03-18T18:30:08.444Z"
     }
@@ -128795,6 +129029,7 @@
             "Hayley_Comets"
         ],
         "thread": 41,
+        "board": 2,
         "content": "<p>Part two of the battle of first placed teams! Tough loss for us yesterday, got to level it up today!</p>",
         "created_date": "2018-03-24T18:45:58.086Z"
     }
@@ -128807,6 +129042,7 @@
             "Sylphn0sx025"
         ],
         "thread": 41,
+        "board": 2,
         "content": "<p>Rhinos will win again.</p>",
         "created_date": "2018-03-24T19:02:58.086Z"
     }
@@ -128819,6 +129055,7 @@
             "Heliotrope"
         ],
         "thread": 41,
+        "board": 2,
         "content": "<p>Maxwell's looking really sharp so far.</p>",
         "created_date": "2018-03-24T19:31:58.086Z"
     }
@@ -128831,6 +129068,7 @@
             "LowbrowBlimp"
         ],
         "thread": 41,
+        "board": 2,
         "content": "<p>Stobart again! What a blast.</p>",
         "created_date": "2018-03-24T19:52:58.086Z"
     }
@@ -128843,6 +129081,7 @@
             "Dan111203Harps"
         ],
         "thread": 41,
+        "board": 2,
         "content": "<p>Comets don't look like scoring at all today.</p>",
         "created_date": "2018-03-24T20:26:58.086Z"
     }
@@ -128855,6 +129094,7 @@
             "LowbrowBlimp"
         ],
         "thread": 41,
+        "board": 2,
         "content": "<p>Big chance missed for us! Hope they don't make us regret that.</p>",
         "created_date": "2018-03-24T20:45:58.086Z"
     }
@@ -128867,6 +129107,7 @@
             "Spinalver1998"
         ],
         "thread": 41,
+        "board": 2,
         "content": "<p>Back in the game, 2-1!</p>",
         "created_date": "2018-03-24T21:13:58.086Z"
     }
@@ -128879,6 +129120,7 @@
             "ChokedHelix"
         ],
         "thread": 41,
+        "board": 2,
         "content": "<p>Wow game tied now.</p>",
         "created_date": "2018-03-24T21:31:58.086Z"
     }
@@ -128891,6 +129133,7 @@
             "Heliotrope"
         ],
         "thread": 41,
+        "board": 2,
         "content": "<p>Got an increasingly bad feeling as this game goes on!</p>",
         "created_date": "2018-03-24T21:58:58.086Z"
     }
@@ -128903,6 +129146,7 @@
             "Hayley_Comets"
         ],
         "thread": 41,
+        "board": 2,
         "content": "<p>Hignell home run! Comets win!</p>",
         "created_date": "2018-03-24T22:28:58.086Z"
     }
@@ -128915,6 +129159,7 @@
             "Drakewingle"
         ],
         "thread": 41,
+        "board": 2,
         "content": "<p>That was a great game, if these two teams meet in the championship series we could be in for a really exciting end to the year.</p>",
         "created_date": "2018-03-24T22:48:58.086Z"
     }
@@ -128927,6 +129172,7 @@
             "Dan111203Harps"
         ],
         "thread": 42,
+        "board": 2,
         "content": "<p>Despite losing on Sunday we've got a good run going at the moment. Great chance this weekend to keep it going, but Glasgow won't make it easy for us.</p>",
         "created_date": "2018-03-30T12:44:54.658Z"
     }
@@ -128939,6 +129185,7 @@
             "Resplendent"
         ],
         "thread": 42,
+        "board": 2,
         "content": "<p>Great start for us. Clausson carrying our batting line-up lately.</p>",
         "created_date": "2018-03-30T13:19:54.658Z"
     }
@@ -128951,6 +129198,7 @@
             "Nemesiswas"
         ],
         "thread": 42,
+        "board": 2,
         "content": "<p>Oh didn't see that coming from Vinter. Two bad pitches in a row, got what they deserved.</p>",
         "created_date": "2018-03-30T13:59:54.658Z"
     }
@@ -128963,6 +129211,7 @@
             "Resplendent"
         ],
         "thread": 42,
+        "board": 2,
         "content": "<p>Rodr&iacute;guez really found his form now. We could be in trouble here.</p>",
         "created_date": "2018-03-30T14:24:54.658Z"
     }
@@ -128975,6 +129224,7 @@
             "Teampop12345"
         ],
         "thread": 42,
+        "board": 2,
         "content": "<p>Mo Lewry! We needed to extend the lead a bit.</p>",
         "created_date": "2018-03-30T14:55:54.658Z"
     }
@@ -128987,6 +129237,7 @@
             "ChokedHelix"
         ],
         "thread": 42,
+        "board": 2,
         "content": "<p>Home runs killing Glasgow today.</p>",
         "created_date": "2018-03-30T15:15:54.658Z"
     }
@@ -128999,6 +129250,7 @@
             "Dan111203Harps"
         ],
         "thread": 42,
+        "board": 2,
         "content": "<p>Rodr&iacute;guez is on fire. I think we've got this one.</p>",
         "created_date": "2018-03-30T15:22:54.658Z"
     }
@@ -129011,6 +129263,7 @@
             "Teampop12345"
         ],
         "thread": 42,
+        "board": 2,
         "content": "<p>Could do with a bit more of a lead to be sure!</p>",
         "created_date": "2018-03-30T15:29:54.658Z"
     }
@@ -129023,6 +129276,7 @@
             "Nemesiswas"
         ],
         "thread": 42,
+        "board": 2,
         "content": "<p>That's it, game over. 6-1.</p>",
         "created_date": "2018-03-30T15:34:54.658Z"
     }
@@ -129035,6 +129289,7 @@
             "Dan111203Harps"
         ],
         "thread": 42,
+        "board": 2,
         "content": "<p>Complete game for&nbsp;Rodr&iacute;guez. Almost untouchable after giving up that run in the first. Brilliant.</p>",
         "created_date": "2018-03-30T15:59:54.658Z"
     }
@@ -129047,6 +129302,7 @@
             "MerseyBoy"
         ],
         "thread": 43,
+        "board": 2,
         "content": "<p>Complete the sweep today and we're right back in contention!</p>",
         "created_date": "2018-04-08T19:02:03.161Z"
     }
@@ -129059,6 +129315,7 @@
             "Resplendent"
         ],
         "thread": 43,
+        "board": 2,
         "content": "<p>Don't rule us out, we're not playing badly at the moment.</p>",
         "created_date": "2018-04-08T19:11:03.161Z"
     }
@@ -129071,6 +129328,7 @@
             "Belladonna"
         ],
         "thread": 43,
+        "board": 2,
         "content": "<p>Another great pitching display from Haigh so far.</p>",
         "created_date": "2018-04-08T19:34:03.161Z"
     }
@@ -129083,6 +129341,7 @@
             "Nemesiswas"
         ],
         "thread": 43,
+        "board": 2,
         "content": "<p>Huge two out hit from Budge - Leopards lead!</p>",
         "created_date": "2018-04-08T20:12:03.161Z"
     }
@@ -129095,6 +129354,7 @@
             "ChokedHelix"
         ],
         "thread": 43,
+        "board": 2,
         "content": "<p>Didn't last long.</p>",
         "created_date": "2018-04-08T20:21:03.161Z"
     }
@@ -129107,6 +129367,7 @@
             "Nemesiswas"
         ],
         "thread": 43,
+        "board": 2,
         "content": "<p>Neither did Liverpool being level...</p>",
         "created_date": "2018-04-08T20:29:03.161Z"
     }
@@ -129119,6 +129380,7 @@
             "MerseyBoy"
         ],
         "thread": 43,
+        "board": 2,
         "content": "<p>Dockers level again! Really tight game this.</p>",
         "created_date": "2018-04-08T20:44:03.161Z"
     }
@@ -129131,6 +129393,7 @@
             "Raging_Bull"
         ],
         "thread": 43,
+        "board": 2,
         "content": "<p>Not close any more! What happened to Haigh in that inning?</p>",
         "created_date": "2018-04-08T21:01:03.161Z"
     }
@@ -129143,6 +129406,7 @@
             "Belladonna"
         ],
         "thread": 43,
+        "board": 2,
         "content": "<p>He should have been out of the game after the fifth.</p>",
         "created_date": "2018-04-08T21:11:03.161Z"
     }
@@ -129155,6 +129419,7 @@
             "MerseyBoy"
         ],
         "thread": 43,
+        "board": 2,
         "content": "<p>We're not getting the hits today.</p>",
         "created_date": "2018-04-08T21:29:03.161Z"
     }
@@ -129167,6 +129432,7 @@
             "Resplendent"
         ],
         "thread": 43,
+        "board": 2,
         "content": "<p>Great pitching display - we've got this game.</p>",
         "created_date": "2018-04-08T21:38:03.161Z"
     }
@@ -129179,6 +129445,7 @@
             "Belladonna"
         ],
         "thread": 43,
+        "board": 2,
         "content": "<p>Disappointing. At least we won the series.</p>",
         "created_date": "2018-04-08T21:59:03.161Z"
     }
@@ -129191,6 +129458,7 @@
             "Drakewingle"
         ],
         "thread": 43,
+        "board": 2,
         "content": "<p>That's not enough though - Dockers needed the sweep to put pressure on Manchester.</p>",
         "created_date": "2018-04-08T22:12:03.161Z"
     }
@@ -129203,6 +129471,7 @@
             "Breathing_Fire"
         ],
         "thread": 43,
+        "board": 2,
         "content": "<p>Give credit to Glasgow - a good performance all round.</p>",
         "created_date": "2018-04-08T22:31:03.161Z"
     }
@@ -129215,6 +129484,7 @@
             "Resplendent"
         ],
         "thread": 43,
+        "board": 2,
         "content": "<p>Everyone played well today.</p>",
         "created_date": "2018-04-08T22:48:03.161Z"
     }
@@ -129227,6 +129497,7 @@
             "Heliotrope"
         ],
         "thread": 44,
+        "board": 2,
         "content": "<p>Chance to put the seal on an amazing first half to the season, even 17-9 would be a great record, but 18-8 sounds much better!</p>",
         "created_date": "2018-04-15T19:02:47.182Z"
     }
@@ -129239,6 +129510,7 @@
             "Sylphn0sx025"
         ],
         "thread": 44,
+        "board": 2,
         "content": "<p>Cardiff got no chance today.</p>",
         "created_date": "2018-04-15T19:19:47.182Z"
     }
@@ -129251,6 +129523,7 @@
             "Breathing_Fire"
         ],
         "thread": 44,
+        "board": 2,
         "content": "<p>Sadly you're probably right.</p>",
         "created_date": "2018-04-15T19:22:47.182Z"
     }
@@ -129263,6 +129536,7 @@
             "LowbrowBlimp"
         ],
         "thread": 44,
+        "board": 2,
         "content": "<p>Great inning for us. Taken control early on yet again.</p>",
         "created_date": "2018-04-15T19:34:47.182Z"
     }
@@ -129275,6 +129549,7 @@
             "Heliotrope"
         ],
         "thread": 44,
+        "board": 2,
         "content": "<p>Philkin looks really sharp today, pitching well.</p>",
         "created_date": "2018-04-15T19:59:47.182Z"
     }
@@ -129287,6 +129562,7 @@
             "Breathing_Fire"
         ],
         "thread": 44,
+        "board": 2,
         "content": "<p>Apart from that second inning, Kilminster is pitching really well too.</p>",
         "created_date": "2018-04-15T20:29:47.182Z"
     }
@@ -129299,6 +129575,7 @@
             "ChokedHelix"
         ],
         "thread": 44,
+        "board": 2,
         "content": "<p>Bit of hope for Cardiff.</p>",
         "created_date": "2018-04-15T20:54:47.182Z"
     }
@@ -129311,6 +129588,7 @@
             "Heliotrope"
         ],
         "thread": 44,
+        "board": 2,
         "content": "<p>This is great stuff from both pitchers at the moment.</p>",
         "created_date": "2018-04-15T21:12:47.182Z"
     }
@@ -129323,6 +129601,7 @@
             "Baublestar83"
         ],
         "thread": 44,
+        "board": 2,
         "content": "<p>Wow - 3-2 - Cardiff really back in it.</p>",
         "created_date": "2018-04-15T21:30:47.182Z"
     }
@@ -129335,6 +129614,7 @@
             "Breathing_Fire"
         ],
         "thread": 44,
+        "board": 2,
         "content": "<p>Surprised they're leaving Philkin in the game, looks a bit tired.</p>",
         "created_date": "2018-04-15T21:34:47.182Z"
     }
@@ -129347,6 +129627,7 @@
             "LowbrowBlimp"
         ],
         "thread": 44,
+        "board": 2,
         "content": "<p>Philkin's got this. Still pitching well.</p>",
         "created_date": "2018-04-15T21:49:47.182Z"
     }
@@ -129359,6 +129640,7 @@
             "Heliotrope"
         ],
         "thread": 44,
+        "board": 2,
         "content": "<p>Great display. Cardiff played well, but we got the job done yet again!</p>",
         "created_date": "2018-04-15T22:02:47.182Z"
     }
@@ -129373,6 +129655,7 @@
         ],
         "board": 1,
         "created_date": "2018-04-25T11:15:27.617Z",
+        "post_count": 12,
         "last_post": "2018-02-08T19:39:27.617Z",
         "views": 610
     }
@@ -129387,6 +129670,7 @@
         ],
         "board": 1,
         "created_date": "2018-02-09T11:22:23.966Z",
+        "post_count": 3,
         "last_post": "2018-02-09T16:09:48.069Z",
         "views": 793
     }
@@ -129401,6 +129685,7 @@
         ],
         "board": 1,
         "created_date": "2018-02-26T11:28:00.118Z",
+        "post_count": 6,
         "last_post": "2018-02-27T17:11:41.805Z",
         "views": 522
     }
@@ -129415,6 +129700,7 @@
         ],
         "board": 1,
         "created_date": "2018-04-06T22:33:50.008Z",
+        "post_count": 5,
         "last_post": "2018-04-08T16:55:02.907Z",
         "views": 409
     }
@@ -129429,8 +129715,9 @@
         ],
         "board": 1,
         "created_date": "2018-04-21T08:41:13.361Z",
+        "post_count": 8,
         "last_post": "2018-04-22T15:15:18.178Z",
-        "views": 330
+        "views": 336
     }
 },
 {
@@ -129443,6 +129730,7 @@
         ],
         "board": 3,
         "created_date": "2018-03-03T11:54:18.650Z",
+        "post_count": 3,
         "last_post": "2018-03-04T08:55:42.852Z",
         "views": 113
     }
@@ -129457,6 +129745,7 @@
         ],
         "board": 3,
         "created_date": "2018-03-31T18:58:57.940Z",
+        "post_count": 4,
         "last_post": "2018-04-01T11:44:23.129Z",
         "views": 270
     }
@@ -129471,6 +129760,7 @@
         ],
         "board": 3,
         "created_date": "2018-04-04T09:03:42.411Z",
+        "post_count": 5,
         "last_post": "2018-04-05T20:20:42.411Z",
         "views": 210
     }
@@ -129485,6 +129775,7 @@
         ],
         "board": 7,
         "created_date": "2018-02-07T09:12:05.502Z",
+        "post_count": 6,
         "last_post": "2018-02-07T09:12:05.502Z",
         "views": 444
     }
@@ -129499,6 +129790,7 @@
         ],
         "board": 7,
         "created_date": "2018-04-02T14:16:25.050Z",
+        "post_count": 4,
         "last_post": "2018-04-04T09:12:25.050Z",
         "views": 316
     }
@@ -129513,6 +129805,7 @@
         ],
         "board": 6,
         "created_date": "2018-04-18T16:21:29Z",
+        "post_count": 3,
         "last_post": "2018-04-20T11:09:29Z",
         "views": 119
     }
@@ -129527,6 +129820,7 @@
         ],
         "board": 4,
         "created_date": "2018-02-28T19:51:57.467Z",
+        "post_count": 8,
         "last_post": "2018-03-01T21:36:57.467Z",
         "views": 448
     }
@@ -129541,6 +129835,7 @@
         ],
         "board": 4,
         "created_date": "2018-04-09T11:58:35.902Z",
+        "post_count": 4,
         "last_post": "2018-04-11T09:12:48.561Z",
         "views": 328
     }
@@ -129555,8 +129850,9 @@
         ],
         "board": 4,
         "created_date": "2018-04-21T15:12:26.035Z",
+        "post_count": 5,
         "last_post": "2018-04-22T12:12:26.035Z",
-        "views": 227
+        "views": 228
     }
 },
 {
@@ -129569,6 +129865,7 @@
         ],
         "board": 11,
         "created_date": "2018-02-13T13:08:30.259Z",
+        "post_count": 7,
         "last_post": "2018-02-14T10:14:30.259Z",
         "views": 513
     }
@@ -129583,6 +129880,7 @@
         ],
         "board": 11,
         "created_date": "2018-04-01T23:09:56.292Z",
+        "post_count": 4,
         "last_post": "2018-04-02T20:16:45.745Z",
         "views": 387
     }
@@ -129597,6 +129895,7 @@
         ],
         "board": 8,
         "created_date": "2018-02-07T09:41:24.061Z",
+        "post_count": 2,
         "last_post": "2018-02-07T14:21:12.918Z",
         "views": 217
     }
@@ -129611,6 +129910,7 @@
         ],
         "board": 8,
         "created_date": "2018-02-26T18:23:51.636Z",
+        "post_count": 5,
         "last_post": "2018-02-27T07:38:51.636Z",
         "views": 449
     }
@@ -129625,6 +129925,7 @@
         ],
         "board": 8,
         "created_date": "2018-04-13T23:28:03.340Z",
+        "post_count": 6,
         "last_post": "2018-04-15T21:49:47.092Z",
         "views": 220
     }
@@ -129639,6 +129940,7 @@
         ],
         "board": 5,
         "created_date": "2018-02-19T13:33:17.089Z",
+        "post_count": 4,
         "last_post": "2018-02-19T21:28:17.089Z",
         "views": 335
     }
@@ -129653,6 +129955,7 @@
         ],
         "board": 5,
         "created_date": "2018-03-31T23:36:25.349Z",
+        "post_count": 3,
         "last_post": "2018-04-01T11:48:25.349Z",
         "views": 212
     }
@@ -129667,6 +129970,7 @@
         ],
         "board": 9,
         "created_date": "2018-03-04T10:43:36.627Z",
+        "post_count": 4,
         "last_post": "2018-03-12T00:12:36.627Z",
         "views": 470
     }
@@ -129681,6 +129985,7 @@
         ],
         "board": 9,
         "created_date": "2018-04-08T14:51:01.783Z",
+        "post_count": 3,
         "last_post": "2018-04-09T22:14:01.783Z",
         "views": 339
     }
@@ -129695,6 +130000,7 @@
         ],
         "board": 10,
         "created_date": "2018-02-28T15:50:57.159Z",
+        "post_count": 6,
         "last_post": "2018-03-01T10:12:57.159Z",
         "views": 513
     }
@@ -129709,6 +130015,7 @@
         ],
         "board": 10,
         "created_date": "2018-04-08T08:41:53.661Z",
+        "post_count": 5,
         "last_post": "2018-04-09T19:09:53.661Z",
         "views": 289
     }
@@ -129723,6 +130030,7 @@
         ],
         "board": 2,
         "created_date": "2018-02-09T12:31:43.526Z",
+        "post_count": 14,
         "last_post": "2018-02-09T17:09:43.526Z",
         "views": 322
     }
@@ -129737,6 +130045,7 @@
         ],
         "board": 2,
         "created_date": "2018-02-11T11:24:29.672Z",
+        "post_count": 12,
         "last_post": "2018-02-11T17:53:09.870Z",
         "views": 432
     }
@@ -129751,6 +130060,7 @@
         ],
         "board": 2,
         "created_date": "2018-02-17T13:04:07.622Z",
+        "post_count": 13,
         "last_post": "2018-02-17T16:51:07.622Z",
         "views": 376
     }
@@ -129765,6 +130075,7 @@
         ],
         "board": 2,
         "created_date": "2018-02-25T12:06:00.525Z",
+        "post_count": 12,
         "last_post": "2018-02-25T16:54:00.525Z",
         "views": 443
     }
@@ -129779,6 +130090,7 @@
         ],
         "board": 2,
         "created_date": "2018-03-02T13:00:01.233Z",
+        "post_count": 10,
         "last_post": "2018-03-02T16:19:01.233Z",
         "views": 299
     }
@@ -129793,6 +130105,7 @@
         ],
         "board": 2,
         "created_date": "2018-03-10T18:51:19.195Z",
+        "post_count": 12,
         "last_post": "2018-03-10T23:29:19.195Z",
         "views": 444
     }
@@ -129807,6 +130120,7 @@
         ],
         "board": 2,
         "created_date": "2018-03-18T18:30:08.444Z",
+        "post_count": 14,
         "last_post": "2018-03-18T18:30:08.444Z",
         "views": 312
     }
@@ -129821,6 +130135,7 @@
         ],
         "board": 2,
         "created_date": "2018-03-24T18:45:58.086Z",
+        "post_count": 11,
         "last_post": "2018-03-24T22:48:58.086Z",
         "views": 409
     }
@@ -129835,6 +130150,7 @@
         ],
         "board": 2,
         "created_date": "2018-03-30T12:44:54.658Z",
+        "post_count": 10,
         "last_post": "2018-03-30T15:59:54.658Z",
         "views": 229
     }
@@ -129849,8 +130165,9 @@
         ],
         "board": 2,
         "created_date": "2018-04-07T19:02:03.161Z",
+        "post_count": 15,
         "last_post": "2018-04-08T22:48:03.161Z",
-        "views": 400
+        "views": 401
     }
 },
 {
@@ -129863,8 +130180,9 @@
         ],
         "board": 2,
         "created_date": "2018-04-14T19:02:47.182Z",
+        "post_count": 12,
         "last_post": "2018-04-15T22:02:47.182Z",
-        "views": 453
+        "views": 455
     }
 },
 {
@@ -135245,7 +135563,7 @@
         "image_caption": null,
         "created_date": "2018-04-21T19:07:51.822Z",
         "category": 8,
-        "views": 923,
+        "views": 925,
         "teams": []
     }
 },
@@ -137468,7 +137786,7 @@
         "image_caption": null,
         "created_date": "2018-04-18T17:37:30.874Z",
         "category": 6,
-        "views": 468,
+        "views": 469,
         "teams": []
     }
 },
@@ -137666,7 +137984,7 @@
         "image_caption": null,
         "created_date": "2018-04-16T12:41:58.052Z",
         "category": 6,
-        "views": 323,
+        "views": 330,
         "teams": []
     }
 },
