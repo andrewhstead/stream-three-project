@@ -13,21 +13,24 @@
         {% for result in results %}
             <tr>
 
-                <!-- If the away team is the user's favourite, highlight their name. -->
+                <!-- If this is a team page for the away team, highlight their name. -->
                 {% if result.away_team == team %}
                     <td class="team-abbreviation {{ team.geographic_name|lower }}-tag">
                         <a class="{{ team.geographic_name|lower }}-link plain-link" href=
-                                "{% url 'team_page' result.home_team.geographic_name|lower %}">
+                                "{% url 'team_page' result.away_team.geographic_name|lower %}">
                             {{ result.away_team.abbreviation }}
                         </a>
                     </td>
-                {% elif not team and result.away_team == user.favourite_team %}
+                <!-- If this is not a team page but the user is logged in and has set a favourite team
+                which matches the away team, highlight their name. -->
+                {% elif not team and user.is_authenticated and result.away_team == user.favourite_team %}
                     <td class="team-abbreviation {{ user.favourite_team.geographic_name|lower }}-tag">
                         <a class="{{ user.favourite_team.geographic_name|lower }}-link plain-link" href=
                                 "{% url 'team_page' result.home_team.geographic_name|lower %}">
                             {{ result.away_team.abbreviation }}
                         </a>
                     </td>
+                <!-- Otherwise, just show the team name without highlighting. -->
                 {% else %}
                     <td class="team-abbreviation">
                         <a class="table-link" href="{% url 'team_page' result.away_team.geographic_name|lower %}">
@@ -42,7 +45,7 @@
                     {{ result.home_team_runs }}
                 </td>
 
-                <!-- If the home team is the user's favourite, highlight their name. -->
+                <!-- If this is a team page for the home team, highlight their name. -->
                 {% if result.home_team == team %}
                     <td class="team-abbreviation {{ team.geographic_name|lower }}-tag">
                         <a class="{{ team.geographic_name|lower }}-link plain-link" href=
@@ -50,13 +53,16 @@
                             {{ result.home_team.abbreviation }}
                         </a>
                     </td>
-                {% elif not team and result.home_team == user.favourite_team %}
+                <!-- If this is not a team page but the user is logged in and has set a favourite team
+                which matches the home team, highlight their name. -->
+                {% elif not team and user.is_authenticated and result.home_team == user.favourite_team %}
                     <td class="team-abbreviation {{ user.favourite_team.geographic_name|lower }}-tag">
                         <a class="{{ user.favourite_team.geographic_name|lower }}-link plain-link" href=
                                 "{% url 'team_page' result.home_team.geographic_name|lower %}">
                             {{ result.home_team.abbreviation }}
                         </a>
                     </td>
+                <!-- Otherwise, just show the team name without highlighting. -->
                 {% else %}
                     <td class="team-abbreviation">
                         <a class="table-link" href="{% url 'team_page' result.home_team.geographic_name|lower %}">
@@ -86,7 +92,7 @@
         {% for fixture in fixtures %}
             <tr>
 
-                <!-- If the away team is the user's favourite, highlight their name. -->
+                <!-- If this is a team page for the away team, highlight their name. -->
                 {% if fixture.away_team == team %}
                     <td class="team-abbreviation {{ team.geographic_name|lower }}-tag">
                         <a class="{{ team.geographic_name|lower }}-link plain-link" href=
@@ -94,13 +100,16 @@
                             {{ fixture.away_team.abbreviation }}
                         </a>
                     </td>
-                {% elif not team and fixture.away_team == user.favourite_team %}
+                <!-- If this is not a team page but the user is logged in and has set a favourite team
+                which matches the away team, highlight their name. -->
+                {% elif not team and user.is_authenticated and fixture.away_team == user.favourite_team %}
                     <td class="team-abbreviation {{ user.favourite_team.geographic_name|lower }}-tag">
                         <a class="{{ user.favourite_team.geographic_name|lower }}-link plain-link" href=
                                 "{% url 'team_page' fixture.away_team.geographic_name|lower %}">
                             {{ fixture.away_team.abbreviation }}
                         </a>
                     </td>
+                <!-- Otherwise, just show the team name without highlighting. -->
                 {% else %}
                     <td class="team-abbreviation">
                         <a class="table-link" href="{% url 'team_page' fixture.away_team.geographic_name|lower %}">
@@ -113,7 +122,7 @@
                     {{ fixture.game_time|time:'G:i' }}
                 </td>
 
-                <!-- If the home team is the user's favourite, highlight their name. -->
+                <!-- If this is a team page for the away team, highlight their name. -->
                 {% if fixture.home_team == team %}
                     <td class="team-abbreviation {{ team.geographic_name|lower }}-tag">
                         <a class="{{ team.geographic_name|lower }}-link plain-link" href=
@@ -121,13 +130,16 @@
                             {{ fixture.home_team.abbreviation }}
                         </a>
                     </td>
-                {% elif not team and fixture.home_team == user.favourite_team %}
+                <!-- If this is not a team page but the user is logged in and has set a favourite team
+                which matches the away team, highlight their name. -->
+                {% elif not team and user.is_authenticated and fixture.home_team == user.favourite_team %}
                     <td class="team-abbreviation {{ user.favourite_team.geographic_name|lower }}-tag">
                         <a class="{{ user.favourite_team.geographic_name|lower }}-link plain-link" href=
                                 "{% url 'team_page' fixture.home_team.geographic_name|lower %}">
                             {{ fixture.home_team.abbreviation }}
                         </a>
                     </td>
+                <!-- Otherwise, just show the team name without highlighting. -->
                 {% else %}
                     <td class="team-abbreviation">
                         <a class="table-link" href="{% url 'team_page' fixture.home_team.geographic_name|lower %}">

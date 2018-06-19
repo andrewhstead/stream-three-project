@@ -241,7 +241,13 @@ def season_archive(request):
     seasons = Season.objects.all().order_by('year').values('year', 'champion', 'series_score', 'finalist')
     standings = get_standings(datetime.now().year)
 
-    return render(request, "season_archive.html", {'seasons': seasons, 'standings': standings})
+    # The page is neither an archive page nor a team page - note that the archive index page is not an archive page
+    # in itself.
+    archive = False
+    team = False
+
+    return render(request, "season_archive.html", {'seasons': seasons, 'standings': standings,
+                                                   'team': team, 'archive': archive})
 
 
 # Show an overview of an individual season, with the standings for that year and all play-off games for that season

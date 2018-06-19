@@ -21,10 +21,9 @@ function newsFader(item) {
 	var newsFader = document.getElementsByClassName("banner-story");
 	var newsBlobs = document.getElementsByClassName("news-blob");
 
-	/* Hide each element by giving it the class 'hiddenContent'and ensuring no elements have the class 'blockContent'. */
+	/* Hide each element by giving it the class 'hidden'. */
 	for (var i = 0; i < newsFader.length; i++) {
 		newsFader[i].classList.add("hidden");
-		newsFader[i].classList.remove("active");
 		newsBlobs[i].classList.add("default-blob");
 		newsBlobs[i].classList.remove("active-blob");
 	}
@@ -34,9 +33,8 @@ function newsFader(item) {
 		leadStory = 0;
 	}
 
-	/* Display the current image by removing the class 'hiddenContent'. Add the class 'blockContent' to ensure that the image displays as a block element. */
+	/* Display the current image by removing the class 'hidden'. */
 	newsFader[leadStory].classList.remove("hidden");
-	newsFader[leadStory].classList.add("active");
 	newsBlobs[leadStory].classList.remove("default-blob");
 	newsBlobs[leadStory].classList.add("active-blob");
 

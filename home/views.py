@@ -19,25 +19,26 @@ def home_page(request):
     news = Item.objects.exclude(category_id=6).order_by('-created_date')
     sponsors = Sponsor.objects.all()
     extra_news = news[7:12]
+    headlines = news[:7]
+
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
 
     # If a user is logged in and has a favourite team set, show additional news relevant to that team.
     # Otherwise, just show more general news stories instead.
-    if user.is_authenticated:
+    if user.is_authenticated and user.favourite_team:
         favourite_team = user.favourite_team
-        if favourite_team:
-            headlines = news[:7]
-            team_news = Item.objects.filter(teams=user.favourite_team.id).order_by('-created_date')[:5]
-            return render(request, "home.html", {"news_headlines": headlines, "favourite_team": favourite_team,
-                                                 "extra_news": team_news, "sponsors": sponsors})
-        else:
-            headlines = news[:7]
-            return render(request, "home.html", {"news_headlines": headlines, "extra_news": extra_news,
-                                                 "sponsors": sponsors})
+        team_news = Item.objects.filter(teams=user.favourite_team.id).order_by('-created_date')[:5]
+        return render(request, "home.html", {"news_headlines": headlines, "favourite_team": favourite_team,
+                                             "extra_news": team_news, "sponsors": sponsors,
+                                             "archive": archive, "team": team})
 
     else:
-        headlines = news[:7]
+        favourite_team = False
         return render(request, "home.html", {"news_headlines": headlines, "extra_news": extra_news,
-                                             "sponsors": sponsors})
+                                             "sponsors": sponsors, "archive": archive, "team": team,
+                                             "favourite_team": favourite_team})
 
 
 # The contact form view.
