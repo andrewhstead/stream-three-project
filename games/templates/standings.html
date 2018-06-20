@@ -16,8 +16,8 @@ is determined in the main templates for each view. -->
                 {% if club.conference == conference.id %}
 
                     <tr>
-                        <!-- If this team's season is being viewed, highlight their name. -->
-                        {% if club.name == team.geographic_name %}
+                        <!-- If this is a team page, highlight the team's name in the standings. -->
+                        {% if team and club.name == team.geographic_name %}
                             <td class="stat-header {{ team.geographic_name|lower }}-tag">
                                 <img class="small-logo" src="{{ MEDIA_URL }}{{ club.small_logo }}" />
                                 <a class="{{ team.geographic_name|lower }}-link plain-link" href=
@@ -25,9 +25,9 @@ is determined in the main templates for each view. -->
                                     {{ club.name }}
                                 </a>
                             </td>
-                        <!-- If no specific team is being viewed but this is the user's favourite team, highlight their
-                        name. -->
-                        {% elif not team and club.name == user.favourite_team.geographic_name %}
+                        <!-- If this is not a team page but the user is logged in and has set a favourite team,
+                        highlight that team's name in the standings. -->
+                        {% elif not team and user.is_authenticated and club.name == user.favourite_team.geographic_name %}
                             <td class="stat-header {{ user.favourite_team.geographic_name|lower }}-tag">
                                 <img class="small-logo" src="{{ MEDIA_URL }}{{ club.small_logo }}" />
                                 <a class="{{ user.favourite_team.geographic_name|lower }}-link plain-link" href=

@@ -11,7 +11,7 @@
                 BIBL STORE
             </h1>
 
-            {% if user == cart.user %}
+            {% if cart and user == cart.user %}
                 <div class="page-detail">
                     <a class="standard-link" href="{% url 'shopping_cart' %}">[View Cart]</a><br />
                     <strong>{{ cart.items.count }}</strong> Item(s)

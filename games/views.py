@@ -24,6 +24,10 @@ def last_and_next(request):
     fixtures = Game.objects.filter(game_date__year=current_season)\
         .filter(game_status__in=["Scheduled", "In Progress"])
 
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
     # Dates obtained separately depending on whether there are results and/or fixtures
     # This is done to prevent errors when there is no list from which to obtain the first value.
     # If both results and fixtures are present:
@@ -34,20 +38,23 @@ def last_and_next(request):
         next_fixtures = Game.objects.filter(game_date=next_date).order_by('home_team')
 
         return render(request, "games_latest.html", {"results": latest_results, "fixtures": next_fixtures,
-                                                     "latest_date": latest_date, "next_date": next_date})
+                                                     "latest_date": latest_date, "next_date": next_date,
+                                                     'team': team, 'archive': archive})
     # If results but not fixtures are present:
     elif results:
         latest_date = results.order_by('-game_date')[0].game_date
         latest_results = Game.objects.filter(game_date=latest_date).order_by('home_team')
 
-        return render(request, "games_latest.html", {"results": latest_results, "latest_date": latest_date})
+        return render(request, "games_latest.html", {"results": latest_results, "latest_date": latest_date,
+                                                     'team': team, 'archive': archive})
 
     # If fixtures but not results are present:
     elif fixtures:
         next_date = fixtures.order_by('game_date')[0].game_date
         next_fixtures = Game.objects.filter(game_date=next_date).order_by('home_team')
 
-        return render(request, "games_latest.html", {"fixtures": next_fixtures, "next_date": next_date})
+        return render(request, "games_latest.html", {"fixtures": next_fixtures, "next_date": next_date,
+                                                     'team': team, 'archive': archive})
 
 
 # Show the league standings for the current season.
@@ -69,11 +76,17 @@ def league_standings(request):
     # Get the standings for the chosen season.
     standings = get_standings(current_season)
 
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
     args = {
         "standings": standings,
         "form": form,
         "conferences": conferences,
-        "teams": teams
+        "teams": teams,
+        'team': team,
+        'archive': archive
     }
 
     args.update(csrf(request))
@@ -114,7 +127,11 @@ def games_team(request, team_name):
                        "date": game['game_date'], "status": game['game_status']}
         team_schedule.append(details)
 
-    return render(request, "games_team.html", {"team": team, "team_games": team_schedule})
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
+    return render(request, "games_team.html", {"team": team, "team_games": team_schedule, 'archive': archive})
 
 
 # Show a full list of results for the current season in a single page.
@@ -139,7 +156,12 @@ def results_list(request):
             dates.append(result['game_date'])
             dates.sort(reverse=True)
 
-    return render(request, "results_list.html", {'results': results, 'dates': dates})
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
+    return render(request, "results_list.html", {'results': results, 'dates': dates,
+                                                 'team': team, 'archive': archive})
 
 
 # Show a full list of fixtures for the current season in a single page.
@@ -162,7 +184,12 @@ def fixture_list(request):
         if fixture['game_date'] not in dates:
             dates.append(fixture['game_date'])
 
-    return render(request, "fixture_list.html", {'fixtures': fixtures, 'dates': dates})
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
+    return render(request, "fixture_list.html", {'fixtures': fixtures, 'dates': dates,
+                                                 'team': team, 'archive': archive})
 
 
 # Show a list of results for the current season in paginated format.
@@ -186,6 +213,10 @@ def full_results(request):
             date_list.append(result.game_date)
             date_list.sort(reverse=True)
 
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
     # Use pagination to show games on three dates at a time.
     page_dates = Paginator(date_list, 3)
 
@@ -198,7 +229,7 @@ def full_results(request):
         dates = page_dates.page(1)
 
     return render(request, "results_full.html",
-                  {'results': results, 'dates': dates, 'date_list': date_list})
+                  {'results': results, 'dates': dates, 'date_list': date_list, 'team': team, 'archive': archive})
 
 
 # Show a list of fixtures for the current season in paginated format.
@@ -221,6 +252,10 @@ def full_fixtures(request):
             date_list.append(fixture.game_date)
             date_list.sort()
 
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
     # Use pagination to show games on three dates at a time.
     page_dates = Paginator(date_list, 3)
 
@@ -233,7 +268,7 @@ def full_fixtures(request):
         dates = page_dates.page(1)
 
     return render(request, "fixtures_full.html",
-                  {'fixtures': fixtures, 'dates': dates, 'date_list': date_list})
+                  {'fixtures': fixtures, 'dates': dates, 'date_list': date_list, 'team': team, 'archive': archive})
 
 
 # Show a list of all season in the league's history, with overview information.
@@ -241,8 +276,9 @@ def season_archive(request):
     seasons = Season.objects.all().order_by('year').values('year', 'champion', 'series_score', 'finalist')
     standings = get_standings(datetime.now().year)
 
-    # The page is neither an archive page nor a team page - note that the archive index page is not an archive page
-    # in itself.
+    # The page is neither an archive page nor a team page.
+    # Note that the archive index page is not an archive page in itself.
+    # Archive pages are only those which show results or standings for a past season.
     archive = False
     team = False
 
@@ -266,13 +302,16 @@ def season_overview(request, year):
     archive_standings = get_standings(year)
     archive = True
 
+    # The page is not a team page.
+    team = False
+
     # If the season has a champion set, i.e. if the season is over, show the archive details.
     if season.champion:
         return render(request, "season_overview.html", {'year': year, 'season': season,
                                                         'seasons': seasons, 'archive_standings': archive_standings,
                                                         'conferences': conferences,
                                                         'championship_series': championship_series,
-                                                        'archive': archive})
+                                                        'archive': archive, 'team': team})
 
     # If it is the current season, i.e. still in progress, redirect to the standings view.
     else:

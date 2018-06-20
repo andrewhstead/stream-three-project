@@ -54,16 +54,22 @@ def store_front(request):
         products = view_products.page(1)
 
     # If a user is authenticated, check whether or not they already have a pending shopping cart.
-    # If they do, it should be made available to be linked from the template. If not, just load the page as normal.
+    # If they do, it should be made available to be linked from the template.
+    # If not, the variable 'cart' is given the value 'False'.
     if user.is_authenticated:
         try:
             cart = Cart.objects.get(user=user, status='Pending')
             return render(request, 'store.html', {'products': products, 'cart': cart, "current_page": current_page})
 
         except Cart.DoesNotExist:
-            pass
+            cart = False
+            return render(request, 'store.html', {'products': products, 'teams': teams, "current_page": current_page,
+                                                  'cart': cart})
 
-    return render(request, 'store.html', {'products': products, 'teams': teams, "current_page": current_page})
+    else:
+        cart = False
+        return render(request, 'store.html', {'products': products, 'teams': teams, "current_page": current_page,
+                                              'cart': cart})
 
 
 # Individual store pages for each time, showing at a glance all the products relating to that team.
@@ -79,10 +85,14 @@ def store_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     items = product.items.all()
     sizes = []
+    out_of_stock = []
 
     # Create a list of sizes which are available for the product in question.
     for item in items:
-        sizes.append((item.size, item.size))
+        if item.stock > 0:
+            sizes.append((item.size, item.size))
+        elif item.stock == 0:
+            out_of_stock.append(item.size)
 
     if request.method == 'POST':
         form = AddToCartForm(request.POST, item_options=sizes)
@@ -147,7 +157,8 @@ def store_product(request, product_id):
         form = AddToCartForm(item_options=sizes)
         form.order_fields(['size', 'quantity'])
 
-    args = {'form': form, 'product': product, 'items': items, 'button_text': 'Add to Basket'}
+    args = {'form': form, 'product': product, 'items': items,
+            'button_text': 'Add to Basket', 'out_of_stock': out_of_stock}
     args.update(csrf(request))
     return render(request, 'product.html', args)
 

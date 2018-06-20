@@ -36,6 +36,9 @@ def team_page(request, team_name):
     team_results = []
     team_fixtures = []
 
+    # The page is not an archive page.
+    archive = False
+
     results = Game.objects.filter(game_date__year=current_season).filter(Q(home_team=team) | Q(away_team=team)).filter(
         game_status='Completed').order_by('game_date')
     fixtures = Game.objects.filter(game_date__year=current_season).filter(Q(home_team=team) | Q(away_team=team)).filter(
@@ -56,8 +59,8 @@ def team_page(request, team_name):
         return render(request, "team_profile.html", {'team': team, 'items': items, 'board': board,
                                                      'next_game': next_game, 'last_game': last_game,
                                                      'standings': standings, 'conference': conference,
-                                                     'products': products})
+                                                     'products': products, 'archive': archive})
 
     else:
         return render(request, "team_profile.html", {'team': team, 'items': items, 'products': products,
-                                                     'board': board, 'standings': standings})
+                                                     'board': board, 'standings': standings, 'archive': archive})

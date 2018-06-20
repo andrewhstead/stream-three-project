@@ -24,7 +24,7 @@ main templates for each view. -->
                     <tr>
 
                         <!-- If this team's season is being viewed, highlight their name. -->
-                        {% if club.name == team.geographic_name %}
+                        {% if team and club.name == team.geographic_name %}
                             <td class="stat-header {{ team.geographic_name|lower }}-tag">
                                 <img class="small-logo" src="{{ MEDIA_URL }}{{ club.small_logo }}" />
                                 {{ club.name }}

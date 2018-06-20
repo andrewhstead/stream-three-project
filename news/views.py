@@ -39,8 +39,13 @@ def news_index(request):
     except PageNotAnInteger:
         items = page_items.page(1)
 
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
     return render(request, "news.html", {"items": items, "current_page": current_page,
-                                         "page_count": page_count})
+                                         "page_count": page_count, 'archive': archive,
+                                         'team': team})
 
 
 # Display an individual news story, incrementing its post count each time it is loaded.
@@ -48,7 +53,12 @@ def news_item(request, news_id):
     item = get_object_or_404(Item, pk=news_id)
     item.views += 1
     item.save()
-    return render(request, "news_item.html", {"item": item})
+
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
+    return render(request, "news_item.html", {"item": item, 'archive': archive, 'team': team})
 
 
 # Display a team news page, with just stories in which the chosen team is tagged.
@@ -75,7 +85,10 @@ def news_team(request, team_name):
     except PageNotAnInteger:
         items = page_items.page(1)
 
-    return render(request, "news_team.html", {'team': team, 'items': items,
+    # The page is not archive page.
+    archive = False
+
+    return render(request, "news_team.html", {'team': team, 'items': items, 'archive': archive,
                                               'current_page': current_page})
 
 

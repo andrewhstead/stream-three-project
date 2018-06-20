@@ -34,9 +34,15 @@ def register(request):
     else:
         form = RegistrationForm()
 
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
     args = {
         'form': form,
         'button_text': 'Register',
+        'archive': archive,
+        'team': team
     }
     args.update(csrf(request))
     return render(request, 'user_details.html', args)
@@ -60,7 +66,15 @@ def login(request):
     else:
         form = LoginForm()
 
-    args = {'form': form}
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
+    args = {'form': form,
+            'archive': archive,
+            'team': team
+            }
+
     args.update(csrf(request))
     return render(request, 'login.html', args)
 
@@ -91,10 +105,15 @@ def user_profile(request):
     for post in posts:
         contributions.append(post)
 
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
     return render(request, 'profile.html', {'comments': comments, 'threads': threads,
                                             'posts': posts, 'contributions': contributions,
                                             'profile_user': user, 'orders': orders,
-                                            'subscription_plan': subscription_plan})
+                                            'subscription_plan': subscription_plan,
+                                            'archive': archive, 'team': team})
 
 
 # Logged in users can also view the profiles of others.
@@ -106,6 +125,10 @@ def other_profile(request, user_id):
     posts = Post.objects.filter(user_id=profile_user.id)
     threads = Thread.objects.filter(user_id=profile_user.id)
     contributions = []
+
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
 
     for comment in comments:
         contributions.append(comment)
@@ -121,7 +144,8 @@ def other_profile(request, user_id):
     else:
         return render(request, 'profile.html', {'comments': comments, 'threads': threads,
                                                 'posts': posts, 'contributions': contributions,
-                                                'profile_user': profile_user})
+                                                'profile_user': profile_user,
+                                                'archive': archive, 'team': team})
 
 
 # Logged in users can edit their own profile.
@@ -141,9 +165,15 @@ def edit_profile(request):
     else:
         form = EditProfileForm(instance=user)
 
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
     args = {
         'form': form,
         'button_text': 'Update Profile',
+        'archive': archive,
+        'team': team
     }
     args.update(csrf(request))
     return render(request, 'user_details.html', args)
@@ -169,9 +199,15 @@ def delete_profile(request):
     else:
         form = DeletionForm()
 
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
     args = {
         'form': form,
         'button_text': 'Delete Account',
+        'archive': archive,
+        'team': team
     }
     args.update(csrf(request))
     return render(request, 'delete_profile.html', args)
@@ -202,9 +238,15 @@ def change_password(request):
     else:
         form = ChangePasswordForm()
 
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
     args = {
         'form': form,
         'button_text': 'Change Password',
+        'archive': archive,
+        'team': team
     }
     args.update(csrf(request))
     return render(request, 'change_password.html', args)

@@ -36,7 +36,7 @@
                         {% endif %}
 
                         <!-- Form to choose size and quantity. -->
-                        <form id="inline-form" method="post" action="{{ form_action }}">
+                        <form id="inline-form" method="post">
                             {% csrf_token %}
                             {{ form.as_p }}
                             {% if user.is_authenticated %}
