@@ -55,9 +55,15 @@ def contact(request):
     else:
         form = MessageForm()
 
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
     args = {
         'form': form,
-        'button_text': 'Send Message'
+        'button_text': 'Send Message',
+        'archive': archive,
+        'team': team
     }
     args.update(csrf(request))
 
