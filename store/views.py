@@ -367,13 +367,23 @@ def premium_home(request):
     schedule = Game.objects.filter(game_status='Scheduled').filter(is_premium=True)\
         .values('game_date', 'game_time', 'home_team', 'away_team')
     live_games = Game.objects.filter(game_status='In Progress').filter(is_premium=True)
-    return render(request, 'premium.html', {'schedule': schedule, 'live_games': live_games})
+
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
+    return render(request, 'premium.html', {'schedule': schedule, 'live_games': live_games,
+                                            'archive': archive, 'team': team})
 
 
 # Upgrade the user's account from standard to premium.
 @login_required(login_url='/login/')
 def upgrade_account(request):
     user = request.user
+
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
 
     # If the user has an active subscription, show them the premium page instead of the upgrade form.
     if user.subscription_ends and user.subscription_ends >= timezone.now():
@@ -427,7 +437,7 @@ def upgrade_account(request):
             form.order_fields(['name_on_card', 'billing_cycle', 'card_number', 'cvv',
                               'expiry_month', 'expiry_year', 'stripe_id'])
 
-        args = {'form': form, 'publishable': settings.STRIPE_PUBLISHABLE}
+        args = {'form': form, 'archive': archive, 'team': team, 'publishable': settings.STRIPE_PUBLISHABLE}
         args.update(csrf(request))
 
         return render(request, 'upgrade.html', args)
@@ -554,7 +564,12 @@ def register_premium(request):
         subscription_form.order_fields(['billing_cycle', 'card_number', 'cvv',
                                         'expiry_month', 'expiry_year', 'stripe_id'])
 
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
     args = {'registration_form': registration_form, 'subscription_form': subscription_form,
+            'archive': archive, 'team': team,
             'publishable': settings.STRIPE_PUBLISHABLE}
     args.update(csrf(request))
 

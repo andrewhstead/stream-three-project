@@ -127,9 +127,8 @@ def games_team(request, team_name):
                        "date": game['game_date'], "status": game['game_status']}
         team_schedule.append(details)
 
-    # The page is neither an archive page nor a team page.
+    # The page is not an archive page.
     archive = False
-    team = False
 
     return render(request, "games_team.html", {"team": team, "team_games": team_schedule, 'archive': archive})
 
