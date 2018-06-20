@@ -124,7 +124,10 @@
 
                     <p>
                         <strong>Favourite Team:</strong><br />
-                        {% if not profile_user.favourite_team %}
+                        {% if user == profile_user and not profile_user.favourite_team %}
+                            You have not set a favourite team. You can do this by
+                            <a class="standard-link" href="{% url 'edit_profile' %}">editing your profile</a>.
+                        {% elif not profile_user.favourite_team %}
                             Not Set
                         {% else %}
                             <img class="small-logo" src="{{ MEDIA_URL }}{{ profile_user.favourite_team.small_logo }}" />

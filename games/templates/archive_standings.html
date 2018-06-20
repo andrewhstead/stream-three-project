@@ -32,7 +32,7 @@ main templates for each view. -->
 
                         <!-- If no specific team is being viewed but this is the user's favourite team, highlight their
                         name. -->
-                        {% elif not team and user.is_authenticated and club.name == user.favourite_team.geographic_name %}
+                        {% elif not team and user.favourite_team and club.name == user.favourite_team.geographic_name %}
                             <td class="stat-header {{ user.favourite_team.geographic_name|lower }}-tag">
                                 <img class="small-logo" src="{{ MEDIA_URL }}{{ club.small_logo }}" />
                                 <a class="{{ user.favourite_team.geographic_name|lower }}-link plain-link" href=
