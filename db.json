@@ -144802,24 +144802,6 @@
 },
 {
     "model": "admin.logentry",
-    "pk": 379,
-    "fields": {
-        "action_time": "2018-04-15T19:45:55.637Z",
-        "user": [
-            "Admin"
-        ],
-        "content_type": [
-            "store",
-            "address"
-        ],
-        "object_id": "1",
-        "object_repr": "Address object",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
-    }
-},
-{
-    "model": "admin.logentry",
     "pk": 380,
     "fields": {
         "action_time": "2018-04-16T09:58:40.163Z",
