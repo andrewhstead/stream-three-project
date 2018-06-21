@@ -56,7 +56,7 @@
 
                 <!-- Details of the post, with edit and delete links available only to the blogger. -->
                 <div class="blog-details">
-                    {{ item.created_date|date:'j F Y, H:i' }}, {{ item.views }} views<br />
+                    {{ item.created_date|date:'d F Y, g:i a' }}, {{ item.views }} views<br />
                     {% if user == item.author %}
                         <a class="table-link" href="{% url 'edit_blog' item.id %}">[Edit]</a>
                         <span class="alert-link" onclick="confirmationAlert({{ item.id }})">[Delete]</span>
@@ -103,7 +103,7 @@
             <!-- Show the comments. -->
             <section id="comments">
 
-                {% for comment in item.comments.all %}
+                {% for comment in comments %}
 
                     {% include "comment_body.html" %}
 

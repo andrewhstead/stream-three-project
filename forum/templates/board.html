@@ -64,7 +64,7 @@
                                 <a class="table-link" href="{% url 'other_profile' thread.user_id %}">
                                     {{ thread.user }}
                                 </a><br />
-                                Last Post: {{ thread.last_post|date:'d/m/Y, H:i' }}
+                                Last Post: {{ thread.last_post|date:'d F Y, g:i a' }}
                             </div>
                         </td>
                         <td class="forum-count">

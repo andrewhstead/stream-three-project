@@ -51,6 +51,7 @@ def news_index(request):
 # Display an individual news story, incrementing its post count each time it is loaded.
 def news_item(request, news_id):
     item = get_object_or_404(Item, pk=news_id)
+    comments = item.comments.all().order_by('created_date')
     item.views += 1
     item.save()
 
@@ -58,7 +59,8 @@ def news_item(request, news_id):
     archive = False
     team = False
 
-    return render(request, "news_item.html", {"item": item, 'archive': archive, 'team': team})
+    return render(request, "news_item.html", {"item": item, 'archive': archive,
+                                              'team': team, 'comments': comments})
 
 
 # Display a team news page, with just stories in which the chosen team is tagged.
@@ -145,13 +147,15 @@ def blog_index(request, author_name):
 # Show an individual blog post, incrementing its view count by one for each view.
 def blog_post(request, post_id):
     item = Item.objects.get(pk=post_id)
+    comments = item.comments.all().order_by('created_date')
     posts = Item.objects.filter(author=item.author).order_by('-created_date')
     item.views += 1
     item.save()
 
     bloggers = list_bloggers()
 
-    return render(request, "blog_post.html", {'item': item, 'posts': posts, 'bloggers': bloggers})
+    return render(request, "blog_post.html", {'item': item, 'posts': posts,
+                                              'bloggers': bloggers, 'comments': comments})
 
 
 # The form that allows an authorised blogger to create a new post.

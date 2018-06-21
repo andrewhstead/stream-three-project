@@ -9,6 +9,6 @@
                     <a class="standard-link" href="{% url 'other_profile' post.user.id %}">{{ post.user }}</a> posted
                     in<br />
                     <a class="standard-link" href="{% url 'view_thread' post.thread.id %}">{{ post.thread }}</a><br />
-                    at {{ post.created_date|time:'G:i' }} on {{ post.created_date|date:'d/m/Y' }}
+                    at {{ post.created_date|time:'g:i a' }} on {{ post.created_date|date:'d F Y' }}
                 </div>
             {% endfor %}
