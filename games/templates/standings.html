@@ -27,7 +27,7 @@ is determined in the main templates for each view. -->
                             </td>
                         <!-- If this is not a team page but the user is logged in and has set a favourite team,
                         highlight that team's name in the standings. -->
-                        {% elif not team and user.favourite_team and club.name == user.favourite_team.geographic_name %}
+                        {% elif not team and user.is_authenticated and user.favourite_team and club.name == user.favourite_team.geographic_name %}
                             <td class="stat-header {{ user.favourite_team.geographic_name|lower }}-tag">
                                 <img class="small-logo" src="{{ MEDIA_URL }}{{ club.small_logo }}" />
                                 <a class="{{ user.favourite_team.geographic_name|lower }}-link plain-link" href=
