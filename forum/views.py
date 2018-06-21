@@ -183,6 +183,7 @@ def view_thread(request, thread_id):
 def new_post(request, thread_id):
     thread = get_object_or_404(Thread, pk=thread_id)
     recent_posts = Post.objects.all().order_by('-created_date')[:10]
+    post_exists = False
 
     if request.method == 'POST':
         form = PostForm(request.POST)
@@ -211,6 +212,7 @@ def new_post(request, thread_id):
     args = {
         'form': form,
         'thread': thread,
+        'post_exists': post_exists,
         'recent_posts': recent_posts,
         'button_text': 'Submit Post'
     }
@@ -225,6 +227,8 @@ def edit_post(request, thread_id, post_id):
     thread = get_object_or_404(Thread, pk=thread_id)
     post = get_object_or_404(Post, pk=post_id)
     recent_posts = Post.objects.all().order_by('-created_date')[:10]
+
+    post_exists = True
 
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
@@ -244,7 +248,8 @@ def edit_post(request, thread_id, post_id):
         'form_action': reverse('edit_post', kwargs={'thread_id': thread.id, 'post_id': post.id}),
         'button_text': 'Edit Post',
         'recent_posts': recent_posts,
-        'post': post
+        'post': post,
+        'post_exists': post_exists
     }
     args.update(csrf(request))
     return render(request, 'post_form.html', args)

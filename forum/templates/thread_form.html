@@ -23,7 +23,7 @@
 
             <!-- The forms to start a new thread, one to create the thread and one to create the first post within
             the thread. -->
-            <form id="default-form" method="post" action="{{ form_action }}">
+            <form id="default-form" method="post">
                 {% csrf_token %}
                 {{ thread_form.as_p }}
                 {{ post_form.as_p }}
