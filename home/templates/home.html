@@ -23,6 +23,7 @@
                         </a>
                         <div class="banner-headline">
                             <a class="banner-link fade-in" href="{% url 'news' article.id %}">{{ article.title }}</a>
+                            <span class="item-details">({{ article.created_date|date:'d/m/Y' }})</span>
                         </div>
                     </div>
                 {% endfor %}
@@ -65,6 +66,7 @@
                         <a class="standard-link" href="{% url 'news' item.id %}">
                             {{ item.title }}
                         </a>
+                        <span class="item-details">({{ item.created_date|date:'d/m/Y' }})</span>
                     </div>
                 {% endfor %}
 

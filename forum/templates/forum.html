@@ -42,6 +42,7 @@
 
                                     <div class="board-header">
                                         {% if board.team %}
+                                            <img class="small-logo" src="{{ MEDIA_URL }}{{ board.team.small_logo }}" />
                                             <a class="table-link" href=
                                                     "{% url 'forum_team' board.team.geographic_name|lower %}">
                                                 {{ board.title }}
