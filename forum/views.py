@@ -37,6 +37,9 @@ def forum_team(request, team_name):
 
     page = request.GET.get('page')
 
+    # The page is not an archive page.
+    archive = False
+
     try:
         threads = page_threads.page(page)
     except EmptyPage:
@@ -44,7 +47,7 @@ def forum_team(request, team_name):
     except PageNotAnInteger:
         threads = page_threads.page(1)
 
-    return render(request, 'board.html', {'board': board, 'team': team,
+    return render(request, 'board.html', {'board': board, 'team': team, 'archive': archive,
                                           'threads': threads, 'recent_posts': recent_posts})
 
 
@@ -59,6 +62,10 @@ def forum_league(request, board_id):
 
     page = request.GET.get('page')
 
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
     try:
         threads = page_threads.page(page)
     except EmptyPage:
@@ -66,7 +73,7 @@ def forum_league(request, board_id):
     except PageNotAnInteger:
         threads = page_threads.page(1)
 
-    return render(request, 'board.html', {'board': board, 'board_id': board_id,
+    return render(request, 'board.html', {'board': board, 'board_id': board_id, 'archive': archive, 'team': team,
                                           'threads': threads, 'recent_posts': recent_posts})
 
 
