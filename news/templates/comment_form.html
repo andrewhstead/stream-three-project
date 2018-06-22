@@ -14,9 +14,23 @@
 
         <div id="details-column" class="column">
 
+
+            <!-- If no comment exists, a new one can be created. -->
+            {% if not comment_exists %}
+
+                <h1>
+                    POST A COMMENT
+                </h1>
+
+                <form id="default-form" method="post" action="{{ form_action }}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="default-button" type="submit">{{ button_text }}</button>
+                </form>
+
             <!-- If a comment exists, only the author of the comment or the superuser can view the form.
             This is to prevent a user being able to edit someone else's comment. -->
-            {% if comment and user == comment.user or user.is_superuser %}
+            {% elif user == comment.user or user.is_superuser %}
 
                 <h1>
                     EDIT COMMENT
@@ -29,7 +43,7 @@
                 </form>
 
             <!-- Any other user will see an error message. -->
-            {% elif comment %}
+            {% else %}
 
                 <h1>
                     ERROR
@@ -38,19 +52,6 @@
                 <p>
                     Sorry, you are not authorised to view this page.
                 </p>
-
-            <!-- If no comment exists, a new one can be created. -->
-            {% else %}
-
-                <h1>
-                    POST A COMMENT
-                </h1>
-
-                <form id="default-form" method="post" action="{{ form_action }}">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button class="default-button" type="submit">{{ button_text }}</button>
-                </form>
 
             {% endif %}
 

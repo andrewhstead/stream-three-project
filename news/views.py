@@ -256,10 +256,20 @@ def new_comment(request, item_id):
 
     bloggers = list_bloggers()
 
+    # The comment does not exist - needed to show the correct heading on the page.
+    comment_exists = False
+
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
+
     args = {
         'form': form,
         'form_action': reverse('new_comment', args={item.id}),
         'button_text': 'Post Comment',
+        'archive': archive,
+        'team': team,
+        'comment_exists': comment_exists,
         'bloggers': bloggers
     }
     args.update(csrf(request))
@@ -286,13 +296,24 @@ def edit_comment(request, item_id, comment_id):
     else:
         form = CommentForm(instance=comment)
 
+    # Get the list of bloggers for the sidebar.
     bloggers = list_bloggers()
+
+    # The comment already exists - needed to show the correct heading on the page.
+    comment_exists = True
+
+    # The page is neither an archive page nor a team page.
+    archive = False
+    team = False
 
     args = {
         'form': form,
         'form_action': reverse('edit_comment', kwargs={'item_id': item.id, 'comment_id': comment.id}),
         'button_text': 'Edit Comment',
         'bloggers': bloggers,
+        'archive': archive,
+        'team': team,
+        'comment_exists': comment_exists,
         'comment': comment
     }
     args.update(csrf(request))
