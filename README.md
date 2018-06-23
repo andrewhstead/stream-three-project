@@ -338,8 +338,11 @@ A GitHub repository was created for the project right at the beginning of develo
  different devices, particularly mobile devices running the Android operating system. Although not every commit to
  GitHub was deployed to Heroku, the Heroku app was updated regularly when significant new functionality or design was
  added in order to facilitate continued manual testing. The settings of the project were separated into development and
- staging files in order to keep those environments separate. Amazon Web Services was used in order to host both static
- and media files on S3, while the database was deployed to ClearDB for use with the Heroku app.
+ staging files in order to keep those environments separate.
+
+ Amazon Web Services was used in order to host both static and media files on S3, while a MySQL database was initially
+ deployed to ClearDB for use with the Heroku app. Issues regarding the number of database queries (see Issues below)
+ led to a later decision ro switch the database to Postgres on Heroku instead.
 
 ## Testing
 
@@ -358,9 +361,21 @@ Much of the site development was done on a Windows PC using the Chrome browser, 
 When the project was initially deployed to Heroku and the database uploaded to ClearDB, the code in some of the views
 was causing a significant amount of repeated queries to the database to be made. This presented an issue with usage
 limits allowed by ClearDB so I had to rewrite parts of the code in these views to reduce the number of queries being
-made. Even when this had been done to an extent that there would no longer have been a problem on ClearDB, I was aware
-of the fact that this could present problems in the future if the code were to be reused for another project.
+made.
 
-For example, where numerous repeated calls were being made for each thread in the forum, the problem would have
-increased exponentially as the number of threads increased, which it inevitably would quite quickly on a busy and active
- site. I therefore endeavoured to make sure that where possible, this was avoided in the code.
+Even when this had been done to an extent that there would no longer have been a problem on ClearDB, I was aware
+of the fact that this could present problems in the future if the code were to be reused for another project. For
+example, where numerous repeated calls were being made for each thread in the forum, the problem would have increased
+exponentially as the number of threads increased, which it inevitably would quite quickly on a busy and active site. I
+therefore endeavoured to make sure that where possible, this was avoided in the code.
+
+As an added insurance against this issue, I switched to using Postgres on Heroku rather than ClearDB and MySQL. This was
+ done because the basic tier for Postgres carried no usage limits and while there was a limit on database size, my
+ database fell below this.
+
+Another issue which I identified was the presence of a number of 'failed look-up' exceptions in the Heroku logs, where a
+ variable was required by the template which I had not defined in the view. Although these issues were not apparent to a
+  site user in the browser, I endeavoured to resolve them wherever possible and as far as my testing has revealed, I was
+   successful in that. I did however notice when using the default Django admin panel that the Django code itself
+   generated the same kind of exceptions. There were beyond the scope of my project and so I made no attempt to resolve
+   them.
