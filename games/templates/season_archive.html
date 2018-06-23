@@ -22,6 +22,7 @@
                 <!-- For each season, show the champions, finalists and the score of the championship series. -->
                 {% for season in seasons %}
                     <tr>
+
                         <td>
                             {% if season.champion %}
                                 <a class="table-link" href="{% url 'season_overview' season.year %}">
@@ -33,39 +34,85 @@
                                 </a>
                             {% endif %}
                         </td>
-                        <td>
-                            <strong>
-                                <!-- Check which team matches the champion, to show the name rather than ID.
-                                IDs are used in the view to reduce database queries. -->
-                                {% for team in teams %}
-                                    {% if team.id == season.champion %}
-                                        <a class="table-link" href=
-                                                "{% url 'season_team' season.year team.geographic_name|lower %}">
-                                            {{ team.geographic_name }}
-                                        </a>
+
+                        <!-- Check whether the season is complete. If it is, show the champion. -->
+                        {% if season.champion %}
+                            <!-- Check which team matches the champion, to show the name rather than ID.
+                            IDs are used in the view to reduce database queries. -->
+                            {% for team in teams %}
+                                {% if team.id == season.champion %}
+                                    <!-- If the user is logged in and the team is their favourite, highlight the team
+                                     name. -->
+                                    {% if user.is_authenticated and team == user.favourite_team %}
+                                        <td class="{{ user.favourite_team.geographic_name|lower }}-tag">
+                                            <a class="{{ user.favourite_team.geographic_name|lower }}-link
+                                            table-link" href=
+                                                    "{% url 'season_team' season.year team.geographic_name|lower %}">
+                                                {{ team.geographic_name }}
+                                            </a>
+                                        </td>
+                                    <!-- Otherwise, show the team name in normal formatting. -->
+                                    {% else %}
+                                        <td>
+                                            <a class="table-link" href=
+                                                    "{% url 'season_team' season.year team.geographic_name|lower %}">
+                                                {{ team.geographic_name }}
+                                            </a>
+                                        </td>
                                     {% endif %}
-                                {% endfor %}
-                            </strong>
-                        </td>
+                                {% endif %}
+                            {% endfor %}
+                        <!-- If the season is incomplete, show a blank table cell. -->
+                        {% else %}
+                            <td>
+
+                            </td>
+                        {% endif %}
+
                         <td>
+                            <!-- If the championship series has been played, show the score in games. -->
                             {% if season.series_score %}
                                 <a class="table-link" href="{% url 'season_overview' season.year %}#championship">
                                     {{ season.series_score }}
                                 </a>
                             {% endif %}
                         </td>
-                        <td>
+
+
+                        <!-- Check whether the season is complete. If it is, show the finalist. -->
+                        {% if season.champion %}
                             <!-- Check which team matches the finalist, to show the name rather than ID.
                             IDs are used in the view to reduce database queries. -->
                             {% for team in teams %}
                                 {% if team.id == season.finalist %}
-                                    <a class="table-link" href=
-                                            "{% url 'season_team' season.year team.geographic_name|lower %}">
-                                        {{ team.geographic_name }}
-                                    </a>
+                                    <!-- If the user is logged in and the team is their favourite, highlight the team
+                                     name. -->
+                                    {% if user.is_authenticated and team == user.favourite_team %}
+                                        <td class="{{ user.favourite_team.geographic_name|lower }}-tag">
+                                            <a class="{{ user.favourite_team.geographic_name|lower }}-link
+                                            table-link" href=
+                                                    "{% url 'season_team' season.year team.geographic_name|lower %}">
+                                                {{ team.geographic_name }}
+                                            </a>
+                                        </td>
+                                    <!-- Otherwise, show the team name in normal formatting. -->
+                                    {% else %}
+                                        <td>
+                                            <a class="table-link" href=
+                                                    "{% url 'season_team' season.year team.geographic_name|lower %}">
+                                                {{ team.geographic_name }}
+                                            </a>
+                                        </td>
+                                    {% endif %}
                                 {% endif %}
                             {% endfor %}
-                        </td>
+                        <!-- If the season is incomplete, show a blank table cell. -->
+                        {% else %}
+                            <td>
+
+                            </td>
+                        {% endif %}
+
                     </tr>
                 {% endfor %}
 
