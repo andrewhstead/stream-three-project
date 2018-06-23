@@ -144,7 +144,7 @@ def results_list(request):
     results = Game.objects.filter(game_date__year=current_season)\
         .filter(game_type='Regular Season')\
         .filter(game_status__in=["Completed", "Suspended", "Postponed"]) \
-        .order_by('home_team').order_by('game_time') \
+        .order_by('game_date', 'game_time', 'home_team') \
         .values('game_date', 'game_time', 'home_team', 'away_team', 'home_team_runs', 'away_team_runs', 'game_status')
 
     # Empty list for dates on which there was at least one result. Add dates to this list in order to show the
@@ -173,7 +173,7 @@ def fixture_list(request):
     fixtures = Game.objects.filter(game_date__year=current_season)\
         .filter(game_type='Regular Season')\
         .filter(game_status__in=["Scheduled", "In Progress"]) \
-        .order_by('home_team').order_by('game_time') \
+        .order_by('game_date', 'game_time', 'home_team') \
         .values('game_date', 'game_time', 'home_team', 'away_team', 'home_team_runs', 'away_team_runs', 'game_status')
 
     # Empty list for dates on which there is at least one fixture. Add dates to this list in order to show the

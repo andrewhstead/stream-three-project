@@ -31,18 +31,32 @@
 
                             {% if fixture.game_date == date %}
                                 <tr>
-                                    <td class="stat-team">
-                                        <!-- Check which team matches the opponent, to show the name rather than ID.
-                                        IDs are used in the view to reduce database queries. -->
-                                        {% for team in teams %}
-                                            {% if team.id == fixture.away_team %}
-                                                <a class="table-link" href=
-                                                        "{% url 'team_games' team.geographic_name|lower %}">
-                                                    {{ team.geographic_name }}
-                                                </a>
+                                    <!-- Check which team matches the away team, to show the name rather than ID.
+                                    IDs are used in the view to reduce database queries. -->
+                                    {% for team in teams %}
+                                        {% if team.id == fixture.away_team %}
+                                            <!-- If the user is logged in and has set a favourite team, highlight
+                                            that team in the list. -->
+                                            {% if user.is_authenticated and team == user.favourite_team %}
+                                                <td class="stat-team
+                                                    {{ user.favourite_team.geographic_name|lower }}-tag">
+                                                    <a class="{{ user.favourite_team.geographic_name|lower }}-link
+                                                    table-link" href=
+                                                            "{% url 'team_games' team.geographic_name|lower %}">
+                                                        {{ team.geographic_name }}
+                                                    </a>
+                                                </td>
+                                            <!-- Otherwise show the team name as usual. -->
+                                            {% else %}
+                                                <td class="stat-team">
+                                                    <a class="table-link" href=
+                                                            "{% url 'team_games' team.geographic_name|lower %}">
+                                                        {{ team.geographic_name }}
+                                                    </a>
+                                                </td>
                                             {% endif %}
-                                        {% endfor %}
-                                    </td>
+                                        {% endif %}
+                                    {% endfor %}
                                     {% if fixture.game_status == "In Progress" %}
                                         <td class="stat-detail-highlight">
                                             {{ fixture.away_team_runs }} - {{ fixture.home_team_runs }}
@@ -52,18 +66,32 @@
                                             {{ fixture.game_time|time:'g:i a' }}
                                         </td>
                                     {% endif %}
-                                    <td class="stat-team">
-                                        <!-- Check which team matches the opponent, to show the name rather than ID.
-                                        IDs are used in the view to reduce database queries. -->
-                                        {% for team in teams %}
-                                            {% if team.id == fixture.home_team %}
-                                                <a class="table-link" href=
-                                                        "{% url 'team_games' team.geographic_name|lower %}">
-                                                    {{ team.geographic_name }}
-                                                </a>
+                                    <!-- Check which team matches the home team, to show the name rather than ID.
+                                    IDs are used in the view to reduce database queries. -->
+                                    {% for team in teams %}
+                                        {% if team.id == fixture.home_team %}
+                                            <!-- If the user is logged in and has set a favourite team, highlight
+                                            that team in the list. -->
+                                            {% if user.is_authenticated and team == user.favourite_team %}
+                                                <td class="stat-team
+                                                    {{ user.favourite_team.geographic_name|lower }}-tag">
+                                                    <a class="{{ user.favourite_team.geographic_name|lower }}-link
+                                                    table-link" href=
+                                                            "{% url 'team_games' team.geographic_name|lower %}">
+                                                        {{ team.geographic_name }}
+                                                    </a>
+                                                </td>
+                                            <!-- Otherwise show the team name as usual. -->
+                                            {% else %}
+                                                <td class="stat-team">
+                                                    <a class="table-link" href=
+                                                            "{% url 'team_games' team.geographic_name|lower %}">
+                                                        {{ team.geographic_name }}
+                                                    </a>
+                                                </td>
                                             {% endif %}
-                                        {% endfor %}
-                                    </td>
+                                        {% endif %}
+                                    {% endfor %}
                                 </tr>
 
                             {% endif %}
