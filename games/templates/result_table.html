@@ -23,19 +23,40 @@
     </tr>
     <!-- Show the name of the away team, and their score information if the game was not postponed. -->
     <tr>
-        <td class="stat-header">
-            <img class="small-logo" src="{{ MEDIA_URL }}{{ result.away_team.small_logo }}" />
-                {% if archive %}
-                    <a class="table-link" href="{% url 'season_team' season result.away_team.geographic_name|lower %}">
-                {% else %}
-                    <a class="table-link" href="{% url 'team_games' result.away_team.geographic_name|lower %}">
-                {% endif %}
-                {% if result.game_status == "Completed" and result.away_team_runs > result.home_team_runs %}
-                    <strong>{{ result.away_team }}</strong></a>
-                {% else %}
-                    {{ result.away_team }}</a>
-                {% endif %}
-        </td>
+        <!-- If the user is logged in and the away team is their favourite, highlight the team name. -->
+        {% if user.is_authenticated and result.away_team == user.favourite_team %}
+            <td class="stat-header {{ user.favourite_team.geographic_name|lower }}-tag">
+                <img class="small-logo" src="{{ MEDIA_URL }}{{ result.away_team.small_logo }}" />
+                    {% if archive %}
+                        <a class="{{ user.favourite_team.geographic_name|lower }}-link table-link" href=
+                                "{% url 'season_team' season result.away_team.geographic_name|lower %}">
+                    {% else %}
+                        <a class="{{ user.favourite_team.geographic_name|lower }}-link table-link" href=
+                                "{% url 'team_games' result.away_team.geographic_name|lower %}">
+                    {% endif %}
+                    {% if result.game_status == "Completed" and result.away_team_runs > result.home_team_runs %}
+                        <strong>{{ result.away_team }}</strong></a>
+                    {% else %}
+                        {{ result.away_team }}</a>
+                    {% endif %}
+            </td>
+        <!-- Otherwise, show the team name as normal. -->
+        {% else %}
+            <td class="stat-header">
+                <img class="small-logo" src="{{ MEDIA_URL }}{{ result.away_team.small_logo }}" />
+                    {% if archive %}
+                        <a class="table-link" href=
+                                "{% url 'season_team' season result.away_team.geographic_name|lower %}">
+                    {% else %}
+                        <a class="table-link" href="{% url 'team_games' result.away_team.geographic_name|lower %}">
+                    {% endif %}
+                    {% if result.game_status == "Completed" and result.away_team_runs > result.home_team_runs %}
+                        <strong>{{ result.away_team }}</strong></a>
+                    {% else %}
+                        {{ result.away_team }}</a>
+                    {% endif %}
+            </td>
+        {% endif %}
         {% if result.game_status == "Postponed" %}
             <td></td>
             <td></td>
@@ -48,19 +69,40 @@
     </tr>
     <!-- Show the name of the home team, and their score information if the game was not postponed. -->
     <tr>
-        <td class="stat-header">
-            <img class="small-logo" src="{{ MEDIA_URL }}{{ result.home_team.small_logo }}" />
-                {% if archive %}
-                    <a class="table-link" href="{% url 'season_team' season result.home_team.geographic_name|lower %}">
-                {% else %}
-                    <a class="table-link" href="{% url 'team_games' result.home_team.geographic_name|lower %}">
-                {% endif %}
-                {% if result.game_status == "Completed" and result.home_team_runs > result.away_team_runs %}
-                    <strong>{{ result.home_team }}</strong></a>
-                {% else %}
-                    {{ result.home_team }}</a>
-                {% endif %}
-        </td>
+        <!-- If the user is logged in and the home team is their favourite, highlight the team name. -->
+        {% if user.is_authenticated and result.home_team == user.favourite_team %}
+            <td class="stat-header {{ user.favourite_team.geographic_name|lower }}-tag">
+                <img class="small-logo" src="{{ MEDIA_URL }}{{ result.home_team.small_logo }}" />
+                    {% if archive %}
+                        <a class="{{ user.favourite_team.geographic_name|lower }}-link table-link" href=
+                                "{% url 'season_team' season result.home_team.geographic_name|lower %}">
+                    {% else %}
+                        <a class="{{ user.favourite_team.geographic_name|lower }}-link table-link" href=
+                                "{% url 'team_games' result.home_team.geographic_name|lower %}">
+                    {% endif %}
+                    {% if result.game_status == "Completed" and result.home_team_runs > result.away_team_runs %}
+                        <strong>{{ result.home_team }}</strong></a>
+                    {% else %}
+                        {{ result.home_team }}</a>
+                    {% endif %}
+            </td>
+        <!-- Otherwise, show the team name as normal. -->
+        {% else %}
+            <td class="stat-header">
+                <img class="small-logo" src="{{ MEDIA_URL }}{{ result.home_team.small_logo }}" />
+                    {% if archive %}
+                        <a class="table-link" href=
+                                "{% url 'season_team' season result.home_team.geographic_name|lower %}">
+                    {% else %}
+                        <a class="table-link" href="{% url 'team_games' result.home_team.geographic_name|lower %}">
+                    {% endif %}
+                    {% if result.game_status == "Completed" and result.home_team_runs > result.away_team_runs %}
+                        <strong>{{ result.home_team }}</strong></a>
+                    {% else %}
+                        {{ result.home_team }}</a>
+                    {% endif %}
+            </td>
+        {% endif %}
         {% if result.game_status == "Postponed" %}
             <td></td>
             <td></td>

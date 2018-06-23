@@ -109,7 +109,7 @@ def games_team(request, team_name):
     # Get information for all the regular season games that the team is involved in during the current year.
     games = Game.objects.filter(game_date__year=current_season) \
         .filter(game_type='Regular Season').filter(Q(home_team=team) | Q(away_team=team))\
-        .order_by('game_time').order_by('game_date')\
+        .order_by('game_date', 'game_time')\
         .values('game_date', 'game_status', 'home_team', 'away_team', 'home_team_runs', 'away_team_runs')
 
     # For each game in the season:
@@ -202,7 +202,7 @@ def full_results(request):
     results = Game.objects.filter(game_date__year=current_season)\
         .filter(game_type='Regular Season')\
         .filter(game_status__in=["Completed", "Suspended", "Postponed"])\
-        .order_by('game_date').order_by('home_team')
+        .order_by('-game_date', 'game_time', 'home_team')
 
     # Empty list for dates on which there was at least one result. Add dates to this list in order to show the
     # results one date at a time.
@@ -241,7 +241,7 @@ def full_fixtures(request):
     fixtures = Game.objects.filter(game_date__year=current_season)\
         .filter(game_type='Regular Season')\
         .filter(game_status__in=["Scheduled", "In Progress"]) \
-        .order_by('home_team').order_by('game_time').order_by('game_date')
+        .order_by('game_date', 'game_time', 'home_team')
 
     # Empty list for dates on which there is at least one fixture. Add dates to this list in order to show the
     # fixtures one date at a time.

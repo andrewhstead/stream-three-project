@@ -18,42 +18,69 @@
             <th class="stat-intro">
                 {{ fixture.game_time }}
             </th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th class="score-column"></th>
+            <th class="score-column"></th>
+            <th class="score-column"></th>
         {% endif %}
     </tr>
     <!-- Show the name of the away team, and their score information if the game is in progress. -->
     <tr>
-        <td class="stat-header">
-            <img class="small-logo" src="{{ MEDIA_URL }}{{ fixture.away_team.small_logo }}" />
-            <a class="table-link" href="{% url 'team_games' fixture.away_team.geographic_name|lower %}">
-                {{ fixture.away_team }}</a></td>
+        <!-- If the user is logged in and the away team is their favourite, highlight the team name. -->
+        {% if user.is_authenticated and fixture.away_team == user.favourite_team %}
+            <td class="stat-header {{ user.favourite_team.geographic_name|lower }}-tag">
+                <img class="small-logo" src="{{ MEDIA_URL }}{{ fixture.away_team.small_logo }}" />
+                <a class="{{ user.favourite_team.geographic_name|lower }}-link table-link" href=
+                        "{% url 'team_games' fixture.away_team.geographic_name|lower %}">
+                    {{ fixture.away_team }}
+                </a>
+            </td>
+        <!-- Otherwise, show the team name as normal. -->
+        {% else %}
+            <td class="stat-header">
+                <img class="small-logo" src="{{ MEDIA_URL }}{{ fixture.away_team.small_logo }}" />
+                <a class="table-link" href="{% url 'team_games' fixture.away_team.geographic_name|lower %}">
+                    {{ fixture.away_team }}
+                </a>
+            </td>
+        {% endif %}
         {% if fixture.game_status == "In Progress" %}
             <td class="stat-detail-highlight"><strong>{{ fixture.away_team_runs }}</strong></td>
             <td class="stat-detail-highfaint">{{ fixture.away_team_hits }}</td>
             <td class="stat-detail-highfaint">{{ fixture.away_team_errors }}</td>
         {% else %}
-            <td></td>
-            <td></td>
-            <td></td>
+            <td class="stat-detail"></td>
+            <td class="stat-detail"></td>
+            <td class="stat-detail"></td>
         {% endif %}
     </tr>
     <!-- Show the name of the home team, and their score information if the game is in progress. -->
     <tr>
-        <td class="stat-header">
-            <img class="small-logo" src="{{ MEDIA_URL }}{{ fixture.home_team.small_logo }}" />
-            <a class="table-link" href=
-                    "{% url 'team_games' fixture.home_team.geographic_name|lower %}">
-                {{ fixture.home_team }}</a></td>
+        <!-- If the user is logged in and the home team is their favourite, highlight the team name. -->
+        {% if user.is_authenticated and fixture.home_team == user.favourite_team %}
+            <td class="stat-header {{ user.favourite_team.geographic_name|lower }}-tag">
+                <img class="small-logo" src="{{ MEDIA_URL }}{{ fixture.home_team.small_logo }}" />
+                <a class="{{ user.favourite_team.geographic_name|lower }}-link table-link" href=
+                        "{% url 'team_games' fixture.home_team.geographic_name|lower %}">
+                    {{ fixture.home_team }}
+                </a>
+            </td>
+        <!-- Otherwise, show the team name as normal. -->
+        {% else %}
+            <td class="stat-header">
+                <img class="small-logo" src="{{ MEDIA_URL }}{{ fixture.home_team.small_logo }}" />
+                <a class="table-link" href="{% url 'team_games' fixture.home_team.geographic_name|lower %}">
+                    {{ fixture.home_team }}
+                </a>
+            </td>
+        {% endif %}
         {% if fixture.game_status == "In Progress" %}
             <td class="stat-detail-highlight"><strong>{{ fixture.home_team_runs }}</strong></td>
             <td class="stat-detail-highfaint">{{ fixture.home_team_hits }}</td>
             <td class="stat-detail-highfaint">{{ fixture.home_team_errors }}</td>
         {% else %}
-            <td></td>
-            <td></td>
-            <td></td>
+            <td class="stat-detail"></td>
+            <td class="stat-detail"></td>
+            <td class="stat-detail"></td>
         {% endif %}
     </tr>
 </table>
