@@ -41,13 +41,13 @@
             <!-- Show a logged in user the button to add a new post, otherwise prompt the user to log in. -->
             {% if user.is_authenticated %}
                 <div class="content-link">
-                    <a href="{% url 'new_post' thread.id %}?next={% url 'view_thread' thread.id %}?page={{ pages }}">
+                    <a href="{% url 'new_post' thread.id %}">
                         New Post</a>
                 </div>
             {% else %}
                 <div id="not-logged-in">
                     You must be <a class="standard-link"
-                                   href="{% url 'login' %}?next={% url 'view_thread' thread.id %}?page={{ pages }}">
+                                   href="{% url 'login' %}?next={% url 'view_thread' thread.id %}">
                     logged in</a> to post.
                 </div>
             {% endif %}
