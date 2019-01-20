@@ -16,7 +16,7 @@ from django.db.models import Q
 # Show the results from the most recent game date and the fixtures for the next scheduled game date.
 def last_and_next(request):
 
-    current_season = 2018
+    current_season = "2018"
 
     # Get the game information for the current season only.
     results = Game.objects.filter(game_date__year=current_season)\
@@ -71,7 +71,7 @@ def league_standings(request):
     # Otherwise, the currently displayed season will be the current year
     else:
         form = SeasonSelectForm()
-        current_season = 2018
+        current_season = "2018"
 
     # Get the standings for the chosen season.
     standings = get_standings(current_season)
@@ -97,7 +97,7 @@ def league_standings(request):
 # Show a list of result and fixtures for a chosen team in the current year.
 def games_team(request, team_name):
 
-    current_season = 2018
+    current_season = "2018"
 
     # Get the games for the current season.
     # games = Game.objects.filter(game_date__year=current_season) \
@@ -136,7 +136,7 @@ def games_team(request, team_name):
 # Show a full list of results for the current season in a single page.
 def results_list(request):
 
-    current_season = 2018
+    current_season = "2018"
 
     # Get the results for the current season. A game is considered to be a result if it is completed, suspended or
     # postponed. For suspended and postponed games, they will no longer be considered results when they are
@@ -166,7 +166,7 @@ def results_list(request):
 # Show a full list of fixtures for the current season in a single page.
 def fixture_list(request):
 
-    current_season = 2018
+    current_season = "2018"
 
     # Get the fixtures for the current season. A game is considered to be a fixture if it is scheduled for a future
     # date or time, or it is in progress.
@@ -194,7 +194,7 @@ def fixture_list(request):
 # Show a list of results for the current season in paginated format.
 def full_results(request):
 
-    current_season = 2018
+    current_season = "2018"
 
     # Get the results for the current season. A game is considered to be a result if it is completed, suspended or
     # postponed. For suspended and postponed games, they will no longer be considered results when they are
@@ -234,7 +234,7 @@ def full_results(request):
 # Show a list of fixtures for the current season in paginated format.
 def full_fixtures(request):
 
-    current_season = 2018
+    current_season = "2018"
 
     # Get the fixtures for the current season. A game is considered to be a fixture if it is scheduled for a future
     # date or time, or it is in progress.
