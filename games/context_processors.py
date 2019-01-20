@@ -8,7 +8,7 @@ from teams.models import Conference
 # standings.
 def statistics_bar(request):
 
-    current_season = datetime.now().year
+    current_season = 2018
 
     conferences = Conference.objects.all()
     standings = get_standings(current_season)
